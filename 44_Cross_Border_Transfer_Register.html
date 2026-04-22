@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cross-Border Transfer Register — Section 16 Compliance</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  /* Template-specific overrides */
+    .header { border-bottom: 2px solid var(--text-primary); padding-bottom: 15px; margin-bottom: 20px; }
+  .title { font-weight: bold; margin-bottom: 10px; }
+  .subtitle { color: var(--text-secondary); margin-bottom: 15px; }
+  table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; }
+  th { background: #2c3e50; color: white; padding: 6px; text-align: left; font-weight: bold; }
+  td { border: 1px solid var(--border-color); padding: 5px; }
+  tr:nth-child(even) { background: var(--bg-light); }
+  input[type="text"], textarea, select { border: none; border-bottom: 1px solid var(--text-primary); padding: 2px; }
+  input[type="text"] { width: 95%; }
+  .section { margin-top: 20px; }
+  .section-title { font-weight: bold; background: #ecf0f1; padding: 5px; margin-bottom: 10px; }
+  @media print { body { margin: 0; padding: 0; } }
+</style>
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">CROSS-BORDER TRANSFER REGISTER — Section 16 Compliance</div>
+  <div class="subtitle">
+    Organization: <input type="text" placeholder="[Organization Name]" style="width:300px;"><br>
+    Register Effective: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+    &nbsp;&nbsp; Last Updated: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+  </div>
+</div>
+
+<div class="warning">
+  <strong>SECTION 16 RESTRICTION:</strong> DPDP Act Section 16 requires that personal data of Indian residents CANNOT be transferred outside India unless the destination country is whitelisted by the Central Government. As of now, NO countries are whitelisted. The government notification is pending. All cross-border transfers are currently NOT PERMITTED unless they fall under narrow exceptions.
+</div>
+
+<table>
+  <tr>
+    <th style="width:10%;">Transfer ID</th>
+    <th style="width:12%;">Destination Country</th>
+    <th style="width:15%;">Data Categories</th>
+    <th style="width:12%;">Recipient / Third Party</th>
+    <th style="width:12%;">Purpose</th>
+    <th style="width:10%;">Legal Basis</th>
+    <th style="width:12%;">Safeguards / DPA</th>
+    <th style="width:12%;">Status & Notes</th>
+  </tr>
+
+  <tr>
+    <td><input type="text" placeholder="XBT-001" style="width:80px;"></td>
+    <td><input type="text" placeholder="Country" style="width:100px;"></td>
+    <td><input type="text" placeholder="e.g., name, email" style="width:120px;"></td>
+    <td><input type="text" placeholder="Vendor name" style="width:100px;"></td>
+    <td><input type="text" placeholder="e.g., Cloud hosting" style="width:100px;"></td>
+    <td>
+      <select style="border:1px solid var(--text-primary); padding:2px; width:95%;">
+        <option>Whitelisted country</option>
+        <option>Adequacy decision (pending)</option>
+        <option>Contractual safeguard (DPA)</option>
+        <option>Exception: Vital interests</option>
+        <option>Exception: Public interest</option>
+      </select>
+    </td>
+    <td><input type="text" placeholder="DPA signed date" style="width:100px;"></td>
+    <td><input type="text" placeholder="Status" style="width:100px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><input type="text" placeholder="XBT-002" style="width:80px;"></td>
+    <td><input type="text" placeholder="Country" style="width:100px;"></td>
+    <td><input type="text" placeholder="e.g., name, email" style="width:120px;"></td>
+    <td><input type="text" placeholder="Vendor name" style="width:100px;"></td>
+    <td><input type="text" placeholder="e.g., Analytics" style="width:100px;"></td>
+    <td>
+      <select style="border:1px solid var(--text-primary); padding:2px; width:95%;">
+        <option>Whitelisted country</option>
+        <option>Adequacy decision (pending)</option>
+        <option>Contractual safeguard (DPA)</option>
+        <option>Exception: Vital interests</option>
+        <option>Exception: Public interest</option>
+      </select>
+    </td>
+    <td><input type="text" placeholder="DPA signed date" style="width:100px;"></td>
+    <td><input type="text" placeholder="Status" style="width:100px;"></td>
+  </tr>
+
+</table>
+
+<div class="section">
+  <div class="section-title">WHITELISTED COUNTRIES (Section 16 Adequacy Decisions)</div>
+  <p style=" color:var(--text-secondary);">
+    This list updates as the Central Government issues notifications. Check DPB website weekly for latest list.
+  </p>
+  <table>
+    <tr>
+      <th>Country</th>
+      <th>Notification Date</th>
+      <th>Adequacy Level</th>
+      <th>Conditions / Notes</th>
+    </tr>
+    <tr>
+      <td colspan="4" style="text-align:center; color:var(--text-secondary); ">
+        <em>No countries whitelisted as of April 2026. Await Central Government notification.</em>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">CONTRACTUAL SAFEGUARD TRANSFERS (Pending Whitelisting)</div>
+  <p style=" color:var(--text-secondary);">
+    If destination country is not whitelisted, Section 16 DOES NOT permit transfer UNLESS it falls under narrow exceptions (vital interests, public interest). Contractual safeguards (DPA) alone do NOT satisfy Section 16.
+  </p>
+  <table>
+    <tr>
+      <th>Transfer ID</th>
+      <th>Destination</th>
+      <th>Claimed Exception</th>
+      <th>Legal Basis Documentation</th>
+      <th>DPA Status</th>
+      <th>DPO Approval</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="XBT-X01" style="width:80px;"></td>
+      <td><input type="text" placeholder="Country" style="width:80px;"></td>
+      <td>
+        <select style="border:1px solid var(--text-primary); padding:2px; width:95%;">
+          <option>Vital interests (emergency medical)</option>
+          <option>Public interest (law enforcement)</option>
+          <option>Employment contract (other than vital)</option>
+          <option>Other (specify below)</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="Document reference" style="width:100px;"></td>
+      <td><input type="text" placeholder="Signed date" style="width:80px;"></td>
+      <td><input type="text" placeholder="Approval date" style="width:80px;"></td>
+      <td><input type="text" placeholder="APPROVED / PENDING / REJECTED" style="width:90px;"></td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">DATA PROCESSING AGREEMENT (DPA) REGISTER</div>
+  <p style=" color:var(--text-secondary);">
+    For each cross-border transfer, maintain signed DPA with recipient that includes restrictions on further transfers, data protection commitments, and audit rights.
+  </p>
+  <table>
+    <tr>
+      <th>Transfer ID</th>
+      <th>Recipient</th>
+      <th>DPA Version</th>
+      <th>Signed Date</th>
+      <th>Restrictions on Sub-Processing</th>
+      <th>Data Breach Notification Clause</th>
+      <th>Audit Rights</th>
+      <th>Expiry / Review Date</th>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="XBT-001" style="width:60px;"></td>
+      <td><input type="text" placeholder="Vendor name" style="width:80px;"></td>
+      <td><input type="text" placeholder="v1.0" style="width:50px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="checkbox"> Yes</td>
+      <td><input type="checkbox"> Yes</td>
+      <td><input type="checkbox"> Yes</td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">IMPACT ASSESSMENT: SECTION 16 COMPLIANCE STATUS</div>
+  <p><strong>Current State of Cross-Border Transfers:</strong></p>
+  <div style="padding: var(--spacing-sm); background:var(--bg-light); border:1px solid var(--border-color);">
+    <strong>Total active transfers out of India:</strong> <input type="text" placeholder="Number" style="width:50px;"><br>
+    <strong>Transfers to whitelisted countries:</strong> <input type="text" placeholder="Number" style="width:50px;"><br>
+    <strong>Transfers with contractual safeguard only:</strong> <input type="text" placeholder="Number" style="width:50px;"><br>
+    <strong>Transfers with exception (vital / public interest):</strong> <input type="text" placeholder="Number" style="width:50px;"><br><br>
+    <strong>Compliance Assessment:</strong>
+    <select style="border:1px solid var(--text-primary); padding:3px; width:300px;">
+      <option>FULLY COMPLIANT (all transfers whitelisted or exception-based)</option>
+      <option>CONDITIONALLY COMPLIANT (some pending whitelisting)</option>
+      <option>NON-COMPLIANT (unauthorized transfers, require immediate halt)</option>
+    </select><br><br>
+    <strong>Action Plan (if not compliant):</strong><br>
+    <textarea placeholder="List steps to remedy non-compliant transfers: halt, seek exception, await whitelisting, etc." style="width:100%; height:80px;"></textarea>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">TRANSFER MONITORING & REGULATORY UPDATE LOG</div>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Regulatory Update / Notification</th>
+      <th>Impact on Transfers</th>
+      <th>Action Taken</th>
+      <th>Owner</th>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="e.g., New country whitelisted" style="width:250px;"></td>
+      <td><input type="text" placeholder="Impact" style="width:150px;"></td>
+      <td><input type="text" placeholder="Action" style="width:150px;"></td>
+      <td><input type="text" placeholder="Name" style="width:80px;"></td>
+    </tr>
+  </table>
+</div>
+
+<div style="margin-top:20px; padding: var(--spacing-md); background:#f0f5ff; border-left:3px solid var(--primary-color);">
+  <strong>REGISTER SIGN-OFF</strong><br><br>
+  This register is maintained and reviewed by: <input type="text" placeholder="Name / Title" style="width:250px;"><br>
+  Last Review Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;"><br>
+  DPO Sign-Off: <input type="text" placeholder="Signature" style="width:250px;"> Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;"><br>
+  General Counsel Approval: <input type="text" placeholder="Signature" style="width:250px;"> Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

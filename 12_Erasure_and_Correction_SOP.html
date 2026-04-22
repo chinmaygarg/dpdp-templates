@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Correction & Erasure SOP — With Propagation</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+<div class="header">
+  <div class="title">Data Correction & Erasure SOP</div>
+  <div class="subtitle">Standard Operating Procedure for Data Principal Requests (DPDP Sections 12, 13)</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 2.0 (Updated April 2026) | <strong>Effective Date:</strong> 13 May 2027 | <strong>Status:</strong> Active
+</div>
+
+<h2>Overview</h2>
+<p>
+  Under DPDP Act 2023 Section 12, Data Principals have unconditional rights to:
+  <strong>(1) Correct inaccurate/incomplete data, (2) Erase data (with limited exceptions)</strong>.
+  This SOP covers the operational procedures, timelines, and most importantly: <strong>propagation to processors and third parties</strong>.
+</p>
+
+<p style="background: #f8d7da; border-left: 4px solid #dc3545; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <strong style="color: #721c24;">⚠️ CRITICAL COMPLIANCE GAP:</strong><br>
+  Many organizations process the correction/erasure request internally but <strong>fail to propagate the change to all processors and third parties</strong>.
+  DPDP Section 12(4) requires the organization to ensure all processors and recipients of the data are notified and take action.
+  This is a direct penalty exposure.
+</p>
+
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#two-rights">Correction vs Erasure: Two Distinct Rights</a></li>
+  <li><a href="#sla-timeline">SLA Timeline (30 Days)</a></li>
+  <li><a href="#correction-process">Correction Process (7 Steps)</a></li>
+  <li><a href="#erasure-process">Erasure Process (8 Steps)</a></li>
+  <li><a href="#propagation">Processor & Third-Party Propagation (CRITICAL)</a></li>
+  <li><a href="#exceptions">Exceptions to Erasure (Legal Holds, Retention)</a></li>
+  <li><a href="#audit-trail">Audit Trail & Documentation</a></li>
+  <li><a href="#checklist">Implementation Checklist</a></li>
+</ul>
+
+<!-- ======== TWO RIGHTS ======== -->
+<h2 id="two-rights" style="margin-top: 40px;">Correction vs Erasure: Two Distinct Rights</h2>
+
+<p>
+  Section 12 grants two separate rights. Data Principals can request either one independently.
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Right</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">DPDP Section</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Definition</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">SLA</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Exceptions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Correction</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">12(1)(a)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Fix inaccurate, incomplete, or outdated personal data</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>30 days</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">None — must always correct if request is valid</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Erasure</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">12(1)(b)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Delete data permanently (if no longer needed for stated purpose)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>30 days</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Legal obligation, pending litigation, RBI records, DPIA findings</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== SLA TIMELINE ======== -->
+<h2 id="sla-timeline" style="margin-top: 40px;">SLA Timeline (30 Days)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #fff3cd;">
+      <th style="border: 1px solid #ffc107; padding: 10px; text-align: left; font-weight: bold;">Time</th>
+      <th style="border: 1px solid #ffc107; padding: 10px; text-align: left; font-weight: bold;">Action</th>
+      <th style="border: 1px solid #ffc107; padding: 10px; text-align: left; font-weight: bold;">Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+0 (Day 0)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Request received (correction or erasure form submitted)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Grievance Team</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+1 (Day 1)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Assign request ID; log in correction/erasure tracker</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Grievance Team</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+3 (Day 3)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Verify Data Principal identity; assess feasibility of request</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Privacy Team</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+15 (Day 15)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Execute correction/erasure in own systems; prepare processor notification</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data Team / DPO</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+20 (Day 20)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Notify all processors + third parties of correction/erasure</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPO</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+25 (Day 25)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Receive confirmation from processors that change has been applied</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPO</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+30 (Day 30) 🔴</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>DEADLINE:</strong> Send completion notice to Data Principal</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Compliance Officer</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== CORRECTION PROCESS ======== -->
+<h2 id="correction-process" style="margin-top: 40px;">Correction Process (7 Steps)</h2>
+
+<h3>Step 1: Receive Correction Request</h3>
+<p >
+  Data Principal submits <strong>Correction Form</strong> (T-13) specifying:
+  <ul style=" margin: 8px 0;">
+    <li>What data is inaccurate/incomplete? (e.g., "My address is listed as Mumbai but I moved to Bangalore")</li>
+    <li>What is the correct information? (e.g., "New address: [full address]")</li>
+    <li>Supporting evidence (optional but recommended)</li>
+  </ul>
+</p>
+
+<h3>Step 2: Verify Identity & Log Request</h3>
+<p >
+  <strong>Grievance Team:</strong>
+  <ul style=" margin: 8px 0;">
+    <li>Verify Data Principal identity (same as DSAR identity verification: account login, OTP, VID, etc.)</li>
+    <li>Assign Request ID (e.g., COR-2026-04-15-001)</li>
+    <li>Log in Correction Tracker table with: request ID, principal ID, data field, old value, new value, request date</li>
+    <li>Send acknowledgement email with Request ID and expected completion date (within 30 days)</li>
+  </ul>
+</p>
+
+<h3>Step 3: Assess Feasibility & Authority</h3>
+<p >
+  <strong>Privacy Team:</strong>
+  <ul style=" margin: 8px 0;">
+    <li><strong>Is the correction request legitimate?</strong> E.g., if principal claims address is wrong, request proof of new address (e.g., utility bill)</li>
+    <li><strong>Can we correct it?</strong> E.g., if data comes from an authoritative source (government, bank), we may need principal to update at source first</li>
+    <li><strong>Decision:</strong> Approve or request additional information; document reasoning</li>
+  </ul>
+</p>
+
+<h3>Step 4: Search All Records</h3>
+<p >
+  <strong>Data Team:</strong>
+  <ul style=" margin: 8px 0;">
+    <li>Query ALL systems where the data appears (not just current database, but archives, backups, logs, etc.)</li>
+    <li>Example: If correcting phone number, search: <code>SELECT * FROM data_principals WHERE principal_id = ? AND phone_number = [old_number]</code></li>
+    <li>Document all locations where old data found</li>
+  </ul>
+</p>
+
+<h3>Step 5: Execute Correction Internally</h3>
+<p >
+  <strong>Data Team:</strong>
+  <ul style=" margin: 8px 0;">
+    <li>Update all records with new information</li>
+    <li>Update database: <code>UPDATE data_principals SET phone_number = [new_number] WHERE principal_id = ?</code></li>
+    <li>Update backups (if backup restore is within retention period)</li>
+    <li>Log the correction in audit trail: who made change, when, previous value, new value, requester ID</li>
+    <li>Do NOT delete old value — keep audit trail for compliance</li>
+  </ul>
+</p>
+
+<h3>Step 6: Notify Processors & Third Parties (PROPAGATION)</h3>
+<p >
+  <strong>DPO (CRITICAL):</strong><br>
+  This is the most-overlooked requirement. Section 12(4) requires you to inform ALL processors and third parties of the correction.
+  <ul style=" margin: 8px 0;">
+    <li>Identify all processors who have a copy of the data (check Data Processing Agreement T-24 for processor list)</li>
+    <li>Send standardized notification email to each processor:</li>
+  </ul>
+</p>
+
+<div style="background: #f5f5f5; border-left: 4px solid #17a2b8; padding: 12px; margin: 12px 0; font-family: monospace; ">
+Subject: Data Correction Notification — Request ID [COR-ID] — Principal [PRINCIPAL_ID]<br><br>
+
+Dear [Processor Name],<br><br>
+
+We are notifying you of a data correction request we received and approved under DPDP Act 2023, Section 12.<br><br>
+
+<strong>Correction Details:</strong><br>
+• Data Principal ID: [PRINCIPAL_ID]<br>
+• Data Field: [FIELD_NAME] (e.g., "Phone Number")<br>
+• Old Value: [OLD_VALUE]<br>
+• New Value: [NEW_VALUE]<br>
+• Request ID: [COR-ID]<br><br>
+
+<strong>Action Required:</strong><br>
+Please update your records with the new value above within 5 business days.
+Please confirm completion by replying to this email with: confirmation date and system(s) updated.<br><br>
+
+<strong>No Further Action on Our Part:</strong><br>
+You do NOT need to notify the Data Principal separately; we will handle that communication.<br><br>
+
+Regards,<br>
+[Organization Name] — Data Protection Team
+</div>
+
+<h3>Step 7: Confirm & Close Request</h3>
+<p >
+  <strong>Compliance Officer:</strong>
+  <ul style=" margin: 8px 0;">
+    <li>Once all processors have confirmed correction applied, send completion notice to Data Principal</li>
+    <li>Include: confirmation that correction applied, processors notified, request ID, date completed</li>
+    <li>Mark request as "Completed" in tracker</li>
+  </ul>
+</p>
+
+<!-- ======== ERASURE PROCESS ======== -->
+<h2 id="erasure-process" style="margin-top: 40px;">Erasure Process (8 Steps)</h2>
+
+<p>
+  Erasure is more complex than correction because it requires: (1) evaluation of legal exceptions, (2) identification of all copies,
+  (3) permanent deletion, and (4) propagation to all processors.
+</p>
+
+<h3>Step 1: Receive Erasure Request</h3>
+<p >
+  Data Principal submits <strong>Erasure Request Form</strong> (T-12 or T-13 can be extended for both).
+  Request can include specific data categories or "all my data".
+</p>
+
+<h3>Step 2: Verify Identity & Log</h3>
+<p >
+  Same as Correction Step 2. Assign Erasure Request ID (e.g., ERA-2026-04-15-001).
+</p>
+
+<h3>Step 3: Identify Legal Exceptions</h3>
+<p >
+  <strong>DPO / Legal (CRITICAL):</strong> <strong>Erasure can be denied if:</strong>
+  <ul style=" margin: 8px 0;">
+    <li>☐ Legal obligation to retain (e.g., RBI: 8 years for loan records, 10 years for KYC; Income tax: 8 years)</li>
+    <li>☐ Litigation hold / pending legal dispute (DPO must document hold)</li>
+    <li>☐ DPIA finding that processing is necessary (document decision + reasoning)</li>
+    <li>☐ Principal consented to extended retention (document consent agreement)</li>
+    <li>☐ Data needed to establish, exercise, or defend legal claim</li>
+  </ul>
+  <strong>Decision:</strong> If exception applies, send justified rejection letter to principal. If no exception, proceed to erasure.
+</p>
+
+<h3>Step 4: Search All Records (All Copies)</h3>
+<p >
+  <strong>Data Team:</strong>
+  <ul style=" margin: 8px 0;">
+    <li>Search EVERY system: production database, archives, backups, cache servers, logs, external services</li>
+    <li>Identify which systems have which copies: active DB, MySQL backups, S3 archives, CloudFlare cache, third-party APIs, etc.</li>
+    <li>Create deletion checklist with system names and data locations</li>
+  </ul>
+</p>
+
+<h3>Step 5: Prepare Deletion Method</h3>
+<p >
+  <strong>Erasure must be PERMANENT — not just marked as deleted.</strong> Methods:
+  <ul style=" margin: 8px 0;">
+    <li>☐ <strong>Database PERMANENT DELETE:</strong> Execute <code>DELETE FROM data_principals WHERE principal_id = ?</code> (not soft-delete)</li>
+    <li>☐ <strong>Backup deletion:</strong> Remove old backup tapes/snapshots that contain the data (or isolate them)</li>
+    <li>☐ <strong>Cache clearing:</strong> Flush cache servers (Redis, Memcached, CDN) with the principal's data</li>
+    <li>☐ <strong>Log purging:</strong> If logs contain PII, redact or delete from log storage</li>
+    <li>☐ <strong>Third-party API:</strong> If data synced to external API (Salesforce, Google Analytics), call deletion endpoint or revoke data access</li>
+    <li>☐ <strong>Archive disposal:</strong> If archival media (tapes, hard drives) contain data, either physically destroy or cryptographically wipe</li>
+  </ul>
+</p>
+
+<h3>Step 6: Execute Erasure (Irreversible)</h3>
+<p >
+  <strong>Data Team with Audit Trail:</strong>
+  <ul style=" margin: 8px 0;">
+    <li>Execute DELETE in production database for principal's data</li>
+    <li>Log in audit trail (with cryptographic hash) that data was deleted: principal ID, data categories, deletion timestamp, authorized by [person]</li>
+    <li><strong>Do NOT log the actual data values</strong> (they're deleted), just that deletion occurred</li>
+    <li>For backups: decide whether to restore and re-delete (if within retention window) or just let them expire naturally (if acceptable by DPO)</li>
+  </ul>
+</p>
+
+<h3>Step 7: Notify Processors & Third Parties (PROPAGATION)</h3>
+<p >
+  <strong>DPO (CRITICAL):</strong> Same as Correction Step 6, but for erasure:
+</p>
+
+<div style="background: #f5f5f5; border-left: 4px solid #28a745; padding: 12px; margin: 12px 0; font-family: monospace; ">
+Subject: Data Erasure Notification — Request ID [ERA-ID] — Principal [PRINCIPAL_ID]<br><br>
+
+Dear [Processor Name],<br><br>
+
+We are notifying you of a data erasure request we received and approved under DPDP Act 2023, Section 12.<br><br>
+
+<strong>Erasure Details:</strong><br>
+• Data Principal ID: [PRINCIPAL_ID]<br>
+• Data Categories to Erase: [List: "Contact information", "Transaction history", "All data"]<br>
+• Request ID: [ERA-ID]<br><br>
+
+<strong>Action Required:</strong><br>
+Please <strong>PERMANENTLY DELETE</strong> all personal data for this principal from your systems within 5 business days.
+This includes: active records, backups, archives, and caches.<br><br>
+
+Please confirm completion by replying to this email with:<br>
+• Confirmation that data has been deleted<br>
+• Systems from which data was deleted<br>
+• Completion date<br><br>
+
+If you cannot delete some data due to legal retention requirements, please document the exception and explain the legal basis.<br><br>
+
+Regards,<br>
+[Organization Name] — Data Protection Team
+</div>
+
+<h3>Step 8: Confirm & Close Request</h3>
+<p >
+  <strong>Compliance Officer:</strong>
+  <ul style=" margin: 8px 0;">
+    <li>Once all processors have confirmed data deleted, send completion notice to Data Principal</li>
+    <li>Include: confirmation of erasure, data categories deleted, processors notified, request ID, completion date</li>
+    <li>Mark request as "Completed" in tracker</li>
+  </ul>
+</p>
+
+<!-- ======== PROPAGATION ======== -->
+<h2 id="propagation" style="margin-top: 40px;">Processor & Third-Party Propagation (CRITICAL COMPLIANCE)</h2>
+
+<p>
+  DPDP Section 12(4) states: "Where the personal data has been shared with other data fiduciaries or data processors,
+  the data fiduciary shall inform them of the request for correction or erasure..."
+</p>
+
+<p style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #856404;">⚠️ THIS IS A COMMON VIOLATION:</strong><br>
+  Many organizations correct/erase the data in their own systems but forget to notify processors.
+  DPBI fines organizations for failing to propagate.
+</p>
+
+<h3>Processor Identification Checklist</h3>
+<p >
+  <strong>DPO must maintain a live list of all processors:</strong>
+  <ul style=" margin: 8px 0;">
+    <li>☐ Data Processing Agreement (T-24) lists all processors? (Update if not)</li>
+    <li>☐ For each processor, document: name, data access, contact email, processor point of contact</li>
+    <li>☐ Sub-processors: document all sub-contractors (e.g., if processor uses cloud storage, that's a sub-processor)</li>
+    <li>☐ Third parties: identify recipients who are NOT processors but have received data (partners, vendors, analytics)</li>
+  </ul>
+</p>
+
+<h3>Standardized Processor Notification Process</h3>
+<ol >
+  <li>Create processor notification list (from T-24 Processor Register)</li>
+  <li>For each processor, send standardized email (templates above for correction and erasure)</li>
+  <li>Request confirmation of action taken within 5 business days</li>
+  <li>Track confirmations in Correction/Erasure Tracker</li>
+  <li>If processor does not confirm after 7 days, escalate to DPO and consider contract termination</li>
+  <li>Document all notifications and confirmations in audit trail for DPBI compliance proof</li>
+</ol>
+
+<h3>Sub-Processor Notification</h3>
+<p >
+  <strong>Important:</strong> The Data Processing Agreement (T-24) must specify that the processor will:
+  <ul style=" margin: 8px 0;">
+    <li>Notify their sub-processors of your correction/erasure request</li>
+    <li>Ensure sub-processors also comply with the request within the same timeline</li>
+    <li>Provide confirmation that sub-processors have complied</li>
+  </ul>
+  Otherwise, you cannot verify that sub-contractors have deleted the data.
+</p>
+
+<!-- ======== EXCEPTIONS ======== -->
+<h2 id="exceptions" style="margin-top: 40px;">Exceptions to Erasure (Legal Holds, Retention)</h2>
+
+<p>
+  DPDP Section 12(3) specifies that erasure can be denied in limited circumstances. Document each exception thoroughly.
+</p>
+
+<h3>Exception Documentation Requirements</h3>
+<ul >
+  <li><strong>Legal Hold:</strong> Document court case number, litigation status, why data is needed for legal claim</li>
+  <li><strong>RBI Retention:</strong> Document RBI rule, record type, retention period, date when data can be deleted</li>
+  <li><strong>Tax Records:</strong> Document applicable tax law, retention period (typically 8 years)</li>
+  <li><strong>DPIA Finding:</strong> Document DPIA result, why processing is deemed necessary, date when decision will be revisited</li>
+</ul>
+
+<h3>Exception Notification Letter Template</h3>
+<div style="background: #f5f5f5; border-left: 4px solid #dc3545; padding: 12px; margin: 12px 0; font-family: monospace; ">
+Subject: Erasure Request Outcome — Partially Granted with Exception — Request ID [ERA-ID]<br><br>
+
+Dear [Data Principal Name],<br><br>
+
+We received your erasure request on [DATE] (Request ID: [ERA-ID]).
+We have reviewed your request and determined that most of your data can be erased, but some data must be retained due to legal requirements.<br><br>
+
+<strong>Data Erased:</strong><br>
+• [Data category 1]<br>
+• [Data category 2]<br><br>
+
+<strong>Data Retained (Exception):</strong><br>
+• [Data category]: Retained until [DATE] due to [legal basis]<br>
+  Legal Basis: [Explain: e.g., "RBI retention requirement for loan records", "Pending litigation in [Court]"]<br><br>
+
+<strong>Next Steps:</strong><br>
+Once the legal requirement expires ([DATE]), we will automatically erase the retained data.
+You can request a status update at any time by filing another request.<br><br>
+
+If you believe we are incorrectly retaining data, you may file a grievance with our DPO: [DPO_EMAIL]<br><br>
+
+Regards,<br>
+[Organization Name]
+</div>
+
+<!-- ======== AUDIT TRAIL ======== -->
+<h2 id="audit-trail" style="margin-top: 40px;">Audit Trail & Documentation</h2>
+
+<p>
+  For DPBI compliance verification, you must maintain detailed audit trail of every correction and erasure request.
+</p>
+
+<h3>Correction & Erasure Tracker (Database Table)</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Field</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>request_id</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Unique ID (e.g., COR-2026-04-15-001 or ERA-2026-04-15-001)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>principal_id</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Data Principal who made request</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>request_type</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">"CORRECTION" or "ERASURE"</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>data_field</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">For CORRECTION: field name. For ERASURE: data categories</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>received_date</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">ISO timestamp when request was received</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>processed_date</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">ISO timestamp when action was taken in own systems</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>processors_notified_date</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">ISO timestamp when processors were notified</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>processors_confirmed_date</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">ISO timestamp when all processors confirmed completion</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>completion_date</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">ISO timestamp when principal was notified of completion</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>status</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">"PENDING" / "IN_PROGRESS" / "COMPLETED" / "DENIED_EXCEPTION"</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>exception_reason</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">If DENIED: "LEGAL_HOLD", "RBI_RETENTION", "TAX_RECORD", "DPIA_FINDING" + explanation</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>processors_list</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">JSON list of processors notified: [{"name": "...", "notified_date": "...", "confirmed_date": "..."}]</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><code>authorized_by</code></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">DPO or compliance officer who authorized action</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== CHECKLIST ======== -->
+<h2 id="checklist" style="margin-top: 40px;">Implementation Checklist</h2>
+
+<ul style=" line-height: 1.8;">
+  <li>☐ <strong>Process:</strong> Correction Form (T-13) and Erasure Form created and published on portal</li>
+  <li>☐ <strong>Identity Verification:</strong> Same procedure as DSAR (account login + OTP, VID, email callback, etc.)</li>
+  <li>☐ <strong>Tracker Database:</strong> Correction & Erasure Tracker table created with fields listed above</li>
+  <li>☐ <strong>SOP Documented:</strong> These 8 steps for erasure, 7 steps for correction documented in training</li>
+  <li>☐ <strong>Processor Register:</strong> Data Processing Agreement (T-24) lists all current processors and their contact emails</li>
+  <li>☐ <strong>Notification Templates:</strong> Standardized processor notification emails approved by DPO and Legal</li>
+  <li>☐ <strong>Exception Framework:</strong> DPO has documented which data categories have legal exceptions and why</li>
+  <li>☐ <strong>Legal Hold Process:</strong> Procedure for litigation holds documented; DPO informed of all active litigation</li>
+  <li>☐ <strong>30-Day Monitoring:</strong> Dashboard to track requests approaching 30-day deadline; alerts for escalation</li>
+  <li>☐ <strong>Propagation SLA:</strong> Processors must confirm within 5-7 days; escalation if non-responsive</li>
+  <li>☐ <strong>Audit Trail:</strong> All corrections/erasures logged with timestamps, authorized by, processors notified</li>
+  <li>☐ <strong>Reporting:</strong> Monthly/quarterly report to DPO: requests received, processed, denied with reasons</li>
+  <li>☐ <strong>Training:</strong> Grievance team trained on this SOP, correction vs erasure distinction, propagation requirement</li>
+</ul>
+
+<div style="background: #d1ecf1; border: 1px solid #bee5eb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #0c5460;">ℹ️ REFERENCE TEMPLATES:</strong><br>
+  • <strong>T-13:</strong> <a href="13_Data_Correction_Form.html">Data Correction Form</a><br>
+  • <strong>T-24:</strong> <a href="24_Data_Processing_Agreement.html">Data Processing Agreement (Processor List)</a><br>
+  • <strong>T-11:</strong> <a href="11_DSAR_Response_Letter.html">DSAR Response (Right #3: Correction, Right #4: Erasure)</a>
+</div>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 2.0<br>
+    <strong>Last Updated:</strong> April 2026<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By (DPO):</strong> _________________________<br>
+    <strong>Approved By (Legal):</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

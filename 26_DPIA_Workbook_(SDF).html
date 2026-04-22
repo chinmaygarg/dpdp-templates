@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPIA Workbook (SDF)</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  .header { border-bottom: 2px solid var(--text-primary); padding-bottom: 15px; margin-bottom: 20px; }
+  .title { font-weight: bold; margin-bottom: 10px; }
+  .subtitle { color: var(--text-secondary); margin-bottom: 15px; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+  th { background: #2c3e50; color: white; padding: 6px; text-align: left; font-weight: bold; }
+  td { border: 1px solid #ddd; padding: 5px; vertical-align: top; }
+  tr:nth-child(even) { background: #f9f9f9; }
+  .trigger-box { background: #fff9e6; border-left: 3px solid #f0ad4e; padding: 10px; margin: 10px 0; }
+  .risk-critical { background: #f8d7da; color: #721c24; }
+  .risk-high { background: #f5c6cb; color: #721c24; }
+  .risk-medium { background: #fff3cd; color: #856404; }
+  .risk-low { background: #d4edda; color: #155724; }
+  .gate-checklist { background: #e8f4fd; border-left: 3px solid #0066cc; padding: 10px; margin: 10px 0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="title">DPIA Workbook (SDF) — Data Protection Impact Assessment Workbook</div>
+  <div class="subtitle">Digital Personal Data Protection Act 2023 — Section 10 DPIA Requirements for Significant Data Fiduciaries (SDF)</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived]<br>
+  <strong>Organization:</strong> [Organization Name] | <strong>SDF Classification:</strong> [Yes/No] | <strong>Last Review Date:</strong> [DATE]
+</div>
+
+<h2>Overview & Purpose</h2>
+
+<p >
+Under DPDP Act 2023 <strong>Section 10</strong>, every <strong>Significant Data Fiduciary (SDF)</strong> must conduct a Data Protection Impact Assessment (DPIA) before implementing processing activities that pose a high risk to data principals. This Workbook provides a structured 6-step process to identify DPIA-triggering activities, assess risks, implement safeguards, and obtain organizational sign-off before deployment.
+</p>
+
+<p style=" margin-top: 10px;">
+<strong>Who Must Use This Workbook:</strong> If your organization is classified as a Significant Data Fiduciary (SDF) — typically organizations processing >50 lakh personal data records or processing sensitive data at scale — you MUST complete a DPIA for any processing activity listed in the "DPIA Trigger Checklist" below before the activity goes live.
+</p>
+
+---
+
+<h2 style="margin-top: 30px;">SECTION 1 — DPIA TRIGGER CHECKLIST</h2>
+
+<p style=" margin-bottom: 10px;">
+<strong>Before starting a DPIA:</strong> Answer YES or NO to each trigger below. If you answer YES to <strong>any one trigger</strong>, a DPIA is mandatory before the activity can go live.
+</p>
+
+<table>
+  <tr style="background: #e7f3ff;">
+    <th style="width: 4%;">✓</th>
+    <th style="width: 30%;">DPIA Trigger Condition</th>
+    <th style="width: 35%;">Definition & Fintech/BFSI Examples</th>
+    <th style="width: 15%;">Applies to Your Org?<br>(YES/NO)</th>
+    <th style="width: 16%;">If YES: File DPIA? (Y/N)</th>
+  </tr>
+
+  <!-- Trigger 1: Biometric -->
+  <tr>
+    <td style="text-align: center; font-weight: bold;">☐</td>
+    <td><strong>1. Biometric Data Processing</strong></td>
+    <td>Processing of fingerprints, facial images, iris scans, voice biometrics, or other biological/physiological data for authentication, verification, or identification purposes. Examples: Face recognition for KYC, fingerprint for mobile unlock, voice-based authorization, behavioral biometrics (keystroke dynamics).</td>
+    <td style="text-align: center;"><input type="checkbox"> YES<br><input type="checkbox"> NO</td>
+    <td style="text-align: center;"><input type="checkbox"> Y<br><input type="checkbox"> N</td>
+  </tr>
+
+  <!-- Trigger 2: Health Data -->
+  <tr style="background: #f9f9f9;">
+    <td style="text-align: center; font-weight: bold;">☐</td>
+    <td><strong>2. Health/Medical Data</strong></td>
+    <td>Processing of health information including medical history, insurance claims, health condition disclosures, genetic data, mental health information, or medical fitness certificates. Examples: Health insurance underwriting based on medical records, processing health declarations for KYC, credit assessment based on health status.</td>
+    <td style="text-align: center;"><input type="checkbox"> YES<br><input type="checkbox"> NO</td>
+    <td style="text-align: center;"><input type="checkbox"> Y<br><input type="checkbox"> N</td>
+  </tr>
+
+  <!-- Trigger 3: Automated Decision Making -->
+  <tr>
+    <td style="text-align: center; font-weight: bold;">☐</td>
+    <td><strong>3. Automated Decision-Making with Legal/Significant Effect</strong></td>
+    <td>Using algorithmic or ML models to make <strong>fully automated decisions</strong> that have legal or similarly significant effect on an individual, without human review. Examples: AI credit scoring that auto-approves/rejects without human review, automated loan denial based on ML fraud detection, algorithmic employment decisions (hiring/firing), automated collection agency assignment based on risk model.</td>
+    <td style="text-align: center;"><input type="checkbox"> YES<br><input type="checkbox"> NO</td>
+    <td style="text-align: center;"><input type="checkbox"> Y<br><input type="checkbox"> N</td>
+  </tr>
+
+  <!-- Trigger 4: Large-Scale Processing -->
+  <tr style="background: #f9f9f9;">
+    <td style="text-align: center; font-weight: bold;">☐</td>
+    <td><strong>4. Large-Scale Data Processing</strong></td>
+    <td>Processing personal data of <strong>10,000 or more individuals</strong> in a single processing activity. Threshold is cumulative per activity, not across all activities. Examples: Email marketing campaign to >10K customers, bulk data export for analytics, vendor onboarding involving >10K employee records, mass SMS notification system.</td>
+    <td style="text-align: center;"><input type="checkbox"> YES<br><input type="checkbox"> NO</td>
+    <td style="text-align: center;"><input type="checkbox"> Y<br><input type="checkbox"> N</td>
+  </tr>
+
+  <!-- Trigger 5: Children's Data -->
+  <tr>
+    <td style="text-align: center; font-weight: bold;">☐</td>
+    <td><strong>5. Processing of Children's Data</strong></td>
+    <td>Any processing of personal data of individuals below 18 years (including minors), including children's consent, behavioral tracking, educational profiling, or targeted services. Examples: Student loan application processing for minors, parental consent consent tracking for minor users, age-gated product access, targeted offers to under-18 audience.</td>
+    <td style="text-align: center;"><input type="checkbox"> YES<br><input type="checkbox"> NO</td>
+    <td style="text-align: center;"><input type="checkbox"> Y<br><input type="checkbox"> N</td>
+  </tr>
+
+  <!-- Trigger 6: Cross-Border Transfer -->
+  <tr style="background: #f9f9f9;">
+    <td style="text-align: center; font-weight: bold;">☐</td>
+    <td><strong>6. Cross-Border Data Transfer</strong></td>
+    <td>Transferring personal data outside India to other countries (including cloud storage in other jurisdictions, offshore processors, or international API calls). Examples: Cloud hosting in AWS US regions, sending data to international fintech partner, storing backup in Singapore, third-party analytics platform in EU.</td>
+    <td style="text-align: center;"><input type="checkbox"> YES<br><input type="checkbox"> NO</td>
+    <td style="text-align: center;"><input type="checkbox"> Y<br><input type="checkbox"> N</td>
+  </tr>
+
+  <!-- Trigger 7: Emerging/Novel Technology -->
+  <tr>
+    <td style="text-align: center; font-weight: bold;">☐</td>
+    <td><strong>7. Emerging Technology or New Methodology</strong></td>
+    <td>Deploying a new, untested, or emerging technology to process personal data that your organization has not used before. Examples: First deployment of AI/ML model, implementing blockchain for identity, using quantum computing for encryption, deploying new third-party API with data access, rolling out new surveillance or monitoring tech.</td>
+    <td style="text-align: center;"><input type="checkbox"> YES<br><input type="checkbox"> NO</td>
+    <td style="text-align: center;"><input type="checkbox"> Y<br><input type="checkbox"> N</td>
+  </tr>
+
+  <!-- Trigger 8: Systematic Monitoring -->
+  <tr style="background: #f9f9f9;">
+    <td style="text-align: center; font-weight: bold;">☐</td>
+    <td><strong>8. Systematic Monitoring or Profiling at Scale</strong></td>
+    <td>Large-scale, systematic, continuous monitoring or profiling of individuals' behavior, preferences, online activity, or financial transactions. Examples: Tracking all user behavior for predictive profiling, real-time transaction monitoring to infer credit risk, continuous biometric surveillance in premises, profiling for credit scoring based on browsing history.</td>
+    <td style="text-align: center;"><input type="checkbox"> YES<br><input type="checkbox"> NO</td>
+    <td style="text-align: center;"><input type="checkbox"> Y<br><input type="checkbox"> N</td>
+  </tr>
+</table>
+
+<div class="trigger-box">
+  <strong>Trigger Assessment Result:</strong><br>
+  If you marked YES for any trigger above, <strong>a DPIA is MANDATORY</strong>. Proceed to Section 2 (6-Step DPIA Process) below.<br>
+  If all triggers are NO, DPIA may not be required for this activity. However, DPO must approve in writing that "DPIA Trigger Checklist completed; no triggers identified; risk assessment deferred to operational controls."
+</div>
+
+---
+
+<h2 style="margin-top: 30px;">SECTION 2 — 6-STEP DPIA PROCESS</h2>
+
+<p style=" margin-bottom: 10px;">
+Once you've identified a DPIA-triggering activity, follow the 6-step process below to assess risks and implement safeguards.
+</p>
+
+<h3 style=" margin-top: 15px;">STEP 1: Activity Description & Scope</h3>
+
+<p ><strong>Objective:</strong> Clearly document what processing activity you plan to implement and who it affects.</p>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 10px; margin: 10px 0;">
+  <p ><strong>Fill in the following:</strong></p>
+  <ul >
+    <li><strong>Processing Activity Name:</strong> ___________________________________________________</li>
+    <li><strong>Description:</strong> What exactly will the system/process do? [E.g., "AI-based credit scoring for personal loan applications"]</li>
+    <li><strong>Data Categories Involved:</strong> [E.g., "Income, employment, transaction history, credit score"]</li>
+    <li><strong>Individuals Affected:</strong> How many data principals? [E.g., "All loan applicants; estimated 5,000/month"]</li>
+    <li><strong>Processing Duration:</strong> Temporary (one-time) or ongoing? [E.g., "Ongoing; deployed for 3+ years"]</li>
+    <li><strong>Responsible Team:</strong> Which business unit owns this? [E.g., "Credit Risk Team, IT Systems Team"]</li>
+  </ul>
+</div>
+
+<h3 style=" margin-top: 15px;">STEP 2: Identify Legitimate Uses & Legal Basis</h3>
+
+<p ><strong>Objective:</strong> Confirm that this processing activity is justified under DPDP Act Section 6 (consent) or Section 7 (legitimate use).</p>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 10px; margin: 10px 0;">
+  <p ><strong>Complete:</strong></p>
+  <ul >
+    <li>☐ <strong>Section 6 Consent:</strong> Is consent required? If YES, is consent form (T-08) FSIUU-valid? [Reference <a href="08_Consent_Form.html" style="color:#0066cc;">T-08 Consent Form</a>]</li>
+    <li>☐ <strong>Section 7 Legitimate Use:</strong> Is this justified under Section 7(i-ix)? If YES, which ground? [Reference <a href="06_Section_7_Legitimate_Uses_Legal_Memo.html" style="color:#0066cc;">T-06 Section 7 Memo</a>]</li>
+    <li>☐ <strong>Data Minimization:</strong> Is only necessary data being collected? [Justify which data is necessary]</li>
+    <li>☐ <strong>Purpose Limitation:</strong> Can data only be used for stated purpose? [List permitted uses]</li>
+  </ul>
+</div>
+
+<h3 style=" margin-top: 15px;">STEP 3: Risk Assessment Matrix</h3>
+
+<p ><strong>Objective:</strong> Identify and score risks to data principals from this processing activity.</p>
+
+<p style=" margin-bottom: 10px;"><strong>For each risk type below, complete the table:</strong></p>
+
+<table >
+  <tr style="background: #2c3e50; color: white;">
+    <th style="width: 18%;">Risk Category</th>
+    <th style="width: 22%;">Specific Risk (to data principal)</th>
+    <th style="width: 12%;">Likelihood<br>(1-5)</th>
+    <th style="width: 12%;">Impact<br>(1-5)</th>
+    <th style="width: 10%;">Risk Score<br>(L×I)</th>
+    <th style="width: 26%;">Mitigation Control</th>
+  </tr>
+
+  <!-- Privacy Breach Risk -->
+  <tr>
+    <td><strong>Data Breach</strong></td>
+    <td>Unauthorized access to processing data due to system misconfiguration, insider threat, or cyberattack</td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="Score" style="width: 40px; text-align: center;"></td>
+    <td>Encryption, access control, audit logging, regular security testing</td>
+  </tr>
+
+  <!-- Discrimination Risk -->
+  <tr style="background: #f9f9f9;">
+    <td><strong>Discrimination</strong></td>
+    <td>AI/ML algorithm exhibits bias against protected groups (e.g., denying credit based on age, gender, caste-proxy variables)</td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="Score" style="width: 40px; text-align: center;"></td>
+    <td>Bias audit, fairness testing, human override, explainability, regular retraining</td>
+  </tr>
+
+  <!-- Surveillance Risk -->
+  <tr>
+    <td><strong>Excessive Surveillance</strong></td>
+    <td>Continuous monitoring of user behavior disproportionate to stated purpose (e.g., tracking beyond-scope browsing)</td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="Score" style="width: 40px; text-align: center;"></td>
+    <td>Purpose limitation enforcement, consent withdrawal mechanism, data minimization, transparency</td>
+  </tr>
+
+  <!-- Profiling Risk -->
+  <tr style="background: #f9f9f9;">
+    <td><strong>Unlawful Profiling</strong></td>
+    <td>Creating inferences about individuals' preferences, creditworthiness, or behavior without consent or legitimate basis</td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="Score" style="width: 40px; text-align: center;"></td>
+    <td>Consent requirement, purpose limitation, transparency, right to challenge automated decision</td>
+  </tr>
+
+  <!-- Accuracy Risk -->
+  <tr>
+    <td><strong>Data Inaccuracy</strong></td>
+    <td>Processing based on inaccurate or outdated data leading to incorrect decisions (e.g., loan denial based on false credit info)</td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="Score" style="width: 40px; text-align: center;"></td>
+    <td>Data validation, source verification, right to correction, manual review before major decision</td>
+  </tr>
+
+  <!-- Vendor Risk -->
+  <tr style="background: #f9f9f9;">
+    <td><strong>Third-Party/Vendor Risk</strong></td>
+    <td>Vendor/processor fails to comply with DPDP (inadequate security, unauthorized sharing, retention beyond SLA)</td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="Score" style="width: 40px; text-align: center;"></td>
+    <td>DPA signed, vendor due diligence, audit rights, sub-processor clause, SLA enforcement</td>
+  </tr>
+
+  <!-- Withdrawal Risk -->
+  <tr>
+    <td><strong>Withdrawal/Erasure Non-Compliance</strong></td>
+    <td>Data principal's request to withdraw consent or erase data is not honored within SLA (30 days)</td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="1-5" style="width: 30px; text-align: center;"></td>
+    <td style="text-align: center;"><input type="text" placeholder="Score" style="width: 40px; text-align: center;"></td>
+    <td>Automated withdrawal workflow, deletion SLA tracking, processor notification, audit log</td>
+  </tr>
+</table>
+
+<p style=" margin-top: 10px;"><strong>Risk Score Interpretation:</strong><br>
+• <strong style="color: #d32f2f;">Critical (>20):</strong> CANNOT proceed without additional safeguards. Implement controls, re-assess risk, obtain board approval.<br>
+• <strong style="color: #f5a623;">High (15-20):</strong> High risk. Implement strong controls from "Mitigation" column. DPO sign-off required.<br>
+• <strong style="color: #f0ad4e;">Medium (10-14):</strong> Moderate risk. Standard controls sufficient. Compliance approval required.<br>
+• <strong style="color: #28a745;">Low (<10):</strong> Low risk. Proceed with standard safeguards.
+</p>
+
+<h3 style=" margin-top: 15px;">STEP 4: Implement Safeguards</h3>
+
+<p ><strong>Objective:</strong> Design and implement technical and organizational controls to reduce identified risks.</p>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 10px; margin: 10px 0;">
+  <p ><strong>Document the following safeguards:</strong></p>
+
+  <table style=" width: 100%;">
+    <tr style="background: #e8f4fd;">
+      <th>Safeguard Category</th>
+      <th>Control (What will you implement?)</th>
+      <th>Owner (Who is responsible?)</th>
+      <th>Timeline (When by?)</th>
+      <th>Verification (How will you verify?)</th>
+    </tr>
+    <tr>
+      <td><strong>Encryption</strong></td>
+      <td>☐ AES-256 at rest<br>☐ TLS 1.3+ in transit<br>☐ Key rotation quarterly</td>
+      <td><input type="text" placeholder="IT/Security"></td>
+      <td><input type="text" placeholder="Date"></td>
+      <td>Security audit, penetration test</td>
+    </tr>
+    <tr style="background: #f9f9f9;">
+      <td><strong>Access Control</strong></td>
+      <td>☐ Role-based access (RBAC)<br>☐ Least privilege enforcement<br>☐ MFA for admin access</td>
+      <td><input type="text" placeholder="IT"></td>
+      <td><input type="text" placeholder="Date"></td>
+      <td>Quarterly access review audit log</td>
+    </tr>
+    <tr>
+      <td><strong>Audit Logging</strong></td>
+      <td>☐ Immutable audit logs (INSERT-only)<br>☐ Hash-chained rows<br>☐ PII redaction in logs</td>
+      <td><input type="text" placeholder="IT/Audit"></td>
+      <td><input type="text" placeholder="Date"></td>
+      <td>Review audit log samples, test redaction</td>
+    </tr>
+    <tr style="background: #f9f9f9;">
+      <td><strong>Bias Testing (AI/ML)</strong></td>
+      <td>☐ Fairness audit on training data<br>☐ Accuracy testing across demographic groups<br>☐ Annual bias retraining</td>
+      <td><input type="text" placeholder="Data Science"></td>
+      <td><input type="text" placeholder="Date"></td>
+      <td>Fairness metrics report, external audit</td>
+    </tr>
+    <tr>
+      <td><strong>Consent Mgmt</strong></td>
+      <td>☐ Consent Form FSIUU-valid (T-08)<br>☐ Withdrawal mechanism live<br>☐ Consent Registry updated</td>
+      <td><input type="text" placeholder="Legal/Compliance"></td>
+      <td><input type="text" placeholder="Date"></td>
+      <td>Consent Registry audit, sample withdrawal test</td>
+    </tr>
+    <tr style="background: #f9f9f9;">
+      <td><strong>DSAR/Erasure SLA</strong></td>
+      <td>☐ DSAR workflow (30-day SLA)<br>☐ Automated data export<br>☐ Deletion process documented</td>
+      <td><input type="text" placeholder="Legal"></td>
+      <td><input type="text" placeholder="Date"></td>
+      <td>Test DSAR submission, measure SLA compliance</td>
+    </tr>
+    <tr>
+      <td><strong>Vendor DPA</strong></td>
+      <td>☐ DPA signed with all processors<br>☐ Sub-processor clause<br>☐ Audit rights included</td>
+      <td><input type="text" placeholder="Legal/Procurement"></td>
+      <td><input type="text" placeholder="Date"></td>
+      <td>DPA registry audit, verify signatories</td>
+    </tr>
+  </table>
+</div>
+
+<h3 style=" margin-top: 15px;">STEP 5: DPO Review & Approval</h3>
+
+<p ><strong>Objective:</strong> Obtain sign-off from the Data Protection Officer (if SDF) or external counsel confirming risks are acceptable.</p>
+
+<div style="background: #e8f4fd; border: 1px solid #0066cc; padding: 10px; margin: 10px 0;">
+  <p ><strong>DPO Certification:</strong></p>
+
+  <p >
+    ☐ <strong>I have reviewed the DPIA for:</strong> _________________________________ (activity name)<br>
+    ☐ <strong>Risk Assessment:</strong> Risks are acceptable with proposed safeguards in place<br>
+    ☐ <strong>Safeguards Adequate:</strong> Controls listed in Step 4 are sufficient to mitigate identified risks<br>
+    ☐ <strong>Compliance Status:</strong> Activity is compliant with DPDP Act Sections 5, 6, 7, 8, 10<br>
+    ☐ <strong>Go-Live Approval:</strong> This activity may proceed to deployment
+  </p>
+
+  <p style=" margin-top: 10px;">
+    <strong>DPO Name:</strong> ______________________________<br>
+    <strong>Signature:</strong> _________________________ <strong>Date:</strong> _________________<br>
+    <strong>Organization:</strong> ______________________________
+  </p>
+
+  <p style=" margin-top: 10px;"><strong>If DPO objects:</strong> Document concerns below. Activity CANNOT proceed until concerns are resolved.</p>
+  <textarea style="width: 95%; height: 60px;  padding: 5px;" placeholder="DPO concerns or conditions..."></textarea>
+</div>
+
+<h3 style=" margin-top: 15px;">STEP 6: Go-Live Gate Checklist</h3>
+
+<p ><strong>Objective:</strong> Final verification that all safeguards are implemented and activity is ready for production deployment.</p>
+
+<div class="gate-checklist">
+  <p ><strong>Before deploying to production, verify ALL items below:</strong></p>
+
+  <table >
+    <tr style="background: #e8f4fd;">
+      <th style="width: 3%;">✓</th>
+      <th style="width: 50%;">Go-Live Gate Item</th>
+      <th style="width: 20%;">Status</th>
+      <th style="width: 27%;">Owner / Verification</th>
+    </tr>
+
+    <tr>
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>Security Controls Live:</strong> Encryption, access control, logging all deployed and tested</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="IT/Security"></td>
+    </tr>
+
+    <tr style="background: #f9f9f9;">
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>Consent Form Deployed:</strong> T-08 Consent Form (FSIUU-valid) live and capturing consent</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="Legal/Product"></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>Withdrawal Mechanism Live:</strong> Consent withdrawal accessible; tested working</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="Engineering"></td>
+    </tr>
+
+    <tr style="background: #f9f9f9;">
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>DSAR Workflow Ready:</strong> Data export, deletion processes tested; SLA tracking enabled</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="Legal/IT"></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>Vendor DPAs Signed:</strong> All third-party processors have signed DPA</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="Legal/Procurement"></td>
+    </tr>
+
+    <tr style="background: #f9f9f9;">
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>AI/ML Fairness Verified:</strong> (If applicable) Bias audit completed; fairness metrics acceptable</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="Data Science"></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>Penetration Testing Complete:</strong> Security testing passed; no critical vulnerabilities</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="Security/External Auditor"></td>
+    </tr>
+
+    <tr style="background: #f9f9f9;">
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>Privacy Notice Updated:</strong> Privacy Notice includes this activity; version log updated</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="Legal/Communications"></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>Staff Training Complete:</strong> All staff handling this data have passed DPDP training</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="HR/Compliance"></td>
+    </tr>
+
+    <tr style="background: #f9f9f9;">
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>Incident Response Plan Ready:</strong> Breach response, escalation, notification procedures documented</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="DPO/IT Security"></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center;"><input type="checkbox"></td>
+      <td><strong>Board/Audit Committee Approval:</strong> DPIA & go-live gate reviewed by governance body</td>
+      <td><input type="text" placeholder="PASS/FAIL" style="width: 80px;"></td>
+      <td><input type="text" placeholder="Board Secretary"></td>
+    </tr>
+  </table>
+
+  <p style=" margin-top: 10px;"><strong>Gate Status:</strong><br>
+  ☐ ALL ITEMS PASS → Activity approved for go-live<br>
+  ☐ FAIL ITEMS → Activity BLOCKED until items remediated; re-test and re-submit
+  </p>
+
+  <p style=" margin-top: 10px;">
+    <strong>Gate Sign-Off:</strong><br>
+    Product Owner: _________________________ Date: _________<br>
+    IT/Security: _________________________ Date: _________<br>
+    DPO: _________________________ Date: _________<br>
+    Executive Sponsor: _________________________ Date: _________
+  </p>
+</div>
+
+---
+
+<h2 style="margin-top: 30px;">SECTION 3 — DPIA APPROVAL & ARCHIVAL</h2>
+
+<p ><strong>Archive this completed DPIA Workbook for audit trail.</strong> Retain for 7 years per DPDP Act breach archive requirement.</p>
+
+<div style="background: #f0f5ff; border: 1px solid #0066cc; padding: 12px; margin: 15px 0;">
+  <p >
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Processing Activity:</strong> _________________________________<br>
+    <strong>DPIA Workbook Version:</strong> 1.0<br>
+    <strong>Completed Date:</strong> _________________________________<br>
+    <strong>Overall Risk Assessment:</strong>
+    <br>☐ Low Risk (proceed with standard controls)
+    <br>☐ Medium Risk (implement additional safeguards; DPO approval required)
+    <br>☐ High Risk (extensive safeguards required; Board approval required)
+    <br>☐ Critical Risk (cannot proceed; major redesign required)
+  </p>
+
+  <p style=" margin-top: 10px;">
+    <strong>Final Approval Signature:</strong><br>
+    Chief Data Protection Officer: _________________________ Date: _________<br>
+    General Counsel: _________________________ Date: _________<br>
+    CEO / Executive Sponsor: _________________________ Date: _________
+  </p>
+
+  <p style=" margin-top: 10px;"><strong>Document Control:</strong> File as: DPIA_[ActivityName]_v1.0_[Date].html; Archive in secure repository; Provide to auditor on request.</p>
+</div>
+
+<!-- Navigation -->
+<div style="margin-top: 40px; padding: 15px; background: #f0f5ff; border-radius: 3px; text-align: center;">
+  <p >
+    <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Back to Navigator</a>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

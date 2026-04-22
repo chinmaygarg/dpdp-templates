@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPDP Compliance Templates — Application Map</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  /* -------------------------------
+     DASHBOARD LAYOUT OVERRIDE
+     Matches theme specificity so this wins over
+     body:not(:has(.journey-container)) { max-width: 1200px }
+     ------------------------------- */
+  body {
+    padding: 40px 60px;
+  }
+
+  @media (min-width: 768px) {
+    body:not(:has(.journey-container)) {
+      max-width: 1920px;
+      padding: 40px 60px;
+      box-shadow: none;
+      border-radius: 0;
+      background-color: var(--bg-main);
+    }
+  }
+
+  /* -------------------------------
+     ANIMATED TIMELINE BAR
+     ------------------------------- */
+  .timeline-progress-bar {
+    display: flex;
+    align-items: center;
+    background: var(--bg-body);
+    border: 1px solid var(--border-light);
+    border-radius: 50px;
+    padding: 6px;
+    margin: var(--spacing-xl) 0 var(--spacing-lg) 0;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  }
+  
+  .timeline-segment {
+    flex: 1;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 0;
+    color: var(--text-secondary);
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+  }
+  
+  .timeline-fill {
+    position: absolute;
+    top: 6px; left: 6px; bottom: 6px; right: 6px;
+    background: linear-gradient(90deg, #cbd5e1 0%, #3b82f6 20%, #8b5cf6 50%, #10b981 100%);
+    border-radius: 40px;
+    opacity: 0.15;
+    z-index: 1;
+  }
+
+  .timeline-segment:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 1px;
+    background: var(--border-light);
+  }
+
+  /* -------------------------------
+     PREMIUM KANBAN BOARD
+     ------------------------------- */
+  .kanban-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  @media (min-width: 1200px) {
+    .kanban-board {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  .kanban-column {
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    border: 1px solid transparent;
+  }
+
+  /* Phase Accents */
+  .col-p0 { background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%); border-color: #e2e8f0; }
+  .col-p1 { background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%); border-color: #bfdbfe; }
+  .col-p2 { background: linear-gradient(180deg, #fdf4ff 0%, #fae8ff 100%); border-color: #f5d0fe; }
+  .col-p3 { background: linear-gradient(180deg, #f5f3ff 0%, #ede9fe 100%); border-color: #ddd6fe; }
+  .col-p4 { background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 100%); border-color: #bbf7d0; }
+  .col-p5 { background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%); border-color: #fde68a; }
+
+  .kanban-header {
+    font-weight: 800;
+    color: var(--primary-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+    margin-bottom: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .kanban-header i {
+    width: 18px;
+    opacity: 0.8;
+  }
+  
+  .kanban-header span {
+    display: block;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-top: 4px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .kanban-group {
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .kanban-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: default;
+  }
+  
+  .kanban-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    background: #ffffff;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+    border-color: #ffffff;
+  }
+
+  .kanban-card i {
+    width: 16px;
+    height: 16px;
+    color: var(--primary-main);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  
+  .kanban-card:hover i {
+    transform: scale(1.1);
+  }
+
+  /* -------------------------------
+     PHASE DATA GRIDS (Replacing boring tables)
+     ------------------------------- */
+  .phase-section {
+    margin-bottom: 60px;
+  }
+
+  .phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 3px solid var(--border-light);
+  }
+
+  .phase-title {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    color: var(--primary-dark);
+  }
+
+  .phase-title i {
+    width: 28px;
+    height: 28px;
+    background: var(--primary-light);
+    color: var(--primary-main);
+    padding: 6px;
+    border-radius: 8px;
+  }
+
+  .phase-meta {
+    display: flex;
+    gap: 12px;
+  }
+
+  .meta-tag {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--bg-body);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Core Data Grid */
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .data-card {
+    background: var(--bg-container);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.2s ease;
+  }
+  
+  .data-card:hover {
+    border-color: var(--primary-light);
+    box-shadow: 0 8px 24px rgba(0,102,204,0.08);
+  }
+
+  .data-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .data-card-id {
+    font-weight: 800;
+    color: var(--primary-main);
+    background: var(--primary-light);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+
+  .data-card-title {
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .data-card-desc {
+    color: var(--text-secondary);
+    flex-grow: 1;
+  }
+
+  .data-card-deliverable {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-light);
+  }
+
+  /* -------------------------------
+     PREMIUM CHECKPOINTS
+     ------------------------------- */
+  .premium-checkpoint {
+    background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+    border: 1px solid #a7f3d0;
+    border-left: 6px solid #10b981;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.1);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .premium-checkpoint-icon {
+    background: #10b981;
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+  }
+
+  .premium-checkpoint-content h4 {
+    margin: 0 0 4px 0;
+    font-weight: 800;
+    color: #065f46;
+  }
+
+  .premium-checkpoint-content p {
+    margin: 0;
+    color: #047857;
+    font-weight: 500;
+  }
+
+  /* -------------------------------
+     PRIORITY MATRIX
+     ------------------------------- */
+  .priority-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+  }
+
+  .priority-tier {
+    background: var(--bg-container);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    border-top: 6px solid;
+    box-shadow: var(--shadow-float);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pt-1 { border-color: var(--status-fail-fg); }
+  .pt-2 { border-color: var(--status-warn-fg); }
+  .pt-3 { border-color: var(--primary-main); }
+
+  .priority-tier h3 {
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pt-1 h3 { color: var(--status-fail-fg); }
+  .pt-2 h3 { color: var(--status-warn-fg); }
+  .pt-3 h3 { color: var(--primary-main); }
+
+  .priority-tier ul {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+
+  .priority-tier li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+  }
+  
+  .priority-tier li:last-child {
+    border-bottom: none;
+  }
+
+  .priority-tier li i {
+    width: 18px;
+    color: var(--text-secondary);
+  }
+
+</style>
+</head>
+<body>
+
+<div class="header" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); color: white; padding-bottom: 50px;">
+  <div class="title" style="color: white; "><i data-lucide="map-pinned" style="vertical-align: -3px; width: 32px; height: 32px; margin-right: 8px;"></i> Template Application Map</div>
+  <div class="subtitle" style="color: white; opacity: 0.9; ">Complete engagement timeline and definitive template mapping logic.</div>
+</div>
+
+<div class="timeline-progress-bar">
+  <div class="timeline-fill"></div>
+  <div class="timeline-segment">Phase 0: Scope</div>
+  <div class="timeline-segment">Phase 1: Assess</div>
+  <div class="timeline-segment">Phase 2: Gap Analysis</div>
+  <div class="timeline-segment">Phase 3: Remediate</div>
+  <div class="timeline-segment">Phase 4: Validate</div>
+  <div class="timeline-segment">Phase 5: Certify</div>
+</div>
+
+<div class="kanban-board">
+  <!-- Phase 0 -->
+  <div class="kanban-column col-p0">
+    <div class="kanban-header">
+      <i data-lucide="search"></i>
+      <div>Pre-Engagement<span>Scoping (Weeks -2 to 0)</span></div>
+    </div>
+    <div class="kanban-card"><i data-lucide="file-check"></i> Applicability Test</div>
+    <div class="kanban-card"><i data-lucide="scale"></i> Entity Classifier</div>
+    <div class="kanban-card"><i data-lucide="landmark"></i> Industry Overlay</div>
+  </div>
+
+  <!-- Phase 1 -->
+  <div class="kanban-column col-p1">
+    <div class="kanban-header">
+      <i data-lucide="radar"></i>
+      <div>Assessment<span>Understand State (Weeks 1-4)</span></div>
+    </div>
+    <div class="kanban-card"><i data-lucide="database"></i> Data Discovery</div>
+    <div class="kanban-card"><i data-lucide="check-square"></i> Consent Audit</div>
+    <div class="kanban-card"><i data-lucide="shield"></i> Security Check</div>
+    <div class="kanban-card"><i data-lucide="file-text"></i> Notice Review</div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="kanban-column col-p2">
+    <div class="kanban-header">
+      <i data-lucide="bar-chart-2"></i>
+      <div>Gap Analysis<span>Identify Gaps (Weeks 5-8)</span></div>
+    </div>
+    <div class="kanban-card"><i data-lucide="list-checks"></i> 17-Domain Scorecard</div>
+    <div class="kanban-card"><i data-lucide="file-warning"></i> Gap Analysis Report</div>
+    <div class="kanban-card"><i data-lucide="map"></i> Remediation Roadmap</div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="kanban-column col-p3">
+    <div class="kanban-header">
+      <i data-lucide="wrench"></i>
+      <div>Remediation<span>Implementation (Weeks 9-24)</span></div>
+    </div>
+    <div class="kanban-group">Governance Setup</div>
+    <div class="kanban-card"><i data-lucide="book"></i> Data Protection Policy</div>
+    <div class="kanban-card"><i data-lucide="users"></i> Privacy Committee</div>
+    <div class="kanban-card"><i data-lucide="gavel"></i> Board Resolution</div>
+
+    <div class="kanban-group">Notices & Consent</div>
+    <div class="kanban-card"><i data-lucide="languages"></i> Privacy Notices</div>
+    <div class="kanban-card"><i data-lucide="check-circle-2"></i> Consent Forms</div>
+
+    <div class="kanban-group">Rights & Vendor</div>
+    <div class="kanban-card"><i data-lucide="user-cog"></i> DSAR Portal</div>
+    <div class="kanban-card"><i data-lucide="handshake"></i> Vendor DPAs</div>
+
+    <div class="kanban-group">Breach & Security</div>
+    <div class="kanban-card"><i data-lucide="siren"></i> Incident Response Plan</div>
+    <div class="kanban-card"><i data-lucide="shield-alert"></i> DPIA Register</div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="kanban-column col-p4">
+    <div class="kanban-header">
+      <i data-lucide="clipboard-check"></i>
+      <div>Validation<span>Verify & Audit (Weeks 25-35)</span></div>
+    </div>
+    <div class="kanban-card"><i data-lucide="search-check"></i> Internal Audit (17 Domains)</div>
+    <div class="kanban-card"><i data-lucide="swords"></i> Tabletop Breach Drill</div>
+    <div class="kanban-card"><i data-lucide="microscope"></i> DPIA Assessment (SDF)</div>
+    <div class="kanban-card"><i data-lucide="file-search-2"></i> Independent Audit (SDF)</div>
+    <div class="kanban-card"><i data-lucide="presentation"></i> Board Sign-Off</div>
+  </div>
+
+  <!-- Phase 5 -->
+  <div class="kanban-column col-p5">
+    <div class="kanban-header">
+      <i data-lucide="award"></i>
+      <div>Certification<span>Finalise & Close (Weeks 36-40)</span></div>
+    </div>
+    <div class="kanban-card"><i data-lucide="file-signature"></i> Compliance Opinion</div>
+    <div class="kanban-card"><i data-lucide="archive"></i> Evidence Pack</div>
+    <div class="kanban-card"><i data-lucide="calendar-check"></i> Obligations Calendar</div>
+    <div class="kanban-card"><i data-lucide="shield-check"></i> Board Resolution</div>
+    <div class="kanban-card"><i data-lucide="handshake"></i> Handoff to Ops Team</div>
+  </div>
+</div>
+
+<!-- ==============================================
+     DETAILED PHASE BREAKDOWN (DATA CARDS) 
+     ============================================== -->
+
+<div class="phase-section">
+  <div class="phase-header">
+    <h3 class="phase-title"><i data-lucide="search"></i> Phase 0: Pre-Engagement Scoping</h3>
+    <div class="phase-meta">
+      <div class="meta-tag"><i data-lucide="clock"></i> Variable (Bef. Wk 1)</div>
+    </div>
+  </div>
+  
+  <div class="data-grid">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Applicability Test</div>
+        <div class="data-card-id">T-00</div>
+      </div>
+      <div class="data-card-desc">Determine if the DPDP Act 2023 applies to this organization based on processing location and resident data.</div>
+      <div class="data-card-deliverable"><i data-lucide="box"></i> Internal Memo Outcome</div>
+    </div>
+    
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Entity Classifier</div>
+        <div class="data-card-id">T-00</div>
+      </div>
+      <div class="data-card-desc">Classify the organization definitively as a Data Fiduciary (DF) or Significant Data Fiduciary (SDF).</div>
+      <div class="data-card-deliverable"><i data-lucide="box"></i> Classification Decision</div>
+    </div>
+    
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Industry Overlay Matrix</div>
+        <div class="data-card-id">T-00</div>
+      </div>
+      <div class="data-card-desc">Scan for superseding regulatory requirements (RBI, SEBI, PMLA, CERT-In, IRDAI) impacting data retention.</div>
+      <div class="data-card-deliverable"><i data-lucide="box"></i> Research Documentation</div>
+    </div>
+  </div>
+
+  <div class="premium-checkpoint">
+    <div class="premium-checkpoint-icon"><i data-lucide="check-circle-2"></i></div>
+    <div class="premium-checkpoint-content">
+      <h4>Phase 0 Complete</h4>
+      <p>Scope fully confirmed. Entity classification formally determined. Ready for Phase 1 Kickoff.</p>
+    </div>
+  </div>
+</div>
+
+<div class="phase-section">
+  <div class="phase-header">
+    <h3 class="phase-title"><i data-lucide="radar"></i> Phase 1: Assessment</h3>
+    <div class="phase-meta">
+      <div class="meta-tag"><i data-lucide="clock"></i> 4 Weeks (Wks 1-4)</div>
+    </div>
+  </div>
+  
+  <div class="data-grid">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">ROPA / Data Inventory</div>
+        <div class="data-card-id">Draft</div>
+      </div>
+      <div class="data-card-desc">Map all systems holding personal data and formally register processing activities.</div>
+      <div class="data-card-deliverable"><i data-lucide="box"></i> ROPA Spreadsheet</div>
+    </div>
+    
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Multilingual Notice Kit</div>
+        <div class="data-card-id">T-06</div>
+      </div>
+      <div class="data-card-desc">Review current legacy privacy notices against DPDP requirements.</div>
+      <div class="data-card-deliverable"><i data-lucide="box"></i> Gap Notice Assessment</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Security Posture Checklist</div>
+        <div class="data-card-id">Audit</div>
+      </div>
+      <div class="data-card-desc">Assess encryption at rest/transit and Identity Access Management controls.</div>
+      <div class="data-card-deliverable"><i data-lucide="box"></i> Security Assessment Report</div>
+    </div>
+  </div>
+
+  <div class="premium-checkpoint">
+    <div class="premium-checkpoint-icon"><i data-lucide="check-circle-2"></i></div>
+    <div class="premium-checkpoint-content">
+      <h4>Phase 1 Complete</h4>
+      <p>Baseline established. Data flows captured accurately. Proceeding to Analysis.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PHASE 2: GAP ANALYSIS
+     ═══════════════════════════════════════════════ -->
+<div class="phase-section">
+  <div class="phase-header">
+    <h3 class="phase-title"><i data-lucide="bar-chart-2"></i> Phase 2: Gap Analysis</h3>
+    <div class="phase-meta">
+      <div class="meta-tag"><i data-lucide="clock"></i> 4 Weeks (Wks 5-8)</div>
+      <div class="meta-tag"><i data-lucide="target"></i> 17 Compliance Domains</div>
+    </div>
+  </div>
+
+  <div class="data-grid">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">17-Domain Scorecard</div>
+        <div class="data-card-id">T-25</div>
+      </div>
+      <div class="data-card-desc">Score each DPDP compliance domain (Consent, Security, DSAR, Retention, Breach, Cross-Border, etc.) against current state. Produces a heat-map of red/amber/green status.</div>
+      <div class="data-card-deliverable"><i data-lucide="bar-chart-2"></i> Domain Compliance Scorecard</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Gap Analysis Report</div>
+        <div class="data-card-id">T-28</div>
+      </div>
+      <div class="data-card-desc">Formal document listing all identified gaps by domain with severity (Critical / High / Medium / Low), penalty exposure, and recommended remediation action.</div>
+      <div class="data-card-deliverable"><i data-lucide="file-warning"></i> Prioritised Gap List + Penalty Matrix</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Remediation Roadmap</div>
+        <div class="data-card-id">Plan</div>
+      </div>
+      <div class="data-card-desc">Phase-by-phase remediation plan with task ownership, effort estimates (hours), dependencies, and target completion week. Maps to Phases 3-5 of this engagement.</div>
+      <div class="data-card-deliverable"><i data-lucide="map"></i> Phased Remediation Plan</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Consent Audit Worksheet</div>
+        <div class="data-card-id">T-42</div>
+      </div>
+      <div class="data-card-desc">Audit existing consent records against FSIUU requirements (Free, Specific, Informed, Unambiguous, Unconditional). Identifies legacy consent that must be re-collected.</div>
+      <div class="data-card-deliverable"><i data-lucide="check-square"></i> FSIUU Compliance Assessment</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Effort &amp; Timeline Estimate</div>
+        <div class="data-card-id">Plan</div>
+      </div>
+      <div class="data-card-desc">Total effort estimate in person-hours across all phases, cost projection, and milestone schedule aligned to the May 2027 compliance deadline.</div>
+      <div class="data-card-deliverable"><i data-lucide="calendar"></i> Signed Engagement Timeline</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Data Discovery Report</div>
+        <div class="data-card-id">T-32</div>
+      </div>
+      <div class="data-card-desc">Automated and manual scan to identify all systems and databases holding personal data — including shadow IT, third-party integrations, and unstructured data stores.</div>
+      <div class="data-card-deliverable"><i data-lucide="database"></i> Personal Data Inventory</div>
+    </div>
+  </div>
+
+  <div class="premium-checkpoint">
+    <div class="premium-checkpoint-icon"><i data-lucide="check-circle-2"></i></div>
+    <div class="premium-checkpoint-content">
+      <h4>Phase 2 Complete</h4>
+      <p>All 17 domains scored. Gap list accepted by client. Remediation plan signed off. Phase 3 kickoff approved.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PHASE 3: REMEDIATION
+     ═══════════════════════════════════════════════ -->
+<div class="phase-section">
+  <div class="phase-header">
+    <h3 class="phase-title"><i data-lucide="wrench"></i> Phase 3: Remediation</h3>
+    <div class="phase-meta">
+      <div class="meta-tag"><i data-lucide="clock"></i> 16 Weeks (Wks 9-24)</div>
+      <div class="meta-tag"><i data-lucide="layers"></i> 7 Sub-Phases (Parallel)</div>
+    </div>
+  </div>
+
+  <!-- 3.1 Governance -->
+  <p style="font-weight:700;  color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin:0 0 var(--spacing-sm) 0;">3.1 — Governance Setup (Weeks 9-12)</p>
+  <div class="data-grid" style="margin-bottom:var(--spacing-xl);">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Data Protection Policy</div>
+        <div class="data-card-id">T-18</div>
+      </div>
+      <div class="data-card-desc">Master organisational data governance policy covering all personal data processing, security obligations, breach response, and staff responsibilities under the DPDP Act.</div>
+      <div class="data-card-deliverable"><i data-lucide="book-open"></i> Board-Approved Policy Document</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Privacy Committee Charter</div>
+        <div class="data-card-id">T-39</div>
+      </div>
+      <div class="data-card-desc">Establishes the Privacy Committee: membership (DPO, Legal, CISO, Compliance), meeting cadence, decision authority, escalation paths, and reporting to the Board.</div>
+      <div class="data-card-deliverable"><i data-lucide="users"></i> Signed Charter + Committee Minutes</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">DPO Appointment Letter</div>
+        <div class="data-card-id">T-27</div>
+      </div>
+      <div class="data-card-desc">Formal appointment of Data Protection Officer (mandatory for Significant Data Fiduciaries). Defines role, India-based requirement, board reporting obligations, and independence safeguards.</div>
+      <div class="data-card-deliverable"><i data-lucide="user-check"></i> Signed Appointment Letter (SDF Only)</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Employee Training Programme</div>
+        <div class="data-card-id">T-19</div>
+      </div>
+      <div class="data-card-desc">Mandatory staff training covering DPDP obligations, consent handling, breach reporting procedures, and data minimisation. Includes completion tracking and refresh schedule.</div>
+      <div class="data-card-deliverable"><i data-lucide="graduation-cap"></i> Training Completion Register</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Employee Data Protection Policy</div>
+        <div class="data-card-id">T-03A</div>
+      </div>
+      <div class="data-card-desc">Governing policy for how employee personal data is collected, used, shared, and deleted. Covers 10 data categories (payroll, KYC, access logs, health, disciplinary), employee rights under DPDP S.11–14, consent register for discretionary processing, and third-party HR sharing. Distinct from Training Template T-19.</div>
+      <div class="data-card-deliverable"><i data-lucide="shield-check"></i> Board-Approved HR Data Policy + Acknowledgement Log</div>
+    </div>
+  </div>
+
+  <!-- 3.2 Notice & Consent -->
+  <p style="font-weight:700;  color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin:0 0 var(--spacing-sm) 0;">3.2 — Notice &amp; Consent (Weeks 10-16)</p>
+  <div class="data-grid" style="margin-bottom:var(--spacing-xl);">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Privacy Notice (Web)</div>
+        <div class="data-card-id">T-07</div>
+      </div>
+      <div class="data-card-desc">Standalone, itemised privacy notice listing each processing purpose, legal basis (S.6 or S.7), data categories, retention period, and user rights. Available in 22 Indian languages.</div>
+      <div class="data-card-deliverable"><i data-lucide="globe"></i> Published Notice + Version History</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Consent Form (FSIUU)</div>
+        <div class="data-card-id">T-08</div>
+      </div>
+      <div class="data-card-desc">Per-purpose, granular consent form compliant with Section 6 FSIUU requirements. Supports withdrawal mechanism, audit trail, and consent artifact download by Data Principals.</div>
+      <div class="data-card-deliverable"><i data-lucide="check-circle-2"></i> Live Consent System + Audit Log</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Retrospective Notice &amp; Reconsent</div>
+        <div class="data-card-id">T-09</div>
+      </div>
+      <div class="data-card-desc">Campaign to re-collect consent from existing users whose data was gathered before DPDP implementation. Covers email, SMS, and in-app notice workflows with 30-day re-consent window.</div>
+      <div class="data-card-deliverable"><i data-lucide="refresh-ccw"></i> Reconsent Campaign + Outcomes Report</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Section 7 Legitimate Uses Memo</div>
+        <div class="data-card-id">T-06</div>
+      </div>
+      <div class="data-card-desc">Legal memo documenting processing activities that operate under Section 7 exemptions (KYC/AML, loan default assessment, employee BGV, RBI regulatory reporting, fraud detection). FinTech-critical.</div>
+      <div class="data-card-deliverable"><i data-lucide="scale"></i> Legal Sign-Off Memo</div>
+    </div>
+  </div>
+
+  <!-- 3.3 Data Principal Rights -->
+  <p style="font-weight:700;  color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin:0 0 var(--spacing-sm) 0;">3.3 — Data Principal Rights (Weeks 12-20)</p>
+  <div class="data-grid" style="margin-bottom:var(--spacing-xl);">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">DSAR Request Form &amp; Portal</div>
+        <div class="data-card-id">T-10</div>
+      </div>
+      <div class="data-card-desc">Data Subject Access Request system — Data Principals can submit requests for data access, correction, or erasure. Enforces 90-day SLA with automated tracking and escalation alerts.</div>
+      <div class="data-card-deliverable"><i data-lucide="inbox"></i> Live DSAR Portal (90-day SLA Active)</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">DSAR Response Letter</div>
+        <div class="data-card-id">T-11</div>
+      </div>
+      <div class="data-card-desc">Standardised response letter for data access requests including full data export (JSON/PDF), processing summary, consent history, and instructions for exercising further rights.</div>
+      <div class="data-card-deliverable"><i data-lucide="mail"></i> Response Template (Multilingual)</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Erasure &amp; Correction SOP</div>
+        <div class="data-card-id">T-12</div>
+      </div>
+      <div class="data-card-desc">Step-by-step procedures for executing data deletion and correction requests — including downstream system propagation, backup handling, and immutable deletion log generation.</div>
+      <div class="data-card-deliverable"><i data-lucide="trash-2"></i> Automated Deletion Workflow</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Grievance Handling SOP</div>
+        <div class="data-card-id">T-13</div>
+      </div>
+      <div class="data-card-desc">Complaint redressal system under Section 13. Covers intake, acknowledgement, investigation, resolution, and escalation to the Data Protection Board if unresolved within 90 days.</div>
+      <div class="data-card-deliverable"><i data-lucide="message-circle-warning"></i> Live Grievance Portal (90-day SLA)</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Nominee Registration Form</div>
+        <div class="data-card-id">T-14</div>
+      </div>
+      <div class="data-card-desc">Allows Data Principals to designate a nominee who can exercise their data rights in the event of death or incapacity. Covers registration, identity verification, and delegation management.</div>
+      <div class="data-card-deliverable"><i data-lucide="user-plus"></i> Nominee Registry System</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Section 9 Children's Data Policy</div>
+        <div class="data-card-id">T-06A</div>
+      </div>
+      <div class="data-card-desc">Age-verification and parental consent framework for organisations serving minors. Prohibits behavioural tracking, targeted advertising, and profiling. Required for student loans, junior accounts, family apps.</div>
+      <div class="data-card-deliverable"><i data-lucide="baby"></i> Age-Gate + Parental Consent Flow</div>
+    </div>
+  </div>
+
+  <!-- 3.4 Vendors & Processors -->
+  <p style="font-weight:700;  color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin:0 0 var(--spacing-sm) 0;">3.4 — Vendors &amp; Processors (Weeks 14-20)</p>
+  <div class="data-grid" style="margin-bottom:var(--spacing-xl);">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Data Processing Agreement (DPA)</div>
+        <div class="data-card-id">T-15</div>
+      </div>
+      <div class="data-card-desc">Mandatory contract template for all third-party data processors under Section 8(2). Covers processing scope, security obligations, sub-processor controls, audit rights, and breach notification duties.</div>
+      <div class="data-card-deliverable"><i data-lucide="file-signature"></i> Signed DPAs with All Processors</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Vendor Risk Assessment</div>
+        <div class="data-card-id">T-16</div>
+      </div>
+      <div class="data-card-desc">Due diligence checklist assessing each third-party processor's security posture, data location, breach history, sub-processor usage, and DPDP compliance status before signing DPA.</div>
+      <div class="data-card-deliverable"><i data-lucide="shield-check"></i> Vendor Risk Register</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Sub-Processor Register</div>
+        <div class="data-card-id">T-17</div>
+      </div>
+      <div class="data-card-desc">Live register of all fourth-party (sub-processor) relationships — vendors used by your processors. Enforces notification requirements when sub-processors are added or changed.</div>
+      <div class="data-card-deliverable"><i data-lucide="network"></i> Sub-Processor Transparency Register</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Cross-Border Transfer Register</div>
+        <div class="data-card-id">T-44</div>
+      </div>
+      <div class="data-card-desc">Tracks all transfers of personal data outside India. Enforces government country whitelist (Section 16). Triggers legal review if a destination country is removed from the approved list.</div>
+      <div class="data-card-deliverable"><i data-lucide="globe-2"></i> Transfer Register + Country Approval Log</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Third-Party Inventory</div>
+        <div class="data-card-id">T-25A</div>
+      </div>
+      <div class="data-card-desc">Master register of all vendors and processors who receive or process personal data. Captures data categories, DPA status, risk rating (High/Medium/Low), assessment frequency, and onboarding/offboarding checklist. Companion to T-15 DPA, T-16 Vendor Risk Assessment, T-17 Sub-Processor Register, and T-44 Cross-Border Register.</div>
+      <div class="data-card-deliverable"><i data-lucide="list-checks"></i> Live Vendor Inventory + DPA Status Tracker</div>
+    </div>
+  </div>
+
+  <!-- 3.5 Breach Management -->
+  <p style="font-weight:700;  color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin:0 0 var(--spacing-sm) 0;">3.5 — Breach Management (Weeks 16-22)</p>
+  <div class="data-grid" style="margin-bottom:var(--spacing-xl);">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Incident Response Plan</div>
+        <div class="data-card-id">T-20</div>
+      </div>
+      <div class="data-card-desc">End-to-end breach response playbook covering detection, containment, assessment, notification (72-hour DPB deadline), and recovery. Includes role assignments, escalation tree, and communication templates.</div>
+      <div class="data-card-deliverable"><i data-lucide="siren"></i> Signed IRP + On-Call Runbook</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Breach Notification — DPB</div>
+        <div class="data-card-id">T-21</div>
+      </div>
+      <div class="data-card-desc">Template notification to the Data Protection Board within 72 hours of breach discovery. Covers incident summary, data categories affected, estimated principal count, and immediate mitigation steps.</div>
+      <div class="data-card-deliverable"><i data-lucide="send"></i> DPB Notification Template (72-hr)</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Breach Notification — Data Principals</div>
+        <div class="data-card-id">T-22</div>
+      </div>
+      <div class="data-card-desc">User-facing breach notification template explaining what data was compromised, the risk to the individual, steps taken to protect them, and actions they should take to protect themselves.</div>
+      <div class="data-card-deliverable"><i data-lucide="bell-ring"></i> User Notification (Email + SMS)</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Breach Register</div>
+        <div class="data-card-id">T-30</div>
+      </div>
+      <div class="data-card-desc">Immutable, hash-chained log of all breach events with timeline, scope, response actions, notifications sent, and lessons learned. Required for Board and regulatory audit review.</div>
+      <div class="data-card-deliverable"><i data-lucide="shield-alert"></i> Hash-Chained Breach Log</div>
+    </div>
+  </div>
+
+  <!-- 3.6 Data Retention & Deletion -->
+  <p style="font-weight:700;  color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin:0 0 var(--spacing-sm) 0;">3.6 — Data Retention &amp; Deletion (Weeks 18-22)</p>
+  <div class="data-grid" style="margin-bottom:var(--spacing-xl);">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Deletion Log</div>
+        <div class="data-card-id">T-29</div>
+      </div>
+      <div class="data-card-desc">Automated, immutable record of every data deletion event — triggered by DSAR erasure requests, consent withdrawal, or retention expiry. Includes 48-hour advance notice to affected principals.</div>
+      <div class="data-card-deliverable"><i data-lucide="trash-2"></i> Automated Deletion Audit Trail</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Statutory Hold Register</div>
+        <div class="data-card-id">T-43</div>
+      </div>
+      <div class="data-card-desc">Tracks mandatory legal retention obligations (RBI 8yr, PMLA 5yr, GST 6yr, CERT-In 180-day) that override DPDP deletion requirements. Prevents premature deletion of legally-held data.</div>
+      <div class="data-card-deliverable"><i data-lucide="scale"></i> Active Hold Register</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Data Retention Schedule</div>
+        <div class="data-card-id">T-02A</div>
+      </div>
+      <div class="data-card-desc">Per-category retention schedule mapping every data category to its retention period, legal basis (consent / statutory / legitimate use), deletion trigger, disposal method, and responsible owner. Covers customer data (10 categories), employee/HR data, and system logs. Includes statutory override logic and annual review log. Referenced by both Governance (Template #2) and Operations (Template #31).</div>
+      <div class="data-card-deliverable"><i data-lucide="calendar-clock"></i> DPO-Approved Retention Schedule + Annual Review Log</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Processor Deletion Confirmation</div>
+        <div class="data-card-id">T-33A</div>
+      </div>
+      <div class="data-card-desc">End-to-end deletion instruction and receipt workflow for processors. Includes: formal written instruction letter to processor (with Schedule A scope table), processor's signed confirmation receipt (with method, backup purge, sub-processor cascade), tracking log for all deletions, and 4-tier overdue escalation protocol (Day 1→30). Mandatory after every DSAR erasure, consent withdrawal, or contract termination.</div>
+      <div class="data-card-deliverable"><i data-lucide="trash-2"></i> Signed Deletion Receipts + Processor Confirmation Log</div>
+    </div>
+  </div>
+
+  <!-- 3.7 Security Hardening -->
+  <p style="font-weight:700;  color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px; margin:0 0 var(--spacing-sm) 0;">3.7 — Security Hardening (Weeks 9-24, Ongoing)</p>
+  <div class="data-grid" style="margin-bottom:var(--spacing-xl);">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Security Hardening Plan</div>
+        <div class="data-card-id">T-24</div>
+      </div>
+      <div class="data-card-desc">Comprehensive plan implementing AES-256-GCM encryption at rest, TLS 1.2+ in transit, field-level encryption for sensitive PII (Aadhaar, PAN, biometrics), and key rotation schedule.</div>
+      <div class="data-card-deliverable"><i data-lucide="lock"></i> Encryption Deployment Report</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Access Control Policy</div>
+        <div class="data-card-id">T-34</div>
+      </div>
+      <div class="data-card-desc">Role-Based and Attribute-Based Access Control (RBAC/ABAC) framework covering admin roles (DPO, Legal, Compliance, Viewer), separation of duties, MFA enforcement, and privilege review cadence.</div>
+      <div class="data-card-deliverable"><i data-lucide="key-round"></i> RBAC Policy + Access Matrix</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Audit Logging Configuration</div>
+        <div class="data-card-id">T-35</div>
+      </div>
+      <div class="data-card-desc">Hash-chained, tamper-evident audit log covering all consent events, DSAR actions, data access, deletions, and admin operations. Stored in separate, write-protected audit storage.</div>
+      <div class="data-card-deliverable"><i data-lucide="scroll-text"></i> Immutable Audit Log System</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Encryption Implementation Checklist</div>
+        <div class="data-card-id">T-33</div>
+      </div>
+      <div class="data-card-desc">Verification checklist confirming AES-256 at-rest encryption, TLS 1.2+ in transit, field-level encryption for sensitive fields, and proper key management practices are all implemented.</div>
+      <div class="data-card-deliverable"><i data-lucide="list-checks"></i> Encryption Attestation Report</div>
+    </div>
+  </div>
+
+  <div class="premium-checkpoint">
+    <div class="premium-checkpoint-icon"><i data-lucide="check-circle-2"></i></div>
+    <div class="premium-checkpoint-content">
+      <h4>Phase 3 Complete</h4>
+      <p>All gaps remediated. Consent system live. DSAR portal operational. DPAs signed. Breach IRP tested. Security hardening deployed. Phase 4 audit may commence.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PHASE 4: VALIDATION & AUDIT
+     ═══════════════════════════════════════════════ -->
+<div class="phase-section">
+  <div class="phase-header">
+    <h3 class="phase-title"><i data-lucide="clipboard-check"></i> Phase 4: Validation &amp; Audit</h3>
+    <div class="phase-meta">
+      <div class="meta-tag"><i data-lucide="clock"></i> 11 Weeks (Wks 25-35)</div>
+      <div class="meta-tag"><i data-lucide="search"></i> 17 Domains Re-Audited</div>
+    </div>
+  </div>
+
+  <div class="data-grid">
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Compliance Audit Plan</div>
+        <div class="data-card-id">T-25</div>
+      </div>
+      <div class="data-card-desc">Structured internal audit plan covering all 17 DPDP compliance domains. Defines audit scope, sampling methodology, evidence requirements, and timeline for each sub-domain review.</div>
+      <div class="data-card-deliverable"><i data-lucide="clipboard-list"></i> Signed Audit Scope Document</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Audit Findings Report</div>
+        <div class="data-card-id">T-28</div>
+      </div>
+      <div class="data-card-desc">Formal audit findings with domain-by-domain scores, residual risks, open action items, and evidence references. Used by external auditors (SDF) and forms the basis for the compliance opinion.</div>
+      <div class="data-card-deliverable"><i data-lucide="file-search-2"></i> Audit Report + Remediation Tracker</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">DPIA Workbook</div>
+        <div class="data-card-id">T-26</div>
+      </div>
+      <div class="data-card-desc">Data Protection Impact Assessment workbook for high-risk processing operations (SDF mandatory). Covers risk identification, likelihood/impact scoring, mitigation controls, and DPO sign-off workflow.</div>
+      <div class="data-card-deliverable"><i data-lucide="microscope"></i> Completed DPIA (SDF Mandatory)</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Tabletop Breach Drill</div>
+        <div class="data-card-id">T-20</div>
+      </div>
+      <div class="data-card-desc">Simulated breach incident exercise testing the end-to-end Incident Response Plan. Evaluates detection speed, 72-hour DPB notification SLA, communication quality, and post-incident review process.</div>
+      <div class="data-card-deliverable"><i data-lucide="swords"></i> Drill Results + IRP Amendments</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Annual SDF Audit Report</div>
+        <div class="data-card-id">T-36</div>
+      </div>
+      <div class="data-card-desc">Independent third-party audit report required annually for Significant Data Fiduciaries under Section 10. Covers all 17 domains with auditor attestation and board submission requirement.</div>
+      <div class="data-card-deliverable"><i data-lucide="award"></i> Independent Auditor Report (SDF Only)</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Consent Registry Dashboard</div>
+        <div class="data-card-id">T-31</div>
+      </div>
+      <div class="data-card-desc">Real-time dashboard showing all consent events, withdrawal rates, FSIUU compliance scores per purpose, and any anomalies indicating consent hygiene issues requiring remediation.</div>
+      <div class="data-card-deliverable"><i data-lucide="layout-dashboard"></i> Live Consent Monitoring Dashboard</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Board Risk Committee Report</div>
+        <div class="data-card-id">T-37</div>
+      </div>
+      <div class="data-card-desc">Executive-level compliance status presentation for the Board Risk Committee. Covers domain scores, open risks, penalty exposure summary, remediation progress, and sign-off recommendations.</div>
+      <div class="data-card-deliverable"><i data-lucide="presentation"></i> Board Presentation Pack</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">Compliance Tracking Dashboard</div>
+        <div class="data-card-id">T-38</div>
+      </div>
+      <div class="data-card-desc">Operational dashboard tracking remediation progress across all domains, outstanding action items, SLA adherence (DSAR, Grievance), and real-time compliance score.</div>
+      <div class="data-card-deliverable"><i data-lucide="bar-chart-2"></i> Live Compliance Dashboard</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-header">
+        <div class="data-card-title">DPIA Register</div>
+        <div class="data-card-id">T-46</div>
+      </div>
+      <div class="data-card-desc">Log of all DPIA assessments conducted with dates, processing activities assessed, DPO sign-off, risk outcomes, and residual risk acceptance. Required for annual audit under Section 10.</div>
+      <div class="data-card-deliverable"><i data-lucide="notebook-pen"></i> DPIA Audit Trail (SDF Only)</div>
+    </div>
+  </div>
+
+  <div class="premium-checkpoint">
+    <div class="premium-checkpoint-icon"><i data-lucide="check-circle-2"></i></div>
+    <div class="premium-checkpoint-content">
+      <h4>Phase 4 Complete</h4>
+      <p>Internal audit complete. No critical findings open. Tabletop drill passed. Board has reviewed and acknowledged the compliance status report. Ready for certification.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PHASE 5: CERTIFICATION
+     ═══════════════════════════════════════════════ -->
+<div class="phase-section">
+  <div class="phase-header">
+    <h3 class="phase-title"><i data-lucide="award"></i> Phase 5: Certification</h3>
+    <div class="phase-meta">
+      <div class="meta-tag"><i data-lucide="clock"></i> 5 Weeks (Wks 36-40)</div>
+    </div>
+  </div>
+
+  <div class="data-grid">
+    <div class="data-card" style="border-left: 4px solid var(--primary-main);">
+      <div class="data-card-header">
+        <div class="data-card-title">Compliance Opinion Letter</div>
+        <div class="data-card-id">T-41</div>
+      </div>
+      <div class="data-card-desc">Formal compliance opinion issued by the engagement lead confirming successful remediation across all 17 DPDP domains. Constitutes the client's primary evidence of compliance for regulators and auditors.</div>
+      <div class="data-card-deliverable"><i data-lucide="file-signature"></i> Signed, Dated Opinion Letter</div>
+    </div>
+
+    <div class="data-card" style="border-left: 4px solid var(--primary-main);">
+      <div class="data-card-header">
+        <div class="data-card-title">Board Resolution — Compliance</div>
+        <div class="data-card-id">T-40</div>
+      </div>
+      <div class="data-card-desc">Formal board resolution acknowledging receipt of the compliance opinion, approving the ongoing obligations calendar, and committing to annual review cycles. Provides legal protection and accountability.</div>
+      <div class="data-card-deliverable"><i data-lucide="gavel"></i> Signed Board Resolution</div>
+    </div>
+
+    <div class="data-card" style="border-left: 4px solid var(--primary-main);">
+      <div class="data-card-header">
+        <div class="data-card-title">Compliance Status Report (Board Pack)</div>
+        <div class="data-card-id">T-47</div>
+      </div>
+      <div class="data-card-desc">Executive summary for the Board and senior leadership detailing final remediation status, domain scores, residual risks with acceptance rationale, and forward compliance obligations.</div>
+      <div class="data-card-deliverable"><i data-lucide="briefcase"></i> Board Pack + Indexed Evidence File</div>
+    </div>
+
+    <div class="data-card" style="border-left: 4px solid var(--primary-main);">
+      <div class="data-card-header">
+        <div class="data-card-title">Ongoing Obligations Calendar</div>
+        <div class="data-card-id">T-45</div>
+      </div>
+      <div class="data-card-desc">Documented annual schedule of recurring DPDP obligations: consent audits (quarterly), DSAR SLA reviews (monthly), DPIA refresh (annual), staff training renewal, DPA review cycle, and SDF audit dates.</div>
+      <div class="data-card-deliverable"><i data-lucide="calendar-check"></i> Operational Compliance Calendar</div>
+    </div>
+
+    <div class="data-card" style="border-left: 4px solid var(--primary-main);">
+      <div class="data-card-header">
+        <div class="data-card-title">Consent Audit Worksheet</div>
+        <div class="data-card-id">T-42</div>
+      </div>
+      <div class="data-card-desc">Final FSIUU verification audit across a sample of consent records to confirm the live consent system meets all Section 6 requirements. Serves as ongoing compliance spot-check tool.</div>
+      <div class="data-card-deliverable"><i data-lucide="check-square"></i> Consent Quality Attestation</div>
+    </div>
+
+    <div class="data-card" style="border-left: 4px solid var(--primary-main);">
+      <div class="data-card-header">
+        <div class="data-card-title">Privacy Committee Charter (Final)</div>
+        <div class="data-card-id">T-39</div>
+      </div>
+      <div class="data-card-desc">Final, board-ratified version of the Privacy Committee Charter establishing the permanent governance body for ongoing DPDP compliance. Transitions the engagement from project to operations mode.</div>
+      <div class="data-card-deliverable"><i data-lucide="users"></i> Ratified Charter + Inaugural Minutes</div>
+    </div>
+
+    <div class="data-card" style="border-left: 4px solid var(--primary-main);">
+      <div class="data-card-header">
+        <div class="data-card-title">Statutory Hold Register (Final)</div>
+        <div class="data-card-id">T-43</div>
+      </div>
+      <div class="data-card-desc">Final version of the statutory hold register, verified against current RBI/PMLA/GST/CERT-In obligations. Handed to the internal compliance team for ongoing maintenance.</div>
+      <div class="data-card-deliverable"><i data-lucide="scale"></i> Verified Hold Register</div>
+    </div>
+
+    <div class="data-card" style="border-left: 4px solid var(--primary-main);">
+      <div class="data-card-header">
+        <div class="data-card-title">DPIA Register (Final)</div>
+        <div class="data-card-id">T-46</div>
+      </div>
+      <div class="data-card-desc">Complete DPIA register documenting all impact assessments conducted during the engagement, DPO sign-offs, and residual risk acceptances. Handed to DPO for annual maintenance. (SDF mandatory.)</div>
+      <div class="data-card-deliverable"><i data-lucide="notebook-pen"></i> DPIA Register Handoff (SDF Only)</div>
+    </div>
+
+    <div class="data-card" style="border-left: 4px solid var(--primary-main);">
+      <div class="data-card-header">
+        <div class="data-card-title">Compliance Evidence Pack</div>
+        <div class="data-card-id">T-47</div>
+      </div>
+      <div class="data-card-desc">Indexed archive of all compliance evidence organised by domain: signed policies, consent logs, audit reports, DPAs, DSAR records, breach register, training certificates, and board resolutions.</div>
+      <div class="data-card-deliverable"><i data-lucide="archive"></i> Indexed Evidence Archive</div>
+    </div>
+  </div>
+  
+  <div class="premium-checkpoint" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #047857; color: white;">
+    <div class="premium-checkpoint-icon" style="background: white; color: #10b981;"><i data-lucide="party-popper"></i></div>
+    <div class="premium-checkpoint-content">
+      <h4 style="color: white;">Engagement Certified</h4>
+      <p style="color: var(--status-pass);">Maximum DPDP Compliance Achieved. Evidence packed and risk registers accepted.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==============================================
+     PRIORITY MATRIX
+     ============================================== -->
+<h3 class="phase-title" style="margin-top: 60px;"><i data-lucide="layers"></i> Template Priority Matrix</h3>
+
+<div class="priority-grid">
+  <div class="priority-tier pt-1">
+    <h3><i data-lucide="alert-octagon"></i> Must-Have (P1)</h3>
+    <ul>
+      <li><i data-lucide="arrow-right"></i> (40) Board Resolution</li>
+      <li><i data-lucide="arrow-right"></i> (39) Privacy Committee Charter</li>
+      <li><i data-lucide="arrow-right"></i> (41) Compliance Opinion Letter</li>
+      <li><i data-lucide="arrow-right"></i> ROPA (Records of Processing)</li>
+      <li><i data-lucide="arrow-right"></i> DSAR Portal & Live Process</li>
+    </ul>
+  </div>
+
+  <div class="priority-tier pt-2">
+    <h3><i data-lucide="shield-alert"></i> Should-Have (P2)</h3>
+    <ul>
+      <li><i data-lucide="arrow-right"></i> (42) Consent Audit Worksheet</li>
+      <li><i data-lucide="arrow-right"></i> (43) Statutory Hold Register</li>
+      <li><i data-lucide="arrow-right"></i> (44) Cross-Border Register</li>
+      <li><i data-lucide="arrow-right"></i> (45) Obligations Calendar</li>
+      <li><i data-lucide="arrow-right"></i> (46) DPIA Register (if SDF)</li>
+    </ul>
+  </div>
+
+  <div class="priority-tier pt-3">
+    <h3><i data-lucide="info"></i> Nice-to-Have (P3)</h3>
+    <ul>
+      <li><i data-lucide="arrow-right"></i> (47) Compliance Status Report</li>
+      <li><i data-lucide="arrow-right"></i> (48) Consent Manager Spec</li>
+      <li><i data-lucide="arrow-right"></i> (6) Multilingual Notice Kit</li>
+      <li><i data-lucide="arrow-right"></i> Individual Dept SOPs</li>
+      <li><i data-lucide="arrow-right"></i> Employee Notices</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

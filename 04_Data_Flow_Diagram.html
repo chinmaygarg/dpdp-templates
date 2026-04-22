@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Flow Diagram (DFD)</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Data Flow Diagram (DFD)</div>
+  <div class="subtitle">Visual map of how personal data moves through your organization</div>
+</div>
+
+<div class="info-box">
+  <strong>Purpose:</strong> Create a visual representation of how personal data flows from collection through processing to deletion. This helps identify gaps in security and compliance.
+</div>
+
+<h2>Instructions</h2>
+
+<ol >
+  <li>Map each touchpoint where personal data is collected (web, mobile, paper, API, import, etc.)</li>
+  <li>Show where data is stored (databases, files, caches, backups)</li>
+  <li>Document all processors/vendors who receive data</li>
+  <li>Show where data is processed (anonymization, analytics, reporting)</li>
+  <li>Identify retention points and deletion triggers</li>
+  <li>Create visual diagram (can be ASCII, flowchart, or attached image)</li>
+</ol>
+
+<h2 style="margin-top: 20px;">Data Flow Narrative</h2>
+
+<table>
+  <tr>
+    <th style="width: 20%;">Stage</th>
+    <th style="width: 40%;">Description</th>
+    <th style="width: 20%;">Systems Involved</th>
+    <th style="width: 20%;">Security Controls</th>
+  </tr>
+  <tr>
+    <td><strong>1. Collection</strong></td>
+    <td><textarea style="width: 100%; height: 60px;"></textarea></td>
+    <td><input type="text" placeholder="e.g. Web form, Mobile app, API"></td>
+    <td><input type="text" placeholder="e.g. HTTPS, Validation"></td>
+  </tr>
+  <tr>
+    <td><strong>2. Transmission</strong></td>
+    <td><textarea style="width: 100%; height: 60px;"></textarea></td>
+    <td><input type="text" placeholder="e.g. Load balancer, Message queue"></td>
+    <td><input type="text" placeholder="e.g. TLS 1.2+, Encryption"></td>
+  </tr>
+  <tr>
+    <td><strong>3. Storage</strong></td>
+    <td><textarea style="width: 100%; height: 60px;"></textarea></td>
+    <td><input type="text" placeholder="e.g. Database, Cloud storage"></td>
+    <td><input type="text" placeholder="e.g. AES-256, Access controls"></td>
+  </tr>
+  <tr>
+    <td><strong>4. Processing</strong></td>
+    <td><textarea style="width: 100%; height: 60px;"></textarea></td>
+    <td><input type="text" placeholder="e.g. Analytics, ML models"></td>
+    <td><input type="text" placeholder="e.g. Audit logging, PII masking"></td>
+  </tr>
+  <tr>
+    <td><strong>5. Sharing</strong></td>
+    <td><textarea style="width: 100%; height: 60px;"></textarea></td>
+    <td><input type="text" placeholder="e.g. Processors, Partners"></td>
+    <td><input type="text" placeholder="e.g. DPA, Encryption in transit"></td>
+  </tr>
+  <tr>
+    <td><strong>6. Deletion</strong></td>
+    <td><textarea style="width: 100%; height: 60px;"></textarea></td>
+    <td><input type="text" placeholder="e.g. Batch job, Manual removal"></td>
+    <td><input type="text" placeholder="e.g. Audit log, Confirmation"></td>
+  </tr>
+</table>
+
+<h2 style="margin-top: 30px;">DFD Diagram Space</h2>
+
+<div style="border: 2px dashed #ddd; padding: 20px; margin: 15px 0; min-height: 300px; background: #f9f9f9;">
+  <p style=" color: #999;">
+    Attach or draw your Data Flow Diagram here. Show:<br>
+    <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Data sources (users, APIs, imports)<br>
+    <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Storage systems (databases, caches)<br>
+    <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Processing points (analytics, transformations)<br>
+    <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Third-party access (processors, vendors)<br>
+    <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Deletion/archival<br>
+  </p>
+  <textarea style="width: 100%; height: 150px; font-family: monospace; "></textarea>
+</div>
+
+<h2 style="margin-top: 30px;">Cross-Border Flows</h2>
+
+<table>
+  <tr>
+    <th>Destination Country</th>
+    <th>Purpose</th>
+    <th>Data Categories</th>
+    <th>Legal Basis (RPA, Approval, etc.)</th>
+    <th>Safeguards</th>
+  </tr>
+  <tr>
+    <td><input type="text"></td>
+    <td><input type="text"></td>
+    <td><textarea style="width: 100%; height: 40px;"></textarea></td>
+    <td><input type="text"></td>
+    <td><textarea style="width: 100%; height: 40px;"></textarea></td>
+  </tr>
+</table>
+
+<h2 style="margin-top: 30px;">Sign-Off</h2>
+
+<div class="signature-block">
+  <p>
+    <strong>DFD Prepared By:</strong> _________________________ <br>
+    <strong>IT/Architect Approval:</strong> _________________________ <br>
+    <strong>Date:</strong> _________________________ <br>
+    <strong>Next Review Date:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

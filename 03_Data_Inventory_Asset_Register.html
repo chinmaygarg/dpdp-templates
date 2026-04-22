@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Inventory / Asset Register</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Data Inventory & Asset Register</div>
+  <div class="subtitle">Complete inventory of all systems and data stores holding personal data</div>
+</div>
+
+<div class="info-box">
+  <strong>Purpose:</strong> Identify and document every system, database, file store, or application that holds personal data. This is the foundation for ROPA (Records of Processing Activities) mapping.
+</div>
+
+<h2>Instructions</h2>
+
+<ol >
+  <li>List every system, application, database, spreadsheet, or cloud service that stores personal data</li>
+  <li>Include systems run by your organization AND those run by processors on your behalf</li>
+  <li>For each system, document: ownership, data types, retention period, location, security classification</li>
+  <li>Review with IT, Business, and Legal teams to ensure completeness</li>
+  <li>Update this inventory whenever new systems are added or data handling changes</li>
+</ol>
+
+<h2 style="margin-top: 20px;">Data Inventory Template</h2>
+
+<table >
+  <tr>
+    <th>System Name</th>
+    <th>System Type</th>
+    <th>Owner Dept</th>
+    <th>Data Categories Held</th>
+    <th>Data Volume</th>
+    <th>Retention Period</th>
+    <th>Storage Location</th>
+    <th>Encryption</th>
+    <th>Third-Party Access?</th>
+    <th>Criticality</th>
+  </tr>
+  <tr>
+    <td><input type="text" style="width: 100%;"></td>
+    <td><select style="width: 100%;"><option>Database</option><option>Cloud App</option><option>File Store</option><option>Other</option></select></td>
+    <td><input type="text" style="width: 100%;"></td>
+    <td><textarea style="width: 100%; height: 30px;"></textarea></td>
+    <td><input type="text" placeholder="e.g. 5M records"></td>
+    <td><input type="text" placeholder="e.g. 3 years"></td>
+    <td><select style="width: 100%;"><option>On-Prem</option><option>AWS</option><option>Azure</option><option>GCP</option><option>Other Cloud</option></select></td>
+    <td><select style="width: 100%;"><option>AES-256</option><option>Yes (Other)</option><option>No</option></select></td>
+    <td><input type="checkbox"> Processor</td>
+    <td><select style="width: 100%;"><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select></td>
+  </tr>
+  <tr>
+    <td><input type="text" style="width: 100%;"></td>
+    <td><select style="width: 100%;"><option>Database</option><option>Cloud App</option><option>File Store</option><option>Other</option></select></td>
+    <td><input type="text" style="width: 100%;"></td>
+    <td><textarea style="width: 100%; height: 30px;"></textarea></td>
+    <td><input type="text" placeholder="e.g. 5M records"></td>
+    <td><input type="text" placeholder="e.g. 3 years"></td>
+    <td><select style="width: 100%;"><option>On-Prem</option><option>AWS</option><option>Azure</option><option>GCP</option><option>Other Cloud</option></select></td>
+    <td><select style="width: 100%;"><option>AES-256</option><option>Yes (Other)</option><option>No</option></select></td>
+    <td><input type="checkbox"> Processor</td>
+    <td><select style="width: 100%;"><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select></td>
+  </tr>
+</table>
+
+<div style="margin-top: 20px; ">
+  <strong>Note:</strong> Add rows as needed. Total rows: _____ systems identified
+</div>
+
+<h2 style="margin-top: 30px;">Summary Statistics</h2>
+
+<table>
+  <tr>
+    <th>Metric</th>
+    <th>Count</th>
+  </tr>
+  <tr>
+    <td>Total systems holding personal data</td>
+    <td><input type="text"></td>
+  </tr>
+  <tr>
+    <td>Systems with encryption enabled</td>
+    <td><input type="text"></td>
+  </tr>
+  <tr>
+    <td>Processors with access to data</td>
+    <td><input type="text"></td>
+  </tr>
+  <tr>
+    <td>Critical systems requiring special attention</td>
+    <td><input type="text"></td>
+  </tr>
+</table>
+
+<h2 style="margin-top: 30px;">Sign-Off</h2>
+
+<div class="signature-block">
+  <p>
+    <strong>Inventory Prepared By:</strong> _________________________ <br>
+    <strong>IT/Data Owner Sign-Off:</strong> _________________________ <br>
+    <strong>Date:</strong> _________________________ <br>
+    <strong>Next Review Date:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

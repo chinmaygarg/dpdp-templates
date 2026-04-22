@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Data Protection Policy — DPDP Act 2023 Compliance</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  .header { border-bottom: 2px solid var(--text-primary); padding-bottom: 15px; margin-bottom: 20px; }
+  .title { font-weight: bold; margin-bottom: 10px; }
+  .subtitle { color: var(--text-secondary); margin-bottom: 15px; }
+  table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; }
+  th { background: #2c3e50; color: white; padding: 6px; text-align: left; font-weight: bold; }
+  td { border: 1px solid var(--border-color); padding: 5px; vertical-align: top; }
+  tr:nth-child(even) { background: var(--bg-light); }
+  input[type="text"], textarea, select { border: none; border-bottom: 1px solid var(--text-primary); padding: 2px; width: 95%; background: transparent; }
+  .section { margin-top: 20px; }
+  .section-title { font-weight: bold; background: #ecf0f1; padding: 5px; margin-bottom: 10px; }
+  .note { background: var(--status-warn); padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #ffc107; }
+  .critical { background: var(--status-fail); padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #dc3545; }
+  .info { background: #e8f4fd; padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #0066cc; }
+  .policy-clause { background: #f9f9f9; border: 1px solid #ddd; padding: 10px; margin: 8px 0; border-radius: 3px; }
+  .policy-clause strong { color: #2c3e50; }
+  .rights-box { background: #e8f4fd; border: 1px solid #b8d4f0; padding: 10px; margin: 8px 0; border-radius: 3px; }
+  @media print { body { margin: 0; padding: 0; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="title">EMPLOYEE DATA PROTECTION POLICY — Processing of Employee Personal Data under DPDP Act 2023</div>
+  <div class="subtitle">
+    Organization: <input type="text" placeholder="[Organization Name]" style="width:300px;">
+    &nbsp;&nbsp; Policy Reference: <input type="text" placeholder="POL-EMP-DP-001" style="width:150px;"><br>
+    Version: <input type="text" placeholder="1.0" style="width:60px;">
+    &nbsp;&nbsp; Effective Date: <input type="text" placeholder="DD/MM/YYYY" style="width:130px;">
+    &nbsp;&nbsp; Next Review: <input type="text" placeholder="DD/MM/YYYY (Annual)" style="width:180px;"><br>
+    Policy Owner (DPO): <input type="text" placeholder="Name / Contact" style="width:250px;">
+    &nbsp;&nbsp; HR Owner: <input type="text" placeholder="Name / Contact" style="width:200px;">
+  </div>
+</div>
+
+<div class="info">
+  <strong>Scope &amp; Purpose:</strong> This Policy governs how <input type="text" placeholder="[Organization Name]" style="width:180px; border-bottom:1px solid #004085;"> ("the Organization") collects, uses, stores, and deletes personal data of its employees, contractors, interns, and former employees in compliance with the Digital Personal Data Protection Act 2023 ("DPDP Act"). This Policy is distinct from the Employee Data Protection <em>Training</em> Programme (Template #19) and from the general Data Protection Policy (Template #18). It is to be read alongside the <a href="02A_Data_Retention_Schedule.html" style="color:#004085;">Data Retention Schedule</a> and the <a href="18_Data_Protection_Policy.html" style="color:#004085;">Master Data Protection Policy</a>.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 1 — EMPLOYEE DATA COLLECTED &amp; PURPOSE</div>
+
+  <table>
+    <tr>
+      <th style="width:16%;">Data Category</th>
+      <th style="width:22%;">Specific Data Items</th>
+      <th style="width:20%;">Purpose(s)</th>
+      <th style="width:14%;">Legal Basis (DPDP)</th>
+      <th style="width:14%;">Retention Period</th>
+      <th style="width:14%;">Consent Required?</th>
+    </tr>
+
+    <tr>
+      <td><strong>Recruitment Data</strong></td>
+      <td>CV/resume, cover letter, academic certificates, reference details, interview scores, background check results</td>
+      <td>Candidate evaluation, hiring decision, offer generation</td>
+      <td>Legitimate Use — S.7(a) employment</td>
+      <td>12 months if not hired; employment period + 5 yr if hired</td>
+      <td>No — legitimate use; inform via recruitment notice</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Identity &amp; Contact</strong></td>
+      <td>Full name, date of birth, gender, nationality, Aadhaar, PAN, passport, emergency contact</td>
+      <td>Payroll, statutory compliance, identity verification, access provisioning</td>
+      <td>Legitimate Use — S.7(a) employment + S.7(b) statutory obligation</td>
+      <td>Employment period + 5 years</td>
+      <td>No — legitimate use for employment</td>
+    </tr>
+
+    <tr>
+      <td><strong>Payroll &amp; Financial</strong></td>
+      <td>Salary, bank account, PF/ESI number, Form 16, TDS deductions, loans/advances, gratuity</td>
+      <td>Salary disbursement, tax compliance, statutory deductions, audit</td>
+      <td>Statutory Obligation — Income Tax Act, PF Act, ESI Act</td>
+      <td>Employment period + 7 years (Income Tax Act)</td>
+      <td>No — statutory obligation</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Performance &amp; Assessment</strong></td>
+      <td>Appraisal ratings, feedback, KPIs, training completion, awards, PIPs</td>
+      <td>Performance management, promotion decisions, training needs analysis</td>
+      <td>Legitimate Use — S.7(a) employment relationship</td>
+      <td>Employment period + 3 years after exit</td>
+      <td>No — legitimate use; inform in contract</td>
+    </tr>
+
+    <tr>
+      <td><strong>Health &amp; Medical (if applicable)</strong></td>
+      <td>Medical fitness certificate, disability declaration (voluntary), ESI health claims, maternity/paternity leave basis</td>
+      <td>Workplace safety, statutory compliance (ESI, Maternity Benefit Act), reasonable accommodation</td>
+      <td>Consent (S.6) for voluntary health info; Statutory for ESI/Maternity</td>
+      <td>Employment period + 3 years; ESI claims as per ESIC rules</td>
+      <td><strong>Yes</strong> — for voluntary health disclosures; provide opt-out</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>IT Systems &amp; Access Logs</strong></td>
+      <td>Login/logout timestamps, applications accessed, files opened/modified, email metadata, device usage</td>
+      <td>IT security, fraud prevention, incident investigation, audit compliance</td>
+      <td>Legitimate Use — S.7(d) security / S.7(f) fraud prevention + CERT-In compliance</td>
+      <td>1 year minimum (CERT-In Rule 4); 3 years for security investigation retention</td>
+      <td>No — inform via IT Acceptable Use Policy (notice required)</td>
+    </tr>
+
+    <tr>
+      <td><strong>Training &amp; Certification</strong></td>
+      <td>Training records, e-learning completions, certifications, DPDP awareness test scores</td>
+      <td>Skills tracking, regulatory training evidence, compliance audit</td>
+      <td>Legitimate Use — S.7(a) employment; statutory for regulated roles</td>
+      <td>Employment period + 3 years</td>
+      <td>No — legitimate use</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Disciplinary Records</strong></td>
+      <td>Warnings, show-cause notices, enquiry reports, suspension orders, termination records</td>
+      <td>HR management, legal defense, statutory compliance, reference verification</td>
+      <td>Legitimate Use — S.7(a); legal defense basis</td>
+      <td>Employment period + 5 years; escalated cases + 7 years</td>
+      <td>No — inform in policy; employee acknowledges in contract</td>
+    </tr>
+
+    <tr>
+      <td><strong>CCTV / Physical Access</strong></td>
+      <td>Office entry/exit logs, CCTV footage in premises, visitor badges</td>
+      <td>Physical security, premises safety, incident investigation</td>
+      <td>Legitimate Use — S.7(d) security</td>
+      <td>30 days (general); 90 days (incident retention)</td>
+      <td>No — notice on entry / in premises policy</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Post-Employment References</strong></td>
+      <td>Exit interview notes, experience letter content, reference check responses (outgoing)</td>
+      <td>Reference provision, dispute resolution, legal compliance</td>
+      <td>Legitimate Use — S.7(a); consent for reference sharing externally</td>
+      <td>3 years post-exit</td>
+      <td><strong>Yes</strong> — if sharing reference details externally, obtain written consent</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 2 — EMPLOYEE RIGHTS UNDER DPDP ACT 2023</div>
+
+  <div class="rights-box">
+    <strong>All employees have the following rights under the DPDP Act 2023. Requests must be submitted to the DPO at: <input type="text" placeholder="[DPO email / portal URL]" style="width:200px; border-bottom:1px solid #004085;"></strong>
+  </div>
+
+  <table>
+    <tr>
+      <th style="width:18%;">Right</th>
+      <th style="width:12%;">DPDP Section</th>
+      <th style="width:28%;">What the Employee Can Request</th>
+      <th style="width:22%;">Organization's Response SLA</th>
+      <th style="width:20%;">Limitations / Exceptions</th>
+    </tr>
+
+    <tr>
+      <td><strong>Right to Access (Summary)</strong></td>
+      <td>Section 11</td>
+      <td>Summary of personal data held; list of processors to whom data was shared</td>
+      <td>Acknowledge within 7 days; respond within 30 days</td>
+      <td>Legal privilege / ongoing investigation data may be withheld</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Right to Correction</strong></td>
+      <td>Section 12</td>
+      <td>Correct inaccurate or outdated personal data (e.g., address, contact, name change)</td>
+      <td>Update within 15 business days of verification</td>
+      <td>Payroll data changes follow payroll cycle cut-off dates</td>
+    </tr>
+
+    <tr>
+      <td><strong>Right to Erasure</strong></td>
+      <td>Section 12</td>
+      <td>Request deletion of personal data no longer necessary for employment purposes</td>
+      <td>Assess within 30 days; delete or explain statutory hold within 90 days</td>
+      <td>Statutory obligations (PF, ESI, Income Tax) override erasure; cannot delete payroll records during mandatory hold</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Right to Nominate</strong></td>
+      <td>Section 14</td>
+      <td>Nominate a family member or trusted person to exercise rights in case of death or incapacity</td>
+      <td>Register nominee within 15 days of request</td>
+      <td>Nominee must provide identity proof; scope of access defined by employee</td>
+    </tr>
+
+    <tr>
+      <td><strong>Right to Grievance</strong></td>
+      <td>Section 13</td>
+      <td>Raise complaint about data processing; escalate to Data Protection Board if unresolved</td>
+      <td>DPO responds within 30 days; Board escalation available after 30 days</td>
+      <td>—</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Right to Withdraw Consent</strong></td>
+      <td>Section 6</td>
+      <td>Withdraw consent for discretionary processing (e.g., voluntary health info, optional HR analytics)</td>
+      <td>Cease processing within 7 days of withdrawal request</td>
+      <td>Withdrawal does not affect lawfulness of processing before withdrawal; cannot withdraw for statutory / legitimate use data</td>
+    </tr>
+  </table>
+
+  <div class="note">
+    <strong>How to Exercise Rights:</strong> Employees may submit requests via: (1) DPO email: <input type="text" placeholder="dpo@[org].in" style="width:150px; border-bottom:1px solid #856404;">, (2) Internal HR portal, or (3) Written letter to: <input type="text" placeholder="[Registered Office Address]" style="width:250px; border-bottom:1px solid #856404;">. Identity verification will be required before processing any request.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 3 — EMPLOYEE CONSENT REGISTER (for Discretionary Processing)</div>
+
+  <p >Consent is required only for processing that is <em>not</em> covered by legitimate use (Section 7) or statutory obligation. Track below:</p>
+
+  <table>
+    <tr>
+      <th>Employee ID</th>
+      <th>Consent Purpose</th>
+      <th>Consent Granted Date</th>
+      <th>Consent Method</th>
+      <th>Withdrawal Date</th>
+      <th>Processing Ceased</th>
+      <th>Record Owner</th>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="EMP-XXX" style="width:70px;"></td>
+      <td><input type="text" placeholder="e.g., Voluntary health disclosure" style="width:150px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+      <td>
+        <select>
+          <option>Written form</option>
+          <option>HR portal checkbox</option>
+          <option>Email confirmation</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="DD/MM/YYYY or N/A" style="width:90px;"></td>
+      <td>
+        <select>
+          <option>Active</option>
+          <option>Withdrawn — ceased</option>
+          <option>Withdrawn — pending</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="HR/DPO" style="width:60px;"></td>
+    </tr>
+    <tr style="background:var(--bg-light);">
+      <td><input type="text" placeholder="EMP-XXX" style="width:70px;"></td>
+      <td><input type="text" placeholder="e.g., Photo for internal directory" style="width:150px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+      <td>
+        <select>
+          <option>Written form</option>
+          <option>HR portal checkbox</option>
+          <option>Email confirmation</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="DD/MM/YYYY or N/A" style="width:90px;"></td>
+      <td>
+        <select>
+          <option>Active</option>
+          <option>Withdrawn — ceased</option>
+          <option>Withdrawn — pending</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="HR/DPO" style="width:60px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 4 — THIRD-PARTY SHARING OF EMPLOYEE DATA</div>
+
+  <table>
+    <tr>
+      <th style="width:18%;">Recipient / Purpose</th>
+      <th style="width:20%;">Data Categories Shared</th>
+      <th style="width:14%;">Legal Basis</th>
+      <th style="width:14%;">DPA in Place?</th>
+      <th style="width:14%;">Country of Transfer</th>
+      <th style="width:20%;">Safeguards</th>
+    </tr>
+
+    <tr>
+      <td><strong>Payroll Processor</strong><br>(e.g., ADP, Greytip, Keka)</td>
+      <td>Salary, bank account, PAN, PF number, leave data</td>
+      <td>Statutory — payroll obligation</td>
+      <td><select><option>Yes — signed</option><option>Pending</option><option>Not required</option></select></td>
+      <td>India</td>
+      <td>DPA, encryption, access controls</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>PF / ESI Authorities</strong><br>(EPFO, ESIC)</td>
+      <td>PF number, salary, employee UAN, ESI contributions</td>
+      <td>Statutory — PF Act, ESI Act</td>
+      <td>Not applicable (government body)</td>
+      <td>India</td>
+      <td>Statutory disclosure; no DPA required</td>
+    </tr>
+
+    <tr>
+      <td><strong>Income Tax / TDS Filing</strong><br>(Income Tax Dept)</td>
+      <td>PAN, salary, TDS deductions, Form 16 data</td>
+      <td>Statutory — Income Tax Act</td>
+      <td>Not applicable (government body)</td>
+      <td>India</td>
+      <td>Statutory disclosure</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Background Verification Agency</strong></td>
+      <td>Name, DOB, employment history (for BGV purposes only)</td>
+      <td>Consent — obtained at onboarding</td>
+      <td><select><option>Yes — signed</option><option>Pending</option></select></td>
+      <td><input type="text" placeholder="India / Other" style="width:80px;"></td>
+      <td>DPA, purpose limitation, data minimisation, NDA</td>
+    </tr>
+
+    <tr>
+      <td><strong>Group/Parent Company</strong><br>(if applicable)</td>
+      <td><input type="text" placeholder="Specify data shared" style="width:130px;"></td>
+      <td><input type="text" placeholder="Specify basis" style="width:120px;"></td>
+      <td><select><option>Yes — signed</option><option>Not applicable</option></select></td>
+      <td><input type="text" placeholder="Country" style="width:80px;"></td>
+      <td><input type="text" placeholder="Safeguards in place" style="width:120px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 5 — DATA PROTECTION IN JOB DESCRIPTIONS</div>
+
+  <p style=" margin-bottom: 10px;">The following roles <strong>MUST</strong> include explicit data protection and confidentiality clauses in their job descriptions, onboarding documentation, and annual role confirmations. These roles either: (a) handle sensitive personal data, (b) have elevated system access, or (c) make decisions affecting data principals. Failure to include data protection clauses in the JD for these roles is a compliance gap (SS-04 checkpoint).</p>
+
+  <table>
+    <tr>
+      <th style="width:20%;">Role Title(s)</th>
+      <th style="width:25%;">Personal Data Access / Responsibility</th>
+      <th style="width:30%;">Mandatory JD Clause(s)</th>
+      <th style="width:15%;">Training Required</th>
+      <th style="width:10%;">Approval</th>
+    </tr>
+
+    <tr>
+      <td><strong>Database Administrator (DBA)</strong><br>Senior DBA<br>Database Engineer</td>
+      <td>Full database access; encryption keys; audit logs; backup/restore operations; can view encrypted PII at rest</td>
+      <td><strong>"Data Protection Clause (DPDP Act 2023):"</strong> Holder of this role must: (1) maintain strict confidentiality of all personal data accessed during system maintenance, (2) handle encryption keys securely per <a href="#" style="color:#004085;">Information Security Policy</a>, (3) never share DB credentials, (4) report data exposure incidents immediately to DPO, (5) pass annual DPDP awareness training, (6) acknowledge this policy in writing at hire and annually, (7) understand liability per Section 8(2) and Data Protection Rules 2024 if breach occurs through negligence.</td>
+      <td>Mandatory:<br>DPDP Core + Database Security SOP</td>
+      <td>DPO +<br>IT Head</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>IT Administrator / System Admin</strong><br>Infrastructure Engineer<br>DevOps Engineer</td>
+      <td>Server access; user provisioning; access control lists; system logs; API keys; can reset user passwords and access audit trails</td>
+      <td><strong>"Data Protection Clause (DPDP Act 2023):"</strong> Holder of this role must: (1) maintain strict confidentiality of all personal data accessible via system tools, (2) follow principle of least privilege; provision access only for stated business purpose, (3) never share admin credentials or API keys, (4) enable MFA for all admin accounts and enforce MFA for others, (5) log and monitor all privileged access; report anomalies to IT Security, (6) pass mandatory DPDP awareness training and annual security training, (7) acknowledge awareness of DPDP Section 8(2) criminal liability for breach through negligence.</td>
+      <td>Mandatory:<br>DPDP Core + Least Privilege Training</td>
+      <td>DPO +<br>CISO</td>
+    </tr>
+
+    <tr>
+      <td><strong>Customer Service Representative</strong><br>Support Specialist<br>Call Center Agent</td>
+      <td>Customer ID, contact details, transaction history, support tickets, verbal consent to recording; handles customer requests including DSAR, withdrawal, grievances</td>
+      <td><strong>"Data Protection Clause (DPDP Act 2023):"</strong> Holder of this role must: (1) treat all customer personal data as confidential, (2) never disclose customer data outside the business context, (3) inform customers of call recording consent upfront per privacy notice, (4) handle DSAR / grievance requests per <a href="13_Grievance_Handling_SOP.html" style="color:#004085;">Grievance SOP</a> and escalate to DPO within 24 hours, (5) follow <a href="08_Consent_Form.html" style="color:#004085;">consent withdrawal</a> procedures including CPaaS suppression list sync within 24 hours, (6) pass DPDP Core training + Customer Data Handling module, (7) acknowledge this policy and sign consent confidentiality agreement upon hire.</td>
+      <td>Mandatory:<br>DPDP Core + Customer Data SOP</td>
+      <td>DPO +<br>HR Head</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Marketing / Communications</strong><br>Email Campaign Manager<br>Social Media Manager<br>Customer Retention Specialist</td>
+      <td>Consent registry; email lists; segment definitions; withdrawal tracking; SMS/WhatsApp opt-out lists; promotional contact data</td>
+      <td><strong>"Data Protection Clause (DPDP Act 2023):"</strong> Holder of this role must: (1) honor all consent and purpose limitations — never send marketing without valid consent per <a href="08_Consent_Form.html" style="color:#004085;">FSIUU framework</a>, (2) maintain CPaaS withdrawal list; sync with vendors (WhatsApp, SMS, Email) within 24 hours of principal withdrawal, (3) never share contact lists with third parties without explicit DPA and consent, (4) maintain per-purpose opt-out flags — do not suppress individual across all purposes without principal request, (5) report consent health metrics monthly (withdrawal rate, invalid consent % per <a href="31_Consent_Registry_Dashboard.html" style="color:#004085;">Consent Registry</a>), (6) pass DPDP Core training + CPaaS Consent & Withdrawal module, (7) acknowledge that marketing without consent is DPDP Section 6 violation (₹50-100Cr penalty).</td>
+      <td>Mandatory:<br>DPDP Core + CPaaS Consent Rules</td>
+      <td>DPO +<br>Legal</td>
+    </tr>
+
+    <tr>
+      <td><strong>Finance / Accounts Team</strong><br>Accountant<br>Accounts Payable / Receivable<br>Credit Analyst<br>Collections Officer</td>
+      <td>Customer financial data; bank accounts; loan/credit history; payment records; collateral information; GST/tax ID</td>
+      <td><strong>"Data Protection Clause (DPDP Act 2023):"</strong> Holder of this role must: (1) maintain strict confidentiality of all financial and credit information, (2) handle bank account numbers, card data per <a href="24_Security_Hardening_Plan.html" style="color:#004085;">PAN masking (XXXXXXX1234 in all outputs)</a> and encryption standards, (3) never share financial data with collection agencies without explicit consent and Section 7(f) basis, (4) comply with RBI retention periods — KYC records 10 years, loan records 8 years per <a href="02A_Data_Retention_Schedule.html" style="color:#004085;">Retention Schedule</a>, (5) report data exposure (leakage to external agency, unauthorized sharing) immediately to DPO, (6) pass DPDP Core training + Financial Data Security module, (7) understand that unauthorized sharing of financial data is Section 8(1) breach (₹50-100Cr penalty).</td>
+      <td>Mandatory:<br>DPDP Core + Financial Data Security</td>
+      <td>DPO +<br>CFO</td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Human Resources / People Ops</strong><br>HR Generalist<br>Talent Acquisition<br>Payroll Specialist<br>Performance Manager</td>
+      <td>Employee PII (Aadhaar, PAN, bank, medical fitness, appraisal, disciplinary records, emergency contacts, family information for nominees); contractor data; candidate CVs</td>
+      <td><strong>"Data Protection Clause (DPDP Act 2023):"</strong> Holder of this role must: (1) treat employee personal data as highly confidential; prevent unauthorized access to personnel files, (2) store Aadhaar as VID only (12-digit Aadhaar NEVER stored plaintext); masked PAN (XXXXXXX1234) in all outputs per <a href="24_Security_Hardening_Plan.html" style="color:#004085;">security standards</a>, (3) handle employee DSAR / correction / erasure requests per <a href="12_Erasure_and_Correction_SOP.html" style="color:#004085;">DSAR SOP</a> and process within 30 days, (4) maintain <a href="03A_Employee_Data_Protection_Policy.html" style="color:#004085;">Employee Consent Register</a> for voluntary health data; allow withdrawal at any time, (5) not share appraisal / disciplinary data with external parties without legal basis, (6) pass DPDP Core training + Employee Data Protection Policy annually, (7) acknowledge that breach of employee confidentiality is DPDP Section 8(1) violation and grounds for disciplinary action.</td>
+      <td>Mandatory:<br>DPDP Core + Employee Data Policy</td>
+      <td>DPO +<br>CHRO</td>
+    </tr>
+
+    <tr>
+      <td><strong>Legal / Compliance / DPO</strong><br>Legal Counsel<br>Compliance Officer<br>Data Protection Officer<br>Privacy Counsel</td>
+      <td>Full access to consent records, DSAR logs, breach register, audit findings, litigation holds, sensitive policy documents, legal opinions on data processing</td>
+      <td><strong>"Data Protection Clause (DPDP Act 2023):"</strong> Holder of this role must: (1) exercise absolute confidentiality of personal data accessed for legal/regulatory work, (2) maintain privilege over DPDP legal advice and opinions; separate from operational/audit files, (3) handle litigation holds and statutory exceptions per <a href="02A_Data_Retention_Schedule.html" style="color:#004085;">Retention Schedule</a> — do not delete data subject to legal hold even if erasure requested, (4) review all major vendor DPAs per Section 8(2) template <a href="15_Data_Processing_Agreement_(DPA).html" style="color:#004085;">T-15</a> and processor propagation requirements, (5) oversee DPIA sign-off for high-risk processing per <a href="26_DPIA_Workbook.html" style="color:#004085;">DPIA Template</a>, (6) certify annual compliance assessment per <a href="41_Compliance_Opinion_Letter.html" style="color:#004085;">Certification Template</a>, (7) pass DPDP Core training + advanced Legal & Governance training; maintain current DPDP Act knowledge.</td>
+      <td>Mandatory:<br>DPDP Core + Advanced Governance</td>
+      <td>Board /	Audit Committee</td>
+    </tr>
+  </table>
+
+  <div class="critical">
+    <strong>Implementation Requirement (Checkpoint SS-04):</strong> For each role listed above:
+    <br>(1) Insert the applicable "Data Protection Clause" into the current JD or role documentation
+    <br>(2) Update all incumbent job contracts to reference this policy; obtain written acknowledgement
+    <br>(3) For all new hires in these roles: include clause in offer letter, have them sign policy acknowledgement on day 1 (use <a href="03A_Employee_Data_Protection_Policy.html" style="color:#004085;">Section 6 Acknowledgement Log</a>)
+    <br>(4) During annual appraisal: confirm employee re-acknowledges this policy and completes refresher training
+    <br>(5) Track acknowledgement dates and training completion in HR system; provide evidence to Board/Auditor
+    <br><strong>Failure to document data protection clauses in JD is DPDP compliance gap (₹50Cr penalty exposure per violation pattern).</strong>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 6 — POLICY COMPLIANCE OBLIGATIONS FOR EMPLOYEES</div>
+
+  <div class="policy-clause">
+    <strong>5.1 Obligation to Maintain Confidentiality:</strong> All employees who handle personal data of colleagues, customers, or any other individuals must maintain strict confidentiality. Unauthorized access, disclosure, or sharing of personal data is a disciplinary offence and may result in termination and/or legal action.
+  </div>
+
+  <div class="policy-clause">
+    <strong>5.2 Data Handling in Job Duties:</strong> Employees must handle personal data only for the purposes for which it was provided, using approved systems, and must not transfer data to personal devices or unsanctioned cloud storage. Refer to the IT Acceptable Use Policy for system-specific rules.
+  </div>
+
+  <div class="policy-clause">
+    <strong>5.3 Breach Reporting Duty:</strong> Any employee who suspects or discovers a personal data breach (accidental loss, unauthorized access, disclosure) must report it immediately to the DPO at <input type="text" placeholder="dpo@[org].in" style="width:150px; border-bottom:1px solid #2c3e50;"> or the IT Security team. The organization is required to notify the Data Protection Board within 72 hours of a breach (Section 8(6)).
+  </div>
+
+  <div class="policy-clause">
+    <strong>5.4 Training Requirement:</strong> All employees must complete the mandatory DPDP awareness training within <input type="text" placeholder="30" style="width:30px;"> days of joining and annually thereafter. Refer to <a href="19_Employee_Data_Protection_Training.html" style="color:#2c3e50;">Template #19 — Employee Training Programme</a> for curriculum details.
+  </div>
+
+  <div class="policy-clause">
+    <strong>5.5 Consequences of Non-Compliance:</strong> Breach of this Policy may result in: (1) Formal warning, (2) Suspension pending investigation, (3) Termination with cause, (4) Civil liability under the DPDP Act 2023 (penalties up to ₹250 crore per breach event for the organization; individual liability per applicable law).
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 7 — POLICY ACKNOWLEDGEMENT LOG</div>
+
+  <table>
+    <tr>
+      <th>Employee ID</th>
+      <th>Employee Name</th>
+      <th>Department</th>
+      <th>Policy Version Acknowledged</th>
+      <th>Date Acknowledged</th>
+      <th>Method</th>
+      <th>HR Sign-off</th>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="EMP-001" style="width:70px;"></td>
+      <td><input type="text" placeholder="Full Name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Department" style="width:80px;"></td>
+      <td><input type="text" placeholder="v1.0" style="width:40px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+      <td>
+        <select>
+          <option>Digital signature (HRMS)</option>
+          <option>Signed paper copy</option>
+          <option>Email confirmation</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="HR initials" style="width:60px;"></td>
+    </tr>
+    <tr style="background:var(--bg-light);">
+      <td><input type="text" placeholder="EMP-002" style="width:70px;"></td>
+      <td><input type="text" placeholder="Full Name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Department" style="width:80px;"></td>
+      <td><input type="text" placeholder="v1.0" style="width:40px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+      <td>
+        <select>
+          <option>Digital signature (HRMS)</option>
+          <option>Signed paper copy</option>
+          <option>Email confirmation</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="HR initials" style="width:60px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div style="margin-top:20px; padding: var(--spacing-md); background:#f0f5ff; border-left:3px solid var(--primary-color);">
+  <strong>POLICY APPROVAL &amp; CERTIFICATION</strong><br><br>
+  <table style="width:70%;">
+    <tr>
+      <th>Role</th>
+      <th>Name</th>
+      <th>Signature</th>
+      <th>Date</th>
+    </tr>
+    <tr>
+      <td>Drafted By (DPO / HR)</td>
+      <td><input type="text" placeholder="Name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Signature" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+    </tr>
+    <tr>
+      <td>Reviewed By (Legal)</td>
+      <td><input type="text" placeholder="Name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Signature" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+    </tr>
+    <tr>
+      <td>Approved By (CHRO / CEO)</td>
+      <td><input type="text" placeholder="Name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Signature" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+    </tr>
+    <tr>
+      <td>Board / Audit Committee Noted</td>
+      <td><input type="text" placeholder="Name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Reference" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- Navigation -->
+<div style="margin-top: 40px; padding: 15px; background: #f0f5ff; border-radius: 3px; text-align: center;">
+  <p >
+    <a href="18_Data_Protection_Policy.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">← Master Data Protection Policy</a> |
+    <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Back to Navigator</a> |
+    <a href="19_Employee_Data_Protection_Training.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Employee Training Programme →</a> |
+    <a href="02A_Data_Retention_Schedule.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Data Retention Schedule →</a>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

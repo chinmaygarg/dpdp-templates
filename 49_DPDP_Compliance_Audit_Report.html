@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPDP Compliance Audit Report</title>
+  <link rel="stylesheet" href="UNIFIED_THEME.css">
+  <style>
+    body { font-family: Inter, sans-serif; color: var(--text-primary); line-height: 1.6; }
+    .page-break { page-break-after: always; margin: 40px 0; }
+    .cover-page {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a52 100%);
+      color: white;
+      padding: 60px;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .cover-title { font-weight: bold; margin-bottom: 20px; }
+    .cover-subtitle { margin-bottom: 60px; opacity: 0.9; }
+    .cover-info {
+      text-align: left;
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 8px;
+      margin-top: 40px;
+    }
+    .cover-info div { margin: 10px 0; }
+    .cover-info strong { display: inline-block; width: 200px; }
+
+    .audit-header {
+      background: #f8f9fa;
+      border-bottom: 3px solid var(--primary-color);
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 6px;
+    }
+    .audit-header h1 { margin: 0 0 10px 0; }
+    .audit-metadata {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .metadata-item { }
+    .metadata-label { font-weight: 600; color: var(--text-secondary); }
+    .metadata-value { margin-top: 4px; }
+
+    .compliance-score {
+      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .score-number { font-weight: bold; }
+    .score-label { margin-top: 10px; }
+    .score-status {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+    }
+
+    .section-header {
+      background: #2c3e50;
+      color: white;
+      padding: 12px 16px;
+      margin-top: 30px;
+      margin-bottom: 16px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .domain-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .domain-header {
+      display: grid;
+      grid-template-columns: 1fr 100px 100px;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .domain-name { font-weight: 600; }
+    .domain-status {
+      padding: 6px 12px;
+      border-radius: 4px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .status-compliant { background: #d4edda; color: #155724; }
+    .status-partial { background: #fff3cd; color: #856404; }
+    .status-non-compliant { background: #f8d7da; color: #721c24; }
+
+    .domain-score {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: bold;
+    }
+    .score-bar {
+      width: 80px;
+      height: 24px;
+      background: #e0e0e0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .score-bar-fill { height: 100%; background: #4caf50; transition: width 0.3s; }
+
+    .findings-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+    .findings-table th {
+      background: #f5f5f5;
+      padding: 10px;
+      text-align: left;
+      border-bottom: 2px solid #ddd;
+      font-weight: 600;
+    }
+    .findings-table td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .findings-table tr:nth-child(even) { background: #fafafa; }
+
+    .finding-severity {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .severity-critical { background: #f8d7da; color: #721c24; }
+    .severity-high { background: #fff3cd; color: #856404; }
+    .severity-medium { background: #d1ecf1; color: #0c5460; }
+    .severity-low { background: #d4edda; color: #155724; }
+
+    .chart-container {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 16px;
+      margin: 16px 0;
+      text-align: center;
+    }
+    .chart-title { font-weight: 600; margin-bottom: 12px; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid var(--primary-color);
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+
+    .checklist {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    .checklist-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .checklist-checkbox {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .checklist-text { flex: 1; }
+    .checklist-label { font-weight: 500; display: block; }
+    .checklist-desc { color: var(--text-secondary); margin-top: 4px; }
+
+    .signature-block {
+      margin-top: 40px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    .signature-line {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      margin: 30px 0;
+    }
+    .signature-box { border-top: 2px solid #000; padding-top: 10px; }
+
+    @media print {
+      body { margin: 0; padding: 0; background: white; }
+      .page-break { page-break-after: always; }
+      .no-print { display: none; }
+    }
+
+    .recommendation-box {
+      background: #f9f9f9;
+      border-left: 4px solid #ff9800;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 4px;
+    }
+    .recommendation-label { font-weight: 600; color: #ff6f00; }
+
+    table { width: 100%; border-collapse: collapse; }
+    th { background: #f5f5f5; padding: 10px; text-align: left; border-bottom: 2px solid #ddd; font-weight: 600; }
+    td { padding: 8px 10px; border-bottom: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+
+<!-- ===== COVER PAGE ===== -->
+<div class="cover-page page-break">
+  <div style="text-align: center; margin-bottom: 40px;">
+    <img src="[ORG_LOGO_URL]" alt="Organization Logo" style="height: 60px; margin-bottom: 20px;">
+  </div>
+
+  <div class="cover-title">DPDP Compliance Audit Report</div>
+  <div class="cover-subtitle">Digital Personal Data Protection Act, 2023</div>
+
+  <div class="cover-info">
+    <div><strong>Organization:</strong> <span id="orgName">[Organization Name]</span></div>
+    <div><strong>Audit Period:</strong> <span id="auditPeriod">[Start Date] – [End Date]</span></div>
+    <div><strong>Report Date:</strong> <span id="reportDate">[Generated Date]</span></div>
+    <div><strong>Audit Type:</strong> <span id="auditType">Comprehensive Compliance Audit</span></div>
+    <div><strong>Prepared By:</strong> <span id="auditorName">[Data Protection Office]</span></div>
+    <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px;">
+      <strong>Confidentiality Notice:</strong><br>
+      This report contains sensitive compliance information and is intended solely for regulatory and internal audit purposes. Unauthorized distribution is prohibited.
+    </div>
+  </div>
+</div>
+
+<!-- ===== EXECUTIVE SUMMARY ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>1. Executive Summary</h1>
+  </div>
+
+  <div class="compliance-score">
+    <div class="score-number" id="overallScore">92</div>
+    <div class="score-label">Overall Compliance Score</div>
+    <div class="score-status">✓ COMPLIANT (As per DPDP Act 2023)</div>
+  </div>
+
+  <div class="info-box">
+    <strong>Audit Objective:</strong> This audit verifies the organization's compliance with the Digital Personal Data Protection Act, 2023 across 17 compliance domains, covering governance, data processing, consent management, data principal rights, security, breach management, and regulatory obligations.
+  </div>
+
+  <div style="margin-top: 20px;">
+    <h3>Key Findings at a Glance</h3>
+    <div class="grid-3" style="margin-top: 12px;">
+      <div style="text-align: center; padding: 16px; background: #d4edda; border-radius: 6px;">
+        <div style=" font-weight: bold; color: #155724;" id="domainCompliant">15</div>
+        <div style="color: #155724; ">Fully Compliant Domains</div>
+      </div>
+      <div style="text-align: center; padding: 16px; background: #fff3cd; border-radius: 6px;">
+        <div style=" font-weight: bold; color: #856404;" id="domainPartial">2</div>
+        <div style="color: #856404; ">Partial Compliance</div>
+      </div>
+      <div style="text-align: center; padding: 16px; background: #f8d7da; border-radius: 6px;">
+        <div style=" font-weight: bold; color: #721c24;" id="domainNonCompliant">0</div>
+        <div style="color: #721c24; ">Non-Compliant</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 30px;">
+    <h3>Findings Summary</h3>
+    <table style="margin-top: 12px;">
+      <tr>
+        <th style="background: #f8f8f8;">Severity Level</th>
+        <th style="background: #f8f8f8;">Count</th>
+        <th style="background: #f8f8f8;">Remediation SLA</th>
+        <th style="background: #f8f8f8;">Status</th>
+      </tr>
+      <tr>
+        <td><span class="finding-severity severity-critical">CRITICAL</span></td>
+        <td id="criticalCount">0</td>
+        <td>30 days</td>
+        <td id="criticalStatus" style="color: #155724; font-weight: 600;">✓ None</td>
+      </tr>
+      <tr>
+        <td><span class="finding-severity severity-high">HIGH</span></td>
+        <td id="highCount">2</td>
+        <td>60 days</td>
+        <td id="highStatus">In Progress</td>
+      </tr>
+      <tr>
+        <td><span class="finding-severity severity-medium">MEDIUM</span></td>
+        <td id="mediumCount">3</td>
+        <td>90 days</td>
+        <td id="mediumStatus">Planned</td>
+      </tr>
+      <tr>
+        <td><span class="finding-severity severity-low">LOW</span></td>
+        <td id="lowCount">1</td>
+        <td>No deadline</td>
+        <td id="lowStatus">Backlog</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="margin-top: 20px; padding: 16px; background: #f0f8ff; border-left: 4px solid var(--primary-color); border-radius: 4px;">
+    <strong>Auditor Assessment:</strong> The organization demonstrates strong adherence to core DPDP Act requirements. Consent capture mechanisms are FSIUU-compliant, data principal rights are properly implemented, and breach management procedures are established. Minor gaps in documentation and process optimization have been identified for remediation within standard SLAs.
+  </div>
+</div>
+
+<!-- ===== SECTION 2: ORGANIZATION DETAILS ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>2. Organization Profile</h1>
+  </div>
+
+  <table>
+    <tr>
+      <th style="width: 40%; background: #f5f5f5;">Field</th>
+      <th style="background: #f5f5f5;">Details</th>
+    </tr>
+    <tr>
+      <td><strong>Organization Name</strong></td>
+      <td id="orgNameDetail">[Organization Name]</td>
+    </tr>
+    <tr>
+      <td><strong>Jurisdiction</strong></td>
+      <td id="orgJurisdiction">India</td>
+    </tr>
+    <tr>
+      <td><strong>Entity Type</strong></td>
+      <td id="orgEntityType">[Entity Type: NBFC / Fintech / etc.]</td>
+    </tr>
+    <tr>
+      <td><strong>Data Protection Officer</strong></td>
+      <td id="dpoName">[DPO Name]<br><span style="color: var(--text-secondary); ">Email: <span id="dpoEmail">dpo@organization.com</span></span></td>
+    </tr>
+    <tr>
+      <td><strong>Grievance Officer</strong></td>
+      <td id="grievanceOfficer">[Grievance Officer Name]<br><span style="color: var(--text-secondary); ">Email: <span id="grievanceEmail">grievance@organization.com</span></span></td>
+    </tr>
+    <tr>
+      <td><strong>Registered Address</strong></td>
+      <td id="orgAddress">[Complete Registered Address]</td>
+    </tr>
+    <tr>
+      <td><strong>Audit Scope</strong></td>
+      <td id="auditScope">Full Organization (All Systems & Processing Activities)</td>
+    </tr>
+    <tr>
+      <td><strong>Data Categories Processed</strong></td>
+      <td id="dataCategories">Identifiers, Financial Data, Contact Information, Transaction History, Device Information</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ===== SECTION 3: COMPLIANCE DOMAIN ASSESSMENT ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>3. Compliance Domain Assessment (17 Domains)</h1>
+  </div>
+
+  <div class="info-box">
+    <strong>Methodology:</strong> Each domain assessed against DPDP Act 2023 requirements, Rules 2025, and organizational processes. Scoring: 90-100% = Compliant, 70-89% = Partial Compliance, &lt;70% = Non-Compliant.
+  </div>
+
+  <!-- Domain 1: Consent & Notice -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">1. Consent & Notice (Section 6)</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 98%;"></div></div>
+        <div>98%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Free, Specific, Informed, Unconditional, Unambiguous (FSIUU) consent capture, privacy notice standalone publication, consent versioning, withdrawal mechanism.<br>
+      <strong>Findings:</strong> ✓ Consent forms FSIUU-compliant | ✓ Privacy notice standalone | ✓ Per-purpose consent | ✓ Withdrawal mechanism | ✓ Consent receipts | Minor: Retrospective notice campaign pending
+    </div>
+  </div>
+
+  <!-- Domain 2: Data Inventory & ROPA -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">2. Data Inventory & ROPA (Section 5)</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 95%;"></div></div>
+        <div>95%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Records of Processing Activities (ROPA), data flow mapping, system inventory, data categories, retention schedules.<br>
+      <strong>Findings:</strong> ✓ ROPA complete | ✓ 18+ processing activities documented | ✓ DFD comprehensive | ✓ Retention schedule | Minor: Quarterly review cycle documentation
+    </div>
+  </div>
+
+  <!-- Domain 3: Security & Encryption -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">3. Information Security (Section 8(5))</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 92%;"></div></div>
+        <div>92%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Encryption at rest (AES-256), encryption in transit (TLS 1.2+), access control, monitoring, vulnerability management.<br>
+      <strong>Findings:</strong> ✓ AES-256-GCM encryption | ✓ TLS 1.2+ all channels | ✓ Access controls | ✓ Encryption audit log | Gap: SIEM deployment planned Q2
+    </div>
+  </div>
+
+  <!-- Domain 4: Breach Management -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">4. Breach Notification (Section 8(6))</div>
+      <div class="domain-status status-partial">△ PARTIAL</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 80%;"></div></div>
+        <div>80%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Detection, notification to DPB (72h), principal notification, breach register, post-incident review.<br>
+      <strong>Findings:</strong> ✓ Breach IRP documented | ✓ Register maintained | ✓ 72h DPB SLA | Gap: Automated breach alerting (HIGH priority, 60d SLA)
+    </div>
+  </div>
+
+  <!-- Domain 5: Data Principal Rights -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">5. Data Principal Rights (Section 11-14)</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 94%;"></div></div>
+        <div>94%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Access requests, correction, erasure, nomination, grievance, consent withdrawal, timely response (&lt;30d).<br>
+      <strong>Findings:</strong> ✓ All rights workflows implemented | ✓ Avg response 5 days | ✓ Grievance 3-tier escalation | ✓ Nominee registration | Minor: Response time SOP documentation
+    </div>
+  </div>
+
+  <!-- Domain 6: Third-Party & DPA -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">6. Third-Party & DPA (Section 8(2), Section 16)</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 96%;"></div></div>
+        <div>96%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Data Processing Agreements (DPA), processor compliance, sub-processor register, third-party inventory, risk assessments.<br>
+      <strong>Findings:</strong> ✓ 100% DPA coverage | ✓ Sub-processor register | ✓ Risk assessments current | ✓ Annual review cycle | ✓ Cross-border safeguards
+    </div>
+  </div>
+
+  <!-- Domain 7: Retention & Deletion -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">7. Retention & Deletion (Section 8(7))</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 93%;"></div></div>
+        <div>93%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Retention schedule, deletion triggers, audit trail, secure deletion, statutory holds, backup retention.<br>
+      <strong>Findings:</strong> ✓ Retention schedule per data category | ✓ Automated deletion engine | ✓ Deletion log | ✓ Statutory hold register | ✓ Backup policy documented
+    </div>
+  </div>
+
+  <!-- Domain 8: DPO & Governance -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">8. DPO & Governance (Section 8, Rule 5)</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 97%;"></div></div>
+        <div>97%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> DPO appointment, published contact, independence, training, board engagement, authority scope.<br>
+      <strong>Findings:</strong> ✓ DPO appointed & published | ✓ Independence confirmed | ✓ Board reporting established | ✓ Training records | ✓ Authority scope documented
+    </div>
+  </div>
+
+  <!-- Domain 9: DPIA & Legitimate Uses -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">9. DPIA & Legitimate Uses (Section 7, Rule 6)</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 91%;"></div></div>
+        <div>91%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> DPIA for high-risk processing, legitimate use basis, purpose limitation, automated decision-making disclosure.<br>
+      <strong>Findings:</strong> ✓ DPIA process implemented | ✓ High-risk activities identified | ✓ Mitigation documented | ✓ Legitimate uses captured | Minor: Automated decision log completeness
+    </div>
+  </div>
+
+  <!-- Domain 10: Children's Data Protection -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">10. Children's Data Protection (Section 9)</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 94%;"></div></div>
+        <div>94%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Parental consent for &lt;18 age group, age verification, separate notice, minimal processing, consent audit.<br>
+      <strong>Findings:</strong> ✓ Age verification implemented | ✓ Parental consent workflow | ✓ Separate minor notice | ✓ Audit trail | ✓ Parent access rights
+    </div>
+  </div>
+
+  <!-- Domain 11: Cross-Border Transfers -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">11. Cross-Border Transfers (Section 17)</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 90%;"></div></div>
+        <div>90%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Cross-border transfer register, adequacy assessment, contractual safeguards, restricted country list, government notification status.<br>
+      <strong>Findings:</strong> ✓ Cross-border register | ✓ Restricted countries monitored | ✓ Contractual safeguards | ✓ DPB notifications | Minor: Quarterly government list sync
+    </div>
+  </div>
+
+  <!-- Domain 12: Grievance Redressal -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">12. Grievance Redressal (Section 15)</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 96%;"></div></div>
+        <div>96%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Grievance intake, 3-tier escalation (DPO → Committee → Board/DPB), SLA (30d Tier 1, 30d Tier 2, 90d appeal), register.<br>
+      <strong>Findings:</strong> ✓ 3-tier process documented | ✓ Grievance register | ✓ Avg resolution 21 days | ✓ DPB escalation process | ✓ Appeals tracking
+    </div>
+  </div>
+
+  <!-- Domain 13: Data Processing Agreement -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">13. Data Processing Activities</div>
+      <div class="domain-status status-partial">△ PARTIAL</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 85%;"></div></div>
+        <div>85%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Purpose documentation, legal basis per activity, data minimization, consent versioning, processing limitation.<br>
+      <strong>Findings:</strong> ✓ 18+ activities documented | ✓ Purposes clear | ✓ Legal basis mapped | Gap: Consent versioning audit (MEDIUM, 90d SLA)
+    </div>
+  </div>
+
+  <!-- Domain 14: Training & Awareness -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">14. Training & Awareness</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 92%;"></div></div>
+        <div>92%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> DPDP training for all staff, refresher cycles, DPO/leadership training, compliance awareness, training records.<br>
+      <strong>Findings:</strong> ✓ 100% staff trained | ✓ Training records current | ✓ DPO certification | ✓ Annual refresher cycle | ✓ Role-based training
+    </div>
+  </div>
+
+  <!-- Domain 15: Audit Trail & Logging -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">15. Audit Trail & Logging</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 94%;"></div></div>
+        <div>94%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Audit log integrity, hash-chained entries, immutability, access logging, data modification tracking, retention (7 years).<br>
+      <strong>Findings:</strong> ✓ Hash-chained audit log | ✓ Immutable records | ✓ 7-year retention | ✓ Access logging | ✓ Monthly integrity checks
+    </div>
+  </div>
+
+  <!-- Domain 16: Data Quality & Accuracy -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">16. Data Quality & Accuracy</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 89%;"></div></div>
+        <div>89%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> Data accuracy, timeliness, correction process, validation rules, data quality checks, principal correction rights.<br>
+      <strong>Findings:</strong> ✓ Correction process <30d | ✓ Validation rules enforced | ✓ Quality audit | ✓ Data cleansing schedule | Minor: Automated validation expansion
+    </div>
+  </div>
+
+  <!-- Domain 17: Incident Response & Continuity -->
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-name">17. Incident Response & Continuity</div>
+      <div class="domain-status status-compliant">✓ COMPLIANT</div>
+      <div class="domain-score">
+        <div class="score-bar"><div class="score-bar-fill" style="width: 93%;"></div></div>
+        <div>93%</div>
+      </div>
+    </div>
+    <div style=" color: var(--text-secondary);">
+      <strong>Scope:</strong> IRP documentation, roles, escalation, forensics, business continuity, disaster recovery, BCM tests.<br>
+      <strong>Findings:</strong> ✓ IRP documented | ✓ Roles defined | ✓ Escalation clear | ✓ BCM plan | ✓ Annual DR test scheduled
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: KEY METRICS DASHBOARD ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>4. Key Metrics Dashboard</h1>
+  </div>
+
+  <h3>Consent & Notice Metrics</h3>
+  <table>
+    <tr>
+      <th>Metric</th>
+      <th>Count</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>Total Data Principals</td>
+      <td id="totalPrincipals">1,50,000</td>
+      <td>✓ Tracked</td>
+    </tr>
+    <tr>
+      <td>Total Consents Captured</td>
+      <td id="totalConsents">2,85,000</td>
+      <td>✓ Tracked</td>
+    </tr>
+    <tr>
+      <td>Active Consents</td>
+      <td id="activeConsents">2,50,000</td>
+      <td>✓ Valid</td>
+    </tr>
+    <tr>
+      <td>Withdrawn Consents</td>
+      <td id="withdrawnConsents">35,000</td>
+      <td>✓ Processed</td>
+    </tr>
+    <tr>
+      <td>Consent Audit (FSIUU) Compliance</td>
+      <td id="consentCompliance">98.5%</td>
+      <td>✓ Exceeds Target</td>
+    </tr>
+    <tr>
+      <td>Privacy Notice Publications</td>
+      <td id="noticePublications">12</td>
+      <td>✓ Current Versions</td>
+    </tr>
+  </table>
+
+  <h3>Data Principal Rights Metrics (Last 12 Months)</h3>
+  <table>
+    <tr>
+      <th>Request Type</th>
+      <th>Count</th>
+      <th>Avg. Response Time</th>
+      <th>Compliance Rate</th>
+    </tr>
+    <tr>
+      <td>Access Requests (DSAR)</td>
+      <td id="dsarCount">1,245</td>
+      <td id="dsarAvgTime">4.2 days</td>
+      <td>✓ 100% (&lt;30d SLA)</td>
+    </tr>
+    <tr>
+      <td>Correction Requests</td>
+      <td id="correctionCount">287</td>
+      <td id="correctionAvgTime">3.8 days</td>
+      <td>✓ 100% (&lt;30d SLA)</td>
+    </tr>
+    <tr>
+      <td>Erasure Requests</td>
+      <td id="erasureCount">156</td>
+      <td id="erasureAvgTime">18.5 days</td>
+      <td>✓ 100% (&lt;30d SLA)</td>
+    </tr>
+    <tr>
+      <td>Grievance Filings</td>
+      <td id="grievanceCount">42</td>
+      <td id="grievanceAvgTime">21.3 days</td>
+      <td>✓ 100% (3-tier escalation)</td>
+    </tr>
+    <tr>
+      <td>Nominee Registrations</td>
+      <td id="nomineeCount">89</td>
+      <td id="nomineeAvgTime">2.1 days</td>
+      <td>✓ 100%</td>
+    </tr>
+  </table>
+
+  <h3>Security & Breach Metrics</h3>
+  <table>
+    <tr>
+      <th>Metric</th>
+      <th>Status / Value</th>
+    </tr>
+    <tr>
+      <td>Data Encryption Standard</td>
+      <td>✓ AES-256-GCM (at rest) + TLS 1.2+ (in transit)</td>
+    </tr>
+    <tr>
+      <td>Breach Incidents (Last 24 Months)</td>
+      <td>✓ 0 Confirmed</td>
+    </tr>
+    <tr>
+      <td>Vulnerability Assessments</td>
+      <td>✓ Annual + Quarterly Internal Scans</td>
+    </tr>
+    <tr>
+      <td>Access Control Reviews</td>
+      <td>✓ Quarterly (100% coverage)</td>
+    </tr>
+    <tr>
+      <td>Disaster Recovery Test</td>
+      <td>✓ Scheduled Q2 (Annual)</td>
+    </tr>
+  </table>
+
+  <h3>Data Retention & Deletion Metrics</h3>
+  <table>
+    <tr>
+      <th>Metric</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>Data Retention Schedule</td>
+      <td>✓ 18 categories documented (30d–7 years)</td>
+    </tr>
+    <tr>
+      <td>Data Deleted (Last 12 Months)</td>
+      <td>2,18,500 records (per retention policy + erasure requests)</td>
+    </tr>
+    <tr>
+      <td>Audit Trail Integrity</td>
+      <td>✓ Hash-chained (7 years, immutable)</td>
+    </tr>
+    <tr>
+      <td>Statutory Holds Active</td>
+      <td>42 records (PMLA, RBI, SEBI holds)</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ===== SECTION 5: FINDINGS & RECOMMENDATIONS ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>5. Detailed Findings & Remediation Roadmap</h1>
+  </div>
+
+  <div class="info-box">
+    <strong>Severity Classification:</strong><br>
+    <i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#ef4444;"></i> <strong>CRITICAL</strong> (₹50–100 Cr penalty) — Missing mandatory controls → 30-day SLA<br>
+    <i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#f97316;"></i> <strong>HIGH</strong> (₹25–50 Cr penalty) — Incomplete implementation → 60-day SLA<br>
+    <i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#eab308;"></i> <strong>MEDIUM</strong> (₹10–25 Cr penalty) — Minor gaps → 90-day SLA<br>
+    <i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#22c55e;"></i> <strong>LOW</strong> (&lt;₹10 Cr) — Process improvement → No deadline
+  </div>
+
+  <h3 style="margin-top: 30px;">HIGH Priority Findings</h3>
+
+  <div style="background: #fff3cd; border-left: 4px solid #ff9800; padding: 16px; margin: 12px 0; border-radius: 4px;">
+    <div style="font-weight: 600; color: #ff6f00; margin-bottom: 8px;">FINDING H-001: Automated Breach Detection & Alerting</div>
+    <div style=" margin-bottom: 8px;">
+      <strong>Domain:</strong> Breach Management (Section 8(6))<br>
+      <strong>Description:</strong> Breach incidents currently detected via manual logs. No automated alerting for unauthorized access, bulk exports, or privilege escalation. While breach notification procedure exists (72h to DPB), early detection capability is missing.<br>
+      <strong>Severity:</strong> <span class="finding-severity severity-high">HIGH</span> (₹25–50 Cr)<br>
+      <strong>SLA:</strong> 60 days from audit date<br>
+      <strong>Recommendation:</strong> Deploy SIEM (Security Information & Event Management) with real-time alerting for data exfiltration, failed authentication (>5 attempts), privilege escalation, mass data access. Integrate with incident response workflow.<br>
+      <strong>Status:</strong> ⏳ In Progress (Implementation Q2)
+    </div>
+  </div>
+
+  <div style="background: #fff3cd; border-left: 4px solid #ff9800; padding: 16px; margin: 12px 0; border-radius: 4px;">
+    <div style="font-weight: 600; color: #ff6f00; margin-bottom: 8px;">FINDING H-002: Consent Versioning & Retrospective Re-consent</div>
+    <div style=" margin-bottom: 8px;">
+      <strong>Domain:</strong> Consent & Notice (Section 6)<br>
+      <strong>Description:</strong> ~12,000 consents from pre-DPDP era lack version tracking. While current consent forms are FSIUU-compliant, retrospective notice and re-consent campaign for legacy principals is pending (Section 5(2) compliance).<br>
+      <strong>Severity:</strong> <span class="finding-severity severity-high">HIGH</span> (₹25–50 Cr)<br>
+      <strong>SLA:</strong> 60 days from audit date<br>
+      <strong>Recommendation:</strong> Launch retrospective notice campaign (email + SMS) explaining new rights, requesting re-consent per purpose. Audit sample of 10% (1,200 records) post-campaign to verify FSIUU compliance. Track completion rate.<br>
+      <strong>Status:</strong> ⏳ Planned (Campaign Q2)
+    </div>
+  </div>
+
+  <h3 style="margin-top: 30px;">MEDIUM Priority Findings</h3>
+
+  <div style="background: #d1ecf1; border-left: 4px solid #0c5460; padding: 16px; margin: 12px 0; border-radius: 4px;">
+    <div style="font-weight: 600; color: #0c5460; margin-bottom: 8px;">FINDING M-001: Privacy Notice Content Expansion</div>
+    <div style=" margin-bottom: 8px;">
+      <strong>Domain:</strong> Consent & Notice (Section 6)<br>
+      <strong>Description:</strong> Current privacy notice complies with FSIUU but lacks explicit disclosure of automated decision-making (scoring models, risk assessment algorithms). Section 7 guidance recommends transparency on significant automated uses.<br>
+      <strong>Severity:</strong> <span class="finding-severity severity-medium">MEDIUM</span><br>
+      <strong>SLA:</strong> 90 days<br>
+      <strong>Recommendation:</strong> Enhance privacy notice with: (a) List of automated decision-making activities, (b) Impacts of decisions (loan approval/denial, pricing), (c) Right to human review/appeal, (d) Opt-out availability where feasible.<br>
+      <strong>Status:</strong> 📋 Planned (Q3)
+    </div>
+  </div>
+
+  <div style="background: #d1ecf1; border-left: 4px solid #0c5460; padding: 16px; margin: 12px 0; border-radius: 4px;">
+    <div style="font-weight: 600; color: #0c5460; margin-bottom: 8px;">FINDING M-002: DPIA Documentation for Profiling Activities</div>
+    <div style=" margin-bottom: 8px;">
+      <strong>Domain:</strong> DPIA & Legitimate Uses (Section 7, Rule 6)<br>
+      <strong>Description:</strong> Credit scoring and financial profiling activities are high-risk (risk of discriminatory decisions). DPIA process exists but documentation for these specific activities is incomplete.<br>
+      <strong>Severity:</strong> <span class="finding-severity severity-medium">MEDIUM</span><br>
+      <strong>SLA:</strong> 90 days<br>
+      <strong>Recommendation:</strong> Complete DPIA workbook for: (a) Credit scoring model, (b) Behavior-based profiling, (c) Fraud detection rules. Document mitigation controls (fairness reviews, bias testing, human override capability).<br>
+      <strong>Status:</strong> 📋 Planned (Q3)
+    </div>
+  </div>
+
+  <div style="background: #d1ecf1; border-left: 4px solid #0c5460; padding: 16px; margin: 12px 0; border-radius: 4px;">
+    <div style="font-weight: 600; color: #0c5460; margin-bottom: 8px;">FINDING M-003: Consent Manager Integration Audit</div>
+    <div style=" margin-bottom: 8px;">
+      <strong>Domain:</strong> Consent Manager Interoperability (Rules 2025)<br>
+      <strong>Description:</strong> Rules 2025 require integration with government-approved Consent Manager list (effective Nov 14, 2026). Current consent system is proprietary; Consent Manager API integration needs testing and audit.<br>
+      <strong>Severity:</strong> <span class="finding-severity severity-medium">MEDIUM</span><br>
+      <strong>SLA:</strong> 90 days (before Nov 14, 2026)<br>
+      <strong>Recommendation:</strong> (a) Select Consent Manager from approved list, (b) Integrate API for consent propagation/withdrawal, (c) Audit cross-org consent propagation (sample 5%), (d) Test withdrawal cascade to all processors.<br>
+      <strong>Status:</strong> 📋 Planned (Q4 2026)
+    </div>
+  </div>
+
+  <h3 style="margin-top: 30px;">LOW Priority Findings</h3>
+
+  <div style="background: #d4edda; border-left: 4px solid #155724; padding: 16px; margin: 12px 0; border-radius: 4px;">
+    <div style="font-weight: 600; color: #155724; margin-bottom: 8px;">FINDING L-001: Response SOP Documentation Enhancement</div>
+    <div style=" margin-bottom: 8px;">
+      <strong>Domain:</strong> Data Principal Rights (Section 11–14)<br>
+      <strong>Description:</strong> Response workflows exist and are performing well (avg 4.2d, under 30d SLA). Documentation could be enhanced with more detailed step-by-step procedures for edge cases (deceased principals, guardianship, international requests).<br>
+      <strong>Severity:</strong> <span class="finding-severity severity-low">LOW</span> (Process optimization)<br>
+      <strong>Recommendation:</strong> Expand SOP with: (a) Deceased principal escalation, (b) Guardianship verification, (c) International request procedures, (d) Conflict resolution workflows.<br>
+      <strong>Status:</strong> 💬 Backlog (Post-remediation phase)
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: COMPLIANCE CHECKLIST ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>6. DPDP Act 2023 Compliance Checklist</h1>
+  </div>
+
+  <div class="checklist">
+    <h3 style="margin-top: 0;">Section 5: Notice & Data Processing Rules</h3>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">5(1) Privacy notice provided before consent collection</div>
+        <div class="checklist-desc">✓ Standalone notice published | ✓ Per-purpose notice available</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">5(2) Retrospective notice for pre-DPDP data</div>
+        <div class="checklist-desc">⏳ Campaign in progress (12,000 principals) | ⏳ Target completion Q2</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">5(3) Notice content includes all mandatory items</div>
+        <div class="checklist-desc">✓ Data items, purposes, rights, DPO contact, grievance escalation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <h3 style="margin-top: 20px;">Section 6: Consent Requirements (FSIUU)</h3>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">6(1) Free — No coercion, no bundling with service</div>
+        <div class="checklist-desc">✓ Audit score: 98% | Minor gaps in 0.2% of sample</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">6(2) Specific — Per-purpose, not blanket consent</div>
+        <div class="checklist-desc">✓ 8 distinct purposes, separate consent per purpose</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">6(3) Informed — Notice + privacy statement provided</div>
+        <div class="checklist-desc">✓ Notice provided before consent | ✓ Standalone document</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">6(4) Unconditional — Service accessible without optional consent</div>
+        <div class="checklist-desc">✓ Core service access without marketing/analytics consent</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">6(5) Unambiguous — Clear affirmative action, not passive</div>
+        <div class="checklist-desc">✓ Active checkbox required | ✓ Pre-ticked: 0% | ✓ Recorded with timestamp</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <h3 style="margin-top: 20px;">Section 8: Security & Data Protection Obligations</h3>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">8(1) Determine lawfulness of processing (consent/legitimate use)</div>
+        <div class="checklist-desc">✓ ROPA documents all 18+ activities with legal basis</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">8(2) Data Processing Agreement with processors</div>
+        <div class="checklist-desc">✓ 100% DPA coverage | ✓ 15 processors managed</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">8(5) Implement security safeguards (encryption, access control)</div>
+        <div class="checklist-desc">✓ AES-256-GCM encryption | ✓ TLS 1.2+ | ✓ RBAC implemented | ⏳ SIEM (Q2)</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">8(6) Breach notification (DPB within 72 hours)</div>
+        <div class="checklist-desc">✓ IRP documented | ✓ 72h SLA tracked | ⏳ Automated alerting (Q2)</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">8(7) Retention & deletion per schedule, audit trail</div>
+        <div class="checklist-desc">✓ Retention schedule per 18 categories | ✓ Deletion log | ✓ Hash-chained audit</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <h3 style="margin-top: 20px;">Sections 11–15: Data Principal Rights</h3>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">11: Right to access (DSAR) — Response within 30 days</div>
+        <div class="checklist-desc">✓ 1,245 requests | ✓ Avg response: 4.2 days | ✓ 100% SLA compliance</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">12: Right to correction — Within 30 days</div>
+        <div class="checklist-desc">✓ 287 requests | ✓ Avg response: 3.8 days | ✓ 100% SLA compliance</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">13: Right to erasure — Within 30 days (statutory holds exempted)</div>
+        <div class="checklist-desc">✓ 156 requests | ✓ Avg response: 18.5 days | ✓ 42 statutory holds active</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">14: Right to nomination — Deceased/incapacitated principals</div>
+        <div class="checklist-desc">✓ 89 nominees registered | ✓ Process documented | ✓ Access rights enabled</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">15: Right to grievance redressal — 3-tier escalation (DPO → Committee → Board/DPB)</div>
+        <div class="checklist-desc">✓ 42 grievances filed | ✓ 3-tier SOP | ✓ Avg resolution: 21 days</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <h3 style="margin-top: 20px;">Section 17 & Other Requirements</h3>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">Section 9: Children's data protection (&lt;18 years)</div>
+        <div class="checklist-desc">✓ Age verification implemented | ✓ Parental consent workflow | ✓ Separate notice</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">Section 17: Cross-border transfers (government notification list compliance)</div>
+        <div class="checklist-desc">✓ Cross-border register | ✓ Restricted countries monitored | ✓ DPB notifications</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">Rule 5: DPO appointment (for SDF entities)</div>
+        <div class="checklist-desc">✓ DPO appointed | ✓ Published contact | ✓ Board reporting established</div>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" class="checklist-checkbox" checked>
+      <div class="checklist-text">
+        <div class="checklist-label">Rule 6: DPIA for high-risk processing</div>
+        <div class="checklist-desc">✓ DPIA process defined | ✓ 18+ activities assessed | ⏳ M-002: Profiling DPIA (Q3)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 7: AUDIT METHODOLOGY & SCOPE ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>7. Audit Methodology & Scope</h1>
+  </div>
+
+  <h3>Audit Methodology</h3>
+  <p><strong>Framework:</strong> DPDP Act 2023, Rules 2025, CERF (Compliance Enablement Reference Framework)</p>
+  <p><strong>Scope:</strong> Full organizational audit covering all 17 compliance domains, all systems, all processing activities.</p>
+
+  <table style="margin-top: 16px;">
+    <tr>
+      <th>Domain</th>
+      <th>Audit Approach</th>
+      <th>Sample Size / Coverage</th>
+    </tr>
+    <tr>
+      <td><strong>Consent & Notice</strong></td>
+      <td>Sample audit of consent records (FSIUU test), notice publication review</td>
+      <td>5% sample (14,250 consents tested)</td>
+    </tr>
+    <tr>
+      <td><strong>ROPA & Processing</strong></td>
+      <td>Documentation review, completeness check, legal basis verification</td>
+      <td>100% of 18 documented activities</td>
+    </tr>
+    <tr>
+      <td><strong>Security</strong></td>
+      <td>Control review, encryption verification, access log review</td>
+      <td>100% critical controls, 10% access logs</td>
+    </tr>
+    <tr>
+      <td><strong>Data Principal Rights</strong></td>
+      <td>Sample DSAR, correction, erasure workflow testing</td>
+      <td>10% sample (125 recent requests)</td>
+    </tr>
+    <tr>
+      <td><strong>Breach Management</strong></td>
+      <td>IRP review, tabletop test, incident log review</td>
+      <td>100% IRP, 5% of incident logs</td>
+    </tr>
+    <tr>
+      <td><strong>Retention & Deletion</strong></td>
+      <td>Retention schedule verification, deletion log review</td>
+      <td>100% schedule, 10% deletion logs</td>
+    </tr>
+    <tr>
+      <td><strong>Third-Party & DPA</strong></td>
+      <td>DPA completeness, processor compliance questionnaire</td>
+      <td>100% DPA coverage (15 processors audited)</td>
+    </tr>
+    <tr>
+      <td><strong>Training & Awareness</strong></td>
+      <td>Training record review, staff interviews</td>
+      <td>100% staff (3 interviews)</td>
+    </tr>
+    <tr>
+      <td><strong>Audit Trail</strong></td>
+      <td>Hash chain integrity test, access log verification</td>
+      <td>100% hash chain, 30-day log sample</td>
+    </tr>
+  </table>
+
+  <h3 style="margin-top: 30px;">Audit Timeline</h3>
+  <ul >
+    <li><strong>Kick-off:</strong> [Date] — Scope definition, team alignment</li>
+    <li><strong>Phase 1 (Weeks 1–2):</strong> Document review (policies, procedures, ROPA, training records)</li>
+    <li><strong>Phase 2 (Weeks 3–4):</strong> Control testing (consent sample, DSAR workflow, deletion logs)</li>
+    <li><strong>Phase 3 (Week 5):</strong> Findings consolidation, draft report, remediation roadmap</li>
+    <li><strong>Phase 4 (Week 6):</strong> Stakeholder presentation, final report issuance</li>
+  </ul>
+
+  <h3 style="margin-top: 20px;">Audit Team & Roles</h3>
+  <table>
+    <tr>
+      <th>Role</th>
+      <th>Responsibility</th>
+    </tr>
+    <tr>
+      <td><strong>Lead Auditor</strong></td>
+      <td>Overall audit planning, findings consolidation, report sign-off</td>
+    </tr>
+    <tr>
+      <td><strong>Security Auditor</strong></td>
+      <td>Encryption, access control, audit log integrity testing</td>
+    </tr>
+    <tr>
+      <td><strong>Compliance Auditor</strong></td>
+      <td>Consent FSIUU audit, rights workflow testing, DPIA review</td>
+    </tr>
+    <tr>
+      <td><strong>Data Protection Officer</strong></td>
+      <td>Stakeholder coordination, technical Q&A, remediation planning</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ===== SECTION 8: RISK ASSESSMENT & MITIGATION ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>8. Risk Assessment Matrix</h1>
+  </div>
+
+  <table>
+    <tr>
+      <th>Risk Area</th>
+      <th>Current Risk Level</th>
+      <th>Mitigation Status</th>
+      <th>Residual Risk</th>
+    </tr>
+    <tr>
+      <td><strong>Consent Quality Degradation</strong><br>Legacy consents losing FSIUU compliance over time</td>
+      <td><span style="color: #ff9800; font-weight: 600;">MEDIUM</span></td>
+      <td>✓ Retrospective campaign planned | ✓ Annual re-audit</td>
+      <td><span style="color: #4caf50;">LOW</span></td>
+    </tr>
+    <tr>
+      <td><strong>Data Breach Without Detection</strong><br>Unauthorized access not detected automatically</td>
+      <td><span style="color: #ff9800; font-weight: 600;">MEDIUM</span></td>
+      <td>⏳ SIEM deployment (Q2) | ✓ Manual monitoring in place</td>
+      <td><span style="color: #ff9800;">MEDIUM</span></td>
+    </tr>
+    <tr>
+      <td><strong>Rights Request Backlog</strong><br>Surge in DSAR/erasure requests > 30-day SLA</td>
+      <td><span style="color: #4caf50;">LOW</span></td>
+      <td>✓ Current avg 4.2 days | ✓ Scalable workflow | ✓ Staffing plan</td>
+      <td><span style="color: #4caf50;">LOW</span></td>
+    </tr>
+    <tr>
+      <td><strong>Third-Party Data Leakage</strong><br>Sub-processor non-compliance with DPA</td>
+      <td><span style="color: #4caf50;">LOW</span></td>
+      <td>✓ 100% DPA coverage | ✓ Annual risk assessments | ✓ Contractual remedies</td>
+      <td><span style="color: #4caf50;">LOW</span></td>
+    </tr>
+    <tr>
+      <td><strong>Consent Manager Interop Failure</strong><br>Rules 2025 integration not completed by Nov 14, 2026</td>
+      <td><span style="color: #ff9800; font-weight: 600;">MEDIUM</span></td>
+      <td>⏳ Planning started | ⏳ Target completion Q4 2026</td>
+      <td><span style="color: #ff9800;">MEDIUM</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ===== SECTION 9: RECOMMENDATIONS FOR BOARD ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>9. Board Recommendations & Next Steps</h1>
+  </div>
+
+  <div class="info-box" style="background: #e8f5e9; border-left-color: #4caf50;">
+    <strong>Board Resolution Summary:</strong> The organization is substantially compliant with the Digital Personal Data Protection Act, 2023. No critical gaps exist. Two high-priority remediation items (SIEM, retrospective campaign) require resource allocation within 60 days. Estimated compliance achievement: 97%+ within 120 days.
+  </div>
+
+  <h3>Board Action Items</h3>
+  <ol >
+    <li><strong>Approve Remediation Roadmap:</strong> Allocate budget ₹[X] for SIEM deployment + Consent Manager integration (total 120-day remediation)</li>
+    <li><strong>Empower DPO Escalation:</strong> Authorize DPO to fast-track HIGH/MEDIUM findings with 24/7 access to IT/Security resources</li>
+    <li><strong>Quarterly Compliance Review:</strong> Schedule board compliance review for Q3 to track H-001 (SIEM) and H-002 (retrospective campaign) closure</li>
+    <li><strong>Annual Audit Commitment:</strong> Approve annual compliance audit cycle (each April) to maintain 97%+ compliance score</li>
+    <li><strong>DPB Readiness Confirmation:</strong> Confirm organization is prepared for DPB inspections (data provided to auditors, controls demonstrated, incident response capability confirmed)</li>
+  </ol>
+
+  <h3 style="margin-top: 30px;">Ongoing Obligations (Next 12 Months)</h3>
+  <table>
+    <tr>
+      <th>Obligation</th>
+      <th>Frequency</th>
+      <th>Owner</th>
+    </tr>
+    <tr>
+      <td>Consent audit (FSIUU sample test)</td>
+      <td>Quarterly (5% sample)</td>
+      <td>DPO / Compliance</td>
+    </tr>
+    <tr>
+      <td>Data processing activity review</td>
+      <td>Annually</td>
+      <td>DPO / IT</td>
+    </tr>
+    <tr>
+      <td>Rights workflow monitoring</td>
+      <td>Monthly (dashboard review)</td>
+      <td>DPO / Operations</td>
+    </tr>
+    <tr>
+      <td>Third-party compliance audit</td>
+      <td>Annually</td>
+      <td>Procurement / DPO</td>
+    </tr>
+    <tr>
+      <td>Staff training refresher</td>
+      <td>Annually</td>
+      <td>HR / DPO</td>
+    </tr>
+    <tr>
+      <td>Incident response drill (tabletop)</td>
+      <td>Annually (Q4)</td>
+      <td>Security / DPO</td>
+    </tr>
+    <tr>
+      <td>Compliance audit (external)</td>
+      <td>Annually (April)</td>
+      <td>DPO / External Auditor</td>
+    </tr>
+  </table>
+
+  <h3 style="margin-top: 30px;">Regulatory Monitoring</h3>
+  <div class="info-box">
+    <strong>Key Regulatory Dates:</strong><br>
+    • <strong>Nov 14, 2026:</strong> Consent Manager integration mandatory (Rule 5, 2025)<br>
+    • <strong>May 13, 2027:</strong> DPDP Act application deadline (all organizations must be compliant)<br>
+    • Monitor DPB guidance documents quarterly for regulatory updates<br>
+    • Annual restricted country list sync (Section 17 cross-border transfers)
+  </div>
+</div>
+
+<!-- ===== SECTION 10: DECLARATION & SIGN-OFF ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>10. Auditor Declaration & Sign-Off</h1>
+  </div>
+
+  <div style="background: white; border: 1px solid #ddd; padding: 20px; border-radius: 6px; margin: 20px 0;">
+    <p style="margin-bottom: 20px;">
+      <strong>We, the undersigned auditors, declare that:</strong><br><br>
+      1. This audit was conducted in accordance with the Digital Personal Data Protection Act, 2023 and applicable Rules 2025.<br><br>
+      2. The audit scope, methodology, and sample sizes are documented in Section 7 and are appropriate for the organization's scale and risk profile.<br><br>
+      3. The findings documented in this report are based on evidence reviewed during the audit period ([Audit Start Date] to [Audit End Date]). All findings have been presented to the organization and feedback has been incorporated.<br><br>
+      4. The organization has demonstrated strong compliance with core DPDP Act requirements. No critical gaps pose immediate regulatory risk. High and medium findings have reasonable remediation roadmaps within standard SLAs.<br><br>
+      5. The compliance score of 92/100 is justified by the assessment results, with 15 of 17 domains fully compliant and 2 domains partially compliant (due to documented gaps with active remediation plans).<br><br>
+      6. This report is based on information available as of [Report Date] and reflects the organization's compliance posture at that time. Ongoing compliance requires continued adherence to the recommendations outlined in Section 9.
+    </p>
+
+    <div class="signature-block" style="margin-top: 30px;">
+      <div class="signature-line">
+        <div><strong>Lead Auditor</strong></div>
+        <div style="border-top: 2px solid #000; height: 60px;"></div>
+      </div>
+      <div style="margin-top: 8px; color: var(--text-secondary); ">Name: _________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date: _____________</div>
+
+      <div class="signature-line" style="margin-top: 30px;">
+        <div><strong>Security Auditor</strong></div>
+        <div style="border-top: 2px solid #000; height: 60px;"></div>
+      </div>
+      <div style="margin-top: 8px; color: var(--text-secondary); ">Name: _________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date: _____________</div>
+
+      <div class="signature-line" style="margin-top: 30px;">
+        <div><strong>Compliance Auditor</strong></div>
+        <div style="border-top: 2px solid #000; height: 60px;"></div>
+      </div>
+      <div style="margin-top: 8px; color: var(--text-secondary); ">Name: _________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date: _____________</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 40px;">Management Sign-Off</h3>
+
+  <div style="background: white; border: 1px solid #ddd; padding: 20px; border-radius: 6px;">
+    <p style="margin-bottom: 20px;">
+      <strong>The undersigned management representatives confirm that:</strong><br><br>
+      1. This audit report has been reviewed and the findings have been discussed with the audit team.<br><br>
+      2. The organization acknowledges the findings and accepts the remediation roadmap outlined in Section 5.<br><br>
+      3. High-priority findings (H-001, H-002) will be addressed within the stated SLAs (60 days).<br><br>
+      4. The organization commits to ongoing compliance monitoring and will provide quarterly updates to the board on remediation progress.<br><br>
+      5. This report will be retained for audit trail purposes and made available to the Data Protection Board upon request.
+    </p>
+
+    <div class="signature-block" style="margin-top: 30px;">
+      <div class="signature-line">
+        <div><strong>Data Protection Officer</strong></div>
+        <div style="border-top: 2px solid #000; height: 60px;"></div>
+      </div>
+      <div style="margin-top: 8px; color: var(--text-secondary); ">Name: _________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date: _____________</div>
+
+      <div class="signature-line" style="margin-top: 30px;">
+        <div><strong>Chief Executive Officer / MD</strong></div>
+        <div style="border-top: 2px solid #000; height: 60px;"></div>
+      </div>
+      <div style="margin-top: 8px; color: var(--text-secondary); ">Name: _________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date: _____________</div>
+
+      <div class="signature-line" style="margin-top: 30px;">
+        <div><strong>Board Chair / Audit Committee Chair</strong></div>
+        <div style="border-top: 2px solid #000; height: 60px;"></div>
+      </div>
+      <div style="margin-top: 8px; color: var(--text-secondary); ">Name: _________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date: _____________</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px; padding: 16px; background: #f0f8ff; border-left: 4px solid var(--primary-color); border-radius: 4px; ">
+    <strong>Confidentiality Notice:</strong> This report contains proprietary and confidential information intended solely for the organization's internal use and communication with regulatory authorities. Unauthorized distribution, copying, or disclosure to third parties is prohibited without prior written consent from the organization.
+  </div>
+</div>
+
+<!-- ===== APPENDIX: TEMPLATE INDEX ===== -->
+<div class="page-break">
+  <div class="audit-header">
+    <h1>Appendix A: Template Library Tracking</h1>
+  </div>
+
+  <div class="info-box">
+    <strong>Related DPDP Compliance Templates in Library (40 total):</strong><br>
+    This audit report is Template #49, part of the comprehensive template library. Below are related templates cross-referenced for completeness.
+  </div>
+
+  <table style="margin-top: 16px; ">
+    <tr>
+      <th>Template #</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Link to This Audit</th>
+    </tr>
+    <tr>
+      <td>01</td>
+      <td>Data Protection Policy</td>
+      <td>Governance</td>
+      <td>Section 2 (Org details), Section 3 (Domains 8)</td>
+    </tr>
+    <tr>
+      <td>05</td>
+      <td>Records of Processing Activities (ROPA)</td>
+      <td>Data Inventory</td>
+      <td>Section 3 (Domain 2), Findings Section</td>
+    </tr>
+    <tr>
+      <td>08</td>
+      <td>Consent Form (FSIUU-Compliant)</td>
+      <td>Notice & Consent</td>
+      <td>Section 3 (Domain 1), Section 4 (Metrics)</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Privacy Notice (Standalone)</td>
+      <td>Notice & Consent</td>
+      <td>Section 3 (Domain 1), Finding M-001</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Consent Audit Worksheet</td>
+      <td>Audit & DPIA</td>
+      <td>Section 3 (Domain 1), Section 6 (Checklist)</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>Data Processing Agreement (DPA)</td>
+      <td>Vendor Management</td>
+      <td>Section 3 (Domain 6), Checklist</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>Incident Response Plan (IRP)</td>
+      <td>Breach Management</td>
+      <td>Section 3 (Domain 4), Checklist</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>Compliance Audit Plan</td>
+      <td>Audit & DPIA</td>
+      <td>Section 7 (Methodology)</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>Audit Findings Report</td>
+      <td>Audit & DPIA</td>
+      <td>Section 5 (Detailed Findings)</td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>DPIA Workbook</td>
+      <td>Audit & DPIA</td>
+      <td>Section 3 (Domain 9), Finding M-002</td>
+    </tr>
+    <tr>
+      <td>36</td>
+      <td>Annual SDF Audit Report</td>
+      <td>Audit & DPIA</td>
+      <td>Section 7 (Audit Roles), Section 10 (Sign-off)</td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>Compliance Status Report (Board Pack)</td>
+      <td>Compliance Output</td>
+      <td>Section 9 (Board Recommendations)</td>
+    </tr>
+  </table>
+
+  <p style="margin-top: 20px; ">
+    <strong>For detailed information on any related template, refer to:</strong> `/docs/templates/TEMPLATE_LIBRARY_INDEX.md`
+  </p>
+</div>
+
+<!-- Print footer -->
+<footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center;  color: var(--text-secondary);">
+  <p>DPDP Compliance Audit Report | Template #49 | Generated: <span id="footerDate">[Date]</span></p>
+  <p>For questions, contact: <span id="footerContact">Data Protection Office</span> | Confidential</p>
+</footer>
+
+</body>
+</html>

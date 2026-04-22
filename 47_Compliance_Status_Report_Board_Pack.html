@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Status Report — Board Pack</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  /* Minimal template-specific styles - use UNIFIED_THEME.css for most styling */
+  .section-title {
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-dark);
+  }
+
+  .kpi-box {
+    display: inline-block;
+    width: calc(25% - 12px);
+    margin: 6px;
+    padding: var(--spacing-lg);
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    text-align: center;
+  }
+
+  .kpi-number {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .kpi-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  th {
+    background-color: var(--header-bg);
+    color: var(--header-fg);
+  }
+
+  .recommendation {
+    padding: var(--spacing-lg);
+    background: var(--primary-light);
+    border-left: 4px solid var(--primary-color);
+    margin: 10px 0;
+    border-radius: var(--radius-sm);
+  }
+
+  .footer {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-light);
+    color: var(--text-light);
+    text-align: center;
+  }
+
+  @media print {
+    body { margin: 0; padding: 0; }
+    .page-break { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="title">DPDP COMPLIANCE STATUS REPORT</div>
+  <div class="subtitle">
+    Organization: <input type="text" placeholder="[Organization Name]" style="width:350px;"><br>
+    Report Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+    &nbsp;&nbsp; Reporting Period: <input type="text" placeholder="Q1 2026" style="width:150px;">
+  </div>
+</div>
+
+<div class="section-title">EXECUTIVE SUMMARY</div>
+
+<div style="margin-bottom:20px;">
+  <textarea placeholder="1-2 paragraph summary of compliance posture, key achievements, and outstanding risks for Board review"></textarea>
+</div>
+
+<div style="text-align:center; margin:20px 0;">
+  <div class="kpi-box">
+    <div class="kpi-number"><input type="text" placeholder="95" style="width:60px; border:none; ">%</div>
+    <div class="kpi-label">Overall Compliance</div>
+  </div>
+  <div class="kpi-box">
+    <div class="kpi-number"><input type="text" placeholder="2" style="width:60px; border:none; "></div>
+    <div class="kpi-label">Critical Issues</div>
+  </div>
+  <div class="kpi-box">
+    <div class="kpi-number"><input type="text" placeholder="12" style="width:60px; border:none; "></div>
+    <div class="kpi-label">High Issues</div>
+  </div>
+  <div class="kpi-box">
+    <div class="kpi-number"><input type="text" placeholder="98" style="width:60px; border:none; ">%</div>
+    <div class="kpi-label">DSAR SLA Compliance</div>
+  </div>
+</div>
+
+<div class="section-title">COMPLIANCE DOMAIN SCORECARD</div>
+
+<table>
+  <tr>
+    <th style="width:25%;">Domain (DPDP Section)</th>
+    <th style="width:15%;">Status</th>
+    <th style="width:12%;">Score %</th>
+    <th style="width:35%;">Key Findings</th>
+    <th style="width:13%;">Action Required?</th>
+  </tr>
+  <tr class="pass">
+    <td>Governance & Policies (S.8)</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> COMPLIANT</td>
+    <td>100%</td>
+    <td>All policies approved, DPO appointed, Committee active</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Data Inventory / ROPA (S.5)</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> COMPLIANT</td>
+    <td>95%</td>
+    <td>ROPA 98% complete, 3 legacy systems pending discovery</td>
+    <td>Complete legacy discovery by <input type="text" placeholder="Date" style="width:80px;"></td>
+  </tr>
+  <tr class="pass">
+    <td>Privacy Notices (S.5)</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> COMPLIANT</td>
+    <td>100%</td>
+    <td>Standalone notices in 22 languages, deployed across 5 channels</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>Consent Management (S.6)</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> COMPLIANT</td>
+    <td>98%</td>
+    <td>FSIUU audit passed 98% of sample, 2 minor UI issues found</td>
+    <td>Fix UI by <input type="text" placeholder="Date" style="width:80px;"></td>
+  </tr>
+  <tr class="warn">
+    <td>Data Principal Rights (S.11-14)</td>
+    <td>⚠ AT RISK</td>
+    <td>85%</td>
+    <td>3 DSAR requests pending (approaching 90-day SLA), grievance portal slow</td>
+    <td><strong>Escalation required</strong> — add capacity by <input type="text" placeholder="Date" style="width:80px;"></td>
+  </tr>
+  <tr>
+    <td>Processor Management (S.8)</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> COMPLIANT</td>
+    <td>92%</td>
+    <td>95 of 100 processors have signed DPAs, 5 legacy pending</td>
+    <td>Complete legacy DPAs by <input type="text" placeholder="Date" style="width:80px;"></td>
+  </tr>
+  <tr class="pass">
+    <td>Security & Encryption (S.8)</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> COMPLIANT</td>
+    <td>100%</td>
+    <td>All sensitive data encrypted AES-256, TLS 1.2+ in transit, pen test clean</td>
+    <td>None</td>
+  </tr>
+  <tr class="warn">
+    <td>Breach Management (S.8)</td>
+    <td>⚠ PARTIAL</td>
+    <td>78%</td>
+    <td>Incident response plan in place, but drill identified 2 gaps (DPB notification timing, third-party coordination)</td>
+    <td><strong>Remediate gaps</strong> by <input type="text" placeholder="Date" style="width:80px;"></td>
+  </tr>
+  <tr>
+    <td>Children's Data (S.9)</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> COMPLIANT</td>
+    <td>100%</td>
+    <td>Age gate implemented, parental consent for minors, no behavioral tracking</td>
+    <td>None</td>
+  </tr>
+  <tr class="pass">
+    <td>Cross-Border Transfers (S.16)</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> COMPLIANT</td>
+    <td>100%</td>
+    <td>No transfers outside India; awaiting government whitelist</td>
+    <td>Monitor for Nov 2026 CM registration deadline</td>
+  </tr>
+  <tr class="fail">
+    <td>SDF Audit (S.10)</td>
+    <td><i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i> CRITICAL</td>
+    <td>0%</td>
+    <td>Independent audit not yet commissioned (SDF only)</td>
+    <td><strong>Commission auditor immediately</strong> — deadline <input type="text" placeholder="Date" style="width:80px;"></td>
+  </tr>
+</table>
+
+<div class="section-title">KEY PERFORMANCE INDICATORS (KPIs)</div>
+
+<table>
+  <tr>
+    <th>KPI</th>
+    <th>Target</th>
+    <th>Actual</th>
+    <th>Status</th>
+  </tr>
+  <tr class="pass">
+    <td>DSAR Requests resolved within 90 days (Section 11)</td>
+    <td>100%</td>
+    <td>98%</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> ON TRACK</td>
+  </tr>
+  <tr class="pass">
+    <td>Consent records with full FSIUU audit trail</td>
+    <td>100%</td>
+    <td>98%</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> ON TRACK</td>
+  </tr>
+  <tr class="pass">
+    <td>Processor DPA compliance (100% signed)</td>
+    <td>100%</td>
+    <td>95%</td>
+    <td>⚠ 95% — 5 pending</td>
+  </tr>
+  <tr class="warn">
+    <td>Breach notification to DPB within 72 hours</td>
+    <td>100%</td>
+    <td>75%</td>
+    <td>⚠ NEEDS REMEDIATION</td>
+  </tr>
+  <tr class="pass">
+    <td>Staff training completion rate</td>
+    <td>100%</td>
+    <td>99%</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> ON TRACK</td>
+  </tr>
+</table>
+
+<div class="section-title">CRITICAL & HIGH PRIORITY ISSUES</div>
+
+<div class="recommendation">
+  <strong style="color:#dc3545;"><i data-lucide="circle-dashed" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-border); margin-right: 4px;"></i> CRITICAL: SDF Annual Audit Not Commissioned</strong><br>
+  <strong>Section:</strong> S.10 (Significant Data Fiduciary obligations)<br>
+  <strong>Issue:</strong> Organization is classified SDF. Annual audit by independent auditor is mandatory. Deadline: <input type="text" placeholder="31 Jun 2026" style="width:150px;">
+  <br><strong>Penalty Risk:</strong> ₹150 Crore if SDF audit requirement not met by compliance deadline<br>
+  <strong>Board Action:</strong> Approve auditor engagement and budget by <input type="text" placeholder="Date" style="width:120px;">
+</div>
+
+<div class="recommendation">
+  <strong style="color:#ffc107;"><i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#eab308;"></i> HIGH: DSAR SLA at Risk (3 Pending Requests)</strong><br>
+  <strong>Section:</strong> S.11-14 (Data Principal Rights)<br>
+  <strong>Issue:</strong> 3 DSAR requests are approaching 90-day SLA expiry. If missed, data principal can file grievance → DPB complaint<br>
+  <strong>Action:</strong> Add capacity (+2 FTE) to Rights team by <input type="text" placeholder="Date" style="width:120px;"><br>
+  <strong>Owner:</strong> <input type="text" placeholder="HR / DPO" style="width:150px;">
+</div>
+
+<div class="recommendation">
+  <strong style="color:#ffc107;"><i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#eab308;"></i> HIGH: Breach Incident Response Drill Gaps</strong><br>
+  <strong>Section:</strong> S.8(6) (Breach notification)<br>
+  <strong>Issue:</strong> Tabletop drill identified 2 gaps: (1) DPB notification timing unclear, (2) third-party breach coordination not rehearsed<br>
+  <strong>Action:</strong> Update IRP and conduct second drill by <input type="text" placeholder="Date" style="width:120px;"><br>
+  <strong>Owner:</strong> <input type="text" placeholder="CISO / DPO" style="width:150px;">
+</div>
+
+<div class="section-title">RECOMMENDATIONS FOR BOARD</div>
+
+<ol>
+  <li><strong>Approve SDF Audit Engagement:</strong> Authorize <input type="text" placeholder="CFO/Procurement" style="width:150px;"> to commission independent auditor by <input type="text" placeholder="Date" style="width:120px;"> with budget of ₹<input type="text" placeholder="Amount" style="width:100px;">.</li>
+  <li><strong>Add DSAR Capacity:</strong> Approve +2 FTE in Data Rights team to resolve pending DSAR backlog by <input type="text" placeholder="Date" style="width:120px;">.</li>
+  <li><strong>Enhance Breach Response:</strong> Approve revised Incident Response Plan and fund second tabletop drill (1 day effort, <input type="text" placeholder="Cost" style="width:100px;">).</li>
+  <li><strong>Governance Cadence:</strong> Maintain quarterly Data Protection Committee meetings and semi-annual Board compliance reporting.</li>
+</ol>
+
+<div style="margin-top:30px; padding:15px; background:#f9f9f9; border:1px solid #999;">
+  <strong>BOARD SIGN-OFF:</strong><br><br>
+  This compliance status report is prepared for Board review and represents the organization's compliance posture as of <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">.<br><br>
+  DPO / Compliance Lead: <input type="text" placeholder="Signature" style="width:250px;"> Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;"><br>
+  Board Chair Acknowledgment: <input type="text" placeholder="Signature" style="width:250px;"> Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+</div>
+
+
+<!-- Navigation -->
+<div style="margin-top: 40px; padding: 15px; background: #f0f5ff; border-radius: 3px; text-align: center;">
+  <p >
+    <a href="46_DPIA_Register.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">← Previous: DPIA Register</a> |
+    <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Back to Navigator</a> |
+    <a href="48_Consent_Manager_Integration_Spec.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Next: Consent Manager Spec →</a>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

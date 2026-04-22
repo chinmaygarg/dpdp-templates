@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breach Register</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Breach Register</div>
+  <div class="subtitle">Incident Tracking and Resolution Log</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived]
+</div>
+
+<h2>1. Breach Definition & Legal Basis (DPDP Section 20)</h2>
+
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Data Breach Definition (Section 20):</strong> Unauthorized access, use, disclosure, or loss of personal data that compromises confidentiality, integrity, or availability.<br><br>
+<strong>Notification SLA (Dual-Timer):</strong><br>
+• <strong>DPBI (Data Protection Board of India):</strong> 72 hours of breach discovery<br>
+• <strong>CERT-In (Cybersecurity incident):</strong> 6 hours if cybersecurity-related (mandatory for ALL incidents)<br>
+• <strong>Data Principals (Affected persons):</strong> Without undue delay if likely to cause harm (Section 20(3))<br>
+<strong>Missing either SLA = ₹50-100M penalty per incident</strong>
+</div>
+
+<h2>2. Incident Classification (4-Type Matrix)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Incident Type</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Examples</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">DPBI (72hr)?</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">CERT-In (6hr)?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Data Exfiltration</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Unauthorized download, email export, API dump</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ YES</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ YES (if via hacking)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Ransomware/Encryption</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data encrypted by malware, extortion demand</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ YES</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ YES</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Unauthorized Access</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Brute force login, compromised credentials, lateral movement</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ YES</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ YES</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Configuration/Human Error</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Misconfigured S3 bucket, backup exposed, email BCC error</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ YES (if personal data exposed)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✗ NO (unless hacking involved)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Breach Register Schema (14 Fields)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Field</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Type</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>incident_id</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">UUID</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Unique incident identifier (INC-YYYYMMDD-XXXXX)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>discovery_date</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TIMESTAMP</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">When breach was discovered (triggers 72-hr DPBI SLA)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>incident_type</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">ENUM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data Exfiltration | Ransomware | Unauthorized Access | Config Error</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>severity</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">ENUM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CRITICAL | HIGH | MEDIUM | LOW</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>data_categories_affected</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TEXT (JSON)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">["Aadhaar_VID", "Email", "Phone"]</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>principals_affected_count</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">INTEGER</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Number of data principals impacted</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>likely_harm</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">BOOLEAN</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Does breach likely cause harm? (triggers data principal notification per Section 20(3))</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>dpbi_notified_date</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TIMESTAMP</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">When DPBI was notified (SLA: T+72hr)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>cert_in_notified_date</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TIMESTAMP</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">When CERT-In was notified (SLA: T+6hr for cybersecurity incidents)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>principals_notified_date</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TIMESTAMP</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">When data principals notified (Section 20(3): without undue delay)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>root_cause</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TEXT</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Investigation finding (compromised credentials, SQL injection, etc.)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>remediation_actions</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TEXT</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Steps taken to stop incident (isolate systems, revoke keys, patch vulnerability)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>post_breach_review_date</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TIMESTAMP</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Post-incident review completed (T-23 Post-Breach Review Report)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>status</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">ENUM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Open | Contained | Remediated | Closed</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4. Dual-Timer Notification Timeline</h2>
+
+<div style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px; font-family: monospace; ">
+<strong>T+0 (Discovery):</strong> Incident detected → Incident Commander activated<br>
+<strong>T+1 (Assessment):</strong> Preliminary assessment: data breach? cybersecurity incident?<br>
+<strong>T+2 (Isolation):</strong> Isolate affected systems; begin forensics<br>
+<strong>T+6 (CERT-In):</strong> <span style="color: red;"><strong>IF cybersecurity incident → MUST notify CERT-In by now</strong></span><br>
+<strong>T+24 (Preliminary DPBI):</strong> If breach likely → DPBI preliminary notification with initial assessment<br>
+<strong>T+72 (Full DPBI):</strong> <span style="color: red;"><strong>DPBI final notification with full incident details</strong></span> (if not already notified at T+24)<br>
+<strong>T+0-72 (Data Principal):</strong> If likely harm → notify affected principals without undue delay (parallel path)<br>
+<strong>T+30 (Post-Breach Review):</strong> Complete post-incident review; document learnings; implement preventive controls
+</div>
+
+<h2>5. SLA Monitoring & Escalation</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Metric</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Target</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Yellow Alert</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Red Alert</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">CERT-In (6-hour, cybersecurity only)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">100% ≤6h</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Pending at 4h</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Missed SLA</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">DPBI (72-hour)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">100% ≤72h</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Pending at 48h</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Missed SLA = ₹50-100M penalty</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data Principal Notification</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">100% within 24h (if harm likely)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Pending at 12h</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Missed SLA = reputation damage</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6. Annual Breach Summary Report (For Board)</h2>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Every Q4, DPO prepares annual breach summary:</strong><br>
+• Total breaches in calendar year: ________<br>
+• Breaches by type: Data Exfiltration _____, Ransomware _____, Unauthorized Access _____, Config Error _____<br>
+• DPBI SLA compliance: ________% (target: 100%)<br>
+• CERT-In SLA compliance: ________% (target: 100%)<br>
+• Data principals affected (total): ________<br>
+• Regulatory fines/penalties: ₹ ________<br>
+• Root cause patterns identified: [List top 3]<br>
+• Preventive controls implemented: [List actions taken]<br>
+• Recommendation: [To Board regarding risk reduction]<br>
+• Board Privacy Committee Review: Date ________ | Approved ☐
+</div>
+
+<h2>7. Implementation Checklist</h2>
+
+<ul >
+  <li>☐ Create breach_register table with 14 fields</li>
+  <li>☐ Configure SIEM alerts for incident detection (bulk export, malware, privilege escalation)</li>
+  <li>☐ Appoint Incident Commander role with clear authority</li>
+  <li>☐ Document 6-hour CERT-In notification process + contact</li>
+  <li>☐ Document 72-hour DPBI notification process + portal</li>
+  <li>☐ Create data principal notification template (Section 20(3))</li>
+  <li>☐ Establish post-incident review SOP (T-23)</li>
+  <li>☐ Configure automated SLA alerts (red at 6h CERT-In, 72h DPBI)</li>
+  <li>☐ Train leadership on dual-timer SLA (parallel, not sequential)</li>
+  <li>☐ Annual board report template + quarterly metrics</li>
+  <li>☐ Tabletop exercise: simulate breach scenario + SLA adherence</li>
+  <li>☐ Document all 2025 breaches in register by Dec 31, 2025</li>
+</ul>
+
+<h2 style="margin-top: 30px;">Completion Checklist</h2>
+
+<ul >
+  <li>☐ Reviewed DPDP Act Section 5-16 requirements</li>
+  <li>☐ Gathered organization-specific information</li>
+  <li>☐ Customized for business context</li>
+  <li>☐ Legal/Compliance review completed</li>
+  <li>☐ Stakeholder sign-off obtained</li>
+  <li>☐ Implementation and rollout plan ready</li>
+</ul>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By:</strong> _________________________<br>
+    <strong>Approved By:</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

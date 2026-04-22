@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSAR Form — Data Subject Access Request (Identity Verification + 6 Rights + Portability)</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+<div class="header">
+  <div class="title">[Organization] Data Subject Access Request (DSAR) Form</div>
+  <div class="subtitle">DPDP Act 2023 Sections 11-12 — Submit Request to Exercise Your Data Rights</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 2.0 (Updated April 2026) | <strong>Effective:</strong> 13 May 2027 | <strong>SLA:</strong> 30-day response + 48-hour acknowledgement<br>
+  <strong>Right to Access, Correction, Erasure, Portability, Nomination & Grievance</strong>
+</div>
+
+<h2>About This Form</h2>
+
+<p style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  Under the DPDP Act 2023, you have the right to submit a <strong>Data Subject Access Request (DSAR)</strong> to access, correct, delete, or port your personal data. This form is free to submit and you will receive an acknowledgement within <strong>48 hours</strong> and a full response within <strong>30 days</strong>.
+</p>
+
+<h2>STEP 1: Identity Verification (MANDATORY)</h2>
+
+<p style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #856404;">⚠️ CRITICAL:</strong> Before we process your DSAR, we must verify your identity to prevent unauthorized data access. Choose ONE verification method below.
+</p>
+
+<h3>Choose Your Identity Verification Method</h3>
+
+<div style="border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <div style="margin-bottom: 12px;">
+    <input type="radio" id="verify_otp" name="verification_method" value="otp">
+    <label for="verify_otp"><strong>☐ OTP (One-Time Password) to Registered Mobile or Email</strong></label>
+    <div style="margin-left: 25px; padding: 8px; background: #f5f5f5; border-radius: 3px; ">
+      We will send a 6-digit OTP to your registered mobile (XXXXX3210) or email (j***@domain.com). Enter the OTP below to proceed.
+      <br><strong>Delivery Time:</strong> ~1 minute
+      <br><input type="text" placeholder="Enter 6-digit OTP" style="margin-top: 8px; padding: 5px; border: 1px solid #999; width: 150px;">
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px;">
+    <input type="radio" id="verify_aadhaar" name="verification_method" value="aadhaar_vid">
+    <label for="verify_aadhaar"><strong>☐ Aadhaar Virtual ID (VID) + OTP</strong></label>
+    <div style="margin-left: 25px; padding: 8px; background: #f5f5f5; border-radius: 3px; ">
+      Enter your 16-digit Aadhaar Virtual ID (VID, available at <a href="https://resident.uidai.gov.in/" target="_blank">UIDAI website</a>). We will send an OTP to your registered Aadhaar mobile.
+      <br><input type="text" placeholder="16-digit VID (e.g., 1234-5678-9012-3456)" style="margin-top: 8px; padding: 5px; border: 1px solid #999; width: 250px;">
+      <br><input type="text" placeholder="Enter OTP received on Aadhaar mobile" style="margin-top: 8px; padding: 5px; border: 1px solid #999; width: 250px;">
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px;">
+    <input type="radio" id="verify_account" name="verification_method" value="account_dob">
+    <label for="verify_account"><strong>☐ Registered Account Login + Date of Birth</strong></label>
+    <div style="margin-left: 25px; padding: 8px; background: #f5f5f5; border-radius: 3px; ">
+      If you have an account with us, log in using your username/password + verify your date of birth.
+      <br><input type="text" placeholder="Username / Email" style="margin-top: 8px; padding: 5px; border: 1px solid #999; width: 200px;">
+      <br><input type="password" placeholder="Password" style="margin-top: 8px; padding: 5px; border: 1px solid #999; width: 200px;">
+      <br><input type="text" placeholder="Date of Birth (DD/MM/YYYY)" style="margin-top: 8px; padding: 5px; border: 1px solid #999; width: 200px;">
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px;">
+    <input type="radio" id="verify_video" name="verification_method" value="video_kyc">
+    <label for="verify_video"><strong>☐ Video KYC (Face + ID Verification)</strong></label>
+    <div style="margin-left: 25px; padding: 8px; background: #f5f5f5; border-radius: 3px; ">
+      For high-value DSARs, we may schedule a video call with you to verify your identity using your government-issued ID and video recording.
+      <br><strong>Availability:</strong> Next available slot will be sent via email within 24 hours.
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px;">
+    <input type="radio" id="verify_pankdob" name="verification_method" value="pan_dob">
+    <label for="verify_pankdob"><strong>☐ PAN + Date of Birth + Mobile Verification</strong></label>
+    <div style="margin-left: 25px; padding: 8px; background: #f5f5f5; border-radius: 3px; ">
+      Enter your PAN (last 4 digits + full PAN), date of birth, and we will verify the mobile number on file.
+      <br><input type="text" placeholder="PAN (e.g., AAAPP1234A)" style="margin-top: 8px; padding: 5px; border: 1px solid #999; width: 200px;">
+      <br><input type="text" placeholder="Date of Birth (DD/MM/YYYY)" style="margin-top: 8px; padding: 5px; border: 1px solid #999; width: 200px;">
+      <br><input type="text" placeholder="Mobile on file (XXXXX3210)" style="margin-top: 8px; padding: 5px; border: 1px solid #999; width: 200px;">
+    </div>
+  </div>
+</div>
+
+---
+
+<h2>STEP 2: Select Your Data Rights (Tick All That Apply)</h2>
+
+<p>
+  You can request one or multiple rights in a single DSAR. Each request will be processed within 30 days.
+</p>
+
+<div style="border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px;">
+
+  <div style="margin-bottom: 12px; padding: 10px; background: #f0f8ff; border-left: 4px solid #0066cc;">
+    <input type="checkbox" id="right_access" name="rights">
+    <label for="right_access"><strong>☑ RIGHT TO ACCESS (Section 11)</strong></label>
+    <div style="margin-left: 25px;  color: #555; margin-top: 6px;">
+      Request a copy of all personal data we hold about you, including: contact information, financial details, transaction history, consent records, communications, preferences, and any other data we process about you.
+      <br><strong>What you'll receive:</strong> CSV file, JSON export, and PDF summary (choose format below)
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px; padding: 10px; background: #e8f5e9; border-left: 4px solid #2e7d32;">
+    <input type="checkbox" id="right_correction" name="rights">
+    <label for="right_correction"><strong>☑ RIGHT TO CORRECTION (Section 12)</strong></label>
+    <div style="margin-left: 25px;  color: #555; margin-top: 6px;">
+      If any of your personal data is inaccurate, incomplete, or misleading, request that we correct it immediately.
+      <br><strong>What to do:</strong> Provide details of the inaccurate data and the correction needed below (under "Additional Details").
+      <br><strong>Timeline:</strong> Corrected within 30 days. We will notify all processors/vendors we shared data with (within 5 days of your correction).
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px; padding: 10px; background: #ffe0e0; border-left: 4px solid #d32f2f;">
+    <input type="checkbox" id="right_erasure" name="rights">
+    <label for="right_erasure"><strong>☑ RIGHT TO ERASURE (Section 12) — "Right to be Forgotten"</strong></label>
+    <div style="margin-left: 25px;  color: #555; margin-top: 6px;">
+      Request deletion of your personal data, subject to certain exceptions (if required by law, ongoing litigation, or regulatory holds).
+      <br><strong>Important:</strong> Some data may be retained for legal/statutory reasons (e.g., loan records for 8 years per RBI).
+      <br><strong>Timeline:</strong> Deleted within 30 days. We will notify all vendors/processors to delete data within 5 business days of receipt.
+      <br><strong>Exception:</strong> Data retained for legal holds will be documented separately.
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px; padding: 10px; background: #fce4ec; border-left: 4px solid #c2185b;">
+    <input type="checkbox" id="right_portability" name="rights">
+    <label for="right_portability"><strong>☑ RIGHT TO DATA PORTABILITY (Section 13)</strong></label>
+    <div style="margin-left: 25px;  color: #555; margin-top: 6px;">
+      Request your personal data in a machine-readable format (CSV, JSON, Excel) so you can transfer it to another organization or service provider.
+      <br><strong>What you'll receive:</strong> Structured data export in open formats (JSON, CSV, XML). Choose format below.
+      <br><strong>Timeline:</strong> Provided within 30 days.
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px; padding: 10px; background: #fff8e1; border-left: 4px solid #f57f17;">
+    <input type="checkbox" id="right_nomination" name="rights">
+    <label for="right_nomination"><strong>☑ RIGHT TO NOMINATION (Section 14)</strong></label>
+    <div style="margin-left: 25px;  color: #555; margin-top: 6px;">
+      Designate a nominee (family member, legal representative) who can exercise your data rights after your death.
+      <br><strong>What to do:</strong> Provide nominee details in "Additional Details" section (name, relationship, contact, ID proof scans).
+      <br><strong>Timeline:</strong> Processed within 30 days. You will receive nomination confirmation.
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px; padding: 10px; background: #f3e5f5; border-left: 4px solid #7b1fa2;">
+    <input type="checkbox" id="right_grievance" name="rights">
+    <label for="right_grievance"><strong>☑ RIGHT TO FILE GRIEVANCE (Section 13)</strong></label>
+    <div style="margin-left: 25px;  color: #555; margin-top: 6px;">
+      If you believe we have violated your data rights under DPDP, you can file a complaint for investigation.
+      <br><strong>Complaint details:</strong> Describe the violation, when it occurred, and what you'd like us to do.
+      <br><strong>Timeline:</strong> Acknowledged within 48 hours. Investigation completed within 30 days. Unresolved grievances escalated to DPBI (Data Protection Board of India).
+    </div>
+  </div>
+
+</div>
+
+---
+
+<h2>STEP 3: Specify Data Export Format (If Requesting Access/Portability)</h2>
+
+<div style="border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <p><strong>Choose preferred format(s) for data delivery:</strong></p>
+  <input type="checkbox" id="format_csv" name="export_format"> <label for="format_csv">CSV (spreadsheet)</label><br>
+  <input type="checkbox" id="format_json" name="export_format"> <label for="format_json">JSON (machine-readable)</label><br>
+  <input type="checkbox" id="format_pdf" name="export_format"> <label for="format_pdf">PDF (printable summary)</label><br>
+  <input type="checkbox" id="format_xml" name="export_format"> <label for="format_xml">XML (structured data)</label><br>
+  <input type="checkbox" id="format_email" name="export_format"> <label for="format_email">Email link (secure download)</label>
+</div>
+
+---
+
+<h2>STEP 4: Additional Details & Special Instructions</h2>
+
+<div style="border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <p><strong>If requesting correction or erasure, provide specific details below:</strong></p>
+  <textarea placeholder="e.g., 'My address is incorrect — should be ABC Street, not XYZ Street' or 'I want all my marketing data deleted'" style="width: 95%; height: 80px; padding: 8px; border: 1px solid #999; border-radius: 3px;"></textarea><br>
+  <p style=" color: #666; margin-top: 6px;">
+    <strong>Note:</strong> Provide as much detail as possible to help us locate your data accurately.
+  </p>
+</div>
+
+---
+
+<h2>STEP 5: Contact Information for Response</h2>
+
+<div style="border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <p><strong>How should we deliver your response?</strong></p>
+  <p >
+    <strong>Email:</strong> <input type="email" placeholder="your@email.com" style="width: 250px; padding: 5px; border: 1px solid #999;"><br><br>
+    <strong>Postal Address:</strong><br>
+    <textarea placeholder="Street address, city, postal code" style="width: 95%; height: 60px; padding: 8px; border: 1px solid #999; border-radius: 3px;"></textarea><br><br>
+    <strong>Phone (optional):</strong> <input type="tel" placeholder="XXXXX3210" style="width: 150px; padding: 5px; border: 1px solid #999;"><br><br>
+    <strong>Preferred Contact Method:</strong><br>
+    <input type="radio" id="contact_email" name="contact_method"> <label for="contact_email">Email (preferred)</label><br>
+    <input type="radio" id="contact_post" name="contact_method"> <label for="contact_post">Postal mail</label><br>
+    <input type="radio" id="contact_phone" name="contact_method"> <label for="contact_phone">Phone</label><br>
+  </p>
+</div>
+
+---
+
+<h2>STEP 6: Acknowledgement & Submission</h2>
+
+<div style="border: 2px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px; background: #fffbea;">
+  <p >
+    <strong style="color: #856404;">☑ I acknowledge the following:</strong><br><br>
+    <input type="checkbox" id="ack1"> I have verified my identity using one of the methods above.<br>
+    <input type="checkbox" id="ack2"> I understand that we will acknowledge this DSAR within <strong>48 hours</strong> with a Request ID and expected completion date.<br>
+    <input type="checkbox" id="ack3"> I understand that we will provide a full response within <strong>30 days</strong> of receipt.<br>
+    <input type="checkbox" id="ack4"> I understand that some data may be retained for legal/statutory reasons and will be noted separately.<br>
+    <input type="checkbox" id="ack5"> I confirm that the information provided is accurate and truthful.<br><br>
+    <strong>✓ Submission Date & Time:</strong> [Auto-filled by system] <input type="text" placeholder="2026-04-15 14:30:00 UTC" disabled style="background: #f5f5f5;"><br><br>
+    <strong>✓ Request ID (will be assigned):</strong> <input type="text" placeholder="DSAR-20260415-XXXXX" disabled style="background: #f5f5f5;"><br><br>
+    <button style="background: #0066cc; color: white; padding: 10px 20px; border: none; border-radius: 3px; font-weight: bold; cursor: pointer;">SUBMIT DSAR REQUEST</button>
+    <button style="background: #ccc; color: #333; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer; margin-left: 10px;">SAVE DRAFT</button>
+  </p>
+</div>
+
+---
+
+<h2>Expected Timeline & Next Steps</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Event</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Timeline</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">What to Expect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>1. Request Submitted</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">T+0 (now)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Your DSAR is received. Request ID assigned. Email confirmation sent.</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>2. 48-Hour Acknowledgement</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">T+48 hours</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Automated acknowledgement email sent with Request ID, expected completion date, and tracking link. You can check status anytime.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>3. Identity Verification</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">T+5 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">We verify your identity. If issues, we contact you for additional information.</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>4. Data Processing & Compilation</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">T+15 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Our team compiles your data across all systems and prepares export file(s).</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>5. Final Response</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">T+30 days (latest)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data delivered via email/postal address. If any data is withheld due to legal reasons, a separate notice explains why.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #856404;">Need Help?</strong> If you have questions or need support:
+  <ul style="margin: 8px 0 0 0; ">
+    <li><strong>Email:</strong> <a href="mailto:dpo@organization.in">dpo@organization.in</a></li>
+    <li><strong>Phone:</strong> [Organization Help Desk]</li>
+    <li><strong>Track Request:</strong> Visit [tracking portal URL] with your Request ID</li>
+    <li><strong>File Complaint:</strong> If you're unhappy with our response, you can file a grievance with the Data Protection Board of India (DPBI) at <a href="https://dpb.gov.in" target="_blank">dpb.gov.in</a> (when operational)</li>
+  </ul>
+</p>
+
+---
+
+<h2>Related Templates</h2>
+
+<ul >
+  <li><strong>[→ T-11]</strong> <a href="11_DSAR_Response_Letter.html">DSAR Response Letter</a> — Template response you will receive</li>
+  <li><strong>[→ T-12]</strong> <a href="12_Erasure_and_Correction_SOP.html">Erasure & Correction SOP</a> — How we process corrections and deletions</li>
+  <li><strong>[→ T-13]</strong> <a href="13_Grievance_Handling_SOP.html">Grievance Handling SOP</a> — How we handle complaints</li>
+  <li><strong>[← T-07]</strong> <a href="07_Privacy_Notice_Web.html">Privacy Notice</a> — Your rights explained</li>
+</ul>
+
+<div class="signature-block" style="margin-top: 40px;">
+  <p>
+    <strong>DSAR Form Version:</strong> 2.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Approved By:</strong> _________________________ <strong>Date:</strong> _________<br>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

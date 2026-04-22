@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPDP Templates — Unified Design System Demo</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  /* Demo-specific styles */
+  .demo-section {
+    margin-top: 40px;
+    page-break-inside: avoid;
+  }
+  .color-swatch {
+    display: inline-block;
+    width: 100px;
+    height: 80px;
+    margin: 10px 10px 10px 0;
+    border: 1px solid #ccc;
+    text-align: center;
+    vertical-align: top;
+    padding: 10px;
+  }
+  .color-value {
+    font-family: 'Courier New', monospace;
+    margin-top: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="title">DPDP Templates — Unified Design System</div>
+  <div class="subtitle">Demonstration of Consistent Colors, Fonts, and Layouts</div>
+</div>
+
+<p style=" color: #666;">
+  <strong>Purpose:</strong> This template demonstrates the unified design system applied across all 46 DPDP compliance templates. Use this as a reference for understanding the color palette, typography, and component styling.
+</p>
+
+<!-- COLOR PALETTE SECTION -->
+<div class="demo-section">
+  <div class="section-title">1. COLOR PALETTE</div>
+
+  <h3>Primary Colors</h3>
+  <div class="color-swatch" style="background-color: #0066cc; color: white;">
+    Primary Blue
+    <div class="color-value">#0066cc</div>
+  </div>
+  <div class="color-swatch" style="background-color: #e6f0ff; color: #333;">
+    Primary Light
+    <div class="color-value">#e6f0ff</div>
+  </div>
+  <div class="color-swatch" style="background-color: #003d99; color: white;">
+    Primary Dark
+    <div class="color-value">#003d99</div>
+  </div>
+
+  <h3 style="margin-top: 20px;">Header Colors</h3>
+  <div class="color-swatch" style="background-color: #2c3e50; color: white;">
+    Header Dark
+    <div class="color-value">#2c3e50</div>
+  </div>
+  <div class="color-swatch" style="background-color: #ffffff; color: #333; border: 1px solid #999;">
+    Header White
+    <div class="color-value">#ffffff</div>
+  </div>
+
+  <h3 style="margin-top: 20px;">Status Colors</h3>
+  <div class="color-swatch" style="background-color: #d4edda; color: #155724;">
+    Pass
+    <div class="color-value">#d4edda</div>
+  </div>
+  <div class="color-swatch" style="background-color: #fff3cd; color: #856404;">
+    Warning
+    <div class="color-value">#fff3cd</div>
+  </div>
+  <div class="color-swatch" style="background-color: #f8d7da; color: #721c24;">
+    Fail
+    <div class="color-value">#f8d7da</div>
+  </div>
+  <div class="color-swatch" style="background-color: #f5c6cb; color: #721c24;">
+    Critical
+    <div class="color-value">#f5c6cb</div>
+  </div>
+
+  <h3 style="margin-top: 20px;">Neutral Colors</h3>
+  <div class="color-swatch" style="background-color: #333333; color: white;">
+    Dark Text
+    <div class="color-value">#333333</div>
+  </div>
+  <div class="color-swatch" style="background-color: #666666; color: white;">
+    Medium Text
+    <div class="color-value">#666666</div>
+  </div>
+  <div class="color-swatch" style="background-color: #999999; color: white;">
+    Light Text
+    <div class="color-value">#999999</div>
+  </div>
+  <div class="color-swatch" style="background-color: #f9f9f9; color: #333;">
+    Light BG
+    <div class="color-value">#f9f9f9</div>
+  </div>
+</div>
+
+<!-- TYPOGRAPHY SECTION -->
+<div class="demo-section">
+  <div class="section-title">2. TYPOGRAPHY</div>
+
+  <h3>Font Families</h3>
+  <div class="info-box">
+    <strong>Primary Font:</strong> 'Segoe UI', 'Calibri', 'Arial', sans-serif<br>
+    <strong>Monospace Font:</strong> 'Courier New', monospace
+  </div>
+
+  <h3 style="margin-top: 20px;">Font Sizes & Weights</h3>
+  <table>
+    <tr>
+      <th>Element</th>
+      <th>Size</th>
+      <th>Weight</th>
+      <th>Example</th>
+    </tr>
+    <tr>
+      <td>H1 (Main Title)</td>
+      <td>18px</td>
+      <td>bold</td>
+      <td style=" font-weight: bold;">Main Title</td>
+    </tr>
+    <tr>
+      <td>H2 (Section)</td>
+      <td>14px</td>
+      <td>bold</td>
+      <td style=" font-weight: bold;">Section Title</td>
+    </tr>
+    <tr>
+      <td>H3 (Subsection)</td>
+      <td>12px</td>
+      <td>bold</td>
+      <td style=" font-weight: bold;">Subsection</td>
+    </tr>
+    <tr>
+      <td>Body Text</td>
+      <td>11px</td>
+      <td>normal</td>
+      <td >Regular paragraph text</td>
+    </tr>
+    <tr>
+      <td>Small Text</td>
+      <td>10px</td>
+      <td>normal</td>
+      <td >Captions and footnotes</td>
+    </tr>
+  </table>
+
+  <h3 style="margin-top: 20px;">Line Height</h3>
+  <ul>
+    <li><strong>Body text:</strong> 1.6 (spacious, readable)</li>
+    <li><strong>Tables:</strong> 1.5 (compact for data)</li>
+    <li><strong>Forms:</strong> 1.6 (comfortable spacing)</li>
+  </ul>
+</div>
+
+<!-- SPACING SYSTEM -->
+<div class="demo-section">
+  <div class="section-title">3. SPACING SYSTEM</div>
+
+  <p>All spacing uses a consistent 4px baseline grid:</p>
+
+  <table>
+    <tr>
+      <th>Variable</th>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+    <tr>
+      <td>--spacing-xs</td>
+      <td>4px</td>
+      <td>Minimal spacing</td>
+    </tr>
+    <tr>
+      <td>--spacing-sm</td>
+      <td>8px</td>
+      <td>Small gaps, list items</td>
+    </tr>
+    <tr>
+      <td>--spacing-md</td>
+      <td>15px</td>
+      <td>Standard paragraph spacing</td>
+    </tr>
+    <tr>
+      <td>--spacing-lg</td>
+      <td>20px</td>
+      <td>Section margins</td>
+    </tr>
+    <tr>
+      <td>--spacing-xl</td>
+      <td>30px</td>
+      <td>Major section breaks</td>
+    </tr>
+    <tr>
+      <td>--spacing-xxl</td>
+      <td>40px</td>
+      <td>Signature blocks, document breaks</td>
+    </tr>
+  </table>
+</div>
+
+<!-- INFORMATION BOXES -->
+<div class="demo-section">
+  <div class="section-title">4. INFORMATION BOXES & ALERTS</div>
+
+  <div class="info-box">
+    <strong>ℹ️ Info Box:</strong> Use this for important information and notes (blue background)
+  </div>
+
+  <div class="warning-box">
+    <strong><i data-lucide="alert-triangle" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:currentColor; margin-right: 4px;"></i> Warning Box:</strong> Use this for cautions and warnings (yellow background)
+  </div>
+
+  <div class="critical-box">
+    <strong><i data-lucide="circle-dashed" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-border); margin-right: 4px;"></i> Critical Box:</strong> Use this for critical alerts and errors (red background)
+  </div>
+
+  <div class="success-box">
+    <strong><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Success Box:</strong> Use this for confirmations and success messages (green background)
+  </div>
+</div>
+
+<!-- TABLES -->
+<div class="demo-section">
+  <div class="section-title">5. TABLES</div>
+
+  <table>
+    <tr>
+      <th>Status</th>
+      <th>Description</th>
+      <th>Background Color</th>
+    </tr>
+    <tr class="pass">
+      <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> PASS</td>
+      <td>Compliant, approved, successful</td>
+      <td>#d4edda (light green)</td>
+    </tr>
+    <tr class="warn">
+      <td>⚠ WARN</td>
+      <td>Partial, requires review, caution</td>
+      <td>#fff3cd (light yellow)</td>
+    </tr>
+    <tr class="fail">
+      <td><i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i> FAIL</td>
+      <td>Non-compliant, requires action</td>
+      <td>#f8d7da (light red)</td>
+    </tr>
+    <tr class="critical">
+      <td><i data-lucide="circle-dashed" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-border); margin-right: 4px;"></i> CRITICAL</td>
+      <td>Urgent, requires immediate action</td>
+      <td>#f5c6cb (light pink)</td>
+    </tr>
+  </table>
+</div>
+
+<!-- FORM ELEMENTS -->
+<div class="demo-section">
+  <div class="section-title">6. FORM ELEMENTS</div>
+
+  <p>Form fields use a clean, modern design with bottom-border-only style:</p>
+
+  <p>
+    <strong>Text Input:</strong><br>
+    <input type="text" placeholder="Enter organization name" style="width: 300px;">
+  </p>
+
+  <p>
+    <strong>Date Input:</strong><br>
+    <input type="date" style="width: 200px;">
+  </p>
+
+  <p>
+    <strong>Text Area:</strong><br>
+    <textarea placeholder="Enter detailed information here..." style="width: 400px; height: 100px;"></textarea>
+  </p>
+
+  <p>
+    <strong>Select Dropdown:</strong><br>
+    <select style="width: 300px;">
+      <option>-- Select Option --</option>
+      <option>Option 1</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+    </select>
+  </p>
+
+  <p>
+    <strong>Checkbox:</strong><br>
+    <input type="checkbox"> I agree to the terms and conditions
+  </p>
+</div>
+
+<!-- SIGNATURE BLOCK -->
+<div class="demo-section">
+  <div class="section-title">7. SIGNATURE BLOCKS</div>
+
+  <div class="signature-block">
+    <div class="signature-item">
+      <p><strong>Authorized Officer</strong></p>
+      <div class="signature-line"></div>
+      <input type="text" placeholder="Print Name" style="width: 250px;"><br>
+      <input type="text" placeholder="Title" style="width: 250px;"><br>
+      <input type="date" style="width: 200px;">
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="demo-section">
+  <div class="section-title">8. DESIGN SYSTEM SUMMARY</div>
+
+  <div class="success-box">
+    <strong><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Unified Design Across All Templates</strong><br><br>
+    All 46 DPDP compliance templates now use this consistent design system:
+    <ul style="margin-top: 10px;">
+      <li><strong>Consistent Colors:</strong> Primary blue (#0066cc), dark headers (#2c3e50), status colors</li>
+      <li><strong>Consistent Typography:</strong> Segoe UI/Calibri fonts, 11px body, 14px headers</li>
+      <li><strong>Consistent Spacing:</strong> 4px baseline grid with named spacing variables</li>
+      <li><strong>Consistent Components:</strong> Tables, forms, info boxes, signatures</li>
+      <li><strong>Professional Appearance:</strong> Suitable for board presentation and client delivery</li>
+      <li><strong>Print-Ready:</strong> All templates print cleanly to PDF</li>
+    </ul>
+  </div>
+
+  <h3 style="margin-top: 20px;">Stylesheet Reference</h3>
+  <p>
+    All templates link to a single CSS file:<br>
+    <code style="background: #f9f9f9; padding: 4px 8px;">&lt;link rel="stylesheet" href="UNIFIED_THEME.css"&gt;</code>
+  </p>
+
+  <p>
+    This ensures consistent styling across all templates and makes future updates centralized and easy to manage.
+  </p>
+</div>
+
+<div class="signature-block">
+  <p style=" color: #666; margin-top: 30px;">
+    <strong>Design System Version:</strong> 1.0<br>
+    <strong>Last Updated:</strong> April 7, 2026<br>
+    
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

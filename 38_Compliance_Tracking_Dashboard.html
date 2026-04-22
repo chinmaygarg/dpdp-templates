@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Tracking Dashboard</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Compliance Tracking Dashboard</div>
+  <div class="subtitle">Real-Time Compliance Status and KPI Monitoring</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived]
+</div>
+
+<h2>Overview</h2>
+
+<p >
+  This document provides guidance and templates for Compliance Tracking Dashboard implementation in accordance with DPDP Act 2023.
+</p>
+
+<h2>Content Sections</h2>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <p >
+    1. Scope and Objectives<br>
+    2. Requirements and Criteria<br>
+    3. Process and Workflow<br>
+    4. Templates and Forms<br>
+    5. Sign-Off and Approval
+  </p>
+</div>
+
+<h2 style="margin-top: 30px;">COMPLIANCE SCORE METHODOLOGY (0-100%)</h2>
+
+<p style=" margin-bottom: 10px;">
+<strong>Overall Compliance Score = (Checkpoints Completed / 92 Total Checkpoints) × 100</strong>
+<br><br>
+The 92 checkpoints represent all mandatory DPDP Act 2023 requirements. Checkpoints are weighted by domain importance and penalty exposure. This dashboard tracks progress toward 100% compliance (target deadline: 13 May 2027).
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 15px 0; ">
+  <tr style="background: #2c3e50; color: white;">
+    <th style="width: 18%;">Compliance Domain (17 Total)</th>
+    <th style="width: 12%;">Checkpoints (92 Total)</th>
+    <th style="width: 12%;">Weight<br>(%)</th>
+    <th style="width: 12%;">Completed</th>
+    <th style="width: 10%;">Domain %</th>
+    <th style="width: 10%;">RAG Status</th>
+    <th style="width: 16%;">Penalties at Risk (₹Cr)</th>
+  </tr>
+
+  <!-- Domain 1: Consent -->
+  <tr>
+    <td style="padding: 8px;"><strong>1. Consent &amp; Notice</strong></td>
+    <td style="padding: 8px; text-align: center;">8</td>
+    <td style="padding: 8px; text-align: center;">9%</td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="0-8" style="width: 40px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;">____%</td>
+    <td style="padding: 8px; text-align: center;"><input type="checkbox"> 🟢 <input type="checkbox"> 🟡 <input type="checkbox"> 🔴</td>
+    <td style="padding: 8px;">₹50-100 (S.6 violation)</td>
+  </tr>
+
+  <!-- Domain 2: Data Subject Rights -->
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>2. Data Subject Rights (DSAR, Correction, Erasure)</strong></td>
+    <td style="padding: 8px; text-align: center;">8</td>
+    <td style="padding: 8px; text-align: center;">9%</td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="0-8" style="width: 40px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;">____%</td>
+    <td style="padding: 8px; text-align: center;"><input type="checkbox"> 🟢 <input type="checkbox"> 🟡 <input type="checkbox"> 🔴</td>
+    <td style="padding: 8px;">₹50-100 (S.11-13 violation)</td>
+  </tr>
+
+  <!-- Domain 3: Legitimate Use / Section 7 -->
+  <tr>
+    <td style="padding: 8px;"><strong>3. Legitimate Uses (Section 7)</strong></td>
+    <td style="padding: 8px; text-align: center;">6</td>
+    <td style="padding: 8px; text-align: center;">7%</td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="0-6" style="width: 40px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;">____%</td>
+    <td style="padding: 8px; text-align: center;"><input type="checkbox"> 🟢 <input type="checkbox"> 🟡 <input type="checkbox"> 🔴</td>
+    <td style="padding: 8px;">₹50-100 (S.7 abuse)</td>
+  </tr>
+
+  <!-- Domain 4: Security -->
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>4. Information Security (S.8)</strong></td>
+    <td style="padding: 8px; text-align: center;">12</td>
+    <td style="padding: 8px; text-align: center;">13%</td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="0-12" style="width: 40px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;">____%</td>
+    <td style="padding: 8px; text-align: center;"><input type="checkbox"> 🟢 <input type="checkbox"> 🟡 <input type="checkbox"> 🔴</td>
+    <td style="padding: 8px;">₹50-100 (breach)</td>
+  </tr>
+
+  <!-- Domain 5: Children & Minors -->
+  <tr>
+    <td style="padding: 8px;"><strong>5. Children's Data (S.9)</strong></td>
+    <td style="padding: 8px; text-align: center;">4</td>
+    <td style="padding: 8px; text-align: center;">4%</td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="0-4" style="width: 40px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;">____%</td>
+    <td style="padding: 8px; text-align: center;"><input type="checkbox"> 🟢 <input type="checkbox"> 🟡 <input type="checkbox"> 🔴</td>
+    <td style="padding: 8px;">₹50-100 (S.9 violation)</td>
+  </tr>
+
+  <!-- Domain 6: DPIA & DPO -->
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>6. DPIA &amp; DPO (S.10)</strong></td>
+    <td style="padding: 8px; text-align: center;">5</td>
+    <td style="padding: 8px; text-align: center;">5%</td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="0-5" style="width: 40px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;">____%</td>
+    <td style="padding: 8px; text-align: center;"><input type="checkbox"> 🟢 <input type="checkbox"> 🟡 <input type="checkbox"> 🔴</td>
+    <td style="padding: 8px;">₹5-10 (S.10 non-compliance)</td>
+  </tr>
+
+  <!-- Domain 7: Breach Notification -->
+  <tr>
+    <td style="padding: 8px;"><strong>7. Breach Notification (S.8)</strong></td>
+    <td style="padding: 8px; text-align: center;">6</td>
+    <td style="padding: 8px; text-align: center;">7%</td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="0-6" style="width: 40px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;">____%</td>
+    <td style="padding: 8px; text-align: center;"><input type="checkbox"> 🟢 <input type="checkbox"> 🟡 <input type="checkbox"> 🔴</td>
+    <td style="padding: 8px;">₹50-100 (72-hr SLA miss)</td>
+  </tr>
+
+  <!-- Domain 8: Data Retention & Deletion -->
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>8. Retention &amp; Deletion</strong></td>
+    <td style="padding: 8px; text-align: center;">6</td>
+    <td style="padding: 8px; text-align: center;">7%</td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="0-6" style="width: 40px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;">____%</td>
+    <td style="padding: 8px; text-align: center;"><input type="checkbox"> 🟢 <input type="checkbox"> 🟡 <input type="checkbox"> 🔴</td>
+    <td style="padding: 8px;">₹50-100 (excess retention)</td>
+  </tr>
+
+  <!-- Domain 9: Vendor/Processor Management -->
+  <tr>
+    <td style="padding: 8px;"><strong>9. Vendor/Processor Mgmt (S.8[2])</strong></td>
+    <td style="padding: 8px; text-align: center;">7</td>
+    <td style="padding: 8px; text-align: center;">8%</td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="0-7" style="width: 40px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;">____%</td>
+    <td style="padding: 8px; text-align: center;"><input type="checkbox"> 🟢 <input type="checkbox"> 🟡 <input type="checkbox"> 🔴</td>
+    <td style="padding: 8px;">₹50-100 (no DPA)</td>
+  </tr>
+
+  <!-- Domain 10-17 (abbreviated) -->
+  <tr style="background: #f9f9f9;">
+    <td colspan="7" style="padding: 8px; ">
+      <strong>Additional Domains (10-17):</strong> Cross-Border Transfers (5 cp), Audit & Monitoring (5 cp), Grievance Handling (4 cp), Consent Withdrawal (4 cp), Legitimate Use Documentation (3 cp), Privacy by Design (3 cp), Employee Training (3 cp), Governance &amp; Board (4 cp)
+    </td>
+  </tr>
+
+  <tr style="background: #d4edda; font-weight: bold;">
+    <td style="padding: 8px;">TOTAL COMPLIANCE</td>
+    <td style="padding: 8px; text-align: center;">92</td>
+    <td style="padding: 8px; text-align: center;">100%</td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="0-92" style="width: 40px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;"><strong>____%</strong></td>
+    <td style="padding: 8px; text-align: center;"><input type="checkbox"> 🟢 <input type="checkbox"> 🟡 <input type="checkbox"> 🔴</td>
+    <td style="padding: 8px;">Max ₹250 (per breach event)</td>
+  </tr>
+</table>
+
+<h3 style=" margin-top: 15px;">DSAR SLA Compliance Tracker</h3>
+
+<p style=" margin-bottom: 10px;">
+Track DSAR response times to ensure 30-day SLA compliance. Data principals who don't receive responses within 30 days (or receive incomplete responses) can escalate to DPBI.
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 15px 0; ">
+  <tr style="background: #2c3e50; color: white;">
+    <th>DSAR ID</th>
+    <th>Submitted Date</th>
+    <th>Due Date (30d SLA)</th>
+    <th>Responded Date</th>
+    <th>Days Taken</th>
+    <th>Status (✅/⚠️/❌)</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td style="padding: 8px;"><input type="text" placeholder="DSAR-001"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="Date"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="Date (auto-calc)"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="Date"></td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="N" style="width: 30px; text-align: center;"></td>
+    <td style="padding: 8px; text-align: center;"><input type="text" placeholder="Status" style="width: 40px;"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="..."></td>
+  </tr>
+</table>
+
+<div class="note" style="margin-top: 10px; ">
+  <strong>Alert Thresholds:</strong><br>
+  • 🟢 GREEN: <90 days completed of 92 checkpoints (>97%); all DSARs within 30-day SLA; no open breaches<br>
+  • 🟡 AMBER: 60-89 checkpoints (65-97%); <5 DSARs delayed; minor open issues<br>
+  • 🔴 RED: <60 checkpoints (<65%); >5 DSARs overdue; active breach; critical gaps
+</div>
+
+<h2 style="margin-top: 30px;">Completion Checklist</h2>
+
+<ul >
+  <li>☐ Reviewed DPDP Act Section 5-16 requirements</li>
+  <li>☐ Gathered organization-specific information</li>
+  <li>☐ Customized for business context</li>
+  <li>☐ Legal/Compliance review completed</li>
+  <li>☐ Stakeholder sign-off obtained</li>
+  <li>☐ Implementation and rollout plan ready</li>
+</ul>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By:</strong> _________________________<br>
+    <strong>Approved By:</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

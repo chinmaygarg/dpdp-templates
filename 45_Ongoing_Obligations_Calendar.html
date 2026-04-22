@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ongoing Obligations Calendar — Annual Compliance Tasks</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  /* Template-specific overrides */
+    .header { border-bottom: 2px solid var(--text-primary); padding-bottom: 15px; margin-bottom: 20px; }
+  .title { font-weight: bold; margin-bottom: 10px; }
+  .subtitle { color: var(--text-secondary); margin-bottom: 15px; }
+  table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; }
+  th { background: #2c3e50; color: white; padding: 6px; text-align: left; font-weight: bold; }
+  td { border: 1px solid var(--border-color); padding: 5px; }
+  tr:nth-child(even) { background: var(--bg-light); }
+  .quarter { background: var(--status-pass); font-weight: bold; }
+  .critical { background: var(--status-fail); }
+  .important { background: var(--status-warn); }
+  input[type="text"], textarea { border: none; border-bottom: 1px solid var(--text-primary); padding: 2px; width: 95%; }
+  .calendar-month { page-break-inside: avoid; margin-top: 20px; border: 1px solid var(--border-color); padding: var(--spacing-sm); }
+  .month-title { font-weight: bold; background: #ecf0f1; padding: 5px; margin-bottom: 10px; }
+  .task { padding: 5px; margin: 3px 0; border-left: 3px solid var(--primary-color); background: #f0f5ff; }
+  .task.critical { border-left-color: #dc3545; background: var(--status-fail); }
+  .task.important { border-left-color: #ffc107; background: var(--status-warn); }
+  @media print { body { margin: 0; padding: 0; } }
+</style>
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">ONGOING OBLIGATIONS CALENDAR — Annual Compliance Task Schedule</div>
+  <div class="subtitle">
+    Organization: <input type="text" placeholder="[Organization Name]" style="width:300px;"><br>
+    Calendar Year: <input type="text" placeholder="2026" style="width:80px;">
+    &nbsp;&nbsp; Prepared by: <input type="text" placeholder="DPO / Compliance Lead" style="width:200px;">
+  </div>
+</div>
+
+<p style=" background:#f0f5ff; padding: var(--spacing-sm); border-left:3px solid var(--primary-color);">
+  <strong>PURPOSE:</strong> This calendar schedules all mandatory DPDP compliance tasks (Section 10 for SDF, ongoing for DF) on an annual cycle. Track completion dates and responsible owners.
+</p>
+
+---
+
+<h2 style="margin-top: 20px;">REGULATORY CHANGE MANAGEMENT — 10-Day Trigger Process</h2>
+
+<p style=" margin-bottom: 10px;">
+Whenever a new regulation, RBI directive, DPDP Rules clarification, or government guideline is published that affects data processing, the organization must trigger a 10-day regulatory change review. This process ensures Privacy Notices, Consent Forms, policies, and operations are updated to reflect new requirements.
+</p>
+
+<table style="margin-top: 10px;">
+  <tr style="background: #2c3e50; color: white;">
+    <th style="width: 18%;">Event Type (Trigger)</th>
+    <th style="width: 28%;">Examples</th>
+    <th style="width: 12%;">SLA</th>
+    <th style="width: 12%;">Update Required</th>
+    <th style="width: 30%;">Owner &amp; Process</th>
+  </tr>
+
+  <tr>
+    <td style="padding: 8px;"><strong>New DPDP Rules / Notification</strong></td>
+    <td style="padding: 8px;">DPDP Data Protection Rules 2025 published; Data Protection Board issues guidance; Government announces DPIA trigger threshold change</td>
+    <td style="padding: 8px; text-align: center;"><strong>10 DAYS</strong></td>
+    <td style="padding: 8px;">Policies, Privacy Notice (T-07), Consent Form (T-08), DPIA triggers (T-26)</td>
+    <td style="padding: 8px;">Legal + DPO (SDF): Legal drafts update by Day 5, DPO reviews by Day 8, deployed by Day 10</td>
+  </tr>
+
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>RBI / Sector Regulator Change</strong></td>
+    <td style="padding: 8px;">RBI Master Direction update (KYC/AML, retention period), SEBI/IRDAI/ED circular on data handling, new compliance requirement</td>
+    <td style="padding: 8px; text-align: center;"><strong>10 DAYS</strong></td>
+    <td style="padding: 8px;">Data Retention Schedule (T-02A), processor requirements, breach SLA, cross-border rules</td>
+    <td style="padding: 8px;">Compliance Officer + Legal: Assess impact (Day 1), update procedures (Days 2-5), DPO review (Days 6-8), rollout (Days 9-10)</td>
+  </tr>
+
+  <tr>
+    <td style="padding: 8px;"><strong>Court Judgment Affecting DPDP</strong></td>
+    <td style="padding: 8px;">High Court rules on validity of consent, data deletion, cross-border transfer, or SDF definition; Supreme Court issues guidance</td>
+    <td style="padding: 8px; text-align: center;"><strong>10 DAYS</strong></td>
+    <td style="padding: 8px;">Legal interpretation memo, consent process, deletion SOP, governance policies</td>
+    <td style="padding: 8px;">Legal Counsel: Opinion letter by Day 5, operational guidance by Day 8, Board notification by Day 10</td>
+  </tr>
+
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>Critical Breach or Incident Pattern</strong></td>
+    <td style="padding: 8px;">Multiple organizations report similar breach vector (e.g., ransomware targeting fintech); CERT-In issues alert; new vulnerability published affecting DPDP compliance</td>
+    <td style="padding: 8px; text-align: center;"><strong>5 DAYS</strong><br>(expedited)</td>
+    <td style="padding: 8px;">Breach response procedures (T-20), security controls, incident reporting, customer notification</td>
+    <td style="padding: 8px;">CISO + DPO: Risk assessment (Day 1), control update (Days 2-3), testing (Day 4), rollout (Day 5)</td>
+  </tr>
+</table>
+
+<h3 style=" margin-top: 15px;">Regulatory Change 10-Day Workflow</h3>
+
+<ol >
+  <li><strong>Day 1 — Detection & Triage:</strong> Legal/DPO monitors for new regulations. Upon detection, send alert: "New RBI Master Direction published [date]. Affects [scope: KYC retention, security, etc.]"</li>
+
+  <li><strong>Days 2-5 — Impact Assessment & Drafting:</strong> Responsible team assesses impact. Which templates, policies, procedures must change? Draft updated versions of Privacy Notice, Consent Form, Data Retention Schedule, or operational procedures.</li>
+
+  <li><strong>Days 6-8 — Review & Approval:</strong> DPO reviews changes for compliance. Legal counsel verifies interpretation. If SDF, Board Privacy Committee consulted. If disagreement: escalate, document, extend deadline with Board approval.</li>
+
+  <li><strong>Days 9-10 — Deploy & Notify:</strong> Update Privacy Notice version log (T-07). Redeploy Consent Form. Update relevant policies. Notify all staff via training or email. Send customer notification if material change (e.g., new retention period).</li>
+
+  <li><strong>Post-Deployment:</strong> Document change in Regulatory Change Log (below). Update 92-Checkpoint tracker to reflect any new compliance items. Include in next Board Privacy Committee report.</li>
+</ol>
+
+<h3 style=" margin-top: 15px;">Regulatory Change Log</h3>
+
+<table style="margin-top: 10px;">
+  <tr style="background: #2c3e50; color: white;">
+    <th style="width: 15%;">Date Published</th>
+    <th style="width: 25%;">Regulatory Source &amp; Title</th>
+    <th style="width: 20%;">Scope / Impact</th>
+    <th style="width: 12%;">10-Day Deadline</th>
+    <th style="width: 12%;">Completed Date</th>
+    <th style="width: 16%;">Templates Updated</th>
+  </tr>
+  <tr>
+    <td style="padding: 8px;"><input type="text" placeholder="DD/MM/YYYY"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="e.g., RBI Master Direction 2024"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="e.g., KYC retention period"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="DD/MM/YYYY"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="DD/MM/YYYY"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="T-02A, T-07"></td>
+  </tr>
+</table>
+
+---
+
+<h2 style="margin-top: 20px;">DPO QUARTERLY 92-CHECKPOINT REVIEW SCHEDULE</h2>
+
+<p style=" margin-bottom: 10px;">
+The DPO (for SDF) or Compliance Lead (for DF) conducts quarterly reviews of the 92-checkpoint compliance register. Each quarter focuses on different checkpoints to ensure comprehensive annual coverage. This process identifies gaps early and tracks remediation.
+</p>
+
+<table style="margin-top: 10px;">
+  <tr style="background: #2c3e50; color: white;">
+    <th style="width: 10%;">Quarter</th>
+    <th style="width: 25%;">Focus Area (Checkpoint Categories)</th>
+    <th style="width: 20%;">Audit Activities</th>
+    <th style="width: 15%;">Deliverable</th>
+    <th style="width: 30%;">Owner / Schedule</th>
+  </tr>
+
+  <tr>
+    <td style="padding: 8px; text-align: center;"><strong>Q1<br>(Jan-Mar)</strong></td>
+    <td style="padding: 8px;"><strong>FULL COMPLIANCE AUDIT</strong><br>• Consent (S.6) compliance<br>• DPIA triggers &amp; process (S.10)<br>• DPO appointment status</td>
+    <td style="padding: 8px;">• Review all active consents; FSIUU validity sample (100 records)<br>• Verify DPIA Workbook (T-26) completed for high-risk activities<br>• Confirm DPO staffing &amp; authority<br>• Data Subject Rights SLA audit (Q4 prior year)</td>
+    <td style="padding: 8px;">Q1 Audit Report covering consent health, DPIA status, governance</td>
+    <td style="padding: 8px;">DPO conducts throughout Q1; Report due 31 Mar. Board review in Apr.</td>
+  </tr>
+
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px; text-align: center;"><strong>Q2<br>(Apr-Jun)</strong></td>
+    <td style="padding: 8px;"><strong>CONSENT HEALTH DEEP DIVE</strong><br>• Consent Registry Dashboard (T-31) health metrics<br>• Withdrawal rate analysis<br>• Invalid consent investigation<br>• CPaaS suppression sync</td>
+    <td style="padding: 8px;">• Pull Consent Registry health scores (per-purpose %, withdrawal rate, FSIUU validity %)<br>• If withdrawal rate >15%, investigate (marketing messaging? consent form issues?)<br>• If invalid rate >5%, audit affected consents &amp; fix form<br>• Test CPaaS suppression list sync (24-hr SLA)<br>• Review Consent Registry completeness</td>
+    <td style="padding: 8px;">Q2 Consent Health Report with remediation plan for any >5% invalid rate</td>
+    <td style="padding: 8px;">Compliance Officer conducts; DPO reviews by 30 Jun. Board report Q2 Privacy Committee mtg.</td>
+  </tr>
+
+  <tr>
+    <td style="padding: 8px; text-align: center;"><strong>Q3<br>(Jul-Sep)</strong></td>
+    <td style="padding: 8px;"><strong>VENDOR &amp; PROCESSOR DPA AUDIT</strong><br>• All DPAs signed &amp; current<br>• Sub-processor notifications<br>• Processor risk scores (T-16)<br>• Deletion SLA compliance</td>
+    <td style="padding: 8px;">• Audit DPA register: all processors have signed DPA<br>• For each DPA, verify sub-processor clause &amp; notification in place<br>• Review Vendor Risk Assessment (T-16) scores; escalate any >70 risk<br>• Test deletion workflow: submit sample erasure request; verify processor notification &amp; confirmation within 5 biz days<br>• Confirm all DPAs include DPDP-required clauses (Section 12[4] propagation, audit rights, etc.)</td>
+    <td style="padding: 8px;">Q3 Vendor Compliance Report showing DPA coverage %, sub-processor status, deletion SLA compliance</td>
+    <td style="padding: 8px;">Vendor Manager + Legal conducts; DPO reviews by 30 Sep. Board report Q3 Privacy Committee mtg.</td>
+  </tr>
+
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px; text-align: center;"><strong>Q4<br>(Oct-Dec)</strong></td>
+    <td style="padding: 8px;"><strong>BOARD PREP &amp; YEAR-END AUDIT</strong><br>• Annual SDF Audit completion (if applicable)<br>• Compliance Tracking Dashboard (T-38) score<br>• Breach register review<br>• 2025 compliance plan</td>
+    <td style="padding: 8px;">• Final SDF audit report received from independent auditor; DPO reviews findings<br>• Calculate overall compliance score (checkpoints/92 × 100); target ≥97%<br>• Review all 2024 breaches: documented, DPBI notified, remediated<br>• Board Risk Committee report: Red/Amber/Green status per 17 domains<br>• Draft 2025 compliance calendar &amp; budget forecast<br>• Identify new regulatory risks for 2025</td>
+    <td style="padding: 8px;">Q4 Annual Compliance Report + Board Risk Pack (T-47) with audit findings, compliance %, breach summary, 2025 plan</td>
+    <td style="padding: 8px;">DPO conducts with auditor &amp; legal; Board Audit Committee reviews Dec. Board approval by year-end.</td>
+  </tr>
+</table>
+
+<div class="info-box" style="margin-top: 15px; ">
+  <strong>Quarterly Review Meeting Cadence:</strong><br>
+  • Q1 (31 Mar): DPO presents full audit report + DPIA status<br>
+  • Q2 (30 Jun): Compliance officer presents consent health metrics + withdrawal analysis<br>
+  • Q3 (30 Sep): Vendor manager presents DPA/processor audit + risk update<br>
+  • Q4 (31 Dec): DPO presents annual audit findings + 2025 compliance plan<br>
+  <br>
+  <strong>Escalation:</strong> If any quarterly review identifies a critical gap (compliance <60%, >5% invalid consents, DPA gap, vendor >100 risk), immediate DPO alert to Board Chair + CEO. Escalated items require remediation plan within 14 days.
+</div>
+
+<table>
+  <tr>
+    <th style="width:12%;">Month</th>
+    <th style="width:15%;">Task</th>
+    <th style="width:12%;">DPDP Section</th>
+    <th style="width:10%;">Org Type</th>
+    <th style="width:10%;">Deadline</th>
+    <th style="width:15%;">Owner</th>
+    <th style="width:12%;">Status</th>
+    <th style="width:14%;">Evidence / Link</th>
+  </tr>
+
+  <tr class="important">
+    <td><strong>January</strong></td>
+    <td>Annual Compliance Review kickoff</td>
+    <td>Ongoing</td>
+    <td>DF / SDF</td>
+    <td>01 Jan</td>
+    <td><input type="text" placeholder="DPO / Compliance Lead" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Doc link" style="width:80px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>January</strong></td>
+    <td>Data Principal Rights SLA Review (Q4 prior year)</td>
+    <td>S.11-14</td>
+    <td>DF / SDF</td>
+    <td>31 Jan</td>
+    <td><input type="text" placeholder="Rights Manager" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Doc link" style="width:80px;"></td>
+  </tr>
+
+  <tr class="critical">
+    <td><strong>February</strong></td>
+    <td>SDF: Annual Data Protection Impact Assessment (DPIA) — high-risk activities</td>
+    <td>S.10</td>
+    <td>SDF only</td>
+    <td>28 Feb</td>
+    <td><input type="text" placeholder="DPO" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="DPIA doc" style="width:80px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>February-March</strong></td>
+    <td>Annual Staff Training (Data Protection basics)</td>
+    <td>S.8</td>
+    <td>DF / SDF</td>
+    <td>31 Mar</td>
+    <td><input type="text" placeholder="HR / DPO" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Training log" style="width:80px;"></td>
+  </tr>
+
+  <tr class="critical">
+    <td><strong>March</strong></td>
+    <td>SDF: Appoint Independent Data Auditor + commence annual audit</td>
+    <td>S.10</td>
+    <td>SDF only</td>
+    <td>31 Mar</td>
+    <td><input type="text" placeholder="General Counsel" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Auditor contract" style="width:80px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>April</strong></td>
+    <td>Consent Audit (sample verification of FSIUU compliance)</td>
+    <td>S.6</td>
+    <td>DF / SDF</td>
+    <td>30 Apr</td>
+    <td><input type="text" placeholder="Compliance Officer" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Audit report" style="width:80px;"></td>
+  </tr>
+
+  <tr class="important">
+    <td><strong>May</strong></td>
+    <td>Vendor / Processor Risk Assessment + DPA review</td>
+    <td>S.8</td>
+    <td>DF / SDF</td>
+    <td>31 May</td>
+    <td><input type="text" placeholder="Vendor Manager" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Risk matrix" style="width:80px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>Q2 (Apr-Jun)</strong></td>
+    <td>Data Protection Committee quarterly meeting + Board report</td>
+    <td>Ongoing</td>
+    <td>DF / SDF</td>
+    <td>30 Jun</td>
+    <td><input type="text" placeholder="DPO / Committee Chair" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Meeting minutes" style="width:80px;"></td>
+  </tr>
+
+  <tr class="critical">
+    <td><strong>June</strong></td>
+    <td>SDF: Receive final audit report + Board presentation</td>
+    <td>S.10</td>
+    <td>SDF only</td>
+    <td>30 Jun</td>
+    <td><input type="text" placeholder="DPO" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Audit report" style="width:80px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>July</strong></td>
+    <td>Breach Incident Response Drill / Tabletop Exercise</td>
+    <td>S.8</td>
+    <td>DF / SDF</td>
+    <td>31 Jul</td>
+    <td><input type="text" placeholder="CISO / DPO" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Drill report" style="width:80px;"></td>
+  </tr>
+
+  <tr class="important">
+    <td><strong>July-Aug</strong></td>
+    <td>Privacy Notice + Consent Form annual review + update (if needed)</td>
+    <td>S.5-6</td>
+    <td>DF / SDF</td>
+    <td>31 Aug</td>
+    <td><input type="text" placeholder="Product / Legal" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Updated notice" style="width:80px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>Q3 (Jul-Sep)</strong></td>
+    <td>Data Protection Committee quarterly meeting + Board report</td>
+    <td>Ongoing</td>
+    <td>DF / SDF</td>
+    <td>30 Sep</td>
+    <td><input type="text" placeholder="DPO / Committee Chair" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Meeting minutes" style="width:80px;"></td>
+  </tr>
+
+  <tr class="critical">
+    <td><strong>September</strong></td>
+    <td>Data Retention Schedule review + confirm deletion automation working</td>
+    <td>S.8</td>
+    <td>DF / SDF</td>
+    <td>30 Sep</td>
+    <td><input type="text" placeholder="IT / Compliance" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Retention report" style="width:80px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>October</strong></td>
+    <td>ROPA (Records of Processing Activities) annual refresh</td>
+    <td>S.5</td>
+    <td>DF / SDF</td>
+    <td>31 Oct</td>
+    <td><input type="text" placeholder="Data Governance Lead" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Updated ROPA" style="width:80px;"></td>
+  </tr>
+
+  <tr class="important">
+    <td><strong>Q4 (Oct-Dec)</strong></td>
+    <td>Data Protection Committee quarterly meeting + Board report</td>
+    <td>Ongoing</td>
+    <td>DF / SDF</td>
+    <td>31 Dec</td>
+    <td><input type="text" placeholder="DPO / Committee Chair" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Meeting minutes" style="width:80px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>November</strong></td>
+    <td>Regulatory Landscape Update (DPB guidance, rules, government notifications)</td>
+    <td>Ongoing</td>
+    <td>DF / SDF</td>
+    <td>30 Nov</td>
+    <td><input type="text" placeholder="Legal / DPO" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Regulatory update" style="width:80px;"></td>
+  </tr>
+
+  <tr class="critical">
+    <td><strong>December</strong></td>
+    <td>Year-end Compliance Summary & Plan next year</td>
+    <td>Ongoing</td>
+    <td>DF / SDF</td>
+    <td>31 Dec</td>
+    <td><input type="text" placeholder="DPO / Compliance Lead" style="width:100px;"></td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Pending</option><option>In Progress</option><option>Complete</option></select></td>
+    <td><input type="text" placeholder="Summary report" style="width:80px;"></td>
+  </tr>
+
+</table>
+
+<div style="margin-top:20px; padding: var(--spacing-md); background:#f0f5ff; border-left:3px solid var(--primary-color);">
+  <strong>NOTES:</strong><br>
+  - <span class="critical" style="display:inline-block; padding:2px 6px; border-radius:3px; color:black;">Critical</span> = Mandatory for SDF, important for DF<br>
+  - <span class="important" style="display:inline-block; padding:2px 6px; border-radius:3px; background:var(--status-warn); color:black;">Important</span> = Recommended annually for all organizations<br>
+  - Adjust dates per organization's fiscal year (if not Jan-Dec)<br>
+  - Calendar for <input type="text" placeholder="2026" style="width:50px;"> can be adjusted to match organization calendar
+</div>
+
+<div style="margin-top:20px; padding: var(--spacing-md); background:var(--bg-light); border:1px solid var(--border-color);">
+  <strong>CALENDAR SIGN-OFF:</strong><br>
+  Approved by DPO: <input type="text" placeholder="Name / Signature" style="width:250px;"> Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;"><br>
+  Approved by Board Chair: <input type="text" placeholder="Name / Signature" style="width:250px;"> Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

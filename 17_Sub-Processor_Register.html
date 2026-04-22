@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sub-Processor Register</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="title">Sub-Processor Register</div>
+  <div class="subtitle">Third-Party Data Processor Tracking & Approval Record</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived] | <strong>Register ID:</strong> [SPR-REG-001]
+</div>
+
+<h2>1. Purpose & Legal Basis</h2>
+
+<p>This register maintains a record of all sub-processors engaged by Data Processors on behalf of the Data Fiduciary, in compliance with DPDP Act 2023. Under Section 8, Data Processors must not engage another processor without prior written consent of the Data Fiduciary.</p>
+
+<h2>2. Definitions</h2>
+
+<table>
+  <tr>
+    <th>Term</th>
+    <th>Definition</th>
+  </tr>
+  <tr>
+    <td><strong>Data Fiduciary</strong></td>
+    <td>Entity that determines the purpose and means of processing personal data</td>
+  </tr>
+  <tr>
+    <td><strong>Data Processor</strong></td>
+    <td>Entity that processes personal data on behalf of the Data Fiduciary</td>
+  </tr>
+  <tr>
+    <td><strong>Sub-Processor</strong></td>
+    <td>Third party engaged by the Data Processor to process personal data</td>
+  </tr>
+  <tr>
+    <td><strong>Processing</strong></td>
+    <td>Collection, recording, organization, structuring, storage, adaptation, retrieval</td>
+  </tr>
+</table>
+
+<h2>3. Register of Sub-Processors</h2>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Sub-Processor Name</th>
+    <th>Country</th>
+    <th>Data Processed</th>
+    <th>Purpose</th>
+    <th>DPA Signed</th>
+    <th>Approval Date</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>SP-001</td>
+    <td>[Cloud Provider]</td>
+    <td>India</td>
+    <td>Customer Data</td>
+    <td>Hosting</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i></td>
+    <td>[DATE]</td>
+    <td>Active</td>
+  </tr>
+  <tr>
+    <td>SP-002</td>
+    <td>[Payment Processor]</td>
+    <td>India</td>
+    <td>Payment Data</td>
+    <td>Payment Processing</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i></td>
+    <td>[DATE]</td>
+    <td>Active</td>
+  </tr>
+  <tr>
+    <td>SP-003</td>
+    <td>[Email Service]</td>
+    <td>USA</td>
+    <td>Email Addresses</td>
+    <td>Communications</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i></td>
+    <td>[DATE]</td>
+    <td>Active</td>
+  </tr>
+</table>
+
+<h2>4. Approval Process</h2>
+
+<div style="background: var(--status-warn); border-left: 4px solid #f59e0b; padding: 12px; margin: var(--spacing-md) 0; border-radius: 3px; ">
+  <p style="margin: 0;"><strong>Approval Workflow:</strong></p>
+  <ul style="margin: 8px 0 0 0; ">
+    <li>Data Processor submits sub-processor request with details</li>
+    <li>Data Fiduciary reviews security measures and DPA terms</li>
+    <li>Legal/Compliance reviews data transfer mechanisms (if cross-border)</li>
+    <li>Written approval granted or denied</li>
+    <li>Sub-Processor added to this register upon approval</li>
+  </ul>
+</div>
+
+<h2>5. Security Requirements</h2>
+
+<p><strong>All Sub-Processors must demonstrate:</strong></p>
+
+<ul >
+  <li>ISO 27001 certification or equivalent</li>
+  <li>AES-256 encryption for data at rest</li>
+  <li>TLS 1.2+ for data in transit</li>
+  <li>Role-based access controls</li>
+  <li>Incident response procedures</li>
+  <li>Data retention and deletion policies</li>
+  <li>Regular security audits</li>
+  <li>Employee training on data protection</li>
+</ul>
+
+<h2>6. Cross-Border Transfer Considerations</h2>
+
+<table>
+  <tr>
+    <th>Transfer Type</th>
+    <th>Requirement</th>
+    <th>Documentation Required</th>
+  </tr>
+  <tr>
+    <td>Within India</td>
+    <td>No restrictions</td>
+    <td>DPA with sub-processor</td>
+  </tr>
+  <tr>
+    <td>To指定 Countries</td>
+    <td>Adequacy assessment</td>
+    <td>DPA + Transfer Agreement</td>
+  </tr>
+  <tr>
+    <td>To Other Countries</td>
+    <td>Explicit consent + safeguards</td>
+    <td>DPA + SA + Impact Assessment</td>
+  </tr>
+</table>
+
+<h2>7. Obligations of Sub-Processors</h2>
+
+<p><strong>Each sub-processor must:</strong></p>
+
+<ul >
+  <li>Process personal data only on documented instructions from the Data Processor</li>
+  <li>Ensure confidentiality of employees with access to personal data</li>
+  <li>Implement appropriate technical and organizational security measures</li>
+  <li>Assist the Data Processor in fulfilling its obligations to Data Principals</li>
+  <li>Delete or return all personal data upon termination of the agreement</li>
+  <li>Make available information necessary to demonstrate compliance</li>
+  <li>Permit and cooperate with audits conducted by the Data Fiduciary</li>
+</ul>
+
+<h2>8. Notification Requirements</h2>
+
+<div style="background: var(--status-fail); border-left: 4px solid #ef4444; padding: 12px; margin: var(--spacing-md) 0; border-radius: 3px; ">
+  <p style="margin: 0;"><strong>Critical:</strong> The Data Processor must notify the Data Fiduciary immediately if:</p>
+  <ul style="margin: 8px 0 0 0; ">
+    <li>A sub-processor is engaged without prior approval</li>
+    <li>A security breach occurs at the sub-processor level</li>
+    <li>The sub-processor intends to sub-delegate to another entity</li>
+    <li>There is a material change in the sub-processor's security posture</li>
+  </ul>
+</div>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Register Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By:</strong> _________________________<br>
+    <strong>Approved By:</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+<!-- Navigation -->
+<div style="margin-top: 40px; padding: 15px; background: #f0f5ff; border-radius: 3px; text-align: center;">
+  <p >
+    <a href="16_Vendor_Risk_Assessment.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">← Previous: Vendor Risk Assessment</a> |
+    <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Back to Navigator</a> |
+    <a href="18_Data_Protection_Policy.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Next: Data Protection Policy →</a>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

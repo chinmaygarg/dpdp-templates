@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor Risk Assessment — DPDP Compliance + CPaaS Controls</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+<div class="header">
+  <div class="title">Vendor Risk Assessment (VRA)</div>
+  <div class="subtitle">DPDP Compliance Evaluation + CPaaS Purpose-Level Controls</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 2.0 (April 2026) | <strong>When:</strong> Before engagement + annual renewal<br>
+  <strong>Scope:</strong> All third-party vendors with access to personal data (processors, CPaaS providers, cloud providers, BPOs)
+</div>
+
+<h2>Vendor Classification Matrix</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Risk Level</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Data Sensitivity</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Volume</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Location</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">VRA Depth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong style="color: red;">HIGH</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Aadhaar, PAN, Bank Account, Health</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">&gt;10K records</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Outside India (cross-border)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Full audit + DPA + 24m SLA</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong style="color: orange;">MEDIUM</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Contact, Mobile, Email, Transaction</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">1K–10K records</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">India-based</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Questionnaire + DPA + 12m SLA</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong style="color: green;">LOW</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Name, DOB, Preferences (no sensitive)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">&lt;1K records</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">India-based</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Basic check + DPA + 6m SLA</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Vendor DPDP Compliance Questionnaire (20 Questions)</h2>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<ol style="margin: 0; padding-left: 20px;">
+  <li>Do you have a Data Protection Policy compliant with DPDP 2023?</li>
+  <li>What security controls are in place? (encryption, MFA, audit logging)</li>
+  <li>Where is personal data stored? (geographic location, cloud region)</li>
+  <li>Do you sub-process data? If yes, provide list of sub-processors.</li>
+  <li>What is your annual breach incident history?</li>
+  <li>When was your last security audit or penetration test?</li>
+  <li>Do you have ISO 27001 or SOC2 Type II certification?</li>
+  <li>Can you provide proof-of-deletion on contract termination?</li>
+  <li>What is your DSAR response time SLA?</li>
+  <li>Do you support withdrawal propagation within 24 hours?</li>
+  <li>Is your data processing compliant with cross-border transfer rules? (Section 16, Schedule 1)</li>
+  <li>Do you have cyber insurance coverage?</li>
+  <li>What is your incident response time SLA?</li>
+  <li>Do you comply with RBI/SEBI/IRDAI guidelines (if applicable)?</li>
+  <li>Can you provide annual audit report on data handling?</li>
+  <li>Do you have DPO or Privacy Officer on staff?</li>
+  <li>Can you support individual consent tracking per purpose?</li>
+  <li>What is your data retention and deletion schedule?</li>
+  <li>Do you have Cyber Security audit ready for review?</li>
+  <li>Will you commit to DPBI compliance and audit cooperation?</li>
+</ol>
+</div>
+
+<h2>CPaaS Vendor DPDP Configuration Checklist</h2>
+
+<p><strong>For Communication Platform as a Service (CPaaS) vendors (SMS, Email, WhatsApp, Push):</strong></p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">CPaaS Control</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">Required?</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Verification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Suppression List Sync ≤24h</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">✓ YES</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Test withdrawal → confirm suppressed within 24h</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Per-Purpose Opt-Out</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">✓ YES</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">User can unsubscribe from marketing without affecting transactional</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Withdrawal Confirmation Mechanism</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">✓ YES</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CPaaS sends confirmation callback to Fiduciary's API</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>No Marketing to Opted-Out</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">✓ YES</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Audit CPaaS logs: zero marketing sends post-withdrawal</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Separate Consent for WhatsApp vs SMS vs Email</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">✓ YES</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">User can consent to SMS only, not WhatsApp</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>DPA Executed with CPaaS</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">✓ YES</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Signed DPA on file (see T-15)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Vendor Risk Register</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Vendor Name</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Data Categories</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">DPA Signed?</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Last VRA Date</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Next Review</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Risk Score (0-100)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><input type="text" placeholder="Vendor Name" style="width:120px;"></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><input type="text" placeholder="Email, Phone, Contact" style="width:120px; "></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><input type="text" placeholder="Yes/No" style="width:60px;"></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><input type="text" placeholder="DD/MM/YYYY" style="width:100px;"></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><input type="text" placeholder="DD/MM/YYYY" style="width:100px;"></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><input type="text" placeholder="0-100" style="width:60px;"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Annual Review Process</h2>
+
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Every 12 months for each vendor:</strong><br>
+1. Send updated DPDP Compliance Questionnaire<br>
+2. Request latest security audit / certification (ISO 27001, SOC2)<br>
+3. Review incident history (breaches, downtime)<br>
+4. Check DPA expiry and renewal status<br>
+5. Test CPaaS controls (suppression sync, withdrawal propagation)<br>
+6. Assign updated Risk Score<br>
+7. Update Vendor Risk Register<br>
+8. If Risk Score > 70: escalate to Procurement for renegotiation/replacement<br>
+9. Report summary to Board Risk Committee (quarterly)
+</div>
+
+<h2>Implementation Checklist</h2>
+
+<ul >
+  <li>☐ Identify all vendors with personal data access</li>
+  <li>☐ Classify vendors by risk level (High/Medium/Low)</li>
+  <li>☐ Distribute DPDP Compliance Questionnaire</li>
+  <li>☐ Execute or renew DPAs (see T-15)</li>
+  <li>☐ For CPaaS vendors: validate suppression list sync + withdrawal propagation</li>
+  <li>☐ Populate Vendor Risk Register</li>
+  <li>☐ Schedule annual VRA reviews</li>
+  <li>☐ Document risk scores and decisions</li>
+  <li>☐ Report summary to Board quarterly</li>
+</ul>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

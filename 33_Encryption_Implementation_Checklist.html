@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encryption Implementation Checklist</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="title">Encryption Implementation Checklist</div>
+  <div class="subtitle">Data Protection Encryption Standards Verification</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived] | <strong>Checklist ID:</strong> [ENC-CHECK-001]
+</div>
+
+<h2>1. Purpose & Scope</h2>
+
+<p>This checklist verifies the implementation of encryption controls for protecting personal data at rest and in transit, in compliance with DPDP Act 2023 and industry security standards (ISO 27001, NIST).</p>
+
+<h2>2. Encryption at Rest</h2>
+
+<table>
+  <tr>
+    <th>Control Item</th>
+    <th>Requirement</th>
+    <th>Status</th>
+    <th>Evidence</th>
+  </tr>
+  <tr>
+    <td><strong>Database Encryption</strong></td>
+    <td>AES-256 encryption for all databases containing personal data</td>
+    <td>☐ Implemented</td>
+    <td>[Document ref]</td>
+  </tr>
+  <tr>
+    <td><strong>File System Encryption</strong></td>
+    <td>Encrypted file systems or disk encryption for servers</td>
+    <td>☐ Implemented</td>
+    <td>[Document ref]</td>
+  </tr>
+  <tr>
+    <td><strong>Backup Encryption</strong></td>
+    <td>All backups encrypted with separate encryption keys</td>
+    <td>☐ Implemented</td>
+    <td>[Document ref]</td>
+  </tr>
+  <tr>
+    <td><strong>Key Management</strong></td>
+    <td>Hardware Security Module (HSM) or secure key vault</td>
+    <td>☐ Implemented</td>
+    <td>[Document ref]</td>
+  </tr>
+  <tr>
+    <td><strong>Column-Level Encryption</strong></td>
+    <td>Extra encryption for sensitive fields (Aadhaar, PAN, financial)</td>
+    <td>☐ Implemented</td>
+    <td>[Document ref]</td>
+  </tr>
+</table>
+
+<h2>3. Encryption in Transit</h2>
+
+<table>
+  <tr>
+    <th>Control Item</th>
+    <th>Requirement</th>
+    <th>Status</th>
+    <th>Evidence</th>
+  </tr>
+  <tr>
+    <td><strong>TLS 1.2+</strong></td>
+    <td>TLS 1.2 minimum for all external communications</td>
+    <td>☐ Implemented</td>
+    <td>[Document ref]</td>
+  </tr>
+  <tr>
+    <td><strong>Certificate Management</strong></td>
+    <td>Valid SSL/TLS certificates from trusted CAs</td>
+    <td>☐ Implemented</td>
+    <td>[Document ref]</td>
+  </tr>
+  <tr>
+    <td><strong>HTTPS Enforcement</strong></td>
+    <td>All web traffic redirected to HTTPS</td>
+    <td>☐ Implemented</td>
+    <td>[Document ref]</td>
+  </tr>
+  <tr>
+    <td><strong>API Security</strong></td>
+    <td>API endpoints use mutual TLS or API keys</td>
+    <td>☐ Implemented</td>
+    <td>[Document ref]</td>
+  </tr>
+  <tr>
+    <td><strong>Email Encryption</strong></td>
+    <td>S/MIME or PGP for sensitive email communications</td>
+    <td>☐ Implemented</td>
+    <td>[Document ref]</td>
+  </tr>
+</table>
+
+<h2>4. Key Management Controls</h2>
+
+<div style="background: var(--status-warn); border-left: 4px solid #f59e0b; padding: 12px; margin: var(--spacing-md) 0; border-radius: 3px; ">
+  <p style="margin: 0;"><strong>Key Management Requirements:</strong></p>
+  <ul style="margin: 8px 0 0 0; ">
+    <li>Keys stored separately from encrypted data</li>
+    <li>Key rotation at least annually</li>
+    <li>Multi-factor authentication for key access</li>
+    <li>Complete audit trail of key usage</li>
+    <li>Secure key destruction procedures</li>
+  </ul>
+</div>
+
+<h2>5. Algorithm Standards</h2>
+
+<table>
+  <tr>
+    <th>Encryption Type</th>
+    <th>Approved Algorithms</th>
+    <th>Minimum Key Size</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>Symmetric (AES)</td>
+    <td>AES-256-GCM</td>
+    <td>256 bits</td>
+    <td>☐ Compliant</td>
+  </tr>
+  <tr>
+    <td>Asymmetric (RSA)</td>
+    <td>RSA-OAEP</td>
+    <td>2048 bits</td>
+    <td>☐ Compliant</td>
+  </tr>
+  <tr>
+    <td>Hashing</td>
+    <td>SHA-256+</td>
+    <td>256 bits</td>
+    <td>☐ Compliant</td>
+  </tr>
+  <tr>
+    <td>HMAC</td>
+    <td>HMAC-SHA256</td>
+    <td>256 bits</td>
+    <td>☐ Compliant</td>
+  </tr>
+</table>
+
+<h2>6. India-Specific Regulatory Encryption Rules</h2>
+
+<p>These rules are <strong>mandatory for all India-regulated organizations</strong> and create direct penalty exposure if violated.</p>
+
+<h3>Rule 1: Aadhaar Virtual ID (VID) Only — NO 12-Digit Aadhaar Storage</h3>
+
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>✗ VIOLATION:</strong> Storing 12-digit Aadhaar number in database, logs, or backups<br>
+  <strong>✓ COMPLIANCE:</strong> Store only Aadhaar Virtual ID (VID) from UIDAI<br><br>
+  <strong>Database Encryption Impact:</strong><br>
+  • If 12-digit Aadhaar exists in DB: <strong>Immediate remediation required</strong> (delete plaintext, replace with hashed + VID)<br>
+  • If VID is stored: Encryption at rest is sufficient (AES-256-GCM column-level)<br>
+  • Hash Aadhaar for deduplication: SHA-256(12-digit Aadhaar) — store hash only, never plaintext
+</div>
+
+<h3>Rule 2: PAN Masking in All Outputs (Except Payment APIs)</h3>
+
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>PAN Storage vs. Display Rule:</strong><br><br>
+  <strong>In Database:</strong> Full PAN stored, encrypted with AES-256-GCM at rest<br>
+  <strong>In All Outputs:</strong> Mask to last 4 digits (e.g., XXXXXXX1234)<br><br>
+  <strong>Applies to:</strong><br>
+  ✓ Admin dashboards<br>
+  ✓ API responses (JSON)<br>
+  ✓ Exports (CSV, Excel, PDF)<br>
+  ✓ Logs (application, audit, SIEM)<br>
+  ✓ Error messages and exceptions<br>
+  ✓ Email communications<br>
+  ✓ Backups and archives<br><br>
+  <strong>Exception:</strong> Full PAN only in payment processing APIs (with restricted access + audit logging)
+</div>
+
+<h3>Sensitive Data Field Registry</h3>
+
+<p>Audit your database for these Tier 1 PII fields. Each requires specific masking/encryption rules:</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Field Name</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Data Type</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Storage Rule</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Display Rule</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Aadhaar Number</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">12-digit string</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">SHA-256 hash only (never store plaintext)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DO NOT DISPLAY. Show VID only.</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">☐ Verified</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Aadhaar Virtual ID (VID)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">16-digit string</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Encrypted AES-256-GCM column-level</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Display full VID (non-sensitive)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">☐ Verified</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>PAN</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">10-character string</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Encrypted AES-256-GCM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Mask to XXXXXXX1234 (last 4 only)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">☐ Verified</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Bank Account Number</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">10-20 digit string</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Encrypted AES-256-GCM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Mask to last 4 (XXXXXXXXX2345) unless in payment API</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">☐ Verified</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Mobile Number</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">10-digit string</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Encrypted AES-256-GCM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Mask middle digits (XXXXX6789)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">☐ Verified</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Email Address</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">String</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Encrypted AES-256-GCM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Mask to f***@domain.com</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">☐ Verified</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Passport / Driving License</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">String</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Encrypted AES-256-GCM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Display only to authorized roles (e.g., KYC team)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">☐ Verified</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Aadhaar & PAN Encryption Verification Checklist</h3>
+
+<ul >
+  <li>☐ <strong>Audit database:</strong> Search all tables for 12-digit Aadhaar column pattern (XXXXXXXX****). MUST be zero matches.</li>
+  <li>☐ <strong>Verify VID storage:</strong> Aadhaar-like fields should contain 16-digit VID, encrypted at column level.</li>
+  <li>☐ <strong>PAN masking in APIs:</strong> All API responses with PAN show XXXXXXX1234 format. Full PAN encrypted in DB only.</li>
+  <li>☐ <strong>PAN masking in logs:</strong> Grep application logs for PAN patterns. Any matches must be redacted as [PAN-REDACTED].</li>
+  <li>☐ <strong>Audit exports:</strong> Generate sample CSV/Excel/PDF exports. Verify PAN and Aadhaar are masked/redacted.</li>
+  <li>☐ <strong>Audit backups:</strong> Database backups are encrypted (AES-256) and include only VID (not 12-digit Aadhaar).</li>
+  <li>☐ <strong>Email communications:</strong> Data shared via email has Aadhaar redacted and PAN masked.</li>
+  <li>☐ <strong>Exception documentation:</strong> Document any fields where full PAN/Aadhaar is displayed (must be rare + approved by DPO).</li>
+</ul>
+
+---
+
+<h2>7. Compliance Verification</h2>
+
+<table>
+  <tr>
+    <th>Regulation</th>
+    <th>Requirement</th>
+    <th>Verified</th>
+  </tr>
+  <tr>
+    <td>DPDP Act Section 8(6)</td>
+    <td>Appropriate security safeguards for personal data</td>
+    <td>☐ Yes</td>
+  </tr>
+  <tr>
+    <td>RBI Guidelines</td>
+    <td>Encryption of customer data as per RBI directives</td>
+    <td>☐ Yes</td>
+  </tr>
+  <tr>
+    <td>ISO 27001</td>
+    <td>Cryptographic controls (A.10.1)</td>
+    <td>☐ Yes</td>
+  </tr>
+  <tr>
+    <td>NIST SP 800-53</td>
+    <td>SC-13 Cryptographic Protection</td>
+    <td>☐ Yes</td>
+  </tr>
+</table>
+
+<h2>8. Testing & Validation</h2>
+
+<ul >
+  <li>☐ Vulnerability scanning of encrypted channels</li>
+  <li>☐ Penetration testing includes crypto analysis</li>
+  <li>☐ Key recovery procedures tested</li>
+  <li>☐ Encryption/decryption functionality verified</li>
+  <li>☐ Performance impact assessed</li>
+  <li>☐ Third-party encryption audit completed</li>
+</ul>
+
+<h2>9. Remediation Tracker</h2>
+
+<table>
+  <tr>
+    <th>Issue ID</th>
+    <th>Description</th>
+    <th>Severity</th>
+    <th>Due Date</th>
+    <th>Owner</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>ENC-001</td>
+    <td>[Issue description]</td>
+    <td>High</td>
+    <td>[DATE]</td>
+    <td>[Name]</td>
+    <td>Open</td>
+  </tr>
+</table>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Checklist Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By:</strong> _________________________<br>
+    <strong>Approved By:</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+<!-- Navigation -->
+<div style="margin-top: 40px; padding: 15px; background: #f0f5ff; border-radius: 3px; text-align: center;">
+  <p >
+    <a href="32_Data_Discovery_Report.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">← Previous: Data Discovery Report</a> |
+    <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Back to Navigator</a> |
+    <a href="34_Access_Control_Policy.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Next: Access Control Policy →</a>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

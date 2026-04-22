@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Processor Deletion Confirmation — Data Erasure Instruction &amp; Receipt Template</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  .header { border-bottom: 2px solid var(--text-primary); padding-bottom: 15px; margin-bottom: 20px; }
+  .title { font-weight: bold; margin-bottom: 10px; }
+  .subtitle { color: var(--text-secondary); margin-bottom: 15px; }
+  table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; }
+  th { background: #2c3e50; color: white; padding: 6px; text-align: left; font-weight: bold; }
+  td { border: 1px solid var(--border-color); padding: 5px; vertical-align: top; }
+  tr:nth-child(even) { background: var(--bg-light); }
+  input[type="text"], textarea, select { border: none; border-bottom: 1px solid var(--text-primary); padding: 2px; width: 95%; background: transparent; }
+  .section { margin-top: 20px; }
+  .section-title { font-weight: bold; background: #ecf0f1; padding: 5px; margin-bottom: 10px; }
+  .note { background: var(--status-warn); padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #ffc107; }
+  .critical { background: var(--status-fail); padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #dc3545; }
+  .info { background: #e8f4fd; padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #0066cc; }
+  .success { background: #d1e7dd; padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #0a3622; }
+  .formal-letter { background: #fff; border: 1px solid #aaa; padding: 20px; margin: 12px 0; border-radius: 3px; }
+  .formal-letter .letter-header { border-bottom: 1px solid #aaa; padding-bottom: 10px; margin-bottom: 10px; }
+  .receipt-box { background: #f9f9f9; border: 2px solid #2c3e50; padding: 15px; margin: 12px 0; border-radius: 3px; }
+  @media print { body { margin: 0; padding: 0; } .no-print { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="title">PROCESSOR DELETION CONFIRMATION — Data Erasure Instruction &amp; Receipt Template</div>
+  <div class="subtitle">
+    Issuing Organization (Data Fiduciary): <input type="text" placeholder="[Organization Name]" style="width:280px;"><br>
+    Document Reference: <input type="text" placeholder="DEL-CONF-[YYYY]-[NNN]" style="width:180px;">
+    &nbsp;&nbsp; Issue Date: <input type="text" placeholder="DD/MM/YYYY" style="width:130px;">
+    &nbsp;&nbsp; Deletion Deadline: <input type="text" placeholder="DD/MM/YYYY (30-day default)" style="width:200px;"><br>
+    DPO Issuing: <input type="text" placeholder="Name / Contact" style="width:250px;">
+    &nbsp;&nbsp; Trigger Type:
+    <select>
+      <option>DSAR Erasure Request</option>
+      <option>Consent Withdrawal</option>
+      <option>Purpose Completion</option>
+      <option>Retention Expiry</option>
+      <option>Contract Termination</option>
+    </select>
+  </div>
+</div>
+
+<div class="info">
+  <strong>Legal Basis:</strong> Under Section 8(2) and Section 8(7) of the DPDP Act 2023, a Data Fiduciary must instruct its Data Processors to delete personal data once the purpose of processing is no longer served. This template provides: (A) the formal deletion instruction to the processor, (B) the processor's confirmation receipt format, and (C) the tracking log for all deletion confirmations. Failure to obtain processor deletion confirmation within the specified timeline constitutes a compliance gap.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">PART A — FORMAL DELETION INSTRUCTION TO PROCESSOR</div>
+
+  <div class="formal-letter">
+    <div class="letter-header">
+      <strong><input type="text" placeholder="[Organization Name]" style="width:250px;"></strong><br>
+      <input type="text" placeholder="[Registered Address Line 1]" style="width:350px;"><br>
+      <input type="text" placeholder="[City, State, PIN]" style="width:300px;"><br>
+      DPO Email: <input type="text" placeholder="dpo@[org].in" style="width:200px;">
+      &nbsp;&nbsp; Phone: <input type="text" placeholder="+91-XXXXXXXXXX" style="width:150px;"><br>
+      Date: <input type="text" placeholder="DD/MM/YYYY" style="width:130px;">
+      &nbsp;&nbsp; Reference: <input type="text" placeholder="DEL-CONF-[YYYY]-[NNN]" style="width:180px;">
+    </div>
+
+    <p><strong>To:</strong><br>
+    Authorized Signatory / Data Protection Officer<br>
+    <input type="text" placeholder="[Processor / Vendor Name]" style="width:300px;"><br>
+    <input type="text" placeholder="[Processor Address]" style="width:350px;"><br>
+    Email: <input type="text" placeholder="[Processor DPO / Legal email]" style="width:250px;">
+    </p>
+
+    <p><strong>Subject: Formal Instruction for Deletion of Personal Data — Ref: <input type="text" placeholder="DEL-CONF-[YYYY]-[NNN]" style="width:180px;"></strong></p>
+
+    <p>Dear Sir / Madam,</p>
+
+    <p>This letter constitutes a formal written instruction from <strong><input type="text" placeholder="[Organization Name]" style="width:200px;"></strong> ("the Data Fiduciary") to <strong><input type="text" placeholder="[Processor Name]" style="width:200px;"></strong> ("the Data Processor") under the terms of the Data Processing Agreement dated <input type="text" placeholder="DD/MM/YYYY" style="width:120px;"> (Reference: <input type="text" placeholder="DPA-REF" style="width:100px;">) and in compliance with Section 8(7) of the Digital Personal Data Protection Act 2023.</p>
+
+    <p>You are hereby instructed to <strong>permanently and irreversibly delete</strong> all personal data within the scope specified in <strong>Schedule A</strong> below, within <input type="text" placeholder="30" style="width:25px;"> calendar days of this instruction (by <input type="text" placeholder="DD/MM/YYYY" style="width:120px;">).</p>
+
+    <p><strong>Trigger for Deletion:</strong>
+    <select>
+      <option>Data Principal erasure request under Section 12 of the DPDP Act 2023</option>
+      <option>Consent withdrawal by Data Principal(s)</option>
+      <option>Purpose for which data was collected has been fulfilled</option>
+      <option>Retention period specified in the Data Retention Schedule has expired</option>
+      <option>Termination / expiry of the Data Processing Agreement</option>
+    </select>
+    </p>
+
+    <p><strong>SCHEDULE A — DATA SUBJECT TO DELETION</strong></p>
+
+    <table>
+      <tr>
+        <th style="width:20%;">Data Principal Identifier</th>
+        <th style="width:20%;">Data Categories to Delete</th>
+        <th style="width:18%;">Systems / Databases</th>
+        <th style="width:18%;">Includes Backups?</th>
+        <th style="width:12%;">Batch Size</th>
+        <th style="width:12%;">Notes</th>
+      </tr>
+      <tr>
+        <td><input type="text" placeholder="e.g., Principal IDs: DP-001 to DP-250 or [file attached]" style="width:140px;"></td>
+        <td><input type="text" placeholder="e.g., KYC documents, transaction history, contact details" style="width:150px;"></td>
+        <td><input type="text" placeholder="e.g., CRM DB, Document Store, Cold Archive" style="width:150px;"></td>
+        <td>
+          <select>
+            <option>Yes — all backups within retention window</option>
+            <option>Yes — backups older than [X] months only</option>
+            <option>No — active data only; backups handled separately</option>
+          </select>
+        </td>
+        <td><input type="text" placeholder="e.g., 250 records" style="width:80px;"></td>
+        <td><input type="text" placeholder="Any exceptions or holds" style="width:90px;"></td>
+      </tr>
+      <tr style="background:var(--bg-light);">
+        <td><input type="text" placeholder="Additional batch if applicable" style="width:140px;"></td>
+        <td><input type="text" placeholder="Data categories" style="width:150px;"></td>
+        <td><input type="text" placeholder="Systems" style="width:150px;"></td>
+        <td>
+          <select>
+            <option>Yes — all backups within retention window</option>
+            <option>No — active data only</option>
+          </select>
+        </td>
+        <td><input type="text" placeholder="Count" style="width:80px;"></td>
+        <td><input type="text" placeholder="Notes" style="width:90px;"></td>
+      </tr>
+    </table>
+
+    <p><strong>DELETION REQUIREMENTS:</strong></p>
+    <ol style=" padding-left:20px;">
+      <li>Deletion must be <strong>permanent and irreversible</strong> — overwriting, cryptographic erasure, or secure destruction per NIST SP 800-88 or equivalent standard.</li>
+      <li>Deletion must cover <strong>all copies</strong>: primary databases, secondary replicas, cold storage, archives, backups, and any data shared with sub-processors.</li>
+      <li>You must instruct all <strong>sub-processors</strong> who have received this data to also delete it and confirm the same to you within the deletion deadline.</li>
+      <li>You must provide a <strong>signed deletion confirmation receipt</strong> (Part B of this template) to the Data Fiduciary DPO by: <input type="text" placeholder="DD/MM/YYYY" style="width:120px;">.</li>
+      <li><strong>Do not</strong> delete data subject to a statutory hold under applicable law (PMLA / RBI / IRDAI / SEBI). If a conflict exists, notify the Data Fiduciary DPO immediately.</li>
+    </ol>
+
+    <p>If you have any questions regarding the scope of this instruction, please contact the Data Fiduciary DPO at <input type="text" placeholder="dpo@[org].in" style="width:200px;"> within <input type="text" placeholder="5" style="width:25px;"> business days of receipt of this instruction.</p>
+
+    <p>
+      Yours faithfully,<br><br>
+      _________________________<br>
+      <strong><input type="text" placeholder="Name of DPO / Authorized Signatory" style="width:250px;"></strong><br>
+      <input type="text" placeholder="Designation" style="width:200px;"><br>
+      <input type="text" placeholder="[Organization Name]" style="width:200px;"><br>
+      Date: <input type="text" placeholder="DD/MM/YYYY" style="width:130px;">
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">PART B — PROCESSOR DELETION CONFIRMATION RECEIPT (to be signed and returned by Processor)</div>
+
+  <div class="receipt-box">
+    <p style="text-align:center; font-weight:bold; ">DELETION CONFIRMATION RECEIPT</p>
+    <p style="text-align:center;  color:var(--text-secondary);">To be completed by the Data Processor and returned to the Data Fiduciary DPO by the deadline specified in Part A</p>
+
+    <p>
+      <strong>Reference (from Data Fiduciary):</strong> <input type="text" placeholder="DEL-CONF-[YYYY]-[NNN]" style="width:200px;"><br>
+      <strong>Deletion Instruction Received Date:</strong> <input type="text" placeholder="DD/MM/YYYY" style="width:130px;"><br>
+      <strong>Deletion Completed Date:</strong> <input type="text" placeholder="DD/MM/YYYY" style="width:130px;"><br>
+      <strong>Processor Organization:</strong> <input type="text" placeholder="[Processor Name]" style="width:300px;"><br>
+      <strong>Processor DPO / Authorized Signatory:</strong> <input type="text" placeholder="Name / Designation" style="width:300px;">
+    </p>
+
+    <p><strong>CONFIRMATION STATEMENT:</strong></p>
+    <p>We, <strong><input type="text" placeholder="[Processor Name]" style="width:250px;"></strong>, confirm that we have permanently and irreversibly deleted all personal data as specified in Schedule A of the deletion instruction referenced above, as follows:</p>
+
+    <table>
+      <tr>
+        <th style="width:22%;">Data Category Deleted</th>
+        <th style="width:18%;">Systems Cleared</th>
+        <th style="width:16%;">Deletion Method</th>
+        <th style="width:12%;">Deletion Date</th>
+        <th style="width:12%;">Backups Purged?</th>
+        <th style="width:10%;">Sub-Processors Notified?</th>
+        <th style="width:10%;">Evidence Reference</th>
+      </tr>
+      <tr>
+        <td><input type="text" placeholder="Category name" style="width:140px;"></td>
+        <td><input type="text" placeholder="System name(s)" style="width:120px;"></td>
+        <td>
+          <select>
+            <option>Secure overwrite (NIST 800-88)</option>
+            <option>Cryptographic erasure</option>
+            <option>Physical destruction</option>
+            <option>Database purge (verified)</option>
+          </select>
+        </td>
+        <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+        <td>
+          <select>
+            <option>Yes — all backups purged</option>
+            <option>Partial — [specify]</option>
+            <option>N/A — no backups held</option>
+          </select>
+        </td>
+        <td>
+          <select>
+            <option>Yes</option>
+            <option>No — not applicable</option>
+            <option>Pending</option>
+          </select>
+        </td>
+        <td><input type="text" placeholder="Log ID / audit ref" style="width:80px;"></td>
+      </tr>
+      <tr style="background:var(--bg-light);">
+        <td><input type="text" placeholder="Category name" style="width:140px;"></td>
+        <td><input type="text" placeholder="System name(s)" style="width:120px;"></td>
+        <td>
+          <select>
+            <option>Secure overwrite (NIST 800-88)</option>
+            <option>Cryptographic erasure</option>
+            <option>Physical destruction</option>
+            <option>Database purge (verified)</option>
+          </select>
+        </td>
+        <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+        <td>
+          <select>
+            <option>Yes — all backups purged</option>
+            <option>Partial — [specify]</option>
+            <option>N/A — no backups held</option>
+          </select>
+        </td>
+        <td>
+          <select>
+            <option>Yes</option>
+            <option>No — not applicable</option>
+            <option>Pending</option>
+          </select>
+        </td>
+        <td><input type="text" placeholder="Log ID / audit ref" style="width:80px;"></td>
+      </tr>
+    </table>
+
+    <div class="note" style=" margin-top:10px;">
+      <strong>Exception / Partial Deletion Notice (if applicable):</strong><br>
+      If any data could NOT be deleted due to a statutory hold or technical constraint, describe below:<br>
+      <textarea placeholder="e.g., Loan transaction records for Principal IDs [X] could not be deleted as they are subject to RBI mandatory retention for 8 years. Estimated deletion date: [DD/MM/YYYY]. We have isolated these records and restricted further processing to the minimum necessary for statutory compliance only." style="width:100%; height:60px; border:1px solid #ffc107;"></textarea>
+    </div>
+
+    <p style="margin-top:15px;"><strong>SUB-PROCESSOR CONFIRMATION SUMMARY:</strong></p>
+    <table>
+      <tr>
+        <th>Sub-Processor Name</th>
+        <th>Deletion Instruction Issued</th>
+        <th>Confirmation Received</th>
+        <th>Confirmation Reference</th>
+      </tr>
+      <tr>
+        <td><input type="text" placeholder="Sub-processor name or N/A" style="width:130px;"></td>
+        <td><input type="text" placeholder="DD/MM/YYYY or N/A" style="width:110px;"></td>
+        <td><input type="text" placeholder="DD/MM/YYYY or Pending" style="width:110px;"></td>
+        <td><input type="text" placeholder="Reference ID" style="width:100px;"></td>
+      </tr>
+      <tr style="background:var(--bg-light);">
+        <td><input type="text" placeholder="Sub-processor name or N/A" style="width:130px;"></td>
+        <td><input type="text" placeholder="DD/MM/YYYY or N/A" style="width:110px;"></td>
+        <td><input type="text" placeholder="DD/MM/YYYY or Pending" style="width:110px;"></td>
+        <td><input type="text" placeholder="Reference ID" style="width:100px;"></td>
+      </tr>
+    </table>
+
+    <p style="margin-top:15px;"><strong>AUTHORIZED SIGNATORY (Processor):</strong></p>
+    <p>
+      Name: <input type="text" placeholder="Full name" style="width:250px;"><br>
+      Designation: <input type="text" placeholder="DPO / Legal Counsel / Authorized Signatory" style="width:280px;"><br>
+      Organization: <input type="text" placeholder="[Processor Name]" style="width:280px;"><br>
+      Signature: _________________________<br>
+      Date: <input type="text" placeholder="DD/MM/YYYY" style="width:130px;"><br>
+      Official Seal / Stamp: _________________________
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">PART C — DELETION CONFIRMATION TRACKING LOG</div>
+
+  <div class="note">
+    All deletion instructions and their confirmations must be logged here. Failure to receive a signed confirmation within the deadline must be escalated to the DPO and flagged as a compliance risk.
+  </div>
+
+  <table>
+    <tr>
+      <th style="width:6%;">Instruction Ref</th>
+      <th style="width:8%;">Processor Name</th>
+      <th style="width:8%;">Trigger</th>
+      <th style="width:8%;">Data Categories</th>
+      <th style="width:7%;">Approx Records</th>
+      <th style="width:8%;">Instruction Issued</th>
+      <th style="width:8%;">Deadline</th>
+      <th style="width:10%;">Confirmation Received</th>
+      <th style="width:8%;">Confirmation Ref</th>
+      <th style="width:9%;">Sub-Processor Confirmations</th>
+      <th style="width:8%;">Status</th>
+      <th style="width:10%;">DPO Sign-off</th>
+    </tr>
+
+    <tr>
+      <td><input type="text" placeholder="DEL-CONF-XXXX" style="width:80px;"></td>
+      <td><input type="text" placeholder="Processor" style="width:70px;"></td>
+      <td>
+        <select>
+          <option>DSAR Erasure</option>
+          <option>Consent Withdrawal</option>
+          <option>Purpose Complete</option>
+          <option>Retention Expiry</option>
+          <option>Contract End</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="Categories" style="width:80px;"></td>
+      <td><input type="text" placeholder="Count" style="width:50px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY or Pending" style="width:90px;"></td>
+      <td><input type="text" placeholder="Receipt ref" style="width:70px;"></td>
+      <td>
+        <select>
+          <option>N/A</option>
+          <option>All confirmed</option>
+          <option>Partial — pending</option>
+          <option>Overdue — escalated</option>
+        </select>
+      </td>
+      <td>
+        <select>
+          <option>Complete</option>
+          <option>Pending Receipt</option>
+          <option>Overdue — Escalate</option>
+          <option>Partial Exception</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="DPO initials + date" style="width:90px;"></td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><input type="text" placeholder="DEL-CONF-XXXX" style="width:80px;"></td>
+      <td><input type="text" placeholder="Processor" style="width:70px;"></td>
+      <td>
+        <select>
+          <option>DSAR Erasure</option>
+          <option>Consent Withdrawal</option>
+          <option>Purpose Complete</option>
+          <option>Retention Expiry</option>
+          <option>Contract End</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="Categories" style="width:80px;"></td>
+      <td><input type="text" placeholder="Count" style="width:50px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY or Pending" style="width:90px;"></td>
+      <td><input type="text" placeholder="Receipt ref" style="width:70px;"></td>
+      <td>
+        <select>
+          <option>N/A</option>
+          <option>All confirmed</option>
+          <option>Partial — pending</option>
+          <option>Overdue — escalated</option>
+        </select>
+      </td>
+      <td>
+        <select>
+          <option>Complete</option>
+          <option>Pending Receipt</option>
+          <option>Overdue — Escalate</option>
+          <option>Partial Exception</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="DPO initials + date" style="width:90px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">PART D — ESCALATION PROTOCOL (Overdue Confirmations)</div>
+
+  <div class="critical">
+    <strong>ESCALATION TRIGGER:</strong> If a signed deletion confirmation receipt is not received within the deadline specified in Part A:<br>
+    <ol style="margin:4px 0 0 16px; padding:0;">
+      <li><strong>Day 1 after deadline:</strong> DPO sends formal reminder to Processor's DPO / Legal contact via email + certified post.</li>
+      <li><strong>Day 7 after deadline:</strong> DPO escalates to CISO and Legal. Consider suspending any new data sharing with this processor pending resolution.</li>
+      <li><strong>Day 14 after deadline:</strong> Legal issues formal breach-of-DPA notice. Log non-compliance in Third-Party Inventory risk rating. Consider whether a breach notification to the Data Protection Board is required under Section 8(6).</li>
+      <li><strong>Day 30 after deadline:</strong> Terminate DPA and remove processor from approved vendor list. Engage legal counsel for liability assessment.</li>
+    </ol>
+  </div>
+
+  <table>
+    <tr>
+      <th>Escalation Event</th>
+      <th>Instruction Ref</th>
+      <th>Processor Name</th>
+      <th>Escalation Date</th>
+      <th>Escalation Level</th>
+      <th>Action Taken</th>
+      <th>Resolved?</th>
+      <th>Resolution Date</th>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="e.g., Reminder sent" style="width:100px;"></td>
+      <td><input type="text" placeholder="DEL-CONF-XXX" style="width:90px;"></td>
+      <td><input type="text" placeholder="Processor name" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+      <td>
+        <select>
+          <option>Level 1 — DPO Reminder</option>
+          <option>Level 2 — CISO + Legal</option>
+          <option>Level 3 — Breach of DPA notice</option>
+          <option>Level 4 — Termination</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="Action description" style="width:110px;"></td>
+      <td>
+        <select>
+          <option>Yes</option>
+          <option>No — ongoing</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="DD/MM/YYYY or N/A" style="width:90px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div style="margin-top:20px; padding: var(--spacing-md); background:#f0f5ff; border-left:3px solid var(--primary-color);">
+  <strong>LOG CERTIFICATION</strong><br><br>
+  This Processor Deletion Confirmation Log is maintained by: <input type="text" placeholder="Name / Title (DPO)" style="width:250px;"><br>
+  Log Period: <input type="text" placeholder="DD/MM/YYYY" style="width:130px;"> to <input type="text" placeholder="DD/MM/YYYY" style="width:130px;"><br>
+  All confirmations have been reviewed and signed off by the DPO: <input type="text" placeholder="Signature" style="width:200px;"> Date: <input type="text" placeholder="DD/MM/YYYY" style="width:130px;"><br><br>
+  <em >This log, together with the signed confirmation receipts, constitutes the organization's evidence of processor compliance under DPDP Act 2023 Section 8(7). Retain for a minimum of 5 years. File in: <input type="text" placeholder="SharePoint / DMS path" style="width:200px;"></em>
+</div>
+
+<!-- Navigation -->
+<div style="margin-top: 40px; padding: 15px; background: #f0f5ff; border-radius: 3px; text-align: center;">
+  <p >
+    <a href="29_Deletion_Log.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">← Deletion Log</a> |
+    <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Back to Navigator</a> |
+    <a href="02A_Data_Retention_Schedule.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Data Retention Schedule →</a> |
+    <a href="43_Statutory_Hold_Register.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Statutory Hold Register →</a> |
+    <a href="15_Data_Processing_Agreement_(DPA).html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Data Processing Agreement →</a>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

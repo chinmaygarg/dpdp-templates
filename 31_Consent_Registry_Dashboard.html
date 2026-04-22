@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consent Registry Dashboard</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Consent Registry Dashboard</div>
+  <div class="subtitle">Consent Record Tracking and Analytics</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived]
+</div>
+
+<h2>Overview</h2>
+
+<p >
+  This document provides guidance and templates for Consent Registry Dashboard implementation in accordance with DPDP Act 2023.
+</p>
+
+<h2>Content Sections</h2>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <p >
+    1. Scope and Objectives<br>
+    2. Requirements and Criteria<br>
+    3. Process and Workflow<br>
+    4. Templates and Forms<br>
+    5. Sign-Off and Approval
+  </p>
+</div>
+
+<h2 style="margin-top: 30px;">CONSENT REGISTRY HEALTH SCORING</h2>
+
+<p style=" margin-bottom: 15px;">
+The Consent Registry tracks all consent records and calculates health metrics to identify compliance risks. A "healthy" consent registry demonstrates that consent is being collected, managed, and withdrawn properly per DPDP Act Section 6 (FSIUU framework).
+</p>
+
+<h3 style=" margin-top: 15px;">Consent Registry Health Score Methodology</h3>
+
+<p style=" margin-bottom: 10px;">
+<strong>Overall Health Score = 100 - (Per-Purpose Validity Issues + Withdrawal Compliance Issues + Invalid Consent Issues)</strong>
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 15px 0; ">
+  <tr style="background: #2c3e50; color: white;">
+    <th style="padding: 8px; text-align: left;">Health Metric</th>
+    <th style="padding: 8px;">Calculation / Formula</th>
+    <th style="padding: 8px;">Target / Benchmark</th>
+    <th style="padding: 8px;">Alert Threshold</th>
+    <th style="padding: 8px;">Mitigation Action</th>
+  </tr>
+
+  <!-- Per-Purpose Consent Coverage -->
+  <tr>
+    <td style="padding: 8px;"><strong>1. Per-Purpose Consent Coverage (%)</strong></td>
+    <td style="padding: 8px;">
+      (Count of consents with explicit per-purpose checkboxes / Total consents) × 100<br>
+      Example: 950 consents have PC-001 (Acct Mgmt) separated from PC-003 (Marketing) out of 1,000 total = 95%
+    </td>
+    <td style="padding: 8px;"><strong>Target: ≥98%</strong></td>
+    <td style="padding: 8px;"><strong>Alert if <95%</strong></td>
+    <td style="padding: 8px;">Audit Consent Form (T-08) implementation; re-deploy if form not showing per-purpose checkboxes; re-collect consents if <5% separation</td>
+  </tr>
+
+  <!-- Withdrawal Compliance Rate -->
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>2. Withdrawal Compliance Rate (%)</strong></td>
+    <td style="padding: 8px;">
+      (Count of withdrawals processed within 7 days / Total withdrawal requests) × 100<br>
+      Example: 48 out of 50 withdrawals processed within 7 days = 96%
+    </td>
+    <td style="padding: 8px;"><strong>Target: ≥99%</strong></td>
+    <td style="padding: 8px;"><strong>Alert if <95%</strong></td>
+    <td style="padding: 8px;">Review withdrawal SOP (T-08 DSAR SOP); ensure CPaaS vendor suppression list sync within 24hr; escalate delayed withdrawals to DPO</td>
+  </tr>
+
+  <!-- Withdrawal Rate (Red Flag) -->
+  <tr>
+    <td style="padding: 8px;"><strong>3. Consent Withdrawal Rate (Risk)</strong></td>
+    <td style="padding: 8px;">
+      (Count of withdrawn consents per purpose / Total active consents for that purpose) × 100<br>
+      Example: 150 withdrawals for Marketing (PC-003) out of 1,000 active = 15% withdrawal rate
+    </td>
+    <td style="padding: 8px;"><strong>Target: <10%</strong></td>
+    <td style="padding: 8px;"><strong>⚠️ CRITICAL ALERT if >15%</strong></td>
+    <td style="padding: 8px;">HIGH RISK: >15% withdrawal suggests either (a) non-consensual initial consent (FSIUU violated), or (b) data principals don't trust your use. Review: Consent form messaging, CPaaS suppression accuracy, withdrawal UX friction, data usage transparency. Escalate to Board Privacy Committee.</td>
+  </tr>
+
+  <!-- Invalid Consent Rate -->
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>4. Invalid Consent Rate (%)</strong></td>
+    <td style="padding: 8px;">
+      (Count of consents failing FSIUU validity check / Total consents) × 100<br>
+      <br>FSIUU Validity Check (all 5 must = 1 point each, ÷ 5 for score):<br>
+      • Free? (not bundled with service)<br>
+      • Specific? (per-purpose, not blanket)<br>
+      • Informed? (privacy notice provided)<br>
+      • Unconditional? (not tied to service access)<br>
+      • Unambiguous? (clear yes/no, not pre-ticked)<br>
+      <br>Example: 50 consents out of 1,000 score <4/5 = 5% invalid
+    </td>
+    <td style="padding: 8px;"><strong>Target: <2%</strong></td>
+    <td style="padding: 8px;"><strong>🔴 CRITICAL ALERT if >5%</strong></td>
+    <td style="padding: 8px;">COMPLIANCE FAILURE: >5% invalid consents = Section 6 violation risk. Immediate actions: (1) Audit all flagged consents, (2) Fix consent form FSIUU issues (T-08), (3) Re-collect consents from affected principals, (4) Notify DPO/Legal; document incident in breach register.</td>
+  </tr>
+
+  <!-- Section 6 Validity Score -->
+  <tr>
+    <td style="padding: 8px;"><strong>5. Section 6 Validity Score (Average)</strong></td>
+    <td style="padding: 8px;">
+      (Sum of all FSIUU scores / Total consent records) / 5 × 100<br>
+      <br>Example: 1,000 consents, 950 score 5/5 (FSIUU valid), 40 score 4/5, 10 score 3/5<br>
+      = (950×5 + 40×4 + 10×3) / 1,000 / 5 × 100 = 98.6%
+    </td>
+    <td style="padding: 8px;"><strong>Target: ≥97%</strong></td>
+    <td style="padding: 8px;"><strong>Alert if <95%</strong></td>
+    <td style="padding: 8px;">Review low-scoring consents; identify pattern (e.g., "Informed" failures = privacy notice not shown); fix consent form and retrain staff</td>
+  </tr>
+
+  <!-- Consent Registry Completeness -->
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>6. Consent Registry Completeness (%)</strong></td>
+    <td style="padding: 8px;">
+      (Consents recorded in Consent Registry / Total consents expected per business records) × 100<br>
+      <br>Example: 10,000 consents from onboarding system, 9,850 recorded in Consent Registry = 98.5% completeness
+    </td>
+    <td style="padding: 8px;"><strong>Target: 100%</strong></td>
+    <td style="padding: 8px;"><strong>Alert if <99%</strong></td>
+    <td style="padding: 8px;">Gap = missing audit trail. Investigate: Data sync failures, consent collection not logging to registry, system outage. Remediate by backfilling missing records with data source verification.</td>
+  </tr>
+</table>
+
+<h3 style=" margin-top: 15px;">Consent Registry Health Dashboard KPIs</h3>
+
+<p style=" margin-bottom: 10px;">Track these KPIs weekly and report to Board Privacy Committee monthly:</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 15px 0; ">
+  <tr style="background: #2c3e50; color: white;">
+    <th>KPI</th>
+    <th>Current Value</th>
+    <th>Target</th>
+    <th>Status (<i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#22c55e;"></i>/<i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#eab308;"></i>/<i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#ef4444;"></i>)</th>
+    <th>Last Updated</th>
+  </tr>
+  <tr>
+    <td style="padding: 8px;"><strong>Overall Health Score</strong></td>
+    <td style="padding: 8px;"><input type="text" placeholder="0-100" style="width: 50px;"></td>
+    <td style="padding: 8px;">≥97</td>
+    <td style="padding: 8px;"><input type="text" placeholder="Status" style="width: 50px;"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="Date" style="width: 80px;"></td>
+  </tr>
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>Per-Purpose Coverage %</strong></td>
+    <td style="padding: 8px;"><input type="text" placeholder="0-100" style="width: 50px;"></td>
+    <td style="padding: 8px;">≥98%</td>
+    <td style="padding: 8px;"><input type="text" placeholder="Status" style="width: 50px;"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="Date" style="width: 80px;"></td>
+  </tr>
+  <tr>
+    <td style="padding: 8px;"><strong>Withdrawal Rate (Risk Monitor)</strong></td>
+    <td style="padding: 8px;"><input type="text" placeholder="0-100%" style="width: 50px;"></td>
+    <td style="padding: 8px;"><10%<br>🔴Alert >15%</td>
+    <td style="padding: 8px;"><input type="text" placeholder="Status" style="width: 50px;"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="Date" style="width: 80px;"></td>
+  </tr>
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>Invalid Consent Rate</strong></td>
+    <td style="padding: 8px;"><input type="text" placeholder="0-100%" style="width: 50px;"></td>
+    <td style="padding: 8px;"><2%<br>🔴Alert >5%</td>
+    <td style="padding: 8px;"><input type="text" placeholder="Status" style="width: 50px;"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="Date" style="width: 80px;"></td>
+  </tr>
+  <tr>
+    <td style="padding: 8px;"><strong>Section 6 Validity Score</strong></td>
+    <td style="padding: 8px;"><input type="text" placeholder="0-100%" style="width: 50px;"></td>
+    <td style="padding: 8px;">≥97%</td>
+    <td style="padding: 8px;"><input type="text" placeholder="Status" style="width: 50px;"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="Date" style="width: 80px;"></td>
+  </tr>
+  <tr style="background: #f9f9f9;">
+    <td style="padding: 8px;"><strong>Withdrawal Compliance (7-day SLA)</strong></td>
+    <td style="padding: 8px;"><input type="text" placeholder="0-100%" style="width: 50px;"></td>
+    <td style="padding: 8px;">≥99%<br>🔴Alert <95%</td>
+    <td style="padding: 8px;"><input type="text" placeholder="Status" style="width: 50px;"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="Date" style="width: 80px;"></td>
+  </tr>
+  <tr>
+    <td style="padding: 8px;"><strong>Registry Completeness</strong></td>
+    <td style="padding: 8px;"><input type="text" placeholder="0-100%" style="width: 50px;"></td>
+    <td style="padding: 8px;">100%<br>🔴Alert <99%</td>
+    <td style="padding: 8px;"><input type="text" placeholder="Status" style="width: 50px;"></td>
+    <td style="padding: 8px;"><input type="text" placeholder="Date" style="width: 80px;"></td>
+  </tr>
+</table>
+
+<h3 style=" margin-top: 15px;">Health Score Interpretation & Response Matrix</h3>
+
+<table style="width: 100%; border-collapse: collapse; margin: 15px 0; ">
+  <tr style="background: #2c3e50; color: white;">
+    <th style="width: 15%;">Health Score</th>
+    <th style="width: 20%;">Status</th>
+    <th style="width: 40%;">Interpretation</th>
+    <th style="width: 25%;">Required Actions</th>
+  </tr>
+
+  <tr style="background: #d4edda;">
+    <td style="padding: 8px;"><strong>95-100</strong></td>
+    <td style="padding: 8px;"><strong><i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#22c55e;"></i> HEALTHY</strong></td>
+    <td style="padding: 8px;">Consent processes are working well. FSIUU compliance strong. No immediate red flags.</td>
+    <td style="padding: 8px;">• Continue current practices<br>• Monthly audit of edge cases<br>• Board reporting: Green status</td>
+  </tr>
+
+  <tr style="background: #fff3cd;">
+    <td style="padding: 8px;"><strong>90-94</strong></td>
+    <td style="padding: 8px;"><strong><i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#eab308;"></i> CAUTION</strong></td>
+    <td style="padding: 8px;">Minor issues identified (e.g., per-purpose coverage 96%, validity score 94%). Risks manageable but trend watch needed.</td>
+    <td style="padding: 8px;">• Root cause analysis (which metric is low?)<br>• Action plan with 30-day deadline<br>• Bi-weekly DPO reviews<br>• Board reporting: Amber status with improvement plan</td>
+  </tr>
+
+  <tr style="background: #f8d7da;">
+    <td style="padding: 8px;"><strong><90</strong></td>
+    <td style="padding: 8px;"><strong><i data-lucide="circle" style="display:inline; width: 0.8em; height: 0.8em; color:#ef4444;"></i> CRITICAL</strong></td>
+    <td style="padding: 8px;">Major compliance gaps (e.g., >5% invalid consents, >15% withdrawal rate, >5% incomplete records). DPDP Section 6 breach risk imminent.</td>
+    <td style="padding: 8px;">• IMMEDIATE escalation to DPO + Board Privacy Committee<br>• Emergency audit of all flagged consents<br>• Halt new consent collection if form is broken<br>• Re-collect consents from affected principals<br>• Incident documentation for potential DPBI reporting<br>• Board reporting: Red status; remediation plan</td>
+  </tr>
+</table>
+
+<div class="info-box" style="margin-top: 15px; ">
+  <strong>Consent Registry Health Monitoring Schedule:</strong><br>
+  • <strong>Weekly:</strong> Dashboard updated every Monday; KPIs calculated from Sunday midnight snapshot<br>
+  • <strong>Monthly:</strong> Detailed health report to Board Privacy Committee<br>
+  • <strong>Quarterly:</strong> Full FSIUU audit (sample 100 consents; verify all 5 attributes)<br>
+  • <strong>Annual:</strong> Board certification of consent registry health; SDF audit sign-off
+</div>
+
+<h2 style="margin-top: 30px;">Completion Checklist</h2>
+
+<ul >
+  <li>☐ Reviewed DPDP Act Section 5-16 requirements</li>
+  <li>☐ Gathered organization-specific information</li>
+  <li>☐ Customized for business context</li>
+  <li>☐ Legal/Compliance review completed</li>
+  <li>☐ Stakeholder sign-off obtained</li>
+  <li>☐ Implementation and rollout plan ready</li>
+</ul>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By:</strong> _________________________<br>
+    <strong>Approved By:</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

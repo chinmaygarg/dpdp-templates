@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide — DPDP Compliance</title>
+  <link rel="stylesheet" href="../UNIFIED_THEME.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+  <style>
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+    .nav-bar a { color: var(--primary-color); text-decoration: none; font-weight: 500; }
+    .nav-bar a:hover { text-decoration: underline; }
+    .nav-sep { color: #cbd5e1; }
+
+    .md-body {
+      max-width: 860px;
+      line-height: 1.7;
+      color: #1e293b;
+      font-size: 14px;
+    }
+    .md-body h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--header-fg, #0f172a);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin: 8px 0 20px;
+    }
+    .md-body h2 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--header-fg, #0f172a);
+      margin: 32px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .md-body h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #334155;
+      margin: 22px 0 8px;
+    }
+    .md-body h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      margin: 16px 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .md-body p { margin: 0 0 14px; }
+    .md-body ul, .md-body ol { margin: 0 0 14px; padding-left: 24px; }
+    .md-body li { margin-bottom: 5px; line-height: 1.6; }
+    .md-body li > ul, .md-body li > ol { margin-top: 5px; }
+    .md-body code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+      font-family: ui-monospace, monospace;
+      color: #1e40af;
+    }
+    .md-body pre {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    .md-body pre code {
+      background: none;
+      padding: 0;
+      color: #1e293b;
+      font-size: 13px;
+    }
+    .md-body blockquote {
+      border-left: 4px solid var(--primary-color);
+      margin: 16px 0;
+      padding: 12px 16px;
+      background: var(--primary-light, #eff6ff);
+      color: #1e40af;
+      border-radius: 0 4px 4px 0;
+    }
+    .md-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+    .md-body th {
+      background: #f1f5f9;
+      font-weight: 600;
+      text-align: left;
+      padding: 9px 12px;
+      border: 1px solid #e2e8f0;
+      color: #0f172a;
+    }
+    .md-body td {
+      padding: 8px 12px;
+      border: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+    .md-body tr:nth-child(even) td { background: #fafafa; }
+    .md-body hr { border: none; border-top: 1px solid #e2e8f0; margin: 28px 0; }
+    .md-body strong { font-weight: 600; color: #0f172a; }
+    .md-body a { color: var(--primary-color); text-decoration: none; }
+    .md-body a:hover { text-decoration: underline; }
+
+    #loading { color: #64748b; padding: 40px 0; }
+    #error-msg {
+      color: #991b1b;
+      background: #fef2f2;
+      border: 1px solid #ef4444;
+      border-radius: 6px;
+      padding: 16px;
+      margin: 24px 0;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-bar">
+    <a href="index.html">← Guides</a>
+    <span class="nav-sep">/</span>
+    <a href="../INDEX_DPDP_Compliance_Navigator.html">Navigator</a>
+  </div>
+
+  <div id="loading">Loading guide...</div>
+  <div id="error-msg"></div>
+  <div id="content" class="md-body" style="display:none"></div>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search)
+      var file = params.get('file')
+
+      function showError(msg) {
+        document.getElementById('loading').style.display = 'none'
+        var el = document.getElementById('error-msg')
+        el.textContent = msg
+        el.style.display = 'block'
+      }
+
+      if (!file) {
+        showError('No file specified. Add ?file=FILENAME.md to the URL.')
+        return
+      }
+      if (!file.endsWith('.md') || file.indexOf('/') !== -1 || file.indexOf('..') !== -1) {
+        showError('Invalid file parameter.')
+        return
+      }
+
+      document.title = file.replace(/^\d+_/, '').replace(/_/g, ' ').replace('.md', '') + ' — DPDP Compliance'
+
+      fetch(file)
+        .then(function (r) {
+          if (!r.ok) throw new Error('Could not load "' + file + '" (HTTP ' + r.status + ')')
+          return r.text()
+        })
+        .then(function (text) {
+          document.getElementById('loading').style.display = 'none'
+          var content = document.getElementById('content')
+          var raw = marked.parse(text)
+          var safe = DOMPurify.sanitize(raw)
+          content.innerHTML = safe
+          content.style.display = 'block'
+
+          // Rewrite .md links to go through this viewer
+          content.querySelectorAll('a[href]').forEach(function (a) {
+            var href = a.getAttribute('href')
+            if (href && href.endsWith('.md') && href.indexOf('://') === -1 && href.indexOf('/') === -1) {
+              a.setAttribute('href', 'viewer.html?file=' + encodeURIComponent(href))
+            }
+          })
+        })
+        .catch(function (err) {
+          showError(err.message)
+        })
+    })()
+  </script>
+</body>
+</html>

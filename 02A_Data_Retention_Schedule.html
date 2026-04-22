@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Retention Schedule — DPDP Act 2023 Compliance</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  .header { border-bottom: 2px solid var(--text-primary); padding-bottom: 15px; margin-bottom: 20px; }
+  .title { font-weight: bold; margin-bottom: 10px; }
+  .subtitle { color: var(--text-secondary); margin-bottom: 15px; }
+  table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; }
+  th { background: #2c3e50; color: white; padding: 6px; text-align: left; font-weight: bold; }
+  td { border: 1px solid var(--border-color); padding: 5px; vertical-align: top; }
+  tr:nth-child(even) { background: var(--bg-light); }
+  input[type="text"], textarea, select { border: none; border-bottom: 1px solid var(--text-primary); padding: 2px; width: 95%; background: transparent; }
+  select { width: auto; }
+  .section { margin-top: 20px; }
+  .section-title { font-weight: bold; background: #ecf0f1; padding: 5px; margin-bottom: 10px; }
+  .note { background: var(--status-warn); padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #ffc107; }
+  .critical { background: var(--status-fail); padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #dc3545; }
+  .info { background: #e8f4fd; padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #0066cc; }
+  .badge-consent { background: #d4edda; color: #155724; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+  .badge-statutory { background: #cce5ff; color: #004085; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+  .badge-legitimate { background: #fff3cd; color: #856404; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+  @media print { body { margin: 0; padding: 0; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="title">DATA RETENTION SCHEDULE — Per-Category Retention Periods, Legal Basis &amp; Deletion Triggers</div>
+  <div class="subtitle">
+    Organization: <input type="text" placeholder="[Organization Name]" style="width:300px;">
+    &nbsp;&nbsp; Entity Type: <input type="text" placeholder="e.g., NBFC / Fintech / Bank" style="width:180px;"><br>
+    Schedule Version: <input type="text" placeholder="1.0" style="width:80px;">
+    &nbsp;&nbsp; Effective Date: <input type="text" placeholder="DD/MM/YYYY" style="width:130px;">
+    &nbsp;&nbsp; Last Reviewed: <input type="text" placeholder="DD/MM/YYYY" style="width:130px;">
+    &nbsp;&nbsp; Next Review: <input type="text" placeholder="DD/MM/YYYY" style="width:130px;">
+  </div>
+</div>
+
+<div class="info">
+  <strong>DPDP Act 2023 Reference:</strong> Section 8(7) — A Data Fiduciary shall, unless retention is necessary for legal purposes, delete personal data as soon as the purpose for which it was collected is no longer being served. This schedule maps every data category to its retention period, legal basis, and deletion trigger. Templates #2 (Governance) and #31 (Operations) in the DPDP Compliance Template Library both reference this document.
+</div>
+
+<div class="critical">
+  <strong>IMPORTANT — Statutory Overrides:</strong> Where applicable law (PMLA, RBI, IRDAI, SEBI, Income Tax Act) mandates a retention period longer than the purpose-completion period, the statutory period takes precedence. Consult the <a href="43_Statutory_Hold_Register.html" style="color:#004085;">Statutory Hold Register (Template #43)</a> before scheduling any deletion.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 1 — CUSTOMER / DATA PRINCIPAL DATA</div>
+
+  <table>
+    <tr>
+      <th style="width:14%;">Data Category</th>
+      <th style="width:10%;">Specific Data Items</th>
+      <th style="width:10%;">Retention Period</th>
+      <th style="width:11%;">Legal Basis</th>
+      <th style="width:12%;">Deletion Trigger</th>
+      <th style="width:10%;">Disposal Method</th>
+      <th style="width:11%;">Statutory Override?</th>
+      <th style="width:10%;">Responsible Owner</th>
+      <th style="width:8%;">Last Verified</th>
+      <th style="width:4%;">DPO Sign-off</th>
+    </tr>
+
+    <tr>
+      <td><strong>Identity Identifiers</strong></td>
+      <td>Name, DOB, gender, Aadhaar, PAN, passport, voter ID</td>
+      <td>Duration of relationship + 5 years</td>
+      <td><span class="badge-statutory">Statutory</span> PMLA Rule 9</td>
+      <td>Account closure + 5 years</td>
+      <td>Secure delete + audit hash</td>
+      <td>Yes — PMLA 5 yr minimum</td>
+      <td><input type="text" placeholder="Team/Role" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Contact Details</strong></td>
+      <td>Email, mobile, address, communication preferences</td>
+      <td>Duration of relationship + 1 year</td>
+      <td><span class="badge-consent">Consent</span> Section 6</td>
+      <td>Consent withdrawal / account closure</td>
+      <td>Secure delete</td>
+      <td>No</td>
+      <td><input type="text" placeholder="Team/Role" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Financial Data</strong></td>
+      <td>Bank account, credit card, income, transaction history, credit score</td>
+      <td>Duration of relationship + 8 years</td>
+      <td><span class="badge-statutory">Statutory</span> RBI Master Direction</td>
+      <td>Account closure + 8 years</td>
+      <td>Archive then secure delete</td>
+      <td>Yes — RBI 8 yr minimum</td>
+      <td><input type="text" placeholder="Team/Role" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>KYC Documents</strong></td>
+      <td>Aadhaar copy, PAN card, address proof, photograph, video KYC recording</td>
+      <td><strong>10 years after relationship ends</strong><br><small>(RBI Master Direction: KYC/AML-16 requires 10 years minimum)</small></td>
+      <td><span class="badge-statutory">Statutory</span> RBI Master Direction + PMLA Rule 9(1)</td>
+      <td>Relationship end + 10 years</td>
+      <td>Archive then secure delete</td>
+      <td>Yes — RBI 10 yr (KYC), PMLA 5 yr minimum. Take the longer period (10 years).</td>
+      <td><input type="text" placeholder="Team/Role" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Loan / Credit Data</strong></td>
+      <td>Loan application, EMI schedule, repayment history, default events, guarantor info</td>
+      <td>8 years from loan closure</td>
+      <td><span class="badge-statutory">Statutory</span> RBI / Credit Information Companies Act</td>
+      <td>Loan closure + 8 years</td>
+      <td>Archive then secure delete</td>
+      <td>Yes — RBI 8 yr minimum</td>
+      <td><input type="text" placeholder="Team/Role" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Consent Records</strong></td>
+      <td>Consent timestamp, purpose, channel, version, withdrawal log</td>
+      <td>Duration of relationship + 3 years after last interaction</td>
+      <td><span class="badge-statutory">Statutory</span> Section 6 — audit evidence</td>
+      <td>Purpose end + 3 years (for audit)</td>
+      <td>Secure delete</td>
+      <td>No</td>
+      <td><input type="text" placeholder="Team/Role" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Behavioural / Analytics Data</strong></td>
+      <td>App usage, browsing patterns, session logs, product interaction</td>
+      <td>13 months (analytics rolling window)</td>
+      <td><span class="badge-consent">Consent</span> Section 6</td>
+      <td>Consent withdrawal / 13 months from collection</td>
+      <td>Aggregate anonymise then delete raw data</td>
+      <td>No</td>
+      <td><input type="text" placeholder="Team/Role" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Marketing Preferences</strong></td>
+      <td>Communication opt-ins/outs, product interests, segment flags</td>
+      <td>Until consent withdrawn + 6 months</td>
+      <td><span class="badge-consent">Consent</span> Section 6</td>
+      <td>Consent withdrawal + 6 months</td>
+      <td>Secure delete</td>
+      <td>No</td>
+      <td><input type="text" placeholder="Team/Role" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr>
+      <td><strong>DSAR / Grievance Records</strong></td>
+      <td>Request details, response letters, evidence of fulfillment, escalation records</td>
+      <td>3 years from request closure</td>
+      <td><span class="badge-statutory">Statutory</span> Section 11-14 — audit evidence</td>
+      <td>Request closure + 3 years</td>
+      <td>Secure delete</td>
+      <td>No</td>
+      <td><input type="text" placeholder="Team/Role" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Minor / Children Data</strong></td>
+      <td>Age verification, parental consent record, child account data</td>
+      <td>Until minor turns 18 + 1 year, or account closure, whichever is earlier</td>
+      <td><span class="badge-statutory">Statutory</span> Section 9 — special category</td>
+      <td>Age 18 + 1 yr / account closure</td>
+      <td>Secure delete + verifiable destruction certificate</td>
+      <td>No</td>
+      <td><input type="text" placeholder="Team/Role" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 2 — EMPLOYEE / HR DATA</div>
+
+  <table>
+    <tr>
+      <th style="width:14%;">Data Category</th>
+      <th style="width:10%;">Specific Data Items</th>
+      <th style="width:10%;">Retention Period</th>
+      <th style="width:11%;">Legal Basis</th>
+      <th style="width:12%;">Deletion Trigger</th>
+      <th style="width:10%;">Disposal Method</th>
+      <th style="width:11%;">Statutory Override?</th>
+      <th style="width:10%;">Responsible Owner</th>
+      <th style="width:8%;">Last Verified</th>
+      <th style="width:4%;">DPO Sign-off</th>
+    </tr>
+
+    <tr>
+      <td><strong>Payroll &amp; Tax Records</strong></td>
+      <td>Salary slips, Form 16, TDS details, provident fund, gratuity</td>
+      <td>7 years from end of financial year</td>
+      <td><span class="badge-statutory">Statutory</span> Income Tax Act Section 44AA</td>
+      <td>FY end + 7 years</td>
+      <td>Archive then secure delete</td>
+      <td>Yes — Income Tax 7 yr</td>
+      <td><input type="text" placeholder="HR/Finance" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Employment Contracts</strong></td>
+      <td>Offer letter, contract, NDA, termination letter, experience certificate</td>
+      <td>Duration of employment + 5 years</td>
+      <td><span class="badge-statutory">Statutory</span> Industrial Disputes Act 1947</td>
+      <td>Employment end + 5 years</td>
+      <td>Archive then secure delete</td>
+      <td>Yes — Labour Law</td>
+      <td><input type="text" placeholder="HR" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Access Logs &amp; System Activity</strong></td>
+      <td>Login/logout, system access, privileged actions, audit trails</td>
+      <td>1 year (CERT-In minimum) or 3 years for security investigations</td>
+      <td><span class="badge-statutory">Statutory</span> CERT-In Rule 4</td>
+      <td>Log generation + 1 year (minimum)</td>
+      <td>Secure delete</td>
+      <td>Yes — CERT-In 1 yr minimum</td>
+      <td><input type="text" placeholder="IT/Security" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Performance &amp; Disciplinary Records</strong></td>
+      <td>Appraisals, PIPs, disciplinary actions, warnings, termination reason</td>
+      <td>Duration of employment + 3 years</td>
+      <td><span class="badge-legitimate">Legitimate Use</span> Section 7(e)</td>
+      <td>Employment end + 3 years</td>
+      <td>Secure delete</td>
+      <td>No</td>
+      <td><input type="text" placeholder="HR" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 3 — SYSTEM &amp; OPERATIONAL DATA</div>
+
+  <table>
+    <tr>
+      <th style="width:14%;">Data Category</th>
+      <th style="width:15%;">Specific Data Items</th>
+      <th style="width:10%;">Retention Period</th>
+      <th style="width:11%;">Legal Basis</th>
+      <th style="width:13%;">Deletion Trigger</th>
+      <th style="width:10%;">Disposal Method</th>
+      <th style="width:11%;">Statutory Override?</th>
+      <th style="width:9%;">Responsible Owner</th>
+      <th style="width:7%;">Last Verified</th>
+    </tr>
+
+    <tr>
+      <td><strong>Breach Incident Records</strong></td>
+      <td>Incident report, DPB notification, affected principal list, root cause analysis</td>
+      <td>5 years from incident closure</td>
+      <td><span class="badge-statutory">Statutory</span> Section 8(6) — regulatory evidence</td>
+      <td>Incident closure + 5 years</td>
+      <td>Archive (immutable) then secure delete</td>
+      <td>No</td>
+      <td><input type="text" placeholder="Security/DPO" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Audit Logs (DPDP)</strong></td>
+      <td>Consent events, DSAR processing, deletion confirmations, hash-chain audit trail</td>
+      <td>5 years</td>
+      <td><span class="badge-statutory">Statutory</span> Section 8 — compliance evidence</td>
+      <td>Event date + 5 years</td>
+      <td>Archive (hash-chain preserved) then delete</td>
+      <td>No</td>
+      <td><input type="text" placeholder="IT/DPO" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    </tr>
+
+    <tr>
+      <td><strong>CCTV / Physical Security</strong></td>
+      <td>CCTV footage of premises, branch access logs, visitor sign-in register</td>
+      <td><strong>90 days (minimum standard)</strong><br><small>Extended to 1 year if under investigation</small></td>
+      <td><span class="badge-legitimate">Legitimate Use</span> Section 7(a) — security, fraud prevention</td>
+      <td>Recording date + 90 days. Extend to 1 year if incident under investigation.</td>
+      <td>Automated purge / overwrite (cyclic storage) after 90d + secure deletion if extended</td>
+      <td>No — purely security purpose, no statutory hold unless active litigation</td>
+      <td><input type="text" placeholder="Facilities/Security" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    </tr>
+
+    <tr style="background:var(--bg-light);">
+      <td><strong>Branch Physical Access Logs</strong></td>
+      <td>RFID/badge swipe logs, door access times, after-hours entries</td>
+      <td>1 year</td>
+      <td><span class="badge-statutory">Statutory</span> Security + RBI audit requirement</td>
+      <td>Access date + 1 year</td>
+      <td>Secure delete</td>
+      <td>No</td>
+      <td><input type="text" placeholder="IT/Security" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Physical Visitor Register</strong></td>
+      <td>Visitor name, phone, visit time, escort details, ID copy (if taken)</td>
+      <td>1 year</td>
+      <td><span class="badge-legitimate">Legitimate Use</span> Section 7(a) — security</td>
+      <td>Visitor date + 1 year</td>
+      <td>Shredding (if paper) / secure delete (if digital)</td>
+      <td>No</td>
+      <td><input type="text" placeholder="Facilities" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 4 — CUSTOM / ORGANIZATION-SPECIFIC DATA CATEGORIES</div>
+
+  <table>
+    <tr>
+      <th style="width:14%;">Data Category</th>
+      <th style="width:15%;">Specific Data Items</th>
+      <th style="width:10%;">Retention Period</th>
+      <th style="width:11%;">Legal Basis</th>
+      <th style="width:13%;">Deletion Trigger</th>
+      <th style="width:10%;">Disposal Method</th>
+      <th style="width:11%;">Statutory Override?</th>
+      <th style="width:9%;">Responsible Owner</th>
+      <th style="width:7%;">DPO Sign-off</th>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="Category name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Data items included" style="width:130px;"></td>
+      <td><input type="text" placeholder="e.g., 2 years" style="width:80px;"></td>
+      <td>
+        <select>
+          <option>Consent (S.6)</option>
+          <option>Statutory</option>
+          <option>Legitimate Use (S.7)</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="Trigger event" style="width:100px;"></td>
+      <td><input type="text" placeholder="Disposal method" style="width:90px;"></td>
+      <td>
+        <select>
+          <option>No</option>
+          <option>Yes — specify law</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="Owner" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+    <tr style="background:var(--bg-light);">
+      <td><input type="text" placeholder="Category name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Data items included" style="width:130px;"></td>
+      <td><input type="text" placeholder="e.g., 3 years" style="width:80px;"></td>
+      <td>
+        <select>
+          <option>Consent (S.6)</option>
+          <option>Statutory</option>
+          <option>Legitimate Use (S.7)</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="Trigger event" style="width:100px;"></td>
+      <td><input type="text" placeholder="Disposal method" style="width:90px;"></td>
+      <td>
+        <select>
+          <option>No</option>
+          <option>Yes — specify law</option>
+        </select>
+      </td>
+      <td><input type="text" placeholder="Owner" style="width:80px;"></td>
+      <td><input type="text" placeholder="Initials" style="width:50px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 5 — DELETION TRIGGER DECISION FLOWCHART</div>
+
+  <div class="note">
+    <strong>Before scheduling any deletion, validate all three conditions:</strong><br>
+    <ol style="margin: 4px 0 0 16px; padding: 0;">
+      <li><strong>Purpose Check:</strong> Has the original purpose for which data was collected been fully served? (Section 8(7))</li>
+      <li><strong>Statutory Hold Check:</strong> Does any applicable law (PMLA, RBI, IRDAI, SEBI, Income Tax) require retention beyond the purpose-completion date? Refer to <a href="43_Statutory_Hold_Register.html" style="color:#856404;">Statutory Hold Register</a>.</li>
+      <li><strong>Consent Check:</strong> If consent-based, has consent been withdrawn? If yes, initiate deletion unless statutory hold applies.</li>
+    </ol>
+    If <strong>all conditions</strong> clear → proceed to deletion → log in <a href="29_Deletion_Log.html" style="color:#856404;">Deletion Log (Template #32)</a> → notify processors via <a href="33A_Processor_Deletion_Confirmation.html" style="color:#856404;">Processor Deletion Confirmation (Template #33)</a>.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SECTION 6 — ANNUAL RETENTION REVIEW LOG</div>
+
+  <table>
+    <tr>
+      <th>Review Date</th>
+      <th>Reviewed By</th>
+      <th>Categories Amended</th>
+      <th>Reason for Amendment</th>
+      <th>Legal / Regulatory Trigger</th>
+      <th>DPO Approval</th>
+      <th>Board / Committee Noted</th>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+      <td><input type="text" placeholder="Name / Role" style="width:100px;"></td>
+      <td><input type="text" placeholder="List categories" style="width:130px;"></td>
+      <td><input type="text" placeholder="Reason" style="width:130px;"></td>
+      <td><input type="text" placeholder="e.g., New RBI Circular" style="width:130px;"></td>
+      <td><input type="text" placeholder="Signature" style="width:100px;"></td>
+      <td>
+        <select>
+          <option>Yes</option>
+          <option>No — not material</option>
+          <option>Pending</option>
+        </select>
+      </td>
+    </tr>
+    <tr style="background:var(--bg-light);">
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+      <td><input type="text" placeholder="Name / Role" style="width:100px;"></td>
+      <td><input type="text" placeholder="List categories" style="width:130px;"></td>
+      <td><input type="text" placeholder="Reason" style="width:130px;"></td>
+      <td><input type="text" placeholder="e.g., DPDP Rules update" style="width:130px;"></td>
+      <td><input type="text" placeholder="Signature" style="width:100px;"></td>
+      <td>
+        <select>
+          <option>Yes</option>
+          <option>No — not material</option>
+          <option>Pending</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div style="margin-top:20px; padding: var(--spacing-md); background:#f0f5ff; border-left:3px solid var(--primary-color);">
+  <strong>SCHEDULE CERTIFICATION</strong><br><br>
+  This Data Retention Schedule is approved and maintained by: <input type="text" placeholder="Name / Title" style="width:250px;"><br>
+  Schedule Effective Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+  &nbsp;&nbsp; Next Mandatory Review: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;"><br><br>
+  <table style="width:60%;">
+    <tr>
+      <th>Role</th>
+      <th>Name</th>
+      <th>Signature</th>
+      <th>Date</th>
+    </tr>
+    <tr>
+      <td>Prepared By (DPO / Compliance)</td>
+      <td><input type="text" placeholder="Name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Signature" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+    </tr>
+    <tr>
+      <td>Reviewed By (Legal)</td>
+      <td><input type="text" placeholder="Name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Signature" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+    </tr>
+    <tr>
+      <td>Approved By (CXO / Board)</td>
+      <td><input type="text" placeholder="Name" style="width:100px;"></td>
+      <td><input type="text" placeholder="Signature" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- Navigation -->
+<div style="margin-top: 40px; padding: 15px; background: #f0f5ff; border-radius: 3px; text-align: center;">
+  <p >
+    <a href="02_Entity_Classification.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">← Entity Classification</a> |
+    <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Back to Navigator</a> |
+    <a href="29_Deletion_Log.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Deletion Log →</a> |
+    <a href="33A_Processor_Deletion_Confirmation.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Processor Deletion Confirmation →</a> |
+    <a href="43_Statutory_Hold_Register.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Statutory Hold Register →</a>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

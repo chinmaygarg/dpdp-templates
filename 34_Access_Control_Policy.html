@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access Control Policy</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Access Control Policy</div>
+  <div class="subtitle">Role-Based Access Control (RBAC) Framework</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived]
+</div>
+
+<h2>1. Principle: Least Privilege & Zero Trust (DPDP Section 8)</h2>
+
+<div style="background: #e8f4fd; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>DPDP Section 8(3):</strong> Organizations must implement role-based access control (RBAC) — no "access all" logins.<br><br>
+<strong>Zero Trust Model:</strong> Never assume trust after first login. Every request requires:
+1. Authentication (who are you? Verify MFA)
+2. Authorization (what's your role? Check permissions)
+3. Audit (what did you access? Log all access)
+</div>
+
+<h2>2. Role Hierarchy (7 Role Types)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Role Type</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Data Access Level</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">MFA Required?</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Audit Trail?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Viewer</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Read-only dashboards; NO personal data access</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Standard password</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ Logged</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>User (Operational)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Customer Service: view assigned customer records; HR: view assigned employee records</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Standard password</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ Logged</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Power User (Compliance/DPO)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Access all personal data for compliance purposes; execute DSAR/deletion</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>✓ MANDATORY MFA</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ Detailed log with timestamp</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Admin (IT/Database)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Database admin: schema changes, user mgmt; elevated system access</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>✓ MANDATORY MFA</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ Detailed log; prevent DELETE on audit_log table</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>DPO</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Full access for compliance review; cannot delete audit logs</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>✓ MANDATORY MFA</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ All actions logged + signed</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Security/CISO</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Monitor audit logs, configure access controls, security audit</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>✓ MANDATORY MFA</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ All actions logged</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Service Account (Non-Human)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Automated jobs: daily delete task, consent sync, SIEM push</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">API key (no password); rotated quarterly</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✓ Logged as "system"</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. MFA (Multi-Factor Authentication) Enforcement</h2>
+
+<div style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>MANDATORY MFA for:</strong> DPO, Admin, Power User, CISO, any user accessing personal data<br><br>
+<strong>Methods (At least 1 of 2 required):</strong><br>
+• Time-based OTP (TOTP): Google Authenticator, Microsoft Authenticator<br>
+• SMS/Email OTP: 6-digit code sent to registered phone/email<br><br>
+<strong>Policy:</strong> If MFA not set up within 30 days of hire, access suspended automatically<br>
+<strong>Recovery:</strong> Lost MFA device → DPO manual verification required before re-enabling
+</div>
+
+<h2>4. Quarterly Access Review Process</h2>
+
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Every 90 days (Q1, Q2, Q3, Q4):</strong><br>
+1. <strong>Active User List:</strong> Extract all active user accounts + roles from identity management system<br>
+2. <strong>Verification:</strong> For each user, manager confirms: "Is this person still employed in this role?"<br>
+3. <strong>Stale Access Removal:</strong> If no response within 5 days → disable access immediately<br>
+4. <strong>Role Misalignment:</strong> If role changed but system not updated → correct role or remove access<br>
+5. <strong>Service Account Audit:</strong> Verify automated service accounts still needed; no dormant API keys<br>
+6. <strong>Report Certification:</strong> DPO signs off quarterly access review; archive report 7 years
+</div>
+
+<h2>5. Elevated Access (Admin/DPO) — JIT Model (Just-In-Time)</h2>
+
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Principle:</strong> Admin access is temporary, not permanent. Privilege escalation auto-revokes after 2 hours.<br><br>
+<strong>Workflow:</strong><br>
+1. User requests admin access in system (must provide justification)<br>
+2. Admin approves (or denies) the request<br>
+3. System grants elevated access for 2 hours<br>
+4. Access auto-revokes at T+2h (even if logged in)<br>
+5. Access request logged in audit_log with: who, what, when, justification<br><br>
+<strong>Benefit:</strong> If admin account compromised, attacker has only 2-hour window before privileges lost.
+</div>
+
+<h2>6. Access Control Matrix (Sample)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 8px;">Action</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Viewer</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">User</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Power User</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Admin</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">DPO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">View Dashboard (anonymized)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;">View Personal Data (own assigned records)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✗</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓ (any)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓ (any)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓ (any)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">Execute DSAR/Deletion</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✗</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✗</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓ (with approval)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;">Modify Users/Roles</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✗</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✗</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✗</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✗</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">View Audit Logs</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✗</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✗</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✗</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓ (cannot delete)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✓ (cannot delete)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>7. Implementation Checklist</h2>
+
+<ul >
+  <li>☐ Define 7 role types with access levels (Viewer, User, Power User, Admin, DPO, Security, Service Account)</li>
+  <li>☐ Implement RBAC in all systems (database, cloud, SaaS applications)</li>
+  <li>☐ Enforce MFA for DPO, Admin, Power User, CISO roles</li>
+  <li>☐ Configure JIT elevated access (2-hour auto-revoke for admin privileges)</li>
+  <li>☐ Create quarterly access review process (90-day cycle, manager verification)</li>
+  <li>☐ Document all role assignments in access control register</li>
+  <li>☐ Audit trail: log all access requests, approvals, escalations, and revocations</li>
+  <li>☐ Train users on MFA setup and JIT escalation process</li>
+  <li>☐ Test role enforcement: verify Viewer cannot execute deletion, Admin cannot modify audit logs, etc.</li>
+  <li>☐ Quarterly DPO sign-off on access review; document stale access removed</li>
+  <li>☐ Annual security audit: penetration test for privilege escalation vulnerabilities</li>
+</ul>
+
+<h2 style="margin-top: 30px;">Completion Checklist</h2>
+
+<ul >
+  <li>☐ Reviewed DPDP Act Section 5-16 requirements</li>
+  <li>☐ Gathered organization-specific information</li>
+  <li>☐ Customized for business context</li>
+  <li>☐ Legal/Compliance review completed</li>
+  <li>☐ Stakeholder sign-off obtained</li>
+  <li>☐ Implementation and rollout plan ready</li>
+</ul>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By:</strong> _________________________<br>
+    <strong>Approved By:</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

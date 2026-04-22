@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSAR Response Letter — Data Subject Access Request</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+<div class="header">
+  <div class="title">DSAR Response Letter</div>
+  <div class="subtitle">Data Subject Access Request (DSAR) Response (DPDP Section 11)</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 2.0 (Updated April 2026) | <strong>Effective Date:</strong> 13 May 2027 | <strong>Status:</strong> Active
+</div>
+
+<h2>Overview</h2>
+<p>
+  Under DPDP Act 2023 Section 11, Data Principals have the unconditional right to request access to their personal data.
+  Organizations must respond within the statutory SLA with an automated acknowledgement, a complete data export,
+  and clear information about portability rights and escalation options.
+</p>
+
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#sla-timeline">SLA Timeline & Acknowledgement</a></li>
+  <li><a href="#dsar-rights">6 Data Principal Rights (Access + Portability + Others)</a></li>
+  <li><a href="#identity-verification">Identity Verification Process</a></li>
+  <li><a href="#response-template">Response Letter Template</a></li>
+  <li><a href="#escalation">DPBI Escalation Path</a></li>
+  <li><a href="#checklist">Implementation Checklist</a></li>
+</ul>
+
+<!-- ======== SLA TIMELINE ======== -->
+<h2 id="sla-timeline" style="margin-top: 40px;">SLA Timeline & Acknowledgement</h2>
+
+<div style="background: #fff3cd; border: 2px solid #ffc107; padding: 16px; margin: 16px 0; border-radius: 6px;">
+  <strong style="color: #856404;">⚠️ LEGAL REQUIREMENT:</strong><br>
+  <strong>Statutory SLA: 30 days from receipt of DSAR.</strong><br>
+  <em>Source: DPDP Act 2023 Rules (anticipated 2025 notification). Current implementation assumes 30-day SLA pending final Rules publication.</em>
+</div>
+
+<h3>Timeline Breakdown</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Time Point</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Deadline</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Action</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">T+0</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">DSAR received</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Log request in DSAR tracker, assign Request ID</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Grievance Team</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>T+48 hours</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>MANDATORY</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Auto-ACK Email</strong> with Request ID, expected completion date, reference tracking link</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Automated System</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">T+10 days</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Checkpoint</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Identity verification completed; data extraction initiated</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Identity & Privacy Team</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>T+30 days</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>DEADLINE</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Final Response Letter + Data Export</strong> (or documented extension request)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">DPO / Compliance</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Automated 48-Hour Acknowledgement Email (Template)</h3>
+<div style="background: #f5f5f5; border-left: 4px solid #007bff; padding: 12px; margin: 12px 0; font-family: monospace; ">
+<strong>Subject:</strong> Acknowledgement of Your Data Access Request (ID: [REQUEST_ID])<br><br>
+
+Dear [DATA_PRINCIPAL_NAME],<br><br>
+
+We acknowledge receipt of your Data Subject Access Request submitted on [SUBMISSION_DATE].<br><br>
+
+<strong>Request Details:</strong><br>
+• Request ID: [REQUEST_ID]<br>
+• Date Received: [SUBMISSION_DATE]<br>
+• Expected Response Date: [T+30_DAYS]<br>
+• Tracking Link: [ORG_PORTAL_URL]/dsar/[REQUEST_ID]<br><br>
+
+Your request is being processed in accordance with the Digital Personal Data Protection Act 2023, Section 11.
+We are working to verify your identity and compile your personal data for export in a structured, commonly-used format (machine-readable).<br><br>
+
+<strong>Next Steps:</strong><br>
+1. We may contact you at [CONTACT_EMAIL] for identity verification (e.g., OTP, Aadhaar VID, account validation)<br>
+2. You can track progress at [ORG_PORTAL_URL]/dsar/[REQUEST_ID]<br>
+3. You will receive the complete data export by [T+30_DAYS]<br><br>
+
+Questions? Reply to this email or contact our Data Protection Officer: [DPO_EMAIL]<br><br>
+
+Regards,<br>
+[Organization Name] Grievance Team
+</div>
+
+<!-- ======== 6 DATA PRINCIPAL RIGHTS ======== -->
+<h2 id="dsar-rights" style="margin-top: 40px;">6 Data Principal Rights (Section 11 + Related Sections)</h2>
+
+<p>
+  DSAR is not just "access to data". The DPDP Act grants Data Principals 6 distinct rights, all of which must be addressed
+  in the DSAR response or in linked templates.
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Right</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">DPDP Section</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">What They Get</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">SLA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>1. Access</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Section 11</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Complete copy of personal data in structured format (CSV, JSON, XML)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>30 days</strong></td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>2. Portability</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Section 13</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data in machine-readable, commonly-used format transferable to another organization</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>30 days</strong></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>3. Correction</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Section 12</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Ability to correct inaccurate/incomplete data (separate form/link provided)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>30 days</strong> to complete correction</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>4. Erasure</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Section 12</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Deletion of data (with limited exceptions for legal obligations, ongoing processing)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>30 days</strong> to complete erasure</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>5. Nomination</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Section 14</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Designate nominee to access data post-death (form linked in response)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Ongoing right, managed via portal</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>6. Grievance</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Section 15</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">File grievance if response is incomplete/unsatisfactory; escalate to DPBI</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>60 days</strong> DPO response</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== IDENTITY VERIFICATION ======== -->
+<h2 id="identity-verification" style="margin-top: 40px;">Identity Verification Process</h2>
+
+<p>
+  Before disclosing personal data, organization <strong>must verify requester's identity</strong> to prevent unauthorized data access.
+  Acceptable methods depend on the data and organization's existing authentication:
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Method</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Strength</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Process</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Delay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Account Login + OTP</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">High (if existing account)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Portal login with 2FA; OTP sent to registered email/SMS</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><5 min</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Aadhaar VID</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Very High</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">UIDAI-issued VID (Virtual ID) authenticated via AADHAAR API; no 12-digit Aadhaar stored</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">1-5 min</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Email + Callback Verification</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Medium</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DSAR submitter confirms control of email; verify requestor phone number on file</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">1-24 hours</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>PAN + DOB Verification</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Medium</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Last 4 digits of PAN + Date of Birth match on file (masked in all logs to last 4 digits)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><10 min</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Video KYC</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Highest</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Live video call with ID document verification; Liveness check</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">15-30 min</td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #155724;">✅ BEST PRACTICE:</strong><br>
+  <strong>Multi-factor approach:</strong> Combine account login (existing) + OTP (frictionless) + optional VID for high-value data requests.
+  Document verification method in DSAR log for audit trail.
+</div>
+
+<!-- ======== RESPONSE TEMPLATE ======== -->
+<h2 id="response-template" style="margin-top: 40px;">Response Letter Template</h2>
+
+<div style="background: #f5f5f5; border-left: 4px solid #28a745; padding: 14px; margin: 12px 0; font-family: monospace; ">
+<strong>Date:</strong> [RESPONSE_DATE]<br>
+<strong>To:</strong> [DATA_PRINCIPAL_NAME]<br>
+<strong>Email:</strong> [DATA_PRINCIPAL_EMAIL]<br>
+<strong>Request ID:</strong> [REQUEST_ID]<br><br>
+
+<strong>RE: Your Data Subject Access Request (DSAR) — Complete Response</strong><br><br>
+
+Dear [DATA_PRINCIPAL_NAME],<br><br>
+
+Thank you for your Data Subject Access Request submitted on [SUBMISSION_DATE]. We have completed our review and
+are pleased to provide you with the information below.<br><br>
+
+<strong>1. VERIFICATION CONFIRMATION</strong><br>
+✓ Identity verified on [VERIFICATION_DATE] via: [VERIFICATION_METHOD]<br>
+✓ Request processed under DPDP Act 2023, Section 11<br><br>
+
+<strong>2. DATA PROVIDED</strong><br>
+Your complete personal data is attached in the following formats:<br>
+• CSV File: [FILENAME.csv] — [FILE_SIZE] (Excel-compatible)<br>
+• JSON File: [FILENAME.json] — [FILE_SIZE] (Machine-readable)<br>
+• PDF Report: [FILENAME.pdf] — [FILE_SIZE] (Human-readable summary)<br><br>
+
+<strong>Categories of data included:</strong><br>
+☑ Contact Information (Name, Email, Phone, Address)<br>
+☑ Account Information (Account ID, Registration Date, Account Status)<br>
+☑ Transaction History (Last 3 years)<br>
+☑ Profile Data (Preferences, Consent Status, Communication Preferences)<br>
+☑ Communication Records (Support Emails, Chat Logs — last 2 years)<br>
+☑ System Logs (Login History, IP Addresses — last 90 days)<br><br>
+
+<strong>3. DATA NOT PROVIDED (with Reason)</strong><br>
+[If applicable, list data categories withheld and explain legal basis per DPDP Section 12(3)]<br><br>
+
+<strong>4. YOUR RIGHTS (DPDP Act 2023)</strong><br>
+
+<u>Right 1: Portability</u> (Section 13)<br>
+Your data is provided in machine-readable format (CSV, JSON) to facilitate transfer to another organization.
+You may request we directly transfer this data to another processor if technically feasible.<br><br>
+
+<u>Right 2: Correction</u> (Section 12)<br>
+If you believe any data is inaccurate or incomplete, use the Correction Form: [PORTAL_URL]/correction<br>
+We will respond within 30 days.<br><br>
+
+<u>Right 3: Erasure</u> (Section 12)<br>
+You may request deletion of your data, subject to legal obligations. Use Erasure Request Form: [PORTAL_URL]/erasure<br>
+We will respond within 30 days (or explain legal basis for retention).<br><br>
+
+<u>Right 4: Nomination</u> (Section 14)<br>
+You can designate a nominee to access your data after your death. Register nominee: [PORTAL_URL]/nominee<br><br>
+
+<u>Right 5: Grievance</u> (Section 15)<br>
+If you are unsatisfied with this response, you may file a grievance with our DPO within 60 days.
+Details below (Section 7).<br><br>
+
+<strong>5. PROCESSING PURPOSES & LEGAL BASIS</strong><br>
+Your data has been / is being processed for the following purposes:<br>
+[List 3-5 key purposes with Section 6 (consent) or Section 7 (legitimate use) basis]<br><br>
+
+Example:<br>
+• Account Management (Section 7 — Contract Performance)<br>
+• Compliance & Legal Obligation (Section 7 — Legal Obligation)<br>
+• Marketing Communications (Section 6 — Consent; you can withdraw at [PORTAL_URL]/withdrawal)<br><br>
+
+<strong>6. DATA RETENTION SCHEDULE</strong><br>
+Your data will be retained as follows:<br>
+• Active Account Data: Retained for account lifetime + 3 years post-closure<br>
+• Transaction Records: Retained per RBI requirement (8 years for loans, 10 years for KYC)<br>
+• Communication Logs: Deleted after 2 years unless subject of legal dispute<br>
+• System Logs: Deleted after 90 days (audit trail only)<br><br>
+
+[Reference T-02A Data Retention Schedule for full details]<br><br>
+
+<strong>7. GRIEVANCE & ESCALATION</strong><br>
+
+If you are unsatisfied with this response or believe your rights have been violated:<br><br>
+
+<u>Step 1: DPO Review (Internal)</u> (60 days)<br>
+File Grievance Form: [PORTAL_URL]/grievance<br>
+Our Data Protection Officer ([DPO_NAME], [DPO_EMAIL]) will review within 60 days.<br><br>
+
+<u>Step 2: DPBI Escalation (External)</u> (if DPO response unsatisfactory)<br>
+Escalate to Data Protection Board of India (DPBI):<br>
+• Submit complaint at: [DPBI_PORTAL_URL]<br>
+• DPBI will investigate and issue binding orders if violation confirmed<br>
+• [Learn more: https://www.meity.gov.in/dpbi]<br><br>
+
+<strong>8. CONTACT INFORMATION</strong><br>
+Data Protection Officer: [DPO_NAME]<br>
+Email: [DPO_EMAIL]<br>
+Phone: [DPO_PHONE]<br>
+Address: [ORG_ADDRESS]<br>
+Response Officer: [RESPONSE_OFFICER_NAME]<br>
+Email: [RESPONSE_OFFICER_EMAIL]<br><br>
+
+<strong>9. DATA SECURITY NOTE</strong><br>
+Your personal data has been encrypted during transmission and storage.
+We recommend you:<br>
+• Secure your download (files contain sensitive data)<br>
+• Do not share with unauthorized parties<br>
+• Verify file integrity: SHA-256 checksum = [CHECKSUM]<br>
+• Delete files after use to prevent accidental exposure<br><br>
+
+We appreciate your trust and remain committed to protecting your personal data in accordance with the DPDP Act 2023.<br><br>
+
+Yours sincerely,<br><br>
+
+[ORGANIZATION_NAME]<br>
+Data Protection Officer<br>
+Approved by: [COMPLIANCE_OWNER], Compliance Manager<br>
+Date: [RESPONSE_DATE]<br>
+Request ID: [REQUEST_ID] (for tracking)
+</div>
+
+<!-- ======== ESCALATION PATH ======== -->
+<h2 id="escalation" style="margin-top: 40px;">DPBI Escalation Path</h2>
+
+<p>
+  If a Data Principal is unsatisfied with the organization's response to a DSAR or related request (correction, erasure, grievance),
+  they can escalate to the <strong>Data Protection Board of India (DPBI)</strong> — the statutory regulator.
+</p>
+
+<h3>DPBI Escalation Timeline</h3>
+<ul>
+  <li><strong>Within 60 days of DSAR response:</strong> Data Principal must file complaint with DPBI (link: [DPBI_COMPLAINT_PORTAL])</li>
+  <li><strong>DPBI Investigation:</strong> DPBI investigates complaint and may issue orders</li>
+  <li><strong>DPBI Orders are binding:</strong> Organization must comply with DPBI decision</li>
+  <li><strong>Penalties for non-compliance:</strong> Up to ₹50 Cr or 2% annual revenue (whichever is higher) under Section 25</li>
+</ul>
+
+<div style="background: #f8d7da; border: 1px solid #f5c6cb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #721c24;">⚠️ CRITICAL:</strong><br>
+  Organizations must take DPBI escalation seriously. Failure to respond to a DPBI order can result in penalties up to
+  ₹50 Cr or 2% of annual revenue. Always complete DSAR within the 30-day SLA to avoid escalation.
+</div>
+
+<!-- ======== CHECKLIST ======== -->
+<h2 id="checklist" style="margin-top: 40px;">Implementation Checklist</h2>
+
+<ul style=" line-height: 1.8;">
+  <li>☐ <strong>Process:</strong> DSAR intake form created on portal (email + web form both supported)</li>
+  <li>☐ <strong>Automation:</strong> 48-hour auto-ACK email configured with request ID, expected completion date, tracking link</li>
+  <li>☐ <strong>Identity Verification:</strong> Multi-factor verification process documented (account login + OTP, VID, callback, etc.)</li>
+  <li>☐ <strong>Data Extraction:</strong> SQL queries or ETL scripts prepared to extract all personal data per Data Principal</li>
+  <li>☐ <strong>Data Formatting:</strong> Export pipeline creates CSV, JSON, and PDF formats; encryption in transit</li>
+  <li>☐ <strong>Portability:</strong> Data provided in machine-readable format (CSV/JSON compatible with other tools)</li>
+  <li>☐ <strong>Correction Link:</strong> Response letter includes link to T-12 (Correction Form)</li>
+  <li>☐ <strong>Erasure Link:</strong> Response letter includes link to T-12 (Erasure Request Form)</li>
+  <li>☐ <strong>Nomination Link:</strong> Response letter includes link to T-14 (Nomination Form)</li>
+  <li>☐ <strong>Grievance Link:</strong> Response letter includes link to T-09 (Grievance Form) + DPO contact</li>
+  <li>☐ <strong>DPBI Info:</strong> Response letter includes DPBI escalation information and complaint portal link</li>
+  <li>☐ <strong>Logging:</strong> DSAR tracker table records request ID, submission date, verification date, response date, compliance status</li>
+  <li>☐ <strong>Audit Trail:</strong> All DSAR actions (receipt, ACK, verification, extraction, response) logged in hash-chained audit log</li>
+  <li>☐ <strong>SLA Monitoring:</strong> Dashboard tracks all DSARs, flags those approaching 30-day deadline</li>
+  <li>☐ <strong>Data Retention:</strong> Downloaded data on server encrypted and purged after 90 days</li>
+  <li>☐ <strong>Legal Review:</strong> Response letter template approved by Legal + DPO</li>
+  <li>☐ <strong>Testing:</strong> End-to-end DSAR flow tested: submit → ACK → verify identity → extract → deliver → verify portability</li>
+  <li>☐ <strong>Training:</strong> Grievance team trained on DSAR process, SLA, escalation path</li>
+</ul>
+
+<div style="background: #d1ecf1; border: 1px solid #bee5eb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #0c5460;">ℹ️ REFERENCE TEMPLATES:</strong><br>
+  • <strong>T-09:</strong> <a href="09_Grievance_Form.html">Grievance Response Form</a><br>
+  • <strong>T-12:</strong> <a href="12_Correction_and_Erasure_SOP.html">Correction & Erasure SOP</a><br>
+  • <strong>T-13:</strong> <a href="13_Data_Correction_Form.html">Data Correction Form</a><br>
+  • <strong>T-14:</strong> <a href="14_Nominee_Registration.html">Nominee Registration Form</a><br>
+  • <strong>T-02A:</strong> <a href="02A_Data_Retention_Schedule.html">Data Retention Schedule</a>
+</div>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 2.0<br>
+    <strong>Last Updated:</strong> April 2026<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By (Legal):</strong> _________________________<br>
+    <strong>Approved By (DPO):</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

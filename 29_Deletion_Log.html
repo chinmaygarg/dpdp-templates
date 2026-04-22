@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deletion Log</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Deletion Log</div>
+  <div class="subtitle">Data Deletion Audit Trail and Confirmation</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived]
+</div>
+
+<h2>1. Purpose & Legal Basis (DPDP Section 17)</h2>
+
+<div style="background: #e8f4fd; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Legal Requirement:</strong> DPDP Act 2023 Section 17 mandates that personal data be retained only "as long as necessary" for stated purposes. This Deletion Log creates an immutable audit trail proving compliance with deletion obligations.<br><br>
+<strong>Purpose:</strong> Track every erasure request, deletion execution, and processor confirmation. Hash-chained rows detect tampering. 7-year WORM archive proves historical compliance.
+</div>
+
+<h2>2. Deletion Log Schema (12-Field Record)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Field</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Type</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>deletion_id</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">UUID</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Unique identifier (primary key)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>principal_id</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">HASH (SHA-256)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data principal identifier (hashed for privacy)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>deletion_type</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">ENUM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Erasure (Section 12) | Expiry (Section 17) | Legal Hold Exception</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>data_categories</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TEXT (JSON)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Categories deleted: ["Name", "Email", "Aadhaar_VID"]</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>deletion_reason</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TEXT</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Erasure request | Retention period expired | RtBF | Withdrawal</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>request_date</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TIMESTAMP</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">When deletion was requested</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>executed_date</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TIMESTAMP</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">When deletion was completed (SLA: ≤30 days)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>deletion_method</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TEXT</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Crypto-shredding | Physical destruction | Anonymization</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>processors_notified</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TEXT (JSON)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">["Vendor_A", "Vendor_B"] — processors instructed to delete</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>processor_confirmations</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TEXT (JSON)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Confirmation date per processor (SLA: 5 business days per Section 12(4))</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>prev_hash</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">SHA-256</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Hash-chaining:</strong> SHA-256 of previous row; detect tampering</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>authorized_by</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TEXT</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPO/Compliance officer who approved deletion</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Deletion Workflow (7 Steps, ≤30 Day SLA)</h2>
+
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>T+0 (Receipt):</strong> Deletion request received (erasure demand, retention expiry, withdrawal)<br>
+<strong>T+1 (Verification):</strong> Verify principal identity; confirm data categories to be deleted<br>
+<strong>T+2 (Assessment):</strong> Check Statutory Hold Register — if hold exists, notify principal of exception<br>
+<strong>T+5 (Execution):</strong> Execute deletion in all primary systems; record method in log<br>
+<strong>T+6 (Processors):</strong> Send deletion instruction to all processors with 5-day confirmation deadline<br>
+<strong>T+11 (Confirmation):</strong> Collect deletion confirmations from processors (Section 12(4) propagation SLA)<br>
+<strong>T+30 (Close):</strong> Close deletion request; archive log entry; update Compliance Dashboard
+</div>
+
+<h2>4. Immutability & Hash-Chaining</h2>
+
+<div style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Database Constraint (INSERT-ONLY):</strong> deletion_log table has NO UPDATE/DELETE permissions (even for DBA). All changes are new rows.<br><br>
+<strong>Hash-Chaining:</strong> Each row includes prev_hash = SHA-256(previous_row). Tampers are detected: modifying a row changes its hash, breaking the chain downstream.<br><br>
+<strong>WORM Archive:</strong> After 90 days, deletion_log entries archived to write-once storage (S3 Object Lock, WORM tape) — no deletion possible even with root access.
+</div>
+
+<h2>5. Exception Handling (Statutory Hold)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Category</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Retention Period</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Legal Basis</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Action on Erasure Request</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">KYC Records (NBFC/Bank)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">10 years</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">RBI Master Direction</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Hold; explain in response letter; offer anonymization</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">Loan/Credit Records</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">8 years post-closure</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">RBI Master Direction</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Hold; explain in response letter</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Tax Records</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">6 years</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Income Tax Act 1961</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Hold; explain in response letter</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">Litigation Hold</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Until case closed + appeals exhausted</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Court order / Legal privilege</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Hold; explain in response letter; escalate to Legal</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6. Quarterly Deletion Audit Report</h2>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Every Q1/Q2/Q3/Q4, DPO reviews deletion_log:</strong><br>
+• Total deletions processed ________<br>
+• Deletion SLA compliance % ________ (target: 99%+)<br>
+• Processor confirmation SLA compliance ________ (target: 100%)<br>
+• Exceptions/holds on file ________<br>
+• Hash-chain integrity verified (no tampering detected) ☐<br>
+• Archive to WORM storage completed ☐<br>
+• Report signed by DPO ________ Date ________
+</div>
+
+<h2>7. Implementation Checklist</h2>
+
+<ul >
+  <li>☐ Create deletion_log table with 12 fields above</li>
+  <li>☐ Configure database permissions (INSERT-only, no UPDATE/DELETE)</li>
+  <li>☐ Implement hash-chaining logic (SHA-256 of previous row)</li>
+  <li>☐ Configure WORM archive (S3 Object Lock or equivalent) after 90 days</li>
+  <li>☐ Set 7-year minimum retention policy</li>
+  <li>☐ Create Deletion Log dashboard (daily execution, weekly SLA monitoring)</li>
+  <li>☐ Train team on deletion workflow (7-step process)</li>
+  <li>☐ Integrate Processor confirmation mechanism (5-day SLA tracking)</li>
+  <li>☐ Test hash-chaining: verify tamper detection works</li>
+  <li>☐ Document statutory holds in Statutory Hold Register (T-43)</li>
+  <li>☐ Monthly SLA report to DPO; escalate any breaches</li>
+  <li>☐ Quarterly DPO audit (hash integrity + archive completion)</li>
+</ul>
+
+<h2 style="margin-top: 30px;">Completion Checklist</h2>
+
+<ul >
+  <li>☐ Reviewed DPDP Act Section 5-16 requirements</li>
+  <li>☐ Gathered organization-specific information</li>
+  <li>☐ Customized for business context</li>
+  <li>☐ Legal/Compliance review completed</li>
+  <li>☐ Stakeholder sign-off obtained</li>
+  <li>☐ Implementation and rollout plan ready</li>
+</ul>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By:</strong> _________________________<br>
+    <strong>Approved By:</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPIA Register — SDF Data Protection Impact Assessments</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  /* Template-specific overrides */
+    .header { border-bottom: 2px solid var(--text-primary); padding-bottom: 15px; margin-bottom: 20px; }
+  .title { font-weight: bold; margin-bottom: 10px; }
+  .subtitle { color: var(--text-secondary); margin-bottom: 15px; }
+  table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; }
+  th { background: #2c3e50; color: white; padding: 6px; text-align: left; font-weight: bold; }
+  td { border: 1px solid var(--border-color); padding: 5px; }
+  tr:nth-child(even) { background: var(--bg-light); }
+  input[type="text"], textarea, select { border: none; border-bottom: 1px solid var(--text-primary); padding: 2px; width: 95%; }
+  .critical { background: var(--status-fail); }
+  .high { background: var(--status-warn); }
+  .medium { background: #d1ecf1; }
+  .note { background: #f0f5ff; padding: 8px; border-left: 3px solid var(--primary-color); margin: var(--spacing-sm) 0; }
+  @media print { body { margin: 0; padding: 0; } }
+</style>
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">DPIA REGISTER — Significant Data Fiduciary Data Protection Impact Assessments</div>
+  <div class="subtitle">
+    Organization: <input type="text" placeholder="[Organization Name]" style="width:300px;"><br>
+    Register Effective: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+    &nbsp;&nbsp; Last Updated: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+  </div>
+</div>
+
+<div class="note">
+  <strong>SECTION 10 REQUIREMENT:</strong> Significant Data Fiduciaries (SDFs) MUST conduct Data Protection Impact Assessments (DPIAs) for ALL high-risk processing activities. This register tracks each DPIA with completion status, risk ratings, mitigation measures, and next review dates.
+</div>
+
+<table>
+  <tr>
+    <th style="width:8%;">DPIA ID</th>
+    <th style="width:15%;">Processing Activity</th>
+    <th style="width:12%;">Data Categories</th>
+    <th style="width:8%;">Risk Level</th>
+    <th style="width:10%;">Completion Date</th>
+    <th style="width:10%;">DPO Sign-Off</th>
+    <th style="width:10%;">Board Approval</th>
+    <th style="width:10%;">Next Review</th>
+    <th style="width:17%;">Status & Notes</th>
+  </tr>
+
+  <tr class="critical">
+    <td><input type="text" placeholder="DPIA-001" style="width:70px;"></td>
+    <td><input type="text" placeholder="e.g., Customer KYC & Biometric Verification" style="width:130px;"></td>
+    <td><input type="text" placeholder="Aadhaar, Biometric, Address" style="width:100px;"></td>
+    <td>
+      <select style="border:1px solid var(--text-primary); padding:2px;">
+        <option>CRITICAL</option>
+        <option>HIGH</option>
+        <option>MEDIUM</option>
+        <option>LOW</option>
+      </select>
+    </td>
+    <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    <td><input type="checkbox"> Approved</td>
+    <td><input type="checkbox"> Approved</td>
+    <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    <td><input type="text" placeholder="Status" style="width:140px;"></td>
+  </tr>
+
+  <tr>
+    <td><input type="text" placeholder="DPIA-002" style="width:70px;"></td>
+    <td><input type="text" placeholder="e.g., Behavioral Profiling & Credit Scoring" style="width:130px;"></td>
+    <td><input type="text" placeholder="Transaction history, Income, Behavior" style="width:100px;"></td>
+    <td>
+      <select style="border:1px solid var(--text-primary); padding:2px;">
+        <option>CRITICAL</option>
+        <option>HIGH</option>
+        <option>MEDIUM</option>
+        <option>LOW</option>
+      </select>
+    </td>
+    <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    <td><input type="checkbox"> Approved</td>
+    <td><input type="checkbox"> Approved</td>
+    <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    <td><input type="text" placeholder="Status" style="width:140px;"></td>
+  </tr>
+
+  <tr>
+    <td><input type="text" placeholder="DPIA-003" style="width:70px;"></td>
+    <td><input type="text" placeholder="e.g., Employee Surveillance / Time Tracking" style="width:130px;"></td>
+    <td><input type="text" placeholder="Location, Activity logs, Biometric" style="width:100px;"></td>
+    <td>
+      <select style="border:1px solid var(--text-primary); padding:2px;">
+        <option>CRITICAL</option>
+        <option>HIGH</option>
+        <option>MEDIUM</option>
+        <option>LOW</option>
+      </select>
+    </td>
+    <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    <td><input type="checkbox"> Approved</td>
+    <td><input type="checkbox"> Approved</td>
+    <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    <td><input type="text" placeholder="Status" style="width:140px;"></td>
+  </tr>
+
+  <tr>
+    <td><input type="text" placeholder="DPIA-004" style="width:70px;"></td>
+    <td><input type="text" placeholder="e.g., Health Data Processing" style="width:130px;"></td>
+    <td><input type="text" placeholder="Health records, Prescription, Medical history" style="width:100px;"></td>
+    <td>
+      <select style="border:1px solid var(--text-primary); padding:2px;">
+        <option>CRITICAL</option>
+        <option>HIGH</option>
+        <option>MEDIUM</option>
+        <option>LOW</option>
+      </select>
+    </td>
+    <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    <td><input type="checkbox"> Approved</td>
+    <td><input type="checkbox"> Approved</td>
+    <td><input type="text" placeholder="DD/MM/YYYY" style="width:80px;"></td>
+    <td><input type="text" placeholder="Status" style="width:140px;"></td>
+  </tr>
+
+</table>
+
+<div style="margin-top:20px;">
+  <strong>DPIA CONTENT CHECKLIST</strong><br>
+  <table>
+    <tr>
+      <th>Required DPIA Section</th>
+      <th>Purpose / Content</th>
+      <th>Mandatory?</th>
+    </tr>
+    <tr>
+      <td><strong>1. Processing Activity Description</strong></td>
+      <td>What data? For what purpose? By whom? For how long?</td>
+      <td><input type="checkbox"> Yes</td>
+    </tr>
+    <tr style="background:var(--bg-light);">
+      <td><strong>2. Necessity & Proportionality Assessment</strong></td>
+      <td>Is this processing necessary for the stated purpose? Is data collected proportionate to purpose?</td>
+      <td><input type="checkbox"> Yes</td>
+    </tr>
+    <tr>
+      <td><strong>3. Data Principal Rights Impact</strong></td>
+      <td>How does this processing affect data principals' rights (access, correct, erase, withdraw consent)?</td>
+      <td><input type="checkbox"> Yes</td>
+    </tr>
+    <tr style="background:var(--bg-light);">
+      <td><strong>4. Risk Identification & Rating</strong></td>
+      <td>Identify all risks to data principals (breach, misuse, unauthorized access, profiling)</td>
+      <td><input type="checkbox"> Yes</td>
+    </tr>
+    <tr>
+      <td><strong>5. Privacy by Design Measures</strong></td>
+      <td>Encryption, access controls, data minimization, pseudonymization, technical safeguards</td>
+      <td><input type="checkbox"> Yes</td>
+    </tr>
+    <tr style="background:var(--bg-light);">
+      <td><strong>6. Mitigation Strategy</strong></td>
+      <td>How will identified risks be mitigated? What controls are in place?</td>
+      <td><input type="checkbox"> Yes</td>
+    </tr>
+    <tr>
+      <td><strong>7. Residual Risk Acceptance</strong></td>
+      <td>After mitigation, what residual risks remain? Who accepts them?</td>
+      <td><input type="checkbox"> Yes</td>
+    </tr>
+    <tr style="background:var(--bg-light);">
+      <td><strong>8. DPO Sign-Off</strong></td>
+      <td>DPO reviews and formally approves the DPIA</td>
+      <td><input type="checkbox"> Yes</td>
+    </tr>
+    <tr>
+      <td><strong>9. Board / Senior Management Approval</strong></td>
+      <td>Processing only commences after Board approval of DPIA findings</td>
+      <td><input type="checkbox"> Yes</td>
+    </tr>
+  </table>
+</div>
+
+<div style="margin-top:20px;">
+  <strong>DPIA RISK RATING SCALE</strong><br>
+  <table>
+    <tr style="background:#2c3e50; color:white;">
+      <th>Rating</th>
+      <th>Likelihood × Impact</th>
+      <th>Typical Processing Activities</th>
+      <th>Board Escalation Required?</th>
+    </tr>
+    <tr class="critical">
+      <td><strong>CRITICAL</strong></td>
+      <td>High likelihood × High impact (e.g., 4×4 = 16)</td>
+      <td>Biometric processing, health data, children's data, profiling</td>
+      <td><input type="checkbox"> YES — Board must approve before processing</td>
+    </tr>
+    <tr class="high">
+      <td><strong>HIGH</strong></td>
+      <td>High/Medium likelihood × High impact (e.g., 3×4, 4×3)</td>
+      <td>KYC verification, cross-border transfers, third-party sharing</td>
+      <td><input type="checkbox"> YES — Board sign-off required</td>
+    </tr>
+    <tr class="medium">
+      <td><strong>MEDIUM</strong></td>
+      <td>Medium likelihood × Medium impact (e.g., 2×2, 3×2, 2×3)</td>
+      <td>Regular customer data, employee records, transaction logs</td>
+      <td><input type="checkbox"> Optional — DPO approval sufficient; inform Board</td>
+    </tr>
+    <tr>
+      <td><strong>LOW</strong></td>
+      <td>Low likelihood × Low impact (e.g., 1×2, 2×1)</td>
+      <td>Anonymized data, aggregated statistics, non-sensitive metadata</td>
+      <td><input type="checkbox"> No — DPO approval sufficient</td>
+    </tr>
+  </table>
+</div>
+
+<div style="margin-top:20px; padding: var(--spacing-md); background:#f0f5ff; border-left:3px solid var(--primary-color);">
+  <strong>CRITICAL DPIA DECISIONS LOG</strong><br>
+  <textarea placeholder="Log major decisions from DPIA reviews: e.g., DPIA-001 rated CRITICAL due to biometric processing — Board approved on [date] with condition to implement [mitigation]. DPIA-002 mitigation plan approved with 90-day remediation deadline." style="width:100%; height:100px;"></textarea>
+</div>
+
+<div style="margin-top:20px; padding: var(--spacing-md); background:var(--bg-light); border:1px solid var(--border-color);">
+  <strong>DPIA REGISTER SIGN-OFF</strong><br><br>
+  DPO Responsibility:<br>
+  <input type="text" placeholder="DPO Name / Signature" style="width:300px;"> Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;"><br><br>
+  Board/Senior Management Acknowledgment:<br>
+  <input type="text" placeholder="Board Chair / CEO Signature" style="width:300px;"> Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

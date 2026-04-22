@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit Logging Configuration — PII Redaction, Immutability & 7-Year Retention</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+<div class="header">
+  <div class="title">Audit Logging Configuration</div>
+  <div class="subtitle">DPDP Act 2023 Section 8 — PII Redaction, Immutable Logs & Hash-Chained Audit Trail</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 2.0 (Updated April 2026) | <strong>Effective:</strong> 13 May 2027 | <strong>Scope:</strong> All systems (app, database, API, infrastructure)<br>
+  <strong>Key Requirement:</strong> All audit logs are INSERT-ONLY (append-only), immutable, PII-redacted, hash-chained, retained for 7 years
+</div>
+
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#overview">Overview & Compliance Scope</a></li>
+  <li><a href="#pii-redaction">PII Redaction Rules (Before Logging)</a></li>
+  <li><a href="#immutable-logs">Immutable Audit Log Requirements</a></li>
+  <li><a href="#events-to-log">Mandatory Events to Log</a></li>
+  <li><a href="#database-schema">Database Schema for Audit Logs</a></li>
+  <li><a href="#dam-integration">Database Activity Monitoring Integration</a></li>
+  <li><a href="#retention">Log Retention & Deletion Schedule</a></li>
+  <li><a href="#alert-rules">Alert Rules & Anomaly Detection</a></li>
+  <li><a href="#checklist">Implementation Checklist</a></li>
+</ul>
+
+<!-- ======== OVERVIEW ======== -->
+<h2 id="overview" style="margin-top: 40px;">Overview & Compliance Scope</h2>
+
+<p>
+  Audit logging is <strong>mandatory</strong> under DPDP Act 2023 Section 8 (Information Security). All data access, modifications, and privilege changes must be logged, immutable, and retained for minimum 7 years. <strong>Violation creates ₹50–₹100 Cr penalty exposure.</strong>
+</p>
+
+<p style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #856404;">⚠️ CRITICAL RULES:</strong><br>
+  ✓ All logs are INSERT-ONLY (no UPDATE/DELETE on audit_log table)<br>
+  ✓ PII must be redacted BEFORE logging (never store plaintext Aadhaar, PAN, OTP)<br>
+  ✓ Hash-chained rows (each row includes SHA-256 hash of previous row)<br>
+  ✓ Archived to WORM (Write-Once, Read-Many) storage after 90 days<br>
+  ✓ 7-year minimum retention per DPDP checkpoint SS-09
+</p>
+
+<!-- ======== PII REDACTION ======== -->
+<h2 id="pii-redaction" style="margin-top: 40px;">PII Redaction Rules (Before Logging)</h2>
+
+<p>
+  <strong>Critical rule:</strong> PII must never appear in logs. Every PII field has a redaction rule that is applied BEFORE the log entry is written.
+</p>
+
+<h3>Aadhaar Redaction</h3>
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Pattern:</strong> 12-digit number (optional dashes: 1234-5678-9012)<br>
+  <strong>Redaction:</strong> Replace entire match with [AADHAAR-REDACTED]<br><br>
+  <strong>Regex:</strong> <code>\b\d{4}[-\s]?\d{4}[-\s]?\d{4}\b</code><br>
+  <strong>Example:</strong><br>
+  Before: <code>"User verified via Aadhaar: 1234567890123"</code><br>
+  After: <code>"User verified via Aadhaar: [AADHAAR-REDACTED]"</code>
+</div>
+
+<h3>PAN Redaction</h3>
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Pattern:</strong> 10-character PAN code (e.g., AAAPP1234A)<br>
+  <strong>Redaction:</strong> Mask to last 4 digits: XXXXXXX1234<br><br>
+  <strong>Regex:</strong> <code>[A-Z]{5}[0-9]{4}[A-Z]{1}</code><br>
+  <strong>Example:</strong><br>
+  Before: <code>"KYC verified: PAN=AAAPP1234A"</code><br>
+  After: <code>"KYC verified: PAN=XXXXXXX1234"</code>
+</div>
+
+<h3>Mobile Number Redaction</h3>
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Pattern:</strong> 10-digit mobile (optional +91 prefix)<br>
+  <strong>Redaction:</strong> Mask middle digits: XXXXX6789<br><br>
+  <strong>Regex:</strong> <code>(\+91)?[6-9]\d{9}</code><br>
+  <strong>Example:</strong><br>
+  Before: <code>"OTP sent to 9876543210"</code><br>
+  After: <code>"OTP sent to XXXXX3210"</code>
+</div>
+
+<h3>Email Redaction</h3>
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Pattern:</strong> Email address<br>
+  <strong>Redaction:</strong> Mask local part: f***@domain.com<br><br>
+  <strong>Regex:</strong> <code>[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}</code><br>
+  <strong>Example:</strong><br>
+  Before: <code>"Consent from john.doe@acme.com"</code><br>
+  After: <code>"Consent from j***@acme.com"</code>
+</div>
+
+<h3>Bank Account & Card Numbers</h3>
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Bank Account:</strong> 10–20 digits → Mask to [ACCOUNT-REDACTED]<br>
+  <strong>Card Number:</strong> 16 digits → Show last 4 only (1111-****-****-2345)<br><br>
+  <strong>Example:</strong><br>
+  Before: <code>"Account transfer from 1234567890 to 0987654321"</code><br>
+  After: <code>"Account transfer from [ACCOUNT-REDACTED] to [ACCOUNT-REDACTED]"</code>
+</div>
+
+<h3>OTP & API Keys</h3>
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>OTP (6-digit):</strong> Replace with [OTP-REDACTED]<br>
+  <strong>API Key / Token (40+ chars):</strong> Show first 10 + last 4 only (e.g., sk-proj***...abc1)<br><br>
+  <strong>Example:</strong><br>
+  Before: <code>"OTP verification: 123456 | API key used: sk-proj-abc1234567890def"</code><br>
+  After: <code>"OTP verification: [OTP-REDACTED] | API key used: sk-proj...0def"</code>
+</div>
+
+<h3>PII Redaction Checklist</h3>
+<ul >
+  <li>☐ Deploy PII redaction middleware in all logging frameworks (Winston, Log4j, Pino, etc.)</li>
+  <li>☐ Test: Log a message with sensitive data and verify redaction works</li>
+  <li>☐ Audit existing logs: Grep for patterns (Aadhaar: \b\d{12}\b, PAN: [A-Z]{5}[0-9]{4}[A-Z], Phone: [6-9]\d{9})</li>
+  <li>☐ If plaintext PII found in logs: Delete or rotate log files (do not archive to long-term storage)</li>
+  <li>☐ Update all log outputs to include redaction rules (console, files, cloud logging)</li>
+  <li>☐ Document exceptions (if any logs must contain plaintext PII for security research) and require DPO approval</li>
+</ul>
+
+<!-- ======== IMMUTABLE LOGS ======== -->
+<h2 id="immutable-logs" style="margin-top: 40px;">Immutable Audit Log Requirements</h2>
+
+<p>
+  Immutability means <strong>once a log entry is written, it can NEVER be modified or deleted</strong> (except as part of the scheduled 7-year retention purge). This ensures DPBI audit integrity.
+</p>
+
+<h3>1. INSERT-ONLY Database Table</h3>
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Create audit_log table with constraints:</strong><br><br>
+  <code style="font-family: monospace; background: #f5f5f5; padding: 10px; border-radius: 3px;">
+    CREATE TABLE audit_log (<br>
+    &nbsp;&nbsp;id BIGINT PRIMARY KEY AUTO_INCREMENT,<br>
+    &nbsp;&nbsp;org_id TEXT NOT NULL,<br>
+    &nbsp;&nbsp;timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,<br>
+    &nbsp;&nbsp;user_id TEXT,<br>
+    &nbsp;&nbsp;action TEXT NOT NULL,<br>
+    &nbsp;&nbsp;resource_type TEXT,<br>
+    &nbsp;&nbsp;resource_id TEXT,<br>
+    &nbsp;&nbsp;changes_hash TEXT,<br>
+    &nbsp;&nbsp;<strong>previous_hash TEXT</strong> -- SHA-256 of previous row<br>
+    &nbsp;&nbsp;ip_address TEXT,<br>
+    &nbsp;&nbsp;user_agent TEXT<br>
+    );<br><br>
+    -- Enforce INSERT-ONLY: No UPDATE/DELETE permissions for applications<br>
+    GRANT INSERT, SELECT ON audit_log TO app_user;<br>
+    GRANT INSERT, SELECT, UPDATE, DELETE ON audit_log TO admin_user;
+  </code><br><br>
+  <strong>Key constraint:</strong> Application user can only INSERT and SELECT, never UPDATE or DELETE.
+</div>
+
+<h3>2. Hash-Chained Entries</h3>
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Hash-chaining ensures tamper-proof log integrity.</strong><br><br>
+  <strong>Implementation:</strong><br>
+  1. First log entry: <code>previous_hash = NULL</code> (genesis entry)<br>
+  2. Subsequent entries: <code>previous_hash = SHA-256(previous_row_id + previous_row_timestamp + previous_row_action)</code><br>
+  3. Any modification to prior entry breaks the chain (detected by integrity check)<br><br>
+  <strong>Validation script (run weekly):</strong><br>
+  <code style="font-family: monospace; background: #f5f5f5; padding: 10px; border-radius: 3px;">
+    SELECT id, calculated_hash, previous_hash<br>
+    FROM audit_log<br>
+    WHERE SHA256(CONCAT(id, timestamp, action)) != calculated_hash<br>
+    ORDER BY id DESC LIMIT 10;
+  </code><br><br>
+  If any rows match: <strong>Breach detected. Escalate to CISO immediately.</strong>
+</div>
+
+<h3>3. Archive to WORM Storage (Write-Once, Read-Many)</h3>
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Every 90 days:</strong> Archive logs older than 90 days to WORM (immutable) storage.<br><br>
+  <strong>Implementation:</strong><br>
+  • <strong>AWS S3:</strong> Enable Object Lock with Governance mode (minimum 7 years retention)<br>
+  • <strong>Azure Blob:</strong> Enable Immutable Blob Storage (legal hold + time-based retention)<br>
+  • <strong>GCP:</strong> Cloud Storage with Retention Policy (7-year minimum)<br>
+  • <strong>On-Premise:</strong> Write to optical media (CD-R, WORM tape) or immutable filesystem<br><br>
+  <strong>Automated process:</strong><br>
+  1. Daily job extracts audit logs from previous day<br>
+  2. Compress and encrypt (AES-256) to archive file<br>
+  3. Compute SHA-256 checksum of archive<br>
+  4. Upload to WORM storage<br>
+  5. Delete from hot storage after successful upload verification<br>
+  6. Store checksum in blockchain or signed ledger (optional, for additional tamper-proof backup)
+</div>
+
+<h3>4. Minimum 7-Year Retention</h3>
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Per DPDP checkpoint SS-09:</strong> Audit logs retained for minimum 7 years.<br><br>
+  <strong>Retention schedule:</strong><br>
+  • <strong>0–90 days:</strong> Hot storage (operational database, fast query access)<br>
+  • <strong>90 days – 7 years:</strong> Cold storage (WORM archive, searchable but slower)<br>
+  • <strong>After 7 years:</strong> Safe to delete (with DPO/Legal approval)<br><br>
+  <strong>Deletion process:</strong><br>
+  1. DPO creates deletion request (approved by Legal)<br>
+  2. Security team verifies deletion SLA (no active litigation holds)<br>
+  3. Archive file deleted from WORM storage (after legal hold expires)<br>
+  4. Deletion logged: [ARCHIVE-DELETED] entries in audit trail<br>
+  5. Checksum of deleted file retained for 30 days (for final verification)
+</div>
+
+<!-- ======== EVENTS TO LOG ======== -->
+<h2 id="events-to-log" style="margin-top: 40px;">Mandatory Events to Log</h2>
+
+<p>
+  Every one of these events <strong>must</strong> be logged with full context (user, timestamp, IP, changes). Failure to log a required event is a DPBI violation.
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Event Category</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Specific Events</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Data to Capture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Authentication</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Login success, login failure, logout, password change, MFA enable/disable, session timeout</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">user_id, timestamp, IP, MFA method, failure reason (if failed)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Data Access</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Database query (SELECT large dataset), data download, file access, API call</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">user_id, resource_id, record_count, timestamp, query_duration, IP</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Data Modification</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Create, update, delete any personal data; bulk import/export; ETL job</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">user_id, resource_id, old_value (encrypted), new_value (encrypted), change_reason, timestamp</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Privilege Changes</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Role assignment, role removal, permission grant, permission revoke</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">admin_id, target_user_id, old_role, new_role, approval_id (if required)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Consent Actions</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Consent grant, consent withdrawal, consent audit, consent export</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">principal_id, purpose_code, consent_action, timestamp, channel (app/web/api)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>DSAR Actions</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DSAR request submission, verification, response sent, rejection, extension</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">principal_id, request_id, dsar_type (access/correction/erasure), status, timestamp</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Breach Handling</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incident detection, containment action, notification sent, CERT-In report, DPBI report</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">incident_id, severity, affected_records, containment_steps, notification_recipients</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>System Configuration</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Change to encryption key, firewall rule, network config, database schema, backup policy</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">change_id, admin_id, old_config, new_config, approval_id, timestamp</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Archive/Deletion</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data archived, data deleted, deletion verification, WORM archive upload</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">deletion_id, principal_id (if applicable), record_count, deletion_reason, timestamp, archive_checksum</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== DATABASE SCHEMA ======== -->
+<h2 id="database-schema" style="margin-top: 40px;">Database Schema for Audit Logs</h2>
+
+<div style="background: #f5f5f5; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px; font-family: monospace;  overflow-x: auto;">
+<strong>PostgreSQL Schema:</strong><br>
+<code>
+CREATE TABLE audit_log (<br>
+&nbsp;&nbsp;id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,<br>
+&nbsp;&nbsp;org_id VARCHAR(255) NOT NULL,<br>
+&nbsp;&nbsp;timestamp TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,<br>
+&nbsp;&nbsp;user_id VARCHAR(255),<br>
+&nbsp;&nbsp;action VARCHAR(255) NOT NULL, -- 'LOGIN', 'DATA_ACCESS', 'CONSENT_GRANT', 'DSAR_SUBMIT', 'DELETION', etc.<br>
+&nbsp;&nbsp;resource_type VARCHAR(100), -- 'principal', 'consent', 'dsar', 'breach', etc.<br>
+&nbsp;&nbsp;resource_id VARCHAR(255),<br>
+&nbsp;&nbsp;old_value TEXT, -- JSON (encrypted if PII)<br>
+&nbsp;&nbsp;new_value TEXT, -- JSON (encrypted if PII)<br>
+&nbsp;&nbsp;changes_hash VARCHAR(64), -- SHA-256 of (old_value || new_value)<br>
+&nbsp;&nbsp;previous_hash VARCHAR(64), -- SHA-256 of previous row (hash-chaining)<br>
+&nbsp;&nbsp;ip_address VARCHAR(45), -- IPv4 or IPv6<br>
+&nbsp;&nbsp;user_agent TEXT,<br>
+&nbsp;&nbsp;status VARCHAR(50), -- 'success', 'failure', 'partial'<br>
+&nbsp;&nbsp;error_message TEXT,<br>
+&nbsp;&nbsp;created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP<br>
+);<br><br>
+-- Indexes for fast querying<br>
+CREATE INDEX idx_audit_log_org_id ON audit_log(org_id, timestamp DESC);<br>
+CREATE INDEX idx_audit_log_user_id ON audit_log(user_id, timestamp DESC);<br>
+CREATE INDEX idx_audit_log_resource ON audit_log(resource_type, resource_id);<br><br>
+-- Enforce immutability<br>
+GRANT INSERT, SELECT ON audit_log TO app_user;<br>
+REVOKE UPDATE, DELETE ON audit_log FROM app_user;
+</code>
+</div>
+
+<!-- ======== DAM INTEGRATION ======== -->
+<h2 id="dam-integration" style="margin-top: 40px;">Database Activity Monitoring (DAM) Integration</h2>
+
+<p>
+  DAM continuously monitors database activity and generates audit log entries for all data interactions. Link T-24 (Security Hardening Plan) for DAM alert rules.
+</p>
+
+<h3>DAM Events to Capture</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">DAM Event</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Trigger Condition</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Audit Log Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Bulk data export</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">SELECT &gt;1000 rows from personal_data tables</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DATA_EXPORT | record_count, destination</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">Schema change</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">ALTER TABLE on audit_log or personal_data tables</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">SYSTEM_CONFIG_CHANGE | old_schema, new_schema</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Privilege escalation</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">GRANT role or permission to user</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">PRIVILEGE_CHANGE | target_user, new_role</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">Failed auth</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Failed login attempt</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">LOGIN_FAILURE | reason, attempt_count</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sensitive data access</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Query on Aadhaar, PAN, account columns</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DATA_ACCESS | column_accessed, user_id</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== RETENTION ======== -->
+<h2 id="retention" style="margin-top: 40px;">Log Retention & Deletion Schedule</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Phase</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Duration</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Storage</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Access Speed</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Immutability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Hot (Operational)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">0–90 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">PostgreSQL audit_log table</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Instant (indexed queries)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">INSERT-only, hash-chained</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Warm (Archive)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">90 days – 7 years</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">WORM (S3 Object Lock, Azure Blob, GCP Retention)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Minutes (searchable)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">WORM-immutable, encrypted</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Deleted</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">After 7 years</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Deleted from WORM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">N/A</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Deletion logged + verified</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== ALERT RULES ======== -->
+<h2 id="alert-rules" style="margin-top: 40px;">Alert Rules & Anomaly Detection</h2>
+
+<p>
+  Certain audit events trigger automated alerts to Security / Incident Commander. See T-24 (SIEM Alert Rules) for full list.
+</p>
+
+<h3>Critical Alert Thresholds</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Audit Event</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Alert Trigger</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data export (bulk)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">SELECT &gt;10K rows in &lt;1 minute from principal_data table</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Alert CISO, flag for manual review</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">Privilege escalation</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">User granted admin role &gt;3 times in 1 hour</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Escalate to CISO + DPO</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Audit log manipulation</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Hash-chaining integrity check fails</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incident Commander → CERT-In (breach suspected)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">Delete attempt on audit_log</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Any DELETE query on audit_log table</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Query denied + alert Security team</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== IMPLEMENTATION CHECKLIST ======== -->
+<h2 id="checklist" style="margin-top: 40px;">Implementation Checklist</h2>
+
+<ul >
+  <li>☐ <strong>Create audit_log table</strong> with columns and constraints (INSERT-only)</li>
+  <li>☐ <strong>Deploy PII redaction</strong> in all logging frameworks (before entry is written)</li>
+  <li>☐ <strong>Implement hash-chaining</strong> (each row includes SHA-256 of previous)</li>
+  <li>☐ <strong>Test integrity check:</strong> Run hash validation query monthly</li>
+  <li>☐ <strong>Configure DAM tool</strong> (Imperva, Fortanix, AWS DMS) to generate audit entries</li>
+  <li>☐ <strong>Enable WORM archive:</strong> AWS S3 Object Lock / Azure Immutable Blob</li>
+  <li>☐ <strong>Automate archival:</strong> Daily job compresses/encrypts logs &gt;90d to WORM</li>
+  <li>☐ <strong>Test archive recovery:</strong> Retrieve logs from WORM, verify integrity</li>
+  <li>☐ <strong>Set retention policy:</strong> 7-year minimum retention in compliance system</li>
+  <li>☐ <strong>Configure alerts:</strong> Bulk export, privilege escalation, hash failure, delete attempt</li>
+  <li>☐ <strong>Audit existing logs:</strong> Grep for plaintext PII (Aadhaar: \d{12}, PAN: [A-Z]{5}[0-9]{4}[A-Z])</li>
+  <li>☐ <strong>Train team:</strong> Logging best practices + DPDP Section 8 requirements</li>
+  <li>☐ <strong>Document procedures:</strong> Log retention SOP, deletion request process, incident response</li>
+  <li>☐ <strong>Quarterly audit:</strong> Integrity check + archive storage verification</li>
+  <li>☐ <strong>Annual review:</strong> Present audit findings to Board Risk Committee (T-37)</li>
+</ul>
+
+<!-- ======== CROSS REFERENCES ======== -->
+<h2 style="margin-top: 40px;">Related Templates</h2>
+
+<ul >
+  <li><strong>[← T-20]</strong> <a href="20_Incident_Response_Plan.html">Incident Response Plan</a> — Breach detection and SIEM integration</li>
+  <li><strong>[← T-24]</strong> <a href="24_Security_Hardening_Plan.html">Security Hardening Plan</a> — DAM and SIEM alert rules</li>
+  <li><strong>[← T-25]</strong> <a href="25_Compliance_Audit_Plan.html">Compliance Audit Plan</a> — Audit log review process</li>
+  <li><strong>[→ T-37]</strong> <a href="37_Board_Risk_Committee_Report.html">Board Risk Committee Report</a> — Annual audit findings summary</li>
+</ul>
+
+<div class="signature-block" style="margin-top: 40px;">
+  <p>
+    <strong>Audit Logging Configuration Approval</strong><br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>CISO / Security Lead:</strong> _________________________ <strong>Date:</strong> _________<br>
+    <strong>DPO (Data Protection Officer):</strong> _________________________ <strong>Date:</strong> _________<br>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

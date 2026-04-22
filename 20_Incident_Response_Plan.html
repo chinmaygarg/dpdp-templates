@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incident Response Plan — Breach Detection & Dual-Timer SLA</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+<div class="header">
+  <div class="title">Incident Response Plan</div>
+  <div class="subtitle">Data Breach Detection, Response & Dual-Timer SLA (DPDP Section 8 + CERT-In 2022)</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 2.0 (Updated April 2026) | <strong>Effective Date:</strong> 13 May 2027 | <strong>Status:</strong> Active
+</div>
+
+<h2>Overview</h2>
+<p>
+  Under DPDP Act 2023 Section 8, organizations must implement technical and organizational measures for data security.
+  Breaches require notification to the Data Protection Board of India (DPBI) within 72 hours.
+  Additionally, ALL cybersecurity incidents (including those without personal data) must be reported to CERT-In within 6 hours
+  per CERT-In Direction 2022, as CERT-In is the primary cybersecurity regulator.
+</p>
+
+<p style="background: #f8d7da; border-left: 4px solid #dc3545; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <strong style="color: #721c24;">⚠️ CRITICAL DISTINCTION:</strong><br>
+  • <strong>CERT-In (6-hour SLA):</strong> All cybersecurity incidents (data breach, ransomware, intrusion, DDoS, unauthorized access)<br>
+  • <strong>DPBI (72-hour SLA):</strong> Only incidents involving personal data that create compliance breach risk<br>
+  Many organizations only address DPBI and miss CERT-In entirely, creating regulatory exposure.
+</p>
+
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#dual-timer">Dual-Timer Breach Command Structure (T+0 to T+30d)</a></li>
+  <li><a href="#classification">Breach Classification Matrix</a></li>
+  <li><a href="#cert-in">CERT-In Notification (6-Hour SLA)</a></li>
+  <li><a href="#dpbi">DPBI Notification (72-Hour SLA)</a></li>
+  <li><a href="#incident-commander">Incident Commander Role & Authority</a></li>
+  <li><a href="#containment">Containment Playbook (6 Scenarios)</a></li>
+  <li><a href="#evidence">Evidence Preservation & Forensics</a></li>
+  <li><a href="#siem">SIEM Alert Rules & Triggers</a></li>
+  <li><a href="#annual-drill">Annual Tabletop Exercise</a></li>
+  <li><a href="#checklist">Implementation Checklist</a></li>
+</ul>
+
+<!-- ======== DUAL-TIMER ======== -->
+<h2 id="dual-timer" style="margin-top: 40px;">Dual-Timer Breach Command Structure</h2>
+
+<p>
+  Data breaches trigger <strong>two parallel 72+ hour response timelines</strong> managed by different regulators.
+  This timeline tracks both from incident detection through post-incident review.
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Timeline</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Action</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Owner</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Authority</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+0 (Hour 0)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Breach detected / reported / alert triggered</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Security Team / SOC</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">—</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incident declared</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+1 (Hour 1)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incident Commander activated; War Room established; Initial triage</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">IR Lead / CISO</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">—</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incident team assembled</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+2 (Hour 2)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Breach classification completed: Type (data leak, ransomware, intrusion, etc.) + Severity (Critical/High/Medium/Low)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">IC / Security Team</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">—</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Classification locked</td>
+    </tr>
+    <tr style="background-color: #fff3cd;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+6 (Hour 6)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>CERT-In Notification Filed</strong> (Form CC-5) — includes incident type, vector, systems affected, data involved (yes/no)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CISO / IR Lead</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>CERT-In</strong><br>(6-hour SLA)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>MANDATORY</strong></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+24 (Hour 24)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Containment confirmed; affected data principals identified (count + data categories)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">IC / DPO / Forensics</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">—</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Scope confirmed</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+48 (Hour 48)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPO signs off on DPBI notification draft (contains: data involved, affected principals, root cause, remediation plan)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPO</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">—</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Draft ready</td>
+    </tr>
+    <tr style="background-color: #fff3cd;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+72 (Hour 72 / 3 days)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>DPBI Notification Filed</strong> (Form: Breach Notification Form) — includes full incident details, data involved, remediation</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPO / Compliance</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>DPBI</strong><br>(72-hour SLA)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>MANDATORY</strong></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+30d (30 days)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Post-Incident Review (PIR) completed; root cause analysis, lessons learned, control improvements documented</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">IC / CISO / DPO</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">—</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incident closed</td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #155724;">✅ CRITICAL SUCCESS:</strong><br>
+  Both CERT-In (T+6) and DPBI (T+72) notifications must be filed on time.
+  Miss either and the organization faces ₹50 Cr penalties + regulatory action.
+</div>
+
+<!-- ======== CLASSIFICATION MATRIX ======== -->
+<h2 id="classification" style="margin-top: 40px;">Breach Classification Matrix</h2>
+
+<p>
+  All cybersecurity incidents must be classified by <strong>Type</strong> and <strong>Severity</strong>.
+  Severity determines escalation, resources, and communication approach.
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Type</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Description</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Severity if Data Involved</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">CERT-In Required?</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">DPBI Required?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Data Exfiltration (Leak)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Unauthorized access + copy of PII/data outside organization</td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">CRITICAL</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+6)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+72)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Ransomware</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Malware encryption of files; extortion demand; operational disruption</td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">CRITICAL</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+6)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (if data accessed)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Unauthorized Access</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Login compromise, privilege escalation, insider threat access to data</td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><span style="background: #fd7e14; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">HIGH</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+6)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (if data accessed)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>DDoS Attack</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Service disruption; no data compromise (unless combined with breach)</td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><span style="background: #28a745; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">MEDIUM</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+6)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">❌ No (unless data involved)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Malware Infection</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Virus/worm/trojan on endpoint; intent/impact depends on payload</td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><span style="background: #fd7e14; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">HIGH</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+6)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (if keylogger/credential stealer)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Configuration Error / Data Exposure</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Cloud bucket/DB left public; backup exposed; unintended data visibility</td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><span style="background: #fd7e14; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">HIGH</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+6)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+72)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Failed Authentication / Brute Force</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Bulk failed login attempts; credential stuffing; no successful access</td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><span style="background: #28a745; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">LOW</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+6)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">❌ No (unless successful breach)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Insider Threat / Data Exfiltration</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Employee/contractor intentionally copies/transfers data outside organization</td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">CRITICAL</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+6)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">✅ Yes (T+72)</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== CERT-IN NOTIFICATION ======== -->
+<h2 id="cert-in" style="margin-top: 40px;">CERT-In Notification (6-Hour SLA)</h2>
+
+<p>
+  <strong>CERT-In 2022 Direction</strong> requires reporting of ALL cybersecurity incidents to the Indian Computer Emergency Response Team (CERT-In)
+  within 6 hours. This includes incidents that may not involve personal data but represent cybersecurity threats.
+</p>
+
+<h3>What Must Be Reported to CERT-In</h3>
+<ul>
+  <li>✅ Data breaches (exfiltration of PII/data)</li>
+  <li>✅ Ransomware attacks</li>
+  <li>✅ Unauthorized access (including failed brute-force attempts)</li>
+  <li>✅ Malware infections</li>
+  <li>✅ DDoS attacks</li>
+  <li>✅ Website defacement</li>
+  <li>✅ Phishing/social engineering attacks (if successful compromise resulted)</li>
+  <li>✅ Insider threat incidents</li>
+  <li>✅ Configuration errors exposing data/systems</li>
+</ul>
+
+<h3>CERT-In Notification Form (CC-5)</h3>
+<div style="background: #f5f5f5; border-left: 4px solid #17a2b8; padding: 14px; margin: 12px 0; font-family: monospace; ">
+<strong>To:</strong> incidents@cert-in.org.in<br>
+<strong>Subject:</strong> Incident Report — [Incident ID] — [Type] — [Severity]<br>
+<strong>Form:</strong> CC-5 (Incident Report Form)<br><br>
+
+<strong>Fields Required:</strong><br><br>
+
+1. <strong>Organization Details</strong><br>
+   Name: [ORG_NAME]<br>
+   Sector: [Banking/FinTech/Healthcare/IT/Other]<br>
+   Contact: [CONTACT_NAME], [EMAIL], [PHONE]<br><br>
+
+2. <strong>Incident Details</strong><br>
+   Date/Time Detected: [ISO_DATETIME]<br>
+   Incident ID: [INTERNAL_ID]<br>
+   Type: [From Classification Matrix: Data Breach, Ransomware, Unauthorized Access, etc.]<br>
+   Severity: [Critical/High/Medium/Low]<br><br>
+
+3. <strong>Systems Affected</strong><br>
+   System Name: [e.g., "User database server", "Web application"]<br>
+   IP Address: [X.X.X.X]<br>
+   Operating System: [Linux/Windows/Other]<br>
+   Services: [Apache, PostgreSQL, etc.]<br><br>
+
+4. <strong>Impact Assessment</strong><br>
+   Data Involved: [Yes/No]<br>
+   If Yes, Data Types: [PII, Financial, Health, etc.]<br>
+   Estimated Affected Principals: [Count]<br>
+   Business Impact: [Confidentiality/Integrity/Availability breach]<br><br>
+
+5. <strong>Attack Vector (if applicable)</strong><br>
+   Initial Vector: [E.g., "Phishing email with malware attachment", "Exposed AWS S3 bucket", "Compromised vendor account"]<br>
+   Attack Type: [Network-based, Physical, Supply chain, Social engineering, etc.]<br><br>
+
+6. <strong>Containment Actions Taken</strong><br>
+   [ ] Isolated affected system(s)<br>
+   [ ] Disabled compromised account(s)<br>
+   [ ] Blocked IP address(es)<br>
+   [ ] Patched vulnerability<br>
+   [ ] Other: [Describe]<br><br>
+
+7. <strong>Evidence Preservation</strong><br>
+   Forensics Status: [In progress / Completed]<br>
+   Chain of Custody: [Yes/No]<br>
+   Logs Preserved: [Yes/No — specify log types]<br><br>
+
+8. <strong>Contact for Follow-up</strong><br>
+   Name: [CISO / Incident Commander]<br>
+   Email: [EMAIL]<br>
+   Phone: [PHONE]<br>
+   Best Time to Reach: [TIME WINDOW]<br><br>
+
+9. <strong>Attachments</strong><br>
+   [ ] System logs (compressed, encrypted)<br>
+   [ ] Incident description document<br>
+   [ ] Screenshots/evidence (if appropriate)<br>
+</div>
+
+<div style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #856404;">⚠️ TIMING CRITICAL:</strong><br>
+  CERT-In notification must be filed within <strong>6 hours of detection</strong>.
+  Delays can result in regulatory action. Set alarm at T+5 hours to ensure filing before deadline.
+</div>
+
+<!-- ======== DPBI NOTIFICATION ======== -->
+<h2 id="dpbi" style="margin-top: 40px;">DPBI Notification (72-Hour SLA)</h2>
+
+<p>
+  DPBI (Data Protection Board of India) must be notified <strong>within 72 hours</strong> if a breach compromises personal data
+  and creates significant risk to Data Principals. This is a comprehensive notification requiring detailed incident analysis.
+</p>
+
+<h3>DPBI Breach Notification Form</h3>
+<div style="background: #f5f5f5; border-left: 4px solid #28a745; padding: 14px; margin: 12px 0; font-family: monospace; ">
+<strong>To:</strong> [DPBI Complaint Portal — link TBD pending DPBI establishment]<br>
+<strong>Form:</strong> Breach Notification Form (DPBI)<br>
+<strong>Classification:</strong> Mandatory Notification (Section 8)<br><br>
+
+<strong>Fields Required:</strong><br><br>
+
+1. <strong>Organization Information</strong><br>
+   Legal Name: [ORG_NAME]<br>
+   Registration Number: [RoC/CIN/GSTIN]<br>
+   Entity Type: [Data Fiduciary/Processor/Both]<br>
+   Business Sector: [NBFC/Bank/FinTech/Tech/Other]<br>
+   DPO Name: [DPO_NAME]<br>
+   DPO Email: [DPO_EMAIL]<br><br>
+
+2. <strong>Breach Details</strong><br>
+   Date/Time of Incident: [ISO_DATETIME]<br>
+   Date/Time of Discovery: [ISO_DATETIME]<br>
+   Date/Time of Notification (this form): [ISO_DATETIME]<br>
+   Breach ID (internal): [INTERNAL_ID]<br><br>
+
+3. <strong>Nature of Breach</strong><br>
+   Type: [Unauthorized access, Unauthorized disclosure, Loss, Accidental disclosure, Deletion, etc.]<br>
+   Description: [Narrative of what happened, how it was discovered]<br><br>
+
+4. <strong>Data Involved</strong><br>
+   Categories: [PII types: Name, Email, Phone, Address, Aadhaar, PAN, Bank account, etc.]<br>
+   Estimated Number of Data Principals Affected: [Count]<br>
+   Approximate Volume of Records: [Number of rows]<br>
+   Geographic Distribution: [India / International / Mixed]<br><br>
+
+5. <strong>Risk Assessment</strong><br>
+   Risk Level: [Critical/High/Medium/Low]<br>
+   Justification: [Explain why this risk level assigned based on data type, number of principals, etc.]<br>
+   Likelihood of Harm: [High/Medium/Low]<br>
+   Type of Harm: [Financial loss, Identity theft, Harassment, etc.]<br><br>
+
+6. <strong>Root Cause (if known)</strong><br>
+   [ ] Weak authentication (compromised credentials)<br>
+   [ ] Unpatched vulnerability<br>
+   [ ] Configuration error (misconfigured DB/bucket)<br>
+   [ ] Insider threat / unauthorized access<br>
+   [ ] Third-party / vendor breach<br>
+   [ ] Malware / ransomware infection<br>
+   [ ] Other: [Describe]<br><br>
+
+7. <strong>Immediate Containment & Remediation</strong><br>
+   Containment Actions Taken:<br>
+   - [ ] Isolated affected systems<br>
+   - [ ] Revoked compromised credentials<br>
+   - [ ] Patched vulnerability<br>
+   - [ ] Blocked unauthorized access<br>
+   - [ ] Notified affected Data Principals<br>
+   - [ ] Engaged forensics team<br><br>
+
+   Remediation Plan: [Steps to prevent recurrence]<br><br>
+
+8. <strong>Data Principal Notification</strong><br>
+   Notification Status: [Not started / In progress / Completed]<br>
+   Method: [Email / SMS / Portal notification / Letter]<br>
+   Content: [Describe what principals were told]<br>
+   Timeline: [When notifications sent/will be sent]<br><br>
+
+9. <strong>Third-Party Involvement (if applicable)</strong><br>
+   Vendor/Processor Affected: [Name]<br>
+   Processor DPA Status: [Link to T-24 DPA]<br>
+   Sub-processor Notification: [Yes/No — if yes, status]<br><br>
+
+10. <strong>Previous Similar Incidents</strong><br>
+    [ ] No previous similar incidents<br>
+    [ ] Yes — list previous incidents with dates and outcomes<br><br>
+
+11. <strong>Contact for DPBI Follow-up</strong><br>
+    DPO Name: [DPO_NAME]<br>
+    Email: [DPO_EMAIL]<br>
+    Phone: [DPO_PHONE]<br>
+    Incident Commander Name: [IC_NAME]<br>
+    IC Email: [IC_EMAIL]<br>
+</div>
+
+<!-- ======== INCIDENT COMMANDER ======== -->
+<h2 id="incident-commander" style="margin-top: 40px;">Incident Commander Role & Authority</h2>
+
+<p>
+  A single <strong>Incident Commander (IC)</strong> leads the breach response. The IC has full authority to:
+  make decisions, reallocate resources, and communicate with external stakeholders (CERT-In, DPBI, media).
+</p>
+
+<h3>Incident Commander Responsibilities</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Phase</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">IC Responsibility</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Detection (T+0-1)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Convene War Room; activate IR team; define incident scope; ensure SIEM/forensics logging active</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Classification (T+1-2)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Classify incident type + severity; determine regulatory obligations (CERT-In, DPBI)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>CERT-In Notification (T+2-6)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Prepare CERT-In Form CC-5; coordinate with CISO; file by T+6 hour deadline</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Containment (T+2-24)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Execute containment playbook; isolate affected systems; preserve evidence; prevent data exfiltration</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Scope & Impact (T+6-24)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Quantify affected Data Principals; identify data categories; assess harm likelihood</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Data Principal Notification (T+24-72)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Approve notification language; coordinate with Legal; ensure timely, accurate communication</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>DPBI Notification (T+48-72)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Ensure DPO prepares & files DPBI notification by T+72 deadline</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Recovery & Remediation (T+30-90 days)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Restore systems; apply patches; implement corrective controls; conduct PIR</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Incident Commander Escalation Authority</h3>
+<ul>
+  <li><strong>Authority to isolate systems</strong> — can disconnect networks, shut down services without approval</li>
+  <li><strong>Authority to reallocate resources</strong> — can reassign staff from other projects</li>
+  <li><strong>Authority to communicate externally</strong> — with CISO, Legal, PR, regulators</li>
+  <li><strong>Authority to defer non-critical work</strong> — can pause non-critical operations</li>
+  <li><strong>Reports to:</strong> CISO (operational) + CEO/Board (strategic escalation)</li>
+</ul>
+
+<h3>Incident Commander Selection Criteria</h3>
+<ul>
+  <li>✅ <strong>Technical expertise:</strong> Deep knowledge of systems affected (DB, network, application)</li>
+  <li>✅ <strong>Decision-making ability:</strong> Can make rapid decisions under pressure</li>
+  <li>✅ <strong>Leadership:</strong> Can command respect from cross-functional teams</li>
+  <li>✅ <strong>Experience:</strong> Has managed previous incidents or crisis situations</li>
+  <li>✅ <strong>Regulatory knowledge:</strong> Familiar with DPDP, CERT-In, DPBI requirements</li>
+  <li>✅ <strong>Pre-designated:</strong> Named in advance (not chosen during incident — avoids delays)</li>
+</ul>
+
+<!-- ======== CONTAINMENT ======== -->
+<h2 id="containment" style="margin-top: 40px;">Containment Playbook (6 Scenarios)</h2>
+
+<p>
+  Each breach type requires a specific containment approach. Below are 6 common scenarios with step-by-step containment procedures.
+</p>
+
+<h3>Scenario 1: Data Exfiltration (Unauthorized Download)</h3>
+<div style="background: #fff3cd; border-left: 4px solid #ff6c00; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <strong style="color: #856404;">Severity:</strong> CRITICAL | <strong>CERT-In:</strong> Yes (T+6) | <strong>DPBI:</strong> Yes (T+72)
+</div>
+<ol >
+  <li><strong>Immediate (T+0-30min):</strong> Isolate database server from network; halt all outbound connections; enable packet capture</li>
+  <li><strong>T+30-60min:</strong> Identify compromised account; revoke credentials; check AWS CloudTrail / DB audit logs for volume downloaded</li>
+  <li><strong>T+1-2hr:</strong> Identify all data exported; generate list of affected Data Principals; assess if encryption was bypassed</li>
+  <li><strong>T+2-6hr:</strong> Preserve forensics: copy database, log files, filesystem to external drive; calculate hash for chain of custody</li>
+  <li><strong>T+6hr:</strong> File CERT-In notification with data volume, principals affected, vector</li>
+  <li><strong>T+24hr:</strong> Verify containment (no further exfiltration); confirm all affected principals counted</li>
+  <li><strong>T+48hr:</strong> Begin Data Principal notification (email, portal, optional credit monitoring); DPO approves DPBI draft</li>
+  <li><strong>T+72hr:</strong> File DPBI notification</li>
+</ol>
+
+<h3>Scenario 2: Ransomware Encryption</h3>
+<div style="background: #fff3cd; border-left: 4px solid #ff6c00; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <strong style="color: #856404;">Severity:</strong> CRITICAL | <strong>CERT-In:</strong> Yes (T+6) | <strong>DPBI:</strong> Yes (if data compromised)
+</div>
+<ol >
+  <li><strong>Immediate (T+0-15min):</strong> Isolate affected server(s) from network; disconnect backup systems to prevent encryption spread</li>
+  <li><strong>T+15-30min:</strong> Disable RDP/SSH access; kill suspicious processes; preserve memory dump for analysis</li>
+  <li><strong>T+30-60min:</strong> Identify infection vector (email attachment, vulnerability, brute force); lock affected user accounts</li>
+  <li><strong>T+1-2hr:</strong> Assess which databases/files encrypted; determine if encrypted data includes personal data</li>
+  <li><strong>T+2-6hr:</strong> Preserve forensics: copy disk image, logs, memory dump; do NOT pay ransom without legal counsel</li>
+  <li><strong>T+6hr:</strong> File CERT-In notification; assess if personal data was accessed before encryption</li>
+  <li><strong>T+24-48hr:</strong> Begin recovery from clean backups (if available); patch vulnerability that allowed entry</li>
+  <li><strong>T+48hr:</strong> If personal data accessed: Data Principal notification + DPBI draft</li>
+  <li><strong>T+72hr:</strong> File DPBI notification (if applicable)</li>
+</ol>
+
+<h3>Scenario 3: Compromised Vendor / Third-Party Breach</h3>
+<div style="background: #fff3cd; border-left: 4px solid #ff6c00; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <strong style="color: #856404;">Severity:</strong> HIGH | <strong>CERT-In:</strong> Yes (T+6) | <strong>DPBI:</strong> Yes (if data of your principals accessed)
+</div>
+<ol >
+  <li><strong>Immediate (T+0-1hr):</strong> Isolate vendor system access; revoke API keys, service accounts; notify vendor of incident</li>
+  <li><strong>T+1-2hr:</strong> Identify what data vendor accessed (check API logs, DB audit logs); determine if your Data Principals' data exposed</li>
+  <li><strong>T+2-6hr:</strong> Review Data Processing Agreement (T-24); vendor must be obligated to notify you within 24hrs</li>
+  <li><strong>T+6hr:</strong> File CERT-In notification; include vendor details and data involved</li>
+  <li><strong>T+24hr:</strong> Receive incident details from vendor; assess impact to your Data Principals</li>
+  <li><strong>T+48hr:</strong> If your principals affected: prepare Data Principal notification; DPO approves DPBI draft</li>
+  <li><strong>T+72hr:</strong> File DPBI notification if your principals' data accessed</li>
+  <li><strong>Post-incident:</strong> Re-assess vendor risk (T-15 Vendor Risk Assessment); consider contract termination if SLA breached</li>
+</ol>
+
+<h3>Scenario 4: Database / Cloud Configuration Error Exposing Data</h3>
+<div style="background: #fff3cd; border-left: 4px solid #ff6c00; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <strong style="color: #856404;">Severity:</strong> HIGH | <strong>CERT-In:</strong> Yes (T+6) | <strong>DPBI:</strong> Yes (T+72)
+</div>
+<ol >
+  <li><strong>Immediate (T+0-15min):</strong> Make database/bucket private; revoke public access; document current state (screenshot, metadata)</li>
+  <li><strong>T+15-60min:</strong> Identify when misconfiguration occurred; determine if any unauthorized access during exposure window</li>
+  <li><strong>T+1-2hr:</strong> Check access logs (AWS CloudTrail, Azure audit logs) for non-organization IPs during exposure period</li>
+  <li><strong>T+2-6hr:</strong> Quantify records exposed; identify affected Data Principals; assess likelihood unauthorized parties accessed data</li>
+  <li><strong>T+6hr:</strong> File CERT-In notification; describe misconfiguration, exposure window, access indicators</li>
+  <li><strong>T+24hr:</strong> Complete forensics; determine if data was actually accessed by unauthorized parties or only discoverable</li>
+  <li><strong>T+48hr:</strong> If confirmed access: prepare Data Principal notification; DPO reviews risk assessment and DPBI draft</li>
+  <li><strong>T+72hr:</strong> File DPBI notification (if data accessed or risk is high)</li>
+</ol>
+
+<h3>Scenario 5: Insider Threat / Employee Data Theft</h3>
+<div style="background: #fff3cd; border-left: 4px solid #ff6c00; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <strong style="color: #856404;">Severity:</strong> CRITICAL | <strong>CERT-In:</strong> Yes (T+6) | <strong>DPBI:</strong> Yes (T+72)
+</div>
+<ol >
+  <li><strong>Immediate (T+0-30min):</strong> Revoke employee credentials immediately; disable VPN, email, system access</li>
+  <li><strong>T+30-60min:</strong> Identify what data employee accessed/copied; check file transfer logs, email logs, cloud uploads</li>
+  <li><strong>T+1-2hr:</strong> Secure employee laptop/phone; preserve device for forensics; check personal cloud accounts (Google Drive, Dropbox) for uploads</li>
+  <li><strong>T+2-6hr:</strong> Notify Legal/HR; determine if police report needed (criminal data theft); preserve chain of custody for evidence</li>
+  <li><strong>T+6hr:</strong> File CERT-In notification; describe insider threat, data accessed, exfiltration method</li>
+  <li><strong>T+24-48hr:</strong> Data Principal notification if personal data confirmed exfiltrated; assess if data can be recovered (demand return, legal action)</li>
+  <li><strong>T+48hr:</strong> DPO reviews DPBI draft; if data exfiltrated: file DPBI notification at T+72</li>
+  <li><strong>Post-incident:</strong> Implement access controls improvements (principle of least privilege, activity monitoring)</li>
+</ol>
+
+<h3>Scenario 6: Failed Authentication / Brute Force (No Successful Access)</h3>
+<div style="background: #fff3cd; border-left: 4px solid #28a745; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <strong style="color: #155724;">Severity:</strong> LOW-MEDIUM | <strong>CERT-In:</strong> Yes (T+6) | <strong>DPBI:</strong> No (unless breached)
+</div>
+<ol >
+  <li><strong>Immediate (T+0-30min):</strong> Monitor for successful login; block attacking IPs; enable 2FA/MFA for targeted accounts</li>
+  <li><strong>T+30-60min:</strong> Verify no successful logins during attack period; check logs for lateral movement</li>
+  <li><strong>T+1-2hr:</strong> Identify attack source (IP geolocation, credential list source); determine if targeted attack or random</li>
+  <li><strong>T+2-6hr:</strong> Document in incident log; no data accessed, so breach containment not required</li>
+  <li><strong>T+6hr:</strong> File CERT-In notification (security incident even without data compromise); describe attack pattern, detection, mitigation</li>
+  <li><strong>T+24hr+:</strong> No DPBI notification required (no data breach); implement controls: IP-based rate limiting, adaptive auth, login alerting</li>
+</ol>
+
+<!-- ======== EVIDENCE ======== -->
+<h2 id="evidence" style="margin-top: 40px;">Evidence Preservation & Forensics</h2>
+
+<p>
+  Data breaches often lead to legal action (Data Principals suing, DPBI enforcement, police investigation).
+  All evidence must be preserved with <strong>unbroken chain of custody</strong> to be admissible in court.
+</p>
+
+<h3>What to Preserve</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Evidence Type</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">How to Preserve</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Retention Period</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Database/File Contents</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Create forensic image (disk-level copy); compress with tar/gzip; calculate MD5 + SHA-256 hash</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Until litigation resolved or DPBI order fulfilled</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>System Logs</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Export from SIEM; export from database audit logs, web server logs, OS logs; sign with timestamp + hash</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Until litigation resolved</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Network Packets</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Enable packet capture on IDS/network monitoring; save PCAP files; timestamp each</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Until forensics complete</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Memory Dump</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Use `dd`, `memdump`, or hypervisor snapshot; preserve before system restart; calculate hash</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Until forensics complete</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Compromised Endpoint</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Create full disk image before wiping; do NOT use device after compromise (limits evidence contamination)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Until forensics complete</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Email / Communication Records</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Export from email server; disable automatic purge/archival; include headers for authentication</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Until litigation resolved</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Chain of Custody Log</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Document: Who collected, what collected, when, where stored, who accessed, purpose of access</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Permanent (admissibility depends on this)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Chain of Custody Requirements</h3>
+<p >
+  For evidence to be admissible in court, every transfer of custody must be documented:
+</p>
+<ul >
+  <li><strong>Who collected it:</strong> Name, title, timestamp</li>
+  <li><strong>What was collected:</strong> Specific files, records, systems</li>
+  <li><strong>Where stored:</strong> Encrypted drive, secure facility, locked cabinet</li>
+  <li><strong>Who accessed it:</strong> Every person who touched the evidence must be logged</li>
+  <li><strong>Purpose of access:</strong> Why was it examined/reviewed</li>
+  <li><strong>Time in custody:</strong> From T+0 until handed to court/external forensics</li>
+</ul>
+
+<!-- ======== SIEM ======== -->
+<h2 id="siem" style="margin-top: 40px;">SIEM Alert Rules & Triggers</h2>
+
+<p>
+  Security Information and Event Management (SIEM) systems must be configured with rules that detect data breach indicators.
+  Below are critical rules that should trigger immediate incident response.
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Alert Name</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Trigger Condition</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Severity</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Large Data Export</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">&gt;100 records selected + exported in &lt;5 minutes; OR &gt;1 GB exported in single session</td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px;">CRITICAL</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Page on-call; freeze account; begin forensics</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Unauthorized Database Access</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Login from non-whitelisted IP; multiple failed attempts then 1 success; access during non-business hours</td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px;">CRITICAL</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Page on-call; revoke session; query for data accessed</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Credential Stuffing</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">&gt;10 failed login attempts from same IP in &lt;10 minutes targeting multiple user accounts</td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><span style="background: #fd7e14; color: white; padding: 2px 6px; border-radius: 3px;">HIGH</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Block IP; enable CAPTCHA; notify affected users</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Privilege Escalation</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Standard user executes sudo/admin command; or user suddenly gains DBA role without approval</td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px;">CRITICAL</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Page on-call; suspend user; audit all commands by user</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Bulk Data Deletion</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">DELETE &gt;1000 records in single query; DROP table command; or file deletion of &gt;1 GB in &lt;1 minute</td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px;">CRITICAL</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Page on-call; verify with system owner; restore from backup if not authorized</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Ransomware File Pattern</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Detection of .locked, .encrypted, .ransom file extensions; or ransom note files created; or high file modification rate</td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px;">CRITICAL</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Isolate system immediately; page on-call; begin incident response</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Suspicious Outbound Connection</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Database server connecting to external IP (not approved); large data transfer outbound from DB server</td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><span style="background: #fd7e14; color: white; padding: 2px 6px; border-radius: 3px;">HIGH</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Page on-call; block connection; investigate destination IP</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Malware Detection</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Antivirus/EDR detects known malware signature; or suspicious binary execution from temp directory</td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px;">CRITICAL</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Isolate infected system; quarantine; begin forensics; page on-call</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Unauthorized API Access</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">API key used from non-whitelisted IP; API key querying unusual endpoints; unusually high volume API calls</td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><span style="background: #fd7e14; color: white; padding: 2px 6px; border-radius: 3px;">HIGH</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Revoke key; page on-call; audit API calls; check for data access</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Access Log Deletion</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">System logs cleared/truncated; audit trail deleted; SIEM logs missing gaps; history cleared</td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px;">CRITICAL</span></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Page on-call; begin forensics (may indicate cover-up); isolate system; preserve memory dump</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== ANNUAL DRILL ======== -->
+<h2 id="annual-drill" style="margin-top: 40px;">Annual Tabletop Exercise</h2>
+
+<p>
+  Breach response must be practiced annually via <strong>tabletop exercises</strong> to ensure all team members
+  understand their roles and timelines are achievable.
+</p>
+
+<h3>Tabletop Exercise Structure</h3>
+<p style=" margin-bottom: 12px;">
+  <strong>Duration:</strong> 2-3 hours | <strong>Frequency:</strong> Annually (or after major incidents) |
+  <strong>Participants:</strong> CISO, IR Lead, DPO, Legal, PR, CTO, CFO, incident responders
+</p>
+
+<h3>Scenario Example: Ransomware Attack with Data Exfiltration</h3>
+<ol >
+  <li><strong>Scenario Brief:</strong> "It's 9 AM Tuesday. Security SOC discovers ransomware infection on 3 database servers.
+  Ransom note appears. First detection was 2 AM (7 hours ago). Encryption detected on /home, /data, and backup drives."</li>
+  <li><strong>Facilitator-Led Discussion:</strong>
+    <ul >
+      <li>Who is the Incident Commander? (should be pre-designated)</li>
+      <li>What's the first action? (isolate infected servers from network)</li>
+      <li>How do we verify forensic evidence chain of custody? (document who collected what, when, where)</li>
+      <li>When do we notify CERT-In? (T+6 hours — we've already missed deadline; now what?)</li>
+      <li>How many Data Principals affected? (must query unencrypted backups or replicas to estimate)</li>
+      <li>What's the DPBI notification timeline? (T+72 from detection = by 2 AM Thursday)</li>
+      <li>Do we pay the ransom? (Legal + Leadership decision; FBI/CERT-In consultation)</li>
+      <li>Data Principal notification plan? (email + portal notification within 72 hours of DPBI filing)</li>
+    </ul>
+  </li>
+  <li><strong>Simulation of Timeline Execution:</strong> Walk through T+0, T+1, T+2, T+6, T+24, T+48, T+72 milestones.
+  Discuss blockers and how each is resolved.</li>
+  <li><strong>Lessons Learned Discussion:</strong> What surprised you? What would you do differently? What controls need improvement?</li>
+  <li><strong>Document Outcomes:</strong> Record decisions, timeline feasibility, control gaps, training needs.</li>
+  <li><strong>Improvement Actions:</strong> Create follow-up tasks for any process improvements identified.</li>
+</ol>
+
+<!-- ======== CHECKLIST ======== -->
+<h2 id="checklist" style="margin-top: 40px;">Implementation Checklist</h2>
+
+<div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #155724;">✅ PRE-INCIDENT PREPARATION</strong>
+</div>
+
+<ul style=" line-height: 1.8;">
+  <li>☐ <strong>Incident Commander:</strong> Pre-designated; has authority to isolate systems, reallocate resources, communicate with regulators</li>
+  <li>☐ <strong>Incident Response Team:</strong> Named (Security/Forensics, DPO, Legal, PR, CTO); contact list shared with all members</li>
+  <li>☐ <strong>War Room Setup:</strong> Video call, shared documents, status tracking; conference line reserved</li>
+  <li>☐ <strong>CERT-In Account:</strong> Organization registered with CERT-In; knows how to submit CC-5 form</li>
+  <li>☐ <strong>DPBI Portal Access:</strong> DPO has access to (anticipated) DPBI incident notification portal</li>
+  <li>☐ <strong>Breach Notification Template:</strong> Legal-reviewed Data Principal notification email prepared</li>
+  <li>☐ <strong>SIEM Configured:</strong> All 10 breach detection rules above active and monitored 24/7</li>
+  <li>☐ <strong>Forensics Tools Ready:</strong> dd, memdump, PCAP tools installed; external secure drives available</li>
+  <li>☐ <strong>Evidence Repository:</strong> Secure, encrypted storage for forensic images and logs</li>
+  <li>☐ <strong>Backup Verification:</strong> Confirm offline backups exist and are restorable (test restore at least quarterly)</li>
+  <li>☐ <strong>Network Segmentation:</strong> PII databases isolated from internet-facing systems; egress filtering in place</li>
+  <li>☐ <strong>Encryption in Transit & Rest:</strong> All PII encrypted TLS 1.3 in transit; AES-256-GCM at rest</li>
+</ul>
+
+<div style="background: #cfe2ff; border: 1px solid #b6d4fe; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #084298;">ℹ️ DURING-INCIDENT EXECUTION</strong>
+</div>
+
+<ul style=" line-height: 1.8;">
+  <li>☐ <strong>T+0-1hr:</strong> Incident Commander activates; War Room convened; incident logged with timestamp</li>
+  <li>☐ <strong>T+0-2hr:</strong> Initial triage: what systems affected, what data involved, scope assessment</li>
+  <li>☐ <strong>T+2hr:</strong> Classification completed: type (data leak, ransomware, etc.) + severity (Critical/High/Medium/Low)</li>
+  <li>☐ <strong>T+2-6hr:</strong> Evidence preservation started: SIEM logs, database audit logs, system logs captured with hashes</li>
+  <li>☐ <strong>T+6hr:</strong> CERT-In notification filed (Form CC-5) — includes incident type, vector, systems, data (yes/no)</li>
+  <li>☐ <strong>T+6-24hr:</strong> Containment: affected systems isolated, credentials revoked, unauthorized access stopped</li>
+  <li>☐ <strong>T+24hr:</strong> Impact assessment complete: affected Data Principals counted, data categories identified</li>
+  <li>☐ <strong>T+48hr:</strong> DPO reviews DPBI notification draft; Legal approves Data Principal notification language</li>
+  <li>☐ <strong>T+72hr:</strong> DPBI notification filed (if personal data involved) — includes full incident details, remediation plan</li>
+  <li>☐ <strong>T+72-96hr:</strong> Data Principal notifications sent (email + portal); optionally credit monitoring offered</li>
+</ul>
+
+<div style="background: #f8d7da; border: 1px solid #f5c6cb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #721c24;">POST-INCIDENT RECOVERY</strong>
+</div>
+
+<ul style=" line-height: 1.8;">
+  <li>☐ <strong>T+7-30 days:</strong> Systems restored from clean backups or patched; recovery verified</li>
+  <li>☐ <strong>T+30 days:</strong> Post-Incident Review (PIR) completed; root cause analysis, lessons learned documented</li>
+  <li>☐ <strong>T+30 days:</strong> Control improvements implemented: patched vulnerability, hardened access controls, updated policies</li>
+  <li>☐ <strong>T+30 days:</strong> Board/Leadership briefing: incident summary, impact, remediation, cost</li>
+  <li>☐ <strong>T+60 days:</strong> CERT-In follow-up response (if CERT-In requested additional info)</li>
+  <li>☐ <strong>T+90 days:</strong> Vendor/Processor notification (if third-party involvement); contract review for SLA breaches</li>
+  <li>☐ <strong>Annual:</strong> Tabletop exercise to test breach response readiness</li>
+</ul>
+
+<div style="background: #d1ecf1; border: 1px solid #bee5eb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #0c5460;">ℹ️ REFERENCE TEMPLATES:</strong><br>
+  • <strong>T-21:</strong> <a href="21_DPBI_Breach_Notification.html">DPBI Breach Notification</a><br>
+  • <strong>T-21A:</strong> <a href="21A_CERT-In_Breach_Notification.html">CERT-In Breach Notification (NEW)</a><br>
+  • <strong>T-24:</strong> <a href="24_Data_Processing_Agreement.html">Data Processing Agreement (Vendor SLA)</a><br>
+  • <strong>T-35:</strong> <a href="35_Audit_Logging_Configuration.html">Audit Logging & SIEM Rules</a>
+</div>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 2.0<br>
+    <strong>Last Updated:</strong> April 2026<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By (CISO):</strong> _________________________<br>
+    <strong>Approved By (DPO):</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

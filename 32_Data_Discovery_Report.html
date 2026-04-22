@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Discovery Report</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Data Discovery Report</div>
+  <div class="subtitle">Automated System Scan and Inventory Results</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived]
+</div>
+
+<h2>1. Purpose & Legal Basis (DPDP Section 8)</h2>
+
+<div style="background: #e8f4fd; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Legal Requirement:</strong> DPDP Section 8(2) requires organizations to take "appropriate measures" to ensure data security and protection. Data Discovery = identifying personal data you didn't know existed (shadow data, abandoned systems, test databases, backup archives).<br><br>
+<strong>Purpose:</strong> Weekly automated scan detects PII (Aadhaar, PAN, email, phone, bank account) across all systems. Unknown concentrations are escalated to DPO for investigation.
+</div>
+
+<h2>2. Scanning Methodology (4-Tier Scope)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Scope</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Systems Included</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Frequency</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Priority</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Tier 1: Production</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Live customer databases, cloud storage, SaaS platforms</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Weekly</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CRITICAL (customer data)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Tier 2: Non-Prod</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Staging, QA, dev databases (often have copies of prod data!)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Monthly</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">HIGH (shadow PII risk)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Tier 3: Backup</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Database backups, snapshots, disaster recovery (DR) sites</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Monthly</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">HIGH (old data, forgotten)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Tier 4: Archives</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Cloud archives, tapes, offline storage, historical exports</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Quarterly</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">MEDIUM (old data, compliance)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. PII Detection Patterns (Regex Rules)</h2>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Detection Rules Applied During Scan:</strong><br>
+• <strong>Aadhaar (12-digit):</strong> /\b[0-9]{12}\b/ (look for 12 consecutive digits; flag if not masked)<br>
+• <strong>PAN (10-char):</strong> /[A-Z]{5}[0-9]{4}[A-Z]{1}/ (ABCDE1234F format)<br>
+• <strong>Email:</strong> /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/ (any email)<br>
+• <strong>Phone (India):</strong> /\b[6-9][0-9]{9}\b/ (10-digit starting with 6-9)<br>
+• <strong>Bank Account:</strong> /\b[0-9]{9,18}\b/ (9-18 consecutive digits, in account context)<br>
+• <strong>Credit Card:</strong> /\b[0-9]{13,19}\b/ (13-19 digits, Luhn algorithm verification)<br><br>
+<strong>False Positive Handling:</strong> Rules tuned to avoid flagging test data (9999999999), but human review recommended for suspicious patterns.
+</div>
+
+<h2>4. Data Discovery Report Schema</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Field</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Report Date</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Scan execution date (YYYY-MM-DD)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Systems Scanned</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">List: Database_01, S3_bucket_prod, Azure_blob_analytics, Salesforce_instance</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>PII Found Summary</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Aadhaar: 1,200 records | PAN: 850 | Email: 45,000 | Phone: 40,000</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Unexpected Locations</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">"Found 500 Aadhaar in test_db_backup (old copy, should be deleted)"</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Masking Compliance</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Aadhaar: 98% masked (2% unmasked = violation) | PAN: 100% masked</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Encryption Status</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Prod DB: AES-256 ✓ | Backup: Encrypted ✓ | Archive_2021: Plaintext ✗</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Escalations</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">1 CRITICAL: 5,000 Aadhaar found unmasked in staging DB (investigate + remediate)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>DPO Action Items</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">[ ] Verify staging DB purpose [ ] Delete or mask Aadhaar [ ] Confirm in next week's report</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>5. Unknown PII Concentration Escalation (Alert Triggers)</h2>
+
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>CRITICAL ESCALATION (Immediate DPO Review):</strong><br>
+✗ PII found in system with NO documented data processing activity in ROPA → <span style="color: red;"><strong>Unauthorized Processing</strong></span><br>
+✗ Aadhaar/PAN found in plaintext/unmasked in any database → <span style="color: red;"><strong>Encryption Violation</strong></span><br>
+✗ >10,000 records found in non-production system → <span style="color: red;"><strong>Shadow Data Risk</strong></span><br>
+✗ PII found in backup/archive from retention-expired processing → <span style="color: red;"><strong>Deletion SLA Violation</strong></span><br><br>
+<strong>Action SLA:</strong> DPO must review escalation within 48 hours and document remediation plan.
+</div>
+
+<h2>6. Scanning Implementation Workflow</h2>
+
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Weekly Execution (Every Monday 2 AM UTC):</strong><br>
+1. <strong>Scan trigger:</strong> Automated cron job runs discovery tool (e.g., Fidelis Elevate, Talend DQ, custom script)<br>
+2. <strong>Scan execution:</strong> Apply regex patterns against all Tier 1/2 systems; capture matches + context<br>
+3. <strong>Report generation:</strong> Aggregate findings; compare against prior week baseline<br>
+4. <strong>Escalation detection:</strong> Flag CRITICAL items (unauthorized locations, unmasked data, >threshold quantities)<br>
+5. <strong>Email notification:</strong> Send report to DPO + IT Security by 6 AM Monday<br>
+6. <strong>Dashboard update:</strong> Populate Data Discovery metrics in Compliance Dashboard (T-38)<br>
+7. <strong>Manual review:</strong> DPO reviews escalations; documents actions in Deletion Log (T-29) if remediation needed
+</div>
+
+<h2>7. Remediation SLA by Severity</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Severity</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Finding</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">SLA</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong style="color: red;">CRITICAL</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Unmasked sensitive data in prod</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">7 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Mask/encrypt immediately + escalate to Board</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong style="color: orange;">HIGH</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">PII found in non-prod (staging, dev, backup)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">30 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Delete or mask; verify retention justification</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong style="color: green;">MEDIUM</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">PII in archive with retention-expired purpose</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">30 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Delete or move to Statutory Hold Register</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>8. Implementation Checklist</h2>
+
+<ul >
+  <li>☐ Select data discovery tool (Fidelis, Talend, custom script)</li>
+  <li>☐ Configure regex patterns for PII detection (Aadhaar, PAN, email, phone, bank account, credit card)</li>
+  <li>☐ Schedule weekly automated scan (Monday 2 AM UTC)</li>
+  <li>☐ Configure escalation alerts (CRITICAL items to DPO within 2 hours)</li>
+  <li>☐ Create Data Discovery Report template (8-field schema)</li>
+  <li>☐ Document scan scope (Tier 1-4 systems)</li>
+  <li>☐ Establish remediation SLA (7d critical, 30d high)</li>
+  <li>☐ Integrate report into Compliance Dashboard (T-38)</li>
+  <li>☐ Train DPO/IT Security on escalation process</li>
+  <li>☐ Document findings in Deletion Log (T-29) when remediation executed</li>
+  <li>☐ Quarterly report: summary of findings + trend analysis to Board</li>
+</ul>
+
+<h2 style="margin-top: 30px;">Completion Checklist</h2>
+
+<ul >
+  <li>☐ Reviewed DPDP Act Section 5-16 requirements</li>
+  <li>☐ Gathered organization-specific information</li>
+  <li>☐ Customized for business context</li>
+  <li>☐ Legal/Compliance review completed</li>
+  <li>☐ Stakeholder sign-off obtained</li>
+  <li>☐ Implementation and rollout plan ready</li>
+</ul>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By:</strong> _________________________<br>
+    <strong>Approved By:</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consent Manager Integration Specification</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="title">Consent Manager Integration Specification</div>
+  <div class="subtitle">DPDP Rules 2025 — Section 6(8-9) Government-Approved CM Integration</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Last Updated:</strong> November 14, 2025 | <strong>Status:</strong> Active<br>
+  <strong>Compliance Deadline:</strong> May 13, 2027 | <strong>CM List Publication:</strong> November 14, 2026
+</div>
+
+<h2>Executive Summary</h2>
+
+<p >
+  This specification defines the technical and operational requirements for integrating with Government-Approved Consent Managers (CMs) as mandated by DPDP Rules 2025, Section 6(8-9). Organizations must be capable of accepting CM-generated consent receipts by <strong>May 13, 2027</strong>.
+</p>
+
+<div style="background: #f0f5ff; border-left: 4px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <p >
+    <strong>Key Dates:</strong><br>
+    • <strong>November 14, 2026:</strong> Central Government publishes approved Consent Manager list<br>
+    • <strong>May 13, 2027:</strong> Compliance deadline — organizations must be capable of accepting CM receipts<br>
+    • <strong>Post-May 2027:</strong> Phase 2 — Cross-organization consent propagation (future feature)
+  </p>
+</div>
+
+<h2>1. What is a Government-Approved Consent Manager?</h2>
+
+<h3>Definition</h3>
+<p >
+  A Consent Manager (CM) is a third-party platform approved by the Central Government to:
+</p>
+<ul >
+  <li>Capture and record consent from data principals on behalf of organizations (Data Fiduciaries)</li>
+  <li>Generate cryptographically signed consent receipts</li>
+  <li>Maintain an immutable consent audit trail</li>
+  <li>Facilitate consent withdrawal at the principal's request</li>
+  <li>Propagate consent decisions across multiple organizations (if principal consents to cross-org sharing)</li>
+</ul>
+
+<h3>Why CMs Matter</h3>
+<p >
+  <strong>DPDP Rules 2025</strong> envision CMs as trusted intermediaries for consent capture, providing:
+</p>
+<ul >
+  <li><strong>Standardized format:</strong> Cross-organization interoperability</li>
+  <li><strong>Reduced liability:</strong> Organization relies on CM for receipt integrity</li>
+  <li><strong>Regulatory oversight:</strong> Central Government maintains CM registry; DPB audits CM practices</li>
+</ul>
+
+<h3>Current Status (April 2026)</h3>
+<div style="background: #fff3cd; border-left: 4px solid #ff9800; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <p >
+    <strong>⚠ Note:</strong> Government has NOT yet published the approved CM list. Expected publication: <strong>November 14, 2026</strong>. Organizations should prepare integration pipelines now and activate by May 13, 2027.
+  </p>
+</div>
+
+<h2>2. Integration Architecture</h2>
+
+<h3>High-Level Flow</h3>
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 3px; font-family: monospace;  overflow-x: auto;">
+<pre>
+Data Principal (Visits Org Website)
+        ↓
+Organization Landing Page / Consent UI
+        ↓
+CM Integration Decision
+        ├─ PATH A: Via CM (NEW)
+        │  1. Org redirects to CM
+        │  2. CM hosts consent UI
+        │  3. CM captures choice
+        │  4. CM generates receipt
+        │  5. CM redirects back with receipt_id
+        │  6. Org stores receipt_id + verifies signature
+        │
+        └─ PATH B: Direct (LEGACY)
+           1. Org captures consent directly
+           2. Org stores consent record
+           3. Consent treated as "non-CM" origin
+</pre>
+</div>
+
+<h3>Architecture Components</h3>
+<table >
+  <tr>
+    <th>Component</th>
+    <th>Role</th>
+    <th>Responsibility</th>
+  </tr>
+  <tr>
+    <td><strong>Data Principal</strong></td>
+    <td>Consent Granter</td>
+    <td>Reviews notice, selects purposes, grants/denies consent</td>
+  </tr>
+  <tr>
+    <td><strong>Organization (DF)</strong></td>
+    <td>Consent Requester</td>
+    <td>Initiates consent flow, receives/stores receipts, fulfills rights requests</td>
+  </tr>
+  <tr>
+    <td><strong>Approved CM</strong></td>
+    <td>Consent Intermediary</td>
+    <td>Hosts UI, captures choice, generates receipt, maintains archive, enables withdrawal</td>
+  </tr>
+  <tr>
+    <td><strong>Receipt Registry</strong></td>
+    <td>Audit Trail</td>
+    <td>Stores all CM-generated receipts (on-chain or centralized)</td>
+  </tr>
+  <tr>
+    <td><strong>DPB</strong></td>
+    <td>Regulator</td>
+    <td>Audits CM practices, enforces compliance, handles complaints</td>
+  </tr>
+</table>
+
+<h2>3. API Specification</h2>
+
+<h3>3.1 Organization → CM: Initiate Consent Request</h3>
+<p ><strong>Endpoint:</strong> <code style="background: #f0f0f0; padding: 2px 4px;">POST https://cm.example.gov.in/v1/consent/initiate</code></p>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 3px; font-family: monospace;  overflow-x: auto;">
+<pre>Headers:
+Authorization: Bearer {org_jwt_token}
+Content-Type: application/json
+X-Org-ID: {org_id}
+X-Request-ID: {unique_request_uuid}
+X-Timestamp: {ISO_8601_timestamp}
+
+Request Body (sample):
+{
+  "consent_request_id": "creq_org_20260411_001",
+  "requesting_org_id": "org-quicklend-001",
+  "requesting_org_name": "QuickLend Financial Services",
+  "principal_email": "user@example.com",
+  "principal_phone": "919876543210",
+  "notice_url": "https://org.example.com/notice?lang=en&v=2.5",
+  "purposes": [
+    {
+      "purpose_id": "PUR-001",
+      "purpose_name": "Loan Origination & KYC",
+      "data_categories": ["Aadhaar", "PAN", "Income"],
+      "retention_period_days": 365
+    }
+  ],
+  "callback_url": "https://org.example.com/callback/cm-consent",
+  "expiry_seconds": 3600,
+  "language_preference": "en"
+}
+
+Response (201 Created):
+{
+  "status": "pending",
+  "cm_consent_request_id": "creq_cm_abc123def456",
+  "cm_redirect_url": "https://cm.example.gov.in/consent/creq_cm_abc123def456",
+  "expires_at": "2026-04-11T15:00:00Z"
+}</pre>
+</div>
+
+<h3>3.2 CM → Organization: Callback with Consent Receipt</h3>
+<p ><strong>Callback URL (GET):</strong></p>
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 3px; font-family: monospace;  overflow-x: auto;">
+<pre>https://org.example.com/callback/cm-consent?
+  consent_request_id=creq_org_20260411_001&
+  receipt_id=receipt_cm_xyz789&
+  status=GRANTED&
+  signature=<ECDSA_P256_signature>&
+  timestamp=2026-04-11T14:05:30Z
+
+Org Validation Steps:
+1. Verify ECDSA signature using CM's public key
+2. Verify timestamp freshness (< 1 minute old)
+3. Verify receipt_id uniqueness (no replay)
+4. Fetch full receipt details via receipt verification API</pre>
+</div>
+
+<h3>3.3 Organization → CM: Verify Receipt (Optional but Recommended)</h3>
+<p ><strong>Endpoint:</strong> <code style="background: #f0f0f0; padding: 2px 4px;">GET https://cm.example.gov.in/v1/receipts/{receipt_id}</code></p>
+<p >Recommended for added security — org can verify receipt details with CM before storing locally.</p>
+
+<h3>3.4 Principal → CM: Withdraw Consent</h3>
+<p >Principal logs into CM dashboard and withdraws consent. CM notifies org via webhook.</p>
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 3px; font-family: monospace;  overflow-x: auto;">
+<pre>CM → Org Withdrawal Notification Webhook:
+
+POST /webhook/cm-withdrawal
+
+{
+  "event_type": "consent.withdrawn",
+  "receipt_id": "receipt_cm_xyz789",
+  "principal_email": "user@example.com",
+  "withdrawn_at": "2026-04-15T10:30:00Z",
+  "purposes_withdrawn": ["PUR-001"],
+  "requesting_org_id": "org-quicklend-001",
+  "signature": "<ECDSA_signature>"
+}
+
+Org Actions:
+1. Verify withdrawal signature
+2. Cease processing for withdrawn purposes within 48 hours
+3. Delete data per statutory hold logic
+4. Update consent receipt status to "WITHDRAWN"</pre>
+</div>
+
+<h2>4. Operational Requirements</h2>
+
+<h3>4.1 Consent Manager Selection</h3>
+<p ><strong>By May 13, 2027, organizations must decide:</strong></p>
+
+<div style="margin: 12px 0;">
+  <div style="background: #e3f2fd; border-left: 4px solid #2196F3; padding: 12px; margin: 12px 0; border-radius: 3px;">
+    <p >
+      <strong>Option A: Use Government-Approved CM</strong><br>
+      • Register with chosen CM from approved list<br>
+      • Pay CM fees (TBD by government)<br>
+      • Integrate using this spec<br>
+      • Forward all new consent requests through CM
+    </p>
+  </div>
+
+  <div style="background: #f3e5f5; border-left: 4px solid #9C27B0; padding: 12px; margin: 12px 0; border-radius: 3px;">
+    <p >
+      <strong>Option B: Maintain Direct Consent Capture (Legacy)</strong><br>
+      • Continue capturing consent directly<br>
+      • Maintain full responsibility for consent record integrity<br>
+      • Must still comply with FSIUU requirements<br>
+      • SDF organizations must ensure audit readiness
+    </p>
+  </div>
+
+  <div style="background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 12px; margin: 12px 0; border-radius: 3px;">
+    <p >
+      <strong>Hybrid Approach (Recommended)</strong><br>
+      Offer BOTH options to data principal at consent page: "Consent via Government CM [approved list] OR Consent via [OrgName]". Route based on principal choice. Both receipt types stored with origin tag.
+    </p>
+  </div>
+</div>
+
+<h3>4.2 Receipt Storage & Longevity</h3>
+<p ><strong>Organization MUST Store:</strong></p>
+<ul >
+  <li>receipt_id</li>
+  <li>CM origin (cm.example.gov.in)</li>
+  <li>Principal email/phone</li>
+  <li>Purposes granted/denied</li>
+  <li>Timestamp</li>
+  <li>Signature (for audit trail)</li>
+  <li>Link to full receipt on CM (or local copy)</li>
+</ul>
+
+<p ><strong>Retention:</strong> Minimum — As long as processing continues + 3 years after withdrawal. Typical — Lifetime of relationship + 3 years.</p>
+
+<h3>4.3 Cross-Organization Consent Propagation (Future)</h3>
+<div style="background: #fff3cd; border-left: 4px solid #ff9800; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <p >
+    <strong>Phase 2 (post-May 2027):</strong> DPDP Rules 2025 Section 6(9) envisions principals granting consent once and having it propagate to multiple organizations. Not yet operationalized — prepare data model for future integration.
+  </p>
+</div>
+
+<h2>5. Compliance Checklist</h2>
+
+<table >
+  <tr>
+    <th>Task</th>
+    <th>Status</th>
+    <th>Deadline</th>
+  </tr>
+  <tr>
+    <td>Identify government-approved CM list</td>
+    <td><input type="checkbox"></td>
+    <td>November 14, 2026</td>
+  </tr>
+  <tr>
+    <td>CM selection decision (use CM vs. direct)</td>
+    <td><input type="checkbox"></td>
+    <td>May 1, 2027</td>
+  </tr>
+  <tr>
+    <td>API integration spec implemented and tested (CM sandbox)</td>
+    <td><input type="checkbox"></td>
+    <td>May 1, 2027</td>
+  </tr>
+  <tr>
+    <td>Callback webhook implemented and tested</td>
+    <td><input type="checkbox"></td>
+    <td>May 1, 2027</td>
+  </tr>
+  <tr>
+    <td>Receipt storage schema designed and deployed</td>
+    <td><input type="checkbox"></td>
+    <td>May 13, 2027</td>
+  </tr>
+  <tr>
+    <td>Staff trained on CM receipt handling</td>
+    <td><input type="checkbox"></td>
+    <td>May 13, 2027</td>
+  </tr>
+  <tr>
+    <td>Consent UI updated with CM redirect option</td>
+    <td><input type="checkbox"></td>
+    <td>May 13, 2027</td>
+  </tr>
+  <tr>
+    <td>Data Principal Rights (withdrawal, access) updated for CM receipts</td>
+    <td><input type="checkbox"></td>
+    <td>May 13, 2027</td>
+  </tr>
+  <tr>
+    <td>Audit logging captures receipt origin (CM vs. Direct)</td>
+    <td><input type="checkbox"></td>
+    <td>May 13, 2027</td>
+  </tr>
+  <tr>
+    <td>DPO approval of CM integration strategy</td>
+    <td><input type="checkbox"></td>
+    <td>May 13, 2027</td>
+  </tr>
+</table>
+
+<h2>6. FAQ & Risks</h2>
+
+<h3>Q: What if government doesn't approve any CMs by November 2026?</h3>
+<p >
+  <strong>A:</strong> Organizations may continue direct consent capture. No mandate to use CM if none approved.
+</p>
+
+<h3>Q: Are we forced to use a CM?</h3>
+<p >
+  <strong>A:</strong> No. DPDP Rules 2025 permit but do not mandate CM use. Organizations can continue direct capture.
+</p>
+
+<h3>Q: What if a principal grants consent via CM but later disputes it?</h3>
+<p >
+  <strong>A:</strong> CM maintains tamper-proof receipt. Organization can present receipt as evidence. CM liable for receipt integrity.
+</p>
+
+<h3>Q: Multi-org consent propagation — what are our obligations?</h3>
+<p >
+  <strong>A:</strong> For Phase 2 (post-May 2027): If principal consents to cross-org sharing via CM, be ready to receive and store CM-issued receipt for your org.
+</p>
+
+<h2>7. Sign-Off & Approval</h2>
+
+<div class="signature-block" style="margin-top: 40px;">
+  <p >
+    <strong>DPO Sign-Off:</strong><br>
+    Name: _________________________<br>
+    Signature: _______________________ Date: _____________<br><br>
+
+    <strong>General Counsel Approval:</strong><br>
+    Name: _________________________<br>
+    Signature: _______________________ Date: _____________<br><br>
+
+    <strong>CTO / Technical Lead Approval:</strong><br>
+    Name: _________________________<br>
+    Signature: _______________________ Date: _____________<br><br>
+
+    <strong>Template Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Next Review Date:</strong> June 30, 2026 (after government CM list publication)
+  </p>
+</div>
+
+<!-- Navigation -->
+<div style="margin-top: 40px; padding: 15px; background: #f0f5ff; border-radius: 3px; text-align: center;">
+  <p >
+    <a href="47_Compliance_Status_Report_Board_Pack.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">← Previous: Compliance Status Report</a> |
+    <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Back to Navigator</a> |
+    <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">Complete Template Library →</a>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

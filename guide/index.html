@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPDP Implementation Guides</title>
+  <link rel="stylesheet" href="../UNIFIED_THEME.css">
+  <style>
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      margin: 0 0 8px;
+    }
+    .guide-card {
+      background: #fff;
+      border: 1px solid var(--border-light, #e2e8f0);
+      border-radius: 6px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .guide-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+    }
+    .phase-badge {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+    .guide-card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--header-fg, #0f172a);
+      line-height: 1.4;
+    }
+    .guide-card p {
+      margin: 0 0 18px;
+      font-size: 13px;
+      color: #64748b;
+      flex: 1;
+      line-height: 1.55;
+      text-align: left;
+    }
+    .guide-btn {
+      display: inline-block;
+      padding: 7px 14px;
+      background: var(--primary-color);
+      color: #fff !important;
+      border-radius: 4px;
+      text-decoration: none !important;
+      font-size: 13px;
+      font-weight: 500;
+      align-self: flex-start;
+    }
+    .guide-btn:hover { background: var(--primary-dark, #1e40af); color: #fff !important; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      margin: 32px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="back-link" style="margin-bottom: 20px;">
+    <a href="../INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+  </div>
+
+  <div class="header">
+    <div class="title">DPDP Implementation Guides</div>
+    <div class="subtitle">Phase-based compliance implementation for the Digital Personal Data Protection Act 2023</div>
+  </div>
+
+  <div class="section-label">Foundation</div>
+  <div class="guide-grid">
+    <div class="guide-card">
+      <div class="phase-badge">Master Reference</div>
+      <h3>Compliance Master Strategy</h3>
+      <p>Complete 6-phase roadmap covering 50 templates, 92 checkpoints, and 3 compliance tracks. Start here.</p>
+      <a class="guide-btn" href="viewer.html?file=00_MASTER_STRATEGY.md">Read Guide</a>
+    </div>
+    <div class="guide-card">
+      <div class="phase-badge">Quick Reference</div>
+      <h3>Do's and Don'ts</h3>
+      <p>Critical rules for compliance teams — common pitfalls, mandatory actions, and non-negotiables for DPDP.</p>
+      <a class="guide-btn" href="viewer.html?file=90_DOS_AND_DONTS.md">Read Guide</a>
+    </div>
+  </div>
+
+  <div class="section-label">Implementation Phases</div>
+  <div class="guide-grid">
+    <div class="guide-card">
+      <div class="phase-badge">Phase 0</div>
+      <h3>Scoping &amp; Applicability</h3>
+      <p>Determine if DPDP applies, classify as Data Fiduciary or SDF, and map industry-specific regulatory overlays.</p>
+      <a class="guide-btn" href="viewer.html?file=01_PHASE_0_SCOPING.md">Read Guide</a>
+    </div>
+    <div class="guide-card">
+      <div class="phase-badge">Phase 1</div>
+      <h3>Compliance Assessment</h3>
+      <p>Baseline audit across 17 DPDP domains using a 92-checkpoint methodology. Document existing controls and gaps.</p>
+      <a class="guide-btn" href="viewer.html?file=02_PHASE_1_ASSESSMENT.md">Read Guide</a>
+    </div>
+    <div class="guide-card">
+      <div class="phase-badge">Phase 2</div>
+      <h3>Gap Analysis &amp; Scoring</h3>
+      <p>Severity-scored gap assessment with regulatory risk mapping and penalty exposure calculation per violation.</p>
+      <a class="guide-btn" href="viewer.html?file=03_PHASE_2_GAP_ANALYSIS.md">Read Guide</a>
+    </div>
+    <div class="guide-card">
+      <div class="phase-badge">Phase 3</div>
+      <h3>Remediation Planning</h3>
+      <p>Build a prioritized remediation roadmap (CRITICAL → HIGH → MEDIUM → LOW) with owners and timelines.</p>
+      <a class="guide-btn" href="viewer.html?file=04_PHASE_3_REMEDIATION.md">Read Guide</a>
+    </div>
+    <div class="guide-card">
+      <div class="phase-badge">Phase 4</div>
+      <h3>Monitoring &amp; Progress</h3>
+      <p>Track implementation milestones, control effectiveness, and SLA compliance across all remediation tasks.</p>
+      <a class="guide-btn" href="viewer.html?file=05_PHASE_4_MONITORING.md">Read Guide</a>
+    </div>
+    <div class="guide-card">
+      <div class="phase-badge">Phase 5</div>
+      <h3>Governance Framework</h3>
+      <p>Establish DPO appointment, privacy committee charter, board oversight structure, and policy lifecycle.</p>
+      <a class="guide-btn" href="viewer.html?file=06_PHASE_5_GOVERNANCE.md">Read Guide</a>
+    </div>
+    <div class="guide-card">
+      <div class="phase-badge">Phase 6</div>
+      <h3>Audit &amp; Reporting</h3>
+      <p>Execute compliance audits, produce board reports, prepare for regulatory inspection, and close findings.</p>
+      <a class="guide-btn" href="viewer.html?file=07_PHASE_6_AUDIT_REPORTING.md">Read Guide</a>
+    </div>
+  </div>
+
+  <div class="section-label">Tracking &amp; Reference</div>
+  <div class="guide-grid">
+    <div class="guide-card">
+      <div class="phase-badge">Tracker</div>
+      <h3>Remediation Tracker</h3>
+      <p>Live tracker for remediation task status, owners, deadlines, and SLA breach alerts across all phases.</p>
+      <a class="guide-btn" href="viewer.html?file=09_REMEDIATION_TRACKER.md">Read Guide</a>
+    </div>
+    <div class="guide-card">
+      <div class="phase-badge">Tracker</div>
+      <h3>Goal Tracking</h3>
+      <p>Milestone and compliance goal tracker aligned to the 6-phase roadmap with per-phase completion criteria.</p>
+      <a class="guide-btn" href="viewer.html?file=91_GOAL_TRACKING.md">Read Guide</a>
+    </div>
+    <div class="guide-card">
+      <div class="phase-badge">Phase 1 Supplement</div>
+      <h3>RoPA Preparation Guide</h3>
+      <p>Step-by-step guide for preparing the Record of Processing Activities required under DPDP Act 2023.</p>
+      <a class="guide-btn" href="viewer.html?file=92_PHASE_1_ROPA_PREPARATION_GUIDE.md">Read Guide</a>
+    </div>
+  </div>
+</body>
+</html>

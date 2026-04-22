@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applicability Test — DPDP Act 2023</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  .question-box {
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    border-left: 3px solid var(--primary-color);
+    border-radius: 3px;
+  }
+  .checkbox-group {
+    margin: var(--spacing-sm) 0;
+  }
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+  }
+  .checkbox-item input {
+    margin-right: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">DPDP Applicability Test</div>
+  <div class="subtitle">Determine if Digital Personal Data Protection Act 2023 applies to your organization</div>
+</div>
+
+<div class="info-box">
+  <strong>Purpose:</strong> This test determines whether your organization is subject to DPDP Act 2023. DPDP applies when ALL THREE conditions below are met.
+</div>
+
+<h2>Step 1: Three-Part Applicability Test</h2>
+
+<p style=" margin-bottom: 20px;">Answer the three questions below. If ALL are "YES", DPDP applies.</p>
+
+<div class="question-box">
+  <h3>Question 1: Is the data DIGITAL?</h3>
+  <p >Is the personal data collected digitally OR digitized after collection (e.g., scanned, uploaded, entered into a system)?</p>
+  <div class="checkbox-group">
+    <div class="checkbox-item">
+      <input type="checkbox"> <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> YES — Data is digital
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox"> <i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i> NO — Only physical data (paper, hardcopy only)
+    </div>
+  </div>
+</div>
+
+<div class="question-box">
+  <h3>Question 2: Is the data of INDIAN RESIDENTS?</h3>
+  <p >Is the personal data about residents of India (as defined in DPDP as "Data Principals")?</p>
+  <div class="checkbox-group">
+    <div class="checkbox-item">
+      <input type="checkbox"> <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> YES — About Indian residents
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox"> <i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i> NO — Only about foreign residents
+    </div>
+  </div>
+</div>
+
+<div class="question-box">
+  <h3>Question 3: Is processing IN or FOR India?</h3>
+  <p >Does processing occur within India OR are goods/services offered to Indian residents (even if processing happens abroad)?</p>
+  <div class="checkbox-group">
+    <div class="checkbox-item">
+      <input type="checkbox"> <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> YES — Processing in India or serving Indian residents
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox"> <i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i> NO — Entirely outside India, no Indian customers
+    </div>
+  </div>
+</div>
+
+<h2 style="margin-top: 30px;">APPLICABILITY DECISION</h2>
+
+<table>
+  <tr style="background: var(--status-pass);">
+    <td><strong>If all three are YES:</strong></td>
+    <td><span class="status-badge status-compliant"><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> DPDP APPLIES</span></td>
+  </tr>
+  <tr style="background: var(--status-fail);">
+    <td><strong>If any is NO:</strong></td>
+    <td><span class="status-badge status-gap"><i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i> DPDP MAY NOT APPLY</span></td>
+  </tr>
+</table>
+
+<h2 style="margin-top: 30px;">Step 2: If DPDP Applies — Entity Classification</h2>
+
+<div class="info-box">
+  <strong>Next:</strong> Determine whether your organization is a DF or SDF (see table below)
+</div>
+
+<table>
+  <tr>
+    <th>Classification</th>
+    <th>Definition</th>
+    <th>Obligations</th>
+  </tr>
+  <tr>
+    <td><strong>Data Fiduciary (DF)</strong></td>
+    <td>Any organization processing DPDP-covered personal data</td>
+    <td>Sections 5–14 (core compliance: notice, consent, DSAR, security, breach notification, etc.)</td>
+  </tr>
+  <tr class="critical">
+    <td><strong>Significant Data Fiduciary (SDF)</strong></td>
+    <td>Designated by Central Government (criteria: 10M+ users, sensitive data at scale, national security impact)</td>
+    <td>+Section 10 (DPO appointment, DPIA, annual independent audit)</td>
+  </tr>
+</table>
+
+<div style="margin-top: 15px; padding: 12px; background: var(--status-warn); border-left: 4px solid #ff9800; border-radius: 3px; ">
+  <strong><i data-lucide="alert-triangle" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:currentColor; margin-right: 4px;"></i> SDF Status:</strong> Government has not yet formally designated organizations as SDF. If you process data of 10M+ users or sensitive data at national scale, monitor Government notifications for designation after Nov 14, 2025.
+</div>
+
+<h2 style="margin-top: 30px;">Step 3: Industry Overlay Assessment</h2>
+
+<div class="info-box">
+  <strong>Important:</strong> DPDP compliance must also satisfy regulator-specific requirements. Check which apply to your industry.
+</div>
+
+<table>
+  <tr>
+    <th>Regulator</th>
+    <th>Applies To</th>
+    <th>Key DPDP Overlap</th>
+    <th>Stricter Requirement</th>
+  </tr>
+  <tr>
+    <td><strong>RBI</strong></td>
+    <td>Banks, NBFCs, Fintech</td>
+    <td>Data localization (India-only)</td>
+    <td>8-year retention (loan data)</td>
+  </tr>
+  <tr>
+    <td><strong>PMLA</strong></td>
+    <td>Financial institutions</td>
+    <td>KYC record retention</td>
+    <td>5 years post-relationship</td>
+  </tr>
+  <tr style="background: var(--status-fail);">
+    <td><strong>CERT-In</strong></td>
+    <td>ALL organizations (cybersecurity)</td>
+    <td>Breach notification timeline</td>
+    <td><strong>6 hours</strong> (vs DPDP 72 hrs — 6 hrs applies)</td>
+  </tr>
+  <tr>
+    <td><strong>IRDAI</strong></td>
+    <td>Insurance companies</td>
+    <td>Policy data retention</td>
+    <td>Per Insurance Act</td>
+  </tr>
+  <tr>
+    <td><strong>SEBI</strong></td>
+    <td>Brokers, asset managers, securities firms</td>
+    <td>Trade records</td>
+    <td>5-year retention</td>
+  </tr>
+</table>
+
+<h2 style="margin-top: 30px;">Decision Summary</h2>
+
+<table>
+  <tr>
+    <th>Scenario</th>
+    <th>Action</th>
+  </tr>
+  <tr>
+    <td>YES to all 3 + no industry overlay</td>
+    <td>→ DPDP applies as DF. Proceed to Phase 1 Assessment.</td>
+  </tr>
+  <tr>
+    <td>YES to all 3 + has industry overlay</td>
+    <td>→ DPDP applies as DF. Must also comply with regulator requirements. Use stricter deadlines/retention periods.</td>
+  </tr>
+  <tr>
+    <td>YES to all 3 + likely SDF</td>
+    <td>→ DPDP applies. Plan for SDF obligations (Section 10): DPO, DPIA, annual audit. Monitor Government notifications.</td>
+  </tr>
+  <tr>
+    <td>NO to any question</td>
+    <td>→ DPDP may not apply. Confirm with legal counsel. Check state privacy laws as fallback.</td>
+  </tr>
+</table>
+
+<h2 style="margin-top: 30px;">Next Steps</h2>
+
+<ol >
+  <li>Complete all three questions above</li>
+  <li>If all YES: Classify organization as DF or SDF (see Step 2)</li>
+  <li>Identify any industry overlays that apply (see Step 3)</li>
+  <li>Prepare engagement kickoff with Phase 1 (Assessment) timeline</li>
+  <li>Document applicability decision for compliance records</li>
+</ol>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Consultant Name:</strong> _________________________ <br>
+    <strong>Firm:</strong> _________________________ <br>
+    <strong>Date:</strong> _________________________ <br>
+    <strong>Organization Assessed:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

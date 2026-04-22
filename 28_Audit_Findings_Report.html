@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit Findings Report</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Audit Findings Report</div>
+  <div class="subtitle">Compliance Audit Results and Remediation Plan</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived]
+</div>
+
+<h2>1. Purpose & Output (Phase 2: Gap Analysis)</h2>
+
+<div style="background: #e8f4fd; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Objective:</strong> Document all gaps found during 17-domain compliance audit. Gaps are classified by severity (CRITICAL, HIGH, MEDIUM, LOW) based on penalty exposure and operational risk.<br><br>
+<strong>Source:</strong> Phase 2 gap analysis across 92 checkpoints; this report = deliverable T-28 of the compliance roadmap.<br><br>
+<strong>Use:</strong> Board approval of remediation roadmap; prioritization of resource allocation; SLA enforcement for gap closure.
+</div>
+
+<h2>2. Executive Summary (1 Page)</h2>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Gap Summary:</strong><br>
+Total gaps identified: ________ | Critical: ________ | High: ________ | Medium: ________ | Low: ________<br><br>
+<strong>Compliance Baseline:</strong><br>
+Checkpoints completed: [X/92] = [Y]% | Estimated time to 97% compliance: [N weeks]<br><br>
+<strong>Highest Risk Domains:</strong><br>
+[List top 3 Red domains with penalty exposure]<br><br>
+<strong>Board Decision Required:</strong><br>
+☐ Approve remediation roadmap | ☐ Allocate resources (budget: ₹ ________) | ☐ Extend compliance deadline (justify)
+</div>
+
+<h2>3. Gap Classification Matrix (Severity & Penalty Exposure)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Severity</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Criteria</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Penalty Exposure</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Remediation SLA</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Example Gaps</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color: #f8d7da;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>CRITICAL</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Missing mandatory controls for high-risk processing (consent, security, breach response)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">₹50-100 Cr per gap</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">30 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">No consent form, no breach procedure, unencrypted PII</td>
+    </tr>
+    <tr style="background-color: #fff3cd;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>HIGH</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incomplete implementation of mandatory requirement</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">₹25-50 Cr per gap</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">60 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DSAR workflow missing, DPA unsigned, no training program</td>
+    </tr>
+    <tr style="background-color: #d1ecf1;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>MEDIUM</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Minor gaps in documentation or process</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">₹10-25 Cr per gap</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">90 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Privacy notice incomplete, access review not quarterly, DPIA template missing</td>
+    </tr>
+    <tr style="background-color: #d4edda;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>LOW</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Non-material gap or process improvement</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><₹10 Cr per gap</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">No deadline; plan remediation</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Policy wording improvement, form clarification</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4. Detailed Gap Register (Template)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 8px;">Gap ID</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Domain</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Severity</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Owner</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Target Date</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">G-001</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Consent & Notice</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Consent form not FSIUU-compliant (bundled purposes, pre-ticked)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">CRITICAL</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Product Manager</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">30 days from audit</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">In Progress</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;">G-002</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Information Security</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">SIEM not deployed; no alerting for bulk export/privilege escalation</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">CRITICAL</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">CISO</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">60 days from audit</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Pending</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">G-003</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">DPIA & DPO</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">No DPIA process for high-risk activities (automated decision-making, children's data)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">HIGH</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">DPO</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">60 days from audit</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Pending</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>5. Remediation Roadmap by Tier</h2>
+
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Tier 1 (CRITICAL gaps, Weeks 1-4 of remediation):</strong> [List 10 critical gaps with 30-day SLAs]<br>
+Estimated effort: [X] FTE-weeks | Budget: ₹ _______<br>
+Success criteria: All critical gaps closed; ≥70% compliance score<br><br>
+<strong>Tier 2 (HIGH gaps, Weeks 5-12 of remediation):</strong> [List 11 high-priority gaps with 60-day SLAs]<br>
+Estimated effort: [X] FTE-weeks | Budget: ₹ _______<br>
+Success criteria: All high gaps closed; ≥80% compliance score<br><br>
+<strong>Tier 3 (MEDIUM/LOW gaps, Weeks 13+ of remediation):</strong> [List medium/low gaps]<br>
+Estimated effort: [X] FTE-weeks | Budget: ₹ _______<br>
+Success criteria: ≥97% compliance score (Phase 5 readiness)
+</div>
+
+<h2>6. Gap by Domain Summary (All 17 Domains)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Domain</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Checkpoints</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Completed</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Gaps</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Gap Breakdown (C/H/M/L)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">1. Consent & Notice</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">8</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">6</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">2</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">1C / 1H / 0M / 0L</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">... (continue for all 17 domains)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">...</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">...</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">...</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">...</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>7. Implementation Checklist (Gap Closure Tracking)</h2>
+
+<ul >
+  <li>☐ Create master gap register (44 total gaps identified in T-25 Audit Plan)</li>
+  <li>☐ Assign each gap to domain owner + responsible person</li>
+  <li>☐ Set SLA per severity (30d CRITICAL, 60d HIGH, 90d MEDIUM, no deadline LOW)</li>
+  <li>☐ Break each Tier 1 gap into implementation task with acceptance criteria</li>
+  <li>☐ Weekly gap status review: track which gaps moved to "Closed" status</li>
+  <li>☐ Escalate any gap approaching SLA deadline to DPO</li>
+  <li>☐ Quarterly remediation report: how many gaps closed vs total (e.g., "22/44 gaps closed = 50%")</li>
+  <li>☐ Board approval of remediation roadmap + resource allocation</li>
+  <li>☐ Monthly board dashboard update: gap closure progress per tier</li>
+  <li>☐ Compliance score recalculation after each gap closed</li>
+  <li>☐ Annual compliance audit: re-test closed gaps to confirm no regression</li>
+</ul>
+
+<h2>8. Board Approval Signature Block</h2>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>This Audit Findings Report has been reviewed and approved:</strong><br><br>
+Audit conducted by: _________________________ (DPO or External Auditor)<br>
+Report prepared by: _________________________ Date: _____________<br>
+Reviewed by: _________________________ Date: _____________<br>
+Approved by Board: _________________________ Date: _____________<br><br>
+<strong>Board Resolution:</strong><br>
+The Board approves the remediation roadmap as presented, with resource allocation of ₹ _________ over [X] months.<br>
+The Board acknowledges that failure to remediate CRITICAL gaps within 30 days may expose the organization to regulatory penalties of ₹50-100 Cr per gap.<br><br>
+Board Chair Signature: _________________________ Date: _____________
+</div>
+
+<h2 style="margin-top: 30px;">Completion Checklist</h2>
+
+<ul >
+  <li>☐ Reviewed DPDP Act Section 5-16 requirements</li>
+  <li>☐ Gathered organization-specific information</li>
+  <li>☐ Customized for business context</li>
+  <li>☐ Legal/Compliance review completed</li>
+  <li>☐ Stakeholder sign-off obtained</li>
+  <li>☐ Implementation and rollout plan ready</li>
+</ul>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By:</strong> _________________________<br>
+    <strong>Approved By:</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

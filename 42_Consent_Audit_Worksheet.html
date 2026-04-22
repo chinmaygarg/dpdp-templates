@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consent Audit Worksheet — FSIUU Compliance</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  /* Template-specific overrides */
+    .header { border-bottom: 2px solid var(--text-primary); padding-bottom: 15px; margin-bottom: 20px; }
+  .title { font-weight: bold; margin-bottom: 10px; }
+  .subtitle { color: var(--text-secondary); margin-bottom: 15px; }
+  table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; }
+  th { background: #2c3e50; color: white; padding: 8px; text-align: left; font-weight: bold; }
+  td { border: 1px solid var(--border-color); padding: 6px; }
+  tr:nth-child(even) { background: var(--bg-light); }
+  .checkbox { width: 20px; text-align: center; }
+  .notes-cell { width: 150px; }
+  input[type="text"], textarea { border: none; border-bottom: 1px solid var(--text-primary); padding: 2px; width: 95%; }
+  textarea { min-height: 40px; width: 95%; }
+  .fsiuu-legend { margin: var(--spacing-md) 0; padding: var(--spacing-sm); background: #f0f5ff; border-left: 3px solid var(--primary-color); }
+  .section-header { font-weight: bold; color: white; background: #34495e; padding: 6px; }
+  @media print { body { margin: 0; padding: 0; } }
+</style>
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">CONSENT AUDIT WORKSHEET — FSIUU Compliance Verification</div>
+  <div class="subtitle">
+    Organization: <input type="text" placeholder="[Organization Name]" style="width:300px;"><br>
+    Audit Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+    &nbsp;&nbsp; Auditor: <input type="text" placeholder="Name" style="width:200px;"><br>
+    Consent Profile: <input type="text" placeholder="e.g., Login Consent, Marketing Consent" style="width:300px;">
+  </div>
+</div>
+
+<div class="fsiuu-legend">
+  <strong>FSIUU = Free, Specific, Informed, Unconditional, Unambiguous (DPDP Act Section 6)</strong><br>
+  <strong>Audit Instructions:</strong> For each consent record sampled, verify ALL 5 elements against the criteria below. Mark <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> PASS, <i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i> FAIL, or ? UNCLEAR.
+</div>
+
+<table>
+  <tr class="section-header">
+    <td colspan="7" style="color:white;"><strong>ELEMENT 1: FREE (No Coercion or Bundling)</strong></td>
+  </tr>
+  <tr style="background:#f0f0f0;">
+    <th style="width:35%;">Criterion</th>
+    <th style="width:15%;">PASS <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i></th>
+    <th style="width:15%;">FAIL <i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i></th>
+    <th style="width:15%;">UNCLEAR ?</th>
+    <th style="width:20%;">Evidence / Notes</th>
+  </tr>
+  <tr>
+    <td>No pre-ticked boxes (affirmative action required by user)</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Consent not bundled with service access (user can refuse)</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>No dark patterns or deceptive interface design</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Withdrawal is as easy as granting consent</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+</table>
+
+<table>
+  <tr class="section-header">
+    <td colspan="7" style="color:white;"><strong>ELEMENT 2: SPECIFIC (Per-Purpose, Not Blanket)</strong></td>
+  </tr>
+  <tr style="background:#f0f0f0;">
+    <th style="width:35%;">Criterion</th>
+    <th style="width:15%;">PASS <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i></th>
+    <th style="width:15%;">FAIL <i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i></th>
+    <th style="width:15%;">UNCLEAR ?</th>
+    <th style="width:20%;">Evidence / Notes</th>
+  </tr>
+  <tr>
+    <td>Consent obtained for EACH processing purpose separately</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>No blanket "consent to all processing" language</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Each purpose clearly distinguishable in consent form</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Secondary / new purposes require explicit re-consent</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+</table>
+
+<table>
+  <tr class="section-header">
+    <td colspan="7" style="color:white;"><strong>ELEMENT 3: INFORMED (Privacy Notice Given Before Consent)</strong></td>
+  </tr>
+  <tr style="background:#f0f0f0;">
+    <th style="width:35%;">Criterion</th>
+    <th style="width:15%;">PASS <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i></th>
+    <th style="width:15%;">FAIL <i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i></th>
+    <th style="width:15%;">UNCLEAR ?</th>
+    <th style="width:20%;">Evidence / Notes</th>
+  </tr>
+  <tr>
+    <td>Privacy notice is STANDALONE document (not buried in T&Cs)</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Notice provided BEFORE or AT TIME of consent</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Notice lists EACH item of personal data being collected</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Notice explains DATA PRINCIPAL RIGHTS (access, correct, erase, etc.)</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Notice in appropriate language (English or regional as applicable)</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+</table>
+
+<table>
+  <tr class="section-header">
+    <td colspan="7" style="color:white;"><strong>ELEMENT 4: UNCONDITIONAL (No Coercive Bundling)</strong></td>
+  </tr>
+  <tr style="background:#f0f0f0;">
+    <th style="width:35%;">Criterion</th>
+    <th style="width:15%;">PASS <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i></th>
+    <th style="width:15%;">FAIL <i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i></th>
+    <th style="width:15%;">UNCLEAR ?</th>
+    <th style="width:20%;">Evidence / Notes</th>
+  </tr>
+  <tr>
+    <td>User can refuse optional consent without losing core service</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Non-compliance penalty (e.g., higher price) not applied for refusal</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Legitimate uses (Section 7) not falsely labeled as "consent"</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+</table>
+
+<table>
+  <tr class="section-header">
+    <td colspan="7" style="color:white;"><strong>ELEMENT 5: UNAMBIGUOUS (Clear, Affirmative, Recorded)</strong></td>
+  </tr>
+  <tr style="background:#f0f0f0;">
+    <th style="width:35%;">Criterion</th>
+    <th style="width:15%;">PASS <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i></th>
+    <th style="width:15%;">FAIL <i data-lucide="x" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-fail-fg); margin-right: 4px;"></i></th>
+    <th style="width:15%;">UNCLEAR ?</th>
+    <th style="width:20%;">Evidence / Notes</th>
+  </tr>
+  <tr>
+    <td>Consent captured by explicit user action (click, sign, verbal recorded)</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Consent RECORDED with timestamp, user ID, version of notice</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Consent remains unaltered from point of capture to audit date</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+  <tr>
+    <td>Audit trail of consent available (timestamp, IP, device info)</td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td class="checkbox"><input type="checkbox"></td>
+    <td><textarea placeholder="Evidence"></textarea></td>
+  </tr>
+</table>
+
+<table>
+  <tr class="section-header">
+    <td colspan="3" style="color:white;"><strong>OVERALL AUDIT SUMMARY</strong></td>
+  </tr>
+  <tr style="background:#f0f0f0;">
+    <td><strong>Consent Record ID / Sample</strong></td>
+    <td><strong>FSIUU Status</strong></td>
+    <td><strong>Recommendation</strong></td>
+  </tr>
+  <tr>
+    <td><input type="text" placeholder="e.g., consent_id_001" style="width:200px;"></td>
+    <td>
+      <select style="border:1px solid var(--text-primary); padding:3px;">
+        <option>Fully Compliant</option>
+        <option>Conditionally Compliant (minor gaps)</option>
+        <option>Non-Compliant (major gaps)</option>
+      </select>
+    </td>
+    <td><textarea placeholder="Specific corrective actions"></textarea></td>
+  </tr>
+  <tr>
+    <td><input type="text" placeholder="e.g., consent_id_002" style="width:200px;"></td>
+    <td>
+      <select style="border:1px solid var(--text-primary); padding:3px;">
+        <option>Fully Compliant</option>
+        <option>Conditionally Compliant (minor gaps)</option>
+        <option>Non-Compliant (major gaps)</option>
+      </select>
+    </td>
+    <td><textarea placeholder="Specific corrective actions"></textarea></td>
+  </tr>
+</table>
+
+<div style="margin-top:20px; padding: var(--spacing-md); background:#f0f5ff; border-left:3px solid var(--primary-color);">
+  <strong>AUDIT FINDINGS SUMMARY</strong><br><br>
+  <strong>Total Consent Records Sampled:</strong> <input type="text" placeholder="Number" style="width:100px;"><br>
+  <strong>Fully Compliant:</strong> <input type="text" placeholder="Number" style="width:100px;">
+  <strong>Conditionally Compliant:</strong> <input type="text" placeholder="Number" style="width:100px;">
+  <strong>Non-Compliant:</strong> <input type="text" placeholder="Number" style="width:100px;"><br><br>
+  <strong>Compliance %:</strong> <input type="text" placeholder="e.g., 85%" style="width:100px;"><br><br>
+  <strong>Overall Assessment:</strong><br>
+  <textarea placeholder="Summarize key findings and critical gaps" style="width:100%; height:80px;"></textarea><br><br>
+  <strong>Auditor Signature:</strong> _________________________ &nbsp;&nbsp; <strong>Date:</strong> <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

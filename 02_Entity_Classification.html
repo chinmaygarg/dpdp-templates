@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entity Classification — DF vs SDF</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Entity Classification Matrix</div>
+  <div class="subtitle">Determine Data Fiduciary (DF) or Significant Data Fiduciary (SDF) status</div>
+</div>
+
+<div class="info-box">
+  <strong>Purpose:</strong> Classify your organization to determine which DPDP obligations apply. This affects governance structure, audit requirements, and compliance timeline.
+</div>
+
+<h2>Classification Overview</h2>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Data Fiduciary (DF)</th>
+    <th>Significant Data Fiduciary (SDF)</th>
+  </tr>
+  <tr>
+    <td><strong>Definition</strong></td>
+    <td>Any entity processing DPDP-covered personal data</td>
+    <td>Designated by Central Government based on criteria (10M+ users, sensitive data, national security)</td>
+  </tr>
+  <tr>
+    <td><strong>Mandatory Obligations</strong></td>
+    <td>Sections 5–14</td>
+    <td>Sections 5–14 + Section 10 (DPO, DPIA, Audit)</td>
+  </tr>
+  <tr>
+    <td><strong>Governance Required</strong></td>
+    <td>Privacy Committee (optional but recommended)</td>
+    <td>DPO (mandatory), Privacy Committee</td>
+  </tr>
+  <tr>
+    <td><strong>Audit Requirement</strong></td>
+    <td>Internal compliance audit (Consultant-led)</td>
+    <td>Annual independent audit + internal audit</td>
+  </tr>
+  <tr>
+    <td><strong>DPIA Requirement</strong></td>
+    <td>For high-risk processing only</td>
+    <td>For all high-risk processing + formal DPIA register</td>
+  </tr>
+  <tr>
+    <td><strong>Board Reporting</strong></td>
+    <td>Recommended</td>
+    <td>Mandatory (annual audit + DPIA reports)</td>
+  </tr>
+</table>
+
+<h2 style="margin-top: 30px;">SDF Designation Criteria</h2>
+
+<p >Your organization is likely to be designated SDF if ANY of the following apply:</p>
+
+<table>
+  <tr>
+    <th>Criterion</th>
+    <th>Trigger</th>
+    <th>Examples</th>
+  </tr>
+  <tr>
+    <td><strong>User Scale</strong></td>
+    <td>Processing personal data of 10M+ Data Principals in India</td>
+    <td>Large social media, e-commerce, fintech, telecom, banking platforms</td>
+  </tr>
+  <tr>
+    <td><strong>Sensitive Data Volume</strong></td>
+    <td>Processing sensitive data (health, financial, biometric, religious) at national scale</td>
+    <td>Healthcare platforms, insurance companies, payment systems, government services</td>
+  </tr>
+  <tr>
+    <td><strong>National Security Impact</strong></td>
+    <td>Processing impacts national security, critical infrastructure, or essential services</td>
+    <td>Telecom operators, power grids, defense contractors, critical infrastructure</td>
+  </tr>
+  <tr>
+    <td><strong>Cross-Border Transfers</strong></td>
+    <td>Regular transfers of Indian personal data to foreign countries</td>
+    <td>Multinational companies, outsourced services to third countries</td>
+  </tr>
+</table>
+
+<div style="background: #fff3cd; border-left: 4px solid #ff9800; padding: 12px; margin: 15px 0; border-radius: 3px; ">
+  <strong><i data-lucide="alert-triangle" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:currentColor; margin-right: 4px;"></i> Important:</strong> As of April 7, 2026, the Government has NOT formally designated any organization as SDF. Designation expected after DPDP Rules 2025 implementation. Monitor Government notifications regularly.
+</div>
+
+<h2 style="margin-top: 30px;">Classification Self-Assessment</h2>
+
+<p style=" margin-bottom: 15px;">Answer the questions below to determine your likely classification:</p>
+
+<table>
+  <tr>
+    <th style="width: 60%;">Question</th>
+    <th>DF</th>
+    <th>Likely SDF</th>
+  </tr>
+  <tr>
+    <td>How many Indian Data Principals' data do you process?</td>
+    <td>&lt; 10M</td>
+    <td>&gt; 10M</td>
+  </tr>
+  <tr>
+    <td>Do you process sensitive data (health, financial, biometric)?</td>
+    <td>Limited scale</td>
+    <td>National scale</td>
+  </tr>
+  <tr>
+    <td>Are you regulated by RBI, SEBI, IRDAI, or other critical sector regulator?</td>
+    <td>One or few</td>
+    <td>Multiple / Critical sectors</td>
+  </tr>
+  <tr>
+    <td>Do you transfer Indian personal data to foreign countries regularly?</td>
+    <td>Rarely / None</td>
+    <td>Regularly / Significant volume</td>
+  </tr>
+  <tr>
+    <td>Would a data breach impact critical infrastructure or essential services?</td>
+    <td>No</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>Are you a major platform (social media, e-commerce, fintech, telecom)?</td>
+    <td>No</td>
+    <td>Yes</td>
+  </tr>
+</table>
+
+<h2 style="margin-top: 30px;">Industry Overlay Check</h2>
+
+<p style=" margin-bottom: 15px;">Even if classified as DF, check if your industry has additional regulatory requirements:</p>
+
+<table>
+  <tr>
+    <th>Industry/Regulator</th>
+    <th>DF/SDF Status</th>
+    <th>Additional DPDP Obligations</th>
+    <th>Likely SDF Trigger</th>
+  </tr>
+  <tr>
+    <td><strong>Banking/Finance (RBI)</strong></td>
+    <td>DF or SDF</td>
+    <td>Data localization (India-only), enhanced security</td>
+    <td>Processing 10M+ customer records</td>
+  </tr>
+  <tr>
+    <td><strong>Insurance (IRDAI)</strong></td>
+    <td>DF or SDF</td>
+    <td>Policy data retention per Act, sensitive data handling</td>
+    <td>10M+ policyholders</td>
+  </tr>
+  <tr>
+    <td><strong>Securities (SEBI)</strong></td>
+    <td>DF or SDF</td>
+    <td>Trade record retention, investor privacy</td>
+    <td>Significant market participation</td>
+  </tr>
+  <tr>
+    <td><strong>Telecom</strong></td>
+    <td>Likely SDF</td>
+    <td>CERT-In breach notification (6 hours), critical infra status</td>
+    <td>National infrastructure provider</td>
+  </tr>
+  <tr>
+    <td><strong>Healthcare</strong></td>
+    <td>DF or SDF</td>
+    <td>Sensitive health data, consent per HIPAA-like standards</td>
+    <td>National health platform, 10M+ patients</td>
+  </tr>
+  <tr>
+    <td><strong>E-commerce</strong></td>
+    <td>DF or SDF</td>
+    <td>Consumer data, financial info handling</td>
+    <td>10M+ users, cross-border transfers</td>
+  </tr>
+</table>
+
+<h2 style="margin-top: 30px;">Compliance Implications Matrix</h2>
+
+<table>
+  <tr>
+    <th>Obligation</th>
+    <th>DF</th>
+    <th>SDF</th>
+  </tr>
+  <tr>
+    <td><strong>Privacy Policies</strong></td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Required</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Required</td>
+  </tr>
+  <tr>
+    <td><strong>Privacy Notice</strong></td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Required</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Required</td>
+  </tr>
+  <tr>
+    <td><strong>Consent Management</strong></td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Required</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Required</td>
+  </tr>
+  <tr>
+    <td><strong>Data Inventory (ROPA)</strong></td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Required</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Required</td>
+  </tr>
+  <tr>
+    <td><strong>Data Protection Officer (DPO)</strong></td>
+    <td>Optional</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Mandatory (Section 10)</td>
+  </tr>
+  <tr>
+    <td><strong>Data Protection Impact Assessment (DPIA)</strong></td>
+    <td>For high-risk only</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> For all high-risk + Formal register</td>
+  </tr>
+  <tr>
+    <td><strong>Annual Independent Audit</strong></td>
+    <td>Not required</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Mandatory (Section 10)</td>
+  </tr>
+  <tr>
+    <td><strong>Board Reporting</strong></td>
+    <td>Recommended</td>
+    <td><i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i> Mandatory</td>
+  </tr>
+</table>
+
+<h2 style="margin-top: 30px;">Classification Decision</h2>
+
+<div class="signature-block">
+  <p style="margin-top: 20px;">
+    <strong>Organization Name:</strong> _________________________ <br>
+    <strong>Industry/Sector:</strong> _________________________ <br>
+    <br>
+    <strong>Number of Indian Data Principals:</strong> _________________________ <br>
+    <strong>Processes Sensitive Data?</strong> ☐ YES ☐ NO <br>
+    <strong>Industry Regulator(s):</strong> _________________________ <br>
+    <br>
+    <strong>CLASSIFICATION DECISION:</strong> <br>
+    ☐ Data Fiduciary (DF) <br>
+    ☐ Likely SDF (awaiting government designation) <br>
+    ☐ Both (monitor for SDF designation) <br>
+    <br>
+    <strong>Consultant Name:</strong> _________________________ <br>
+    <strong>Date:</strong> _________________________ <br>
+    <strong>Sign-off:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

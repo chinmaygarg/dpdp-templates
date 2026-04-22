@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Audit Plan</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">Compliance Audit Plan</div>
+  <div class="subtitle">17-Domain Compliance Verification Methodology</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 | <strong>Effective Date:</strong> [DATE] | <strong>Status:</strong> [Active/Draft/Archived]
+</div>
+
+<h2>1. Purpose & Scope (Phase 2: Gap Analysis)</h2>
+
+<div style="background: #e8f4fd; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Objective:</strong> Conduct a comprehensive compliance audit against all 92 DPDP checkpoints across 17 domains. Document control effectiveness, identify gaps, and prioritize remediation.<br><br>
+<strong>Scope:</strong> Phase 2 audit executes 17-domain assessment (Sections 5-16 of DPDP Act) covering consent, security, data rights, vendor management, breach response, and governance.<br><br>
+<strong>Output:</strong> Audit Findings Report (T-28) with gap severity scoring (CRITICAL/HIGH/MEDIUM/LOW) and remediation roadmap.
+</div>
+
+<h2>2. 92-Checkpoint Framework (17 Domains)</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Domain</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Checkpoints</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Key DPDP Sections</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Audit Focus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">1. Consent & Notice</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">8</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 6 (FSIUU)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">5-attribute FSIUU scoring, privacy notice version control</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">2. Data Subject Rights</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">7</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 11-14 (DSAR/Correction/Erasure/Nomination)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">SLA enforcement (30d DSAR, 15d correction, 30d erasure)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">3. Legitimate Uses</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">6</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 7 (9 categories)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Use case documentation, CPaaS channel compliance</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">4. Information Security</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">12</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 8 (data security controls)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Encryption, MFA, access control, SIEM</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">5. Children's Data</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">4</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 9 (parental consent, data minimization)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Age verification, parental consent records</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">6. DPIA & DPO</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">5</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 10 (DPIA triggers, DPO independence)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPIA register, DPO reporting line</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">7. Breach Notification</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">5</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 20 (72-hr DPBI, 6-hr CERT-In)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">SLA compliance, incident response process</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">8. Retention & Deletion</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">6</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 17 (30-day deletion SLA)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Deletion log, processor confirmation</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">9. Vendor & Processor</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">7</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 12(4) (DPA, sub-processor control)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPA signatures, audit rights, propagation SLA</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">10. Cross-Border Transfers</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">4</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 16 (adequacy + explicit consent)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Transfer register, adequacy assessment</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">11. Audit & Monitoring</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">5</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 8 (audit trail, access logs)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Hash-chained logs, SIEM alerting, data discovery</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">12. Grievance Handling</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">4</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 15 (30-day SLA)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Grievance register, SLA tracking, escalation</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">13. Withdrawal</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">3</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 6(4) (no friction, 24-hr propagation)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Withdrawal log, propagation SLA, no friction control</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">14. Legitimate Use Documentation</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">2</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 7 (Section 7 memos)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Written justification per use case</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">15. Privacy by Design</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">3</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 5 (accountability, data minimization)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Built-in DSAR/deletion, privacy impact analysis</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">16. Employee Training</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">2</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 5 (awareness, role-specific)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Training completion rate ≥95%</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">17. Governance & Board</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">3</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Sec 10 (Privacy Committee, Board oversight)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Board resolution, quarterly risk reports</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Audit Methodology (Testing Approach)</h2>
+
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>A. Document Review (Weeks 1-2):</strong><br>
+1. Privacy policies, consent forms, notice templates → FSIUU compliance scoring<br>
+2. Data Processing Agreement signatures → 100% processor coverage<br>
+3. ROPA entries → all active processing justified<br>
+4. Section 7 use case memos → 9 categories covered<br><br>
+
+<strong>B. System Testing (Weeks 2-4):</strong><br>
+1. Encryption verification → AES-256-GCM in transit + rest, TLS 1.3+<br>
+2. Access control audit → quarterly review evidence, MFA enforcement<br>
+3. DSAR workflow → 30-day SLA compliance on sample of 20 requests<br>
+4. Deletion execution → 30-day SLA + processor confirmation (Section 12(4))<br>
+5. Breach response simulation → 6-hour CERT-In, 72-hour DPBI readiness<br>
+6. Data discovery scan → PII masking compliance, shadow data detection<br><br>
+
+<strong>C. Control Walkthrough (Weeks 1-4):</strong><br>
+1. Consent withdrawal path → no friction, real-time processing<br>
+2. Employee access path → RBAC enforcement, 2-hour JIT escalation<br>
+3. Audit log access → immutability, hash-chaining, SIEM alerting<br>
+4. Incident response → playbook execution, SLA monitoring<br>
+5. Processor escalation → Section 12(4) confirmation workflow
+</div>
+
+<h2>4. Audit Evidence Matrix</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 8px;">Domain</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Sample Size</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Key Evidence Documents</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Pass/Fail Criteria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Consent & Notice</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">50 active consents</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Signed consent forms, privacy notice, version control log</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">≥95% FSIUU compliant (5/5 attributes)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>DSAR</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">20 DSAR requests</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">DSAR receipts, acknowledgments (48-hr), responses (30-day), SLA tracking</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">100% SLA compliance on samples (no missed 30-day deadlines)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Security</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">All prod systems</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Encryption config, access logs (100k rows), MFA audit trail</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">AES-256 in prod ✓, TLS 1.3+ ✓, MFA on sensitive roles ✓, quarterly access review ✓</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Deletion</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">30 deletion requests</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Deletion log (T-29), processor confirmations, SLA tracking</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">100% executed within 30 days; 100% processor confirmation (5-day SLA)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>DPA</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">All processors</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">DPA signatures, Section 12(4) clause, audit rights</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">100% signed; 100% have Section 12(4) clause; audit rights in place</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Breach Response</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">2-year history (actual incidents)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Breach register (T-30), incident reports, DPBI/CERT-In notifications</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">100% CERT-In 6-hr SLA, 100% DPBI 72-hr SLA, no missed deadlines</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Data Discovery</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">4-week scan history</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Weekly discovery reports (T-32), escalation tickets, remediation log</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">≥98% Aadhaar masked; 0 unencrypted PII in prod; <10% false positives</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Audit Logs</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">100 access events</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Hash-chained audit_log table, SIEM dashboard, integrity test results</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Hash-chain unbroken; immutability enforced; no UPDATE/DELETE observed</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>5. Audit Schedule & Roles</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px;">Role</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Responsibility</th>
+      <th style="border: 1px solid #ddd; padding: 10px;">Qualifications</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Lead Auditor</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Overall audit execution, sampling decisions, findings determination</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPDP Act expertise, audit experience, independent of operations</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Technical Auditor</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">System testing (encryption, access, logs), security controls verification</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Security engineering, database knowledge, cryptography basics</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Legal Auditor</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Policy review, DPA assessment, consent form FSIUU validation</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data protection law, contract review, regulatory background</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Process Auditor</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Walkthrough testing (DSAR, deletion, breach response, withdrawal)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Process mapping, SOP knowledge, compliance familiarity</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>DPO (Non-Auditor)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Subject matter expert advisor; does NOT conduct own audit</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPDP knowledge, organizational understanding, independence risk awareness</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6. Audit Timeline (Weeks 1-4)</h2>
+
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Week 1:</strong> Kickoff + document review (consent, DPA, ROPA, policies)<br>
+<strong>Week 2:</strong> System testing begins (encryption, access control, logs)<br>
+<strong>Week 3:</strong> Control walkthrough + SLA sampling (DSAR, deletion, breach)<br>
+<strong>Week 4:</strong> Findings aggregation, severity scoring, remediation roadmap draft, management review<br><br>
+<strong>Post-Audit (Week 5):</strong> Board presentation, DPO sign-off, Audit Findings Report (T-28) publication
+</div>
+
+<h2>7. Compliance Scoring Formula</h2>
+
+<div style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px; ">
+<strong>Overall Compliance Score = (Checkpoints Passing / 92) × 100%</strong><br><br>
+<strong>Per-Domain Score = (Checkpoints Passing / Domain Checkpoints) × 100%</strong><br><br>
+<strong>Checkpoint Severity Weighting (for prioritization, not score calculation):</strong><br>
+• CRITICAL (missing mandatory control): ₹50-100 Cr penalty, 30-day remediation SLA<br>
+• HIGH (incomplete mandatory): ₹25-50 Cr penalty, 60-day remediation SLA<br>
+• MEDIUM (minor gap): ₹10-25 Cr penalty, 90-day remediation SLA<br>
+• LOW (non-material): <₹10 Cr penalty, no deadline
+</div>
+
+<h2>8. Implementation Checklist</h2>
+
+<ul >
+  <li>☐ Establish Audit Committee (DPO, Legal, Compliance, one Board member)</li>
+  <li>☐ Hire or contract independent auditor (external if budget allows)</li>
+  <li>☐ Define audit scope: all 92 checkpoints, 17 domains (mandatory)</li>
+  <li>☐ Set audit start date, 4-week execution timeline</li>
+  <li>☐ Prepare access for auditors (systems, data, logs, document access)</li>
+  <li>☐ Freeze code deployments during audit week 1 (stable baseline)</li>
+  <li>☐ Extract evidence documentation: RoPA, DPAs, consent logs, deletion logs, breach logs</li>
+  <li>☐ Create sample datasets (50 consents, 20 DSAR, 30 deletions, 100 access events)</li>
+  <li>☐ Configure audit trail access (hash-chained logs readable to auditors)</li>
+  <li>☐ Schedule walkthroughs (DSAR flow, deletion flow, breach simulation, access control demo)</li>
+  <li>☐ Weekly auditor sync-up (blockers, evidence gaps, findings discussion)</li>
+  <li>☐ Collect audit findings on weekly basis (not last minute Week 4 crunch)</li>
+  <li>☐ Draft Audit Findings Report (T-28) with gap register</li>
+  <li>☐ Management review findings before external disclosure</li>
+  <li>☐ DPO final review and sign-off on audit scope, methodology, findings</li>
+  <li>☐ Board presentation of Audit Findings Report + remediation roadmap</li>
+  <li>☐ Publish findings, secure 7-year retention of all audit documentation</li>
+</ul>
+
+<h2 style="margin-top: 30px;">Completion Checklist</h2>
+
+<ul >
+  <li>☐ Reviewed DPDP Act Section 5-16 requirements</li>
+  <li>☐ Gathered organization-specific information</li>
+  <li>☐ Customized for business context</li>
+  <li>☐ Legal/Compliance review completed</li>
+  <li>☐ Stakeholder sign-off obtained</li>
+  <li>☐ Implementation and rollout plan ready</li>
+</ul>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 1.0<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By:</strong> _________________________<br>
+    <strong>Approved By:</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Certificate / Opinion Letter</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  /* Template-specific overrides */
+    .header { border-bottom: 2px solid var(--text-primary); padding-bottom: 20px; margin-bottom: 30px; }
+  .letterhead { color: var(--text-secondary); margin-bottom: 20px; }
+  .date { text-align: right; margin-bottom: 30px; }
+  .recipient { margin-bottom: 30px; }
+  .body { margin-bottom: 30px; text-align: justify; }
+  .section { margin-bottom: 20px; }
+  .section-title { font-weight: bold; margin-bottom: 10px; text-decoration: underline; }
+  .signature-block { margin-top: 40px; }
+  .signature-line { width: 300px; border-top: 1px solid var(--text-primary); margin-top: 40px; }
+  .opinion { border: 2px solid var(--primary-color); padding: var(--spacing-md); margin: var(--spacing-lg) 0; background: #f0f5ff; }
+  .opinion-status { font-weight: bold; color: var(--primary-color); margin-bottom: 10px; }
+  @media print { body { margin: 0; padding: 0; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="letterhead">
+    <strong>[CONSULTANT ORGANIZATION NAME]</strong><br>
+    [Address] | [Phone] | [Email]<br>
+    DPDP Compliance Specialist
+  </div>
+</div>
+
+<div class="date">
+  <input type="text" placeholder="Date: DD/MM/YYYY" style="border:none; border-bottom:1px solid var(--text-primary); width:200px;">
+</div>
+
+<div class="recipient">
+  To the Board of Directors,<br>
+  <input type="text" placeholder="[Organization Name]" style="border:none; border-bottom:1px solid var(--text-primary); width:400px;"><br><br>
+  RE: <strong>Digital Personal Data Protection (DPDP) Act 2023 — Compliance Opinion Letter</strong>
+</div>
+
+<div class="body">
+
+<div class="section">
+  <p>
+    Dear Members of the Board,
+  </p>
+  <p>
+    We have completed a comprehensive assessment of <input type="text" placeholder="[Organization Name]" style="border:none; border-bottom:1px solid var(--text-primary); width:300px;"> (the "Organization") against the requirements of the Digital Personal Data Protection (DPDP) Act 2023 and the DPDP Rules 2025 (collectively, the "Act").
+  </p>
+  <p>
+    <strong>Assessment Period:</strong> <input type="text" placeholder="From Date" style="border:none; border-bottom:1px solid var(--text-primary); width:100px;"> to <input type="text" placeholder="To Date" style="border:none; border-bottom:1px solid var(--text-primary); width:100px;">
+  </p>
+</div>
+
+<div class="opinion">
+  <div class="opinion-status">
+    COMPLIANCE OPINION:
+    <select style="border:1px solid var(--text-primary); padding:5px;">
+      <option>-- Select --</option>
+      <option>COMPLIANT</option>
+      <option>CONDITIONALLY COMPLIANT</option>
+      <option>NON-COMPLIANT</option>
+    </select>
+  </div>
+  <p>
+    The Organization has satisfied <input type="text" placeholder="13" style="border:none; border-bottom:1px solid var(--text-primary); width:40px;"> of 13 mandatory compliance criteria as of the assessment date. All critical gaps have been remediated.
+  </p>
+</div>
+
+<div class="section">
+  <div class="section-title">Scope of Engagement</div>
+  <ul>
+    <li>DPDP Act Sections 4-16 compliance review</li>
+    <li>Industry overlay compliance (RBI, PMLA, CERT-In, IRDAI, SEBI as applicable)</li>
+    <li>17-domain checklist assessment</li>
+    <li>Evidence review across all domains</li>
+    <li>Organization classification: <select style="border:1px solid var(--text-primary); padding:3px;"><option>DF</option><option>SDF</option></select></li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-title">Methodology</div>
+  <p>
+    Our assessment included:
+  </p>
+  <ul>
+    <li>Document review (policies, contracts, notices, audit records)</li>
+    <li>System review (consent registry, audit logging, access controls)</li>
+    <li>Stakeholder interviews (DPO, Legal, IT, Business)</li>
+    <li>Tabletop testing (breach response, DSAR fulfillment)</li>
+    <li>Evidence collection against 13 mandatory criteria</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-title">Key Findings</div>
+  <div>
+    <textarea placeholder="Summarize key findings by domain" style="width:100%; height:150px; border:1px solid var(--border-color); padding: var(--spacing-sm); font-family:Arial;"></textarea>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">13 Mandatory Criteria Assessment</div>
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background:#f0f0f0;">
+      <th style="border:1px solid var(--border-color); padding:8px; text-align:left;">Criterion</th>
+      <th style="border:1px solid var(--border-color); padding:8px;">Status</th>
+      <th style="border:1px solid var(--border-color); padding:8px;">Evidence</th>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--border-color); padding:8px;">ROPA complete and current</td>
+      <td style="border:1px solid var(--border-color); padding:8px;"><input type="checkbox"> <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i></td>
+      <td style="border:1px solid var(--border-color); padding:8px; ">[Ref: ROPA document]</td>
+    </tr>
+    <tr style="background:var(--bg-light);">
+      <td style="border:1px solid var(--border-color); padding:8px;">Privacy notices FSIUU-compliant</td>
+      <td style="border:1px solid var(--border-color); padding:8px;"><input type="checkbox"> <i data-lucide="check" style="display:inline-block; vertical-align:text-bottom; width: 1.2em; height: 1.2em; color:var(--status-pass-fg); margin-right: 4px;"></i></td>
+      <td style="border:1px solid var(--border-color); padding:8px; ">[Ref: Notice v3.1]</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="border:1px solid var(--border-color); padding:8px;  text-align:center;">
+        <em>[Continue for all 13 criteria]</em>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">SDF-Specific Findings (if applicable)</div>
+  <div>
+    <textarea placeholder="Findings related to SDF obligations: DPO, DPIA, Annual Audit (if SDF designated)" style="width:100%; height:100px; border:1px solid var(--border-color); padding: var(--spacing-sm); font-family:Arial;"></textarea>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Open Risks & Residual Risk Acceptance</div>
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background:#f0f0f0;">
+      <th style="border:1px solid var(--border-color); padding:8px;">Risk</th>
+      <th style="border:1px solid var(--border-color); padding:8px;">Mitigation Plan</th>
+      <th style="border:1px solid var(--border-color); padding:8px;">Owner</th>
+    </tr>
+    <tr>
+      <td colspan="3" style="border:1px solid var(--border-color); padding:8px; text-align:center;">
+        <em>[Add any residual risks not fully resolved]</em>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">Ongoing Obligations</div>
+  <p>
+    Upon issuance of this opinion, the Organization must maintain:
+  </p>
+  <ul>
+    <li>Annual compliance review cycle (recommend Q2 each year)</li>
+    <li>Consent audit (sample verification annually)</li>
+    <li>DPIA review for new high-risk processing activities (SDF)</li>
+    <li>Independent audit (SDF only — annually)</li>
+    <li>Staff training refresher (annually)</li>
+    <li>Regulatory monitoring (ongoing)</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-title">Limitations & Disclaimers</div>
+  <ul>
+    <li>This opinion is based on information available as of <input type="text" placeholder="Date" style="border:none; border-bottom:1px solid var(--text-primary); width:100px;"></li>
+    <li>DPDP Act and Rules interpretation may evolve; compliance must be reviewed regularly</li>
+    <li>This opinion does not constitute legal advice; consult Organization's legal counsel for legal matters</li>
+    <li>Compliance is subject to ongoing Data Protection Board guidance and regulatory updates</li>
+  </ul>
+</div>
+
+<div class="signature-block">
+  <p>
+    Respectfully submitted,
+  </p>
+  <div class="signature-line"></div>
+  <p>
+    <input type="text" placeholder="[Consultant Name]" style="border:none; border-bottom:1px solid var(--text-primary); width:300px;"><br>
+    <input type="text" placeholder="[Title]" style="border:none; border-bottom:1px solid var(--text-primary); width:300px;"><br>
+    <input type="text" placeholder="[Consulting Firm]" style="border:none; border-bottom:1px solid var(--text-primary); width:300px;"><br>
+    <input type="text" placeholder="[License/Certification, if applicable]" style="border:none; border-bottom:1px solid var(--text-primary); width:300px;">
+  </p>
+</div>
+
+<hr style="margin-top:40px;">
+
+<p style=" color:var(--text-secondary); margin-top:20px;">
+  <strong>Appendix:</strong> This letter should be accompanied by:
+  1) Detailed gap analysis report (17 domains)
+  2) Evidence pack (indexed by domain)
+  3) Ongoing Obligations Calendar
+  4) Board Risk Committee report (SDF)
+</p>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

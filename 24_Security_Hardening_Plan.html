@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Hardening Plan — Encryption, Access, Audit & India Compliance</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+<div class="header">
+  <div class="title">Security Hardening Plan</div>
+  <div class="subtitle">DPDP Act 2023 Section 8 — Encryption, Access Control, Audit Logging & Breach Prevention</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 2.1 (Updated April 2026) | <strong>Effective:</strong> 13 May 2027 | <strong>Scope:</strong> All personal data systems (PII, KYC, transaction, behavioral)<br>
+  <strong>Compliance Reference:</strong> DPDP Section 8 (Information Security), RBI Cyber Security Framework, CERT-In Incident Reporting
+</div>
+
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#overview">Overview & Risk Classification</a></li>
+  <li><a href="#india-specific">India-Specific Regulatory Requirements</a></li>
+  <li><a href="#encryption">Encryption Standards & Key Management</a></li>
+  <li><a href="#access-control">Access Control & MFA Enforcement</a></li>
+  <li><a href="#pentest">Annual Penetration Testing</a></li>
+  <li><a href="#vulnerability">Vulnerability & Patch Management</a></li>
+  <li><a href="#dam">Database Activity Monitoring (DAM)</a></li>
+  <li><a href="#siem">SIEM & Alert Rules</a></li>
+  <li><a href="#zero-trust">Zero Trust & Least Privilege Architecture</a></li>
+  <li><a href="#audit-calendar">Security Review Calendar</a></li>
+  <li><a href="#checklist">Implementation Checklist</a></li>
+</ul>
+
+<!-- ======== OVERVIEW ======== -->
+<h2 id="overview" style="margin-top: 40px;">Overview & Risk Classification</h2>
+
+<p>
+  This plan establishes mandatory security controls for all DPDP-regulated data. <strong>Non-compliance creates direct exposure to ₹50–₹100 Cr penalties</strong> under DPDP Section 8 (Information Security violations).
+</p>
+
+<p style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #856404;">⚠️ CRITICAL:</strong><br>
+  Personal data = PII (Aadhaar, PAN, phone, email) + KYC docs + transaction history + behavioral data. ALL must be encrypted at rest and in transit.
+</p>
+
+<h3>Data Classification by Risk</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Data Class</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Examples</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">At-Rest Encryption</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">In-Transit Protection</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Access Control</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Tier 1: Identifiers</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Aadhaar, PAN, passport, driving license</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">AES-256-GCM (mandatory)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TLS 1.3 + mTLS for APIs</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">2FA + role-based (admin only)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Tier 2: KYC/Financial</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Bank account, salary, credit score, loan details</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">AES-256-GCM (mandatory)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TLS 1.3 + IPSec for data lakes</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">2FA + approval for access</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Tier 3: Behavioral</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Transaction history, browsing, app usage</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">AES-256-GCM (mandatory)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TLS 1.2+</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Role-based access</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== INDIA-SPECIFIC ======== -->
+<h2 id="india-specific" style="margin-top: 40px;">India-Specific Regulatory Requirements</h2>
+
+<p>
+  These rules are <strong>non-negotiable</strong> for India-regulated organizations. Violations trigger DPBI escalation and RBI penalties.
+</p>
+
+<h3>Rule 1: Aadhaar VID Compliance (MANDATORY)</h3>
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>✗ NEVER STORE 12-DIGIT AADHAAR NUMBER</strong><br>
+  <strong>✓ ALWAYS USE AADHAAR VIRTUAL ID (VID)</strong><br><br>
+  <strong>Rule:</strong> 12-digit Aadhaar number must NEVER be persisted in any database, cache, log file, or backup. Only Virtual ID (16-digit, one-time) may be stored. If Aadhaar matching is needed for deduplication, hash the Aadhaar number (do not store the original).
+</div>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Scenario</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">❌ WRONG</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">✅ CORRECT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">User authenticates via Aadhaar</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Store 12-digit Aadhaar in DB</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Request VID from UIDAI, store VID only</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">Verify duplicate Aadhaar</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Query DB for matching 12-digit number</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Hash incoming Aadhaar, compare with stored hash (no plaintext storage)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Logs / Debugging</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Log full Aadhaar in application logs</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Redact Aadhaar in logs (e.g., AADHAAR_REDACTED)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Rule 2: PAN Masking in All Outputs (MANDATORY)</h3>
+<div style="background: #ffe6e6; border: 1px solid #cc0000; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>PAN MASKING RULE:</strong> PAN must be masked to last 4 digits (e.g., <code>XXXXXXX1234</code>) in:<br>
+  ✓ All logs and debug output<br>
+  ✓ API responses and frontend displays<br>
+  ✓ Exports (CSV, PDF, Excel)<br>
+  ✓ Audit trail and file backups<br>
+  ✓ Error messages and exceptions<br><br>
+  Full PAN is stored in DB (encrypted at rest), but <strong>NEVER exposed</strong> in any output except payment processing APIs.
+</div>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Context</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Masking Rule</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Admin dashboard display</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Last 4 only</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">XXXXXXX1234</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">API response (public)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Masked</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">XXXXXXX1234</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Tax filing API (restricted)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Full PAN (internal use only)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">AAAPP1234A</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">Logs / Console output</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Redacted</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">[PAN-REDACTED]</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== ENCRYPTION ======== -->
+<h2 id="encryption" style="margin-top: 40px;">Encryption Standards & Key Management</h2>
+
+<h3>1. At-Rest Encryption (Database & Storage)</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Component</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Algorithm</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Key Length</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Implementation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Database (PII tables)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">AES-256-GCM</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">256 bits</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Column-level (per sensitive field) or full-disk encryption (PostgreSQL pgcrypto)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>File Storage (S3/Blob)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">AES-256 (server-side)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">256 bits</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">S3 SSE-KMS (AWS KMS) or Azure Key Vault</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Backups</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">AES-256</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">256 bits</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Database-native backup encryption (PostgreSQL pg_dump --with-encryption)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Cache (Redis)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">AES-256</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">256 bits</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Redis encryption at rest (Redis 7+) + TLS in transit</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2. In-Transit Encryption (Network)</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Channel</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Protocol</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Minimum Version</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Cipher Strength</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Public APIs (web, mobile)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">HTTPS (TLS)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TLS 1.3 (TLS 1.2 minimum)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">AEAD ciphers (AES-256-GCM, ChaCha20)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">Internal APIs (service-to-service)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">mTLS (mutual TLS)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TLS 1.3 (TLS 1.2 minimum)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Client & server certificates required</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Database connections</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TLS / SSL</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TLS 1.2+</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">PostgreSQL sslmode=require</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;">Admin consoles (VPN)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">VPN + HTTPS</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">VPN IKEv2 with AES-256</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">End-to-end encryption</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>3. Key Management</h3>
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Key Rotation Schedule:</strong><br>
+  ✓ Database encryption keys: Rotate quarterly (every 90 days)<br>
+  ✓ TLS certificates: Rotate annually + before expiry (with 30-day lead time)<br>
+  ✓ API keys / OAuth tokens: Rotate semiannually or on personnel change<br>
+  ✓ Master key (key-encryption-key): Stored in AWS KMS / Azure Key Vault, rotate annually<br><br>
+  <strong>Key Storage:</strong> Never hardcode keys in code. Use managed key services (AWS KMS, Azure Key Vault, HashiCorp Vault) with audit logging.
+</div>
+
+<!-- ======== ACCESS CONTROL ======== -->
+<h2 id="access-control" style="margin-top: 40px;">Access Control & MFA Enforcement</h2>
+
+<h3>1. Multi-Factor Authentication (MFA) Mandate</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Role</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">MFA Required?</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Accepted Methods</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Enforcement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Admin (DPO, Legal, Compliance)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✅ YES (MANDATORY)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TOTP (Google Authenticator) + SMS backup OTP</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Enforce at login + every 4 hours</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Approver (DPA Review, DPIA Sign-off)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✅ YES (MANDATORY)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TOTP + SMS OTP</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Enforce at login + before sensitive action</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Regular users (viewer, analyst)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">⚠️ RECOMMENDED</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">TOTP or push notification</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Default enabled, can be disabled per-user policy</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Data Principals (external)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✅ YES (for DSAR)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">OTP to email / SMS, account login + DOB verification, Aadhaar VID</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Mandatory before DSAR completion</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2. Role-Based Access Control (RBAC)</h3>
+<div style="background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Least Privilege Principle:</strong> Each role has minimum permissions to perform their function.<br><br>
+  <strong>Permission Assignment:</strong><br>
+  • Admin: Full system access (users, config, breach response)<br>
+  • DPO: Read + audit logs, DPIA approval, compliance reports<br>
+  • Legal: Notice + consent + DPA review<br>
+  • Analyst: Read-only reports, no sensitive data exposure<br>
+  • Vendor: API-only access (no web console), limited to their data scope<br><br>
+  <strong>Quarterly Access Review:</strong> Every 90 days, audit role assignments and remove excessive permissions.
+</div>
+
+<!-- ======== PENTEST ======== -->
+<h2 id="pentest" style="margin-top: 40px;">Annual Penetration Testing</h2>
+
+<h3>Mandatory Pentest Requirements</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Requirement</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Frequency</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Minimum once per calendar year. Additional pentest if major architectural change occurs (e.g., new cloud region, third-party integration).</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Scope</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">OWASP Top 10 (2024): Injection, Broken Auth, Sensitive Data Exposure, XML External Entities, Broken Access Control, Security Misconfiguration, XSS, Insecure Deserialization, Known Vulnerabilities, Insufficient Logging.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Accreditation</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Third-party accredited penetration testing firm (CERT-In approved or DSCI certified). Internal security team may conduct interim tests, but annual test must be external.</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Coverage</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Web apps, APIs, mobile apps, cloud infrastructure, network perimeter, employee workstations.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Reporting</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Executive summary + detailed findings by severity. Include Board Risk Committee briefing.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Vulnerability Remediation SLA</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Severity</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Definition</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Remediation SLA</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Escalation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong style="color: #cc0000;">CRITICAL</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Remote code execution, full data breach, auth bypass, zero-day</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">7 days (interim control required within 24 hours)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CISO → CEO → Board within 4 hours</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong style="color: #ff6600;">HIGH</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Privilege escalation, significant data exposure, SQL injection</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">30 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CISO → CFO within 2 days</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong style="color: #ffaa00;">MEDIUM</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Minor auth issue, information disclosure, cross-site scripting</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">90 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CISO → Security Team backlog</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong style="color: #00aa00;">LOW</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Minor code issue, defense-in-depth control</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">180 days</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Engineering backlog</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== VULNERABILITY MANAGEMENT ======== -->
+<h2 id="vulnerability" style="margin-top: 40px;">Vulnerability & Patch Management</h2>
+
+<h3>Patch Management SLA</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Software Type</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Criticality</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Patch SLA</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Testing Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Operating System (Linux/Windows)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Security (CVE)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">7 days from vendor release</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Functional test in staging</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Database (PostgreSQL, MySQL)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Security</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">7 days (critical), 30 days (high)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Full regression test + backup recovery test</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Application Frameworks (Node, Django, Spring)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Security</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">14 days (critical), 30 days (high)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">E2E + integration tests</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Third-party Dependencies (npm, pip, maven)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Security</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">14 days (critical), 45 days (high)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Unit + integration tests + staging deploy</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== DAM ======== -->
+<h2 id="dam" style="margin-top: 40px;">Database Activity Monitoring (DAM)</h2>
+
+<p>
+  DAM monitors all interactions with sensitive databases. <strong>Mandatory alert rules</strong> for DPDP Section 8 compliance.
+</p>
+
+<h3>DAM Alert Rules</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Alert Rule</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Trigger Condition</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Bulk Data Export</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">&gt;1000 rows exported in &lt;5 min</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Alert CISO, require 2FA confirmation</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Schema Changes</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">ALTER TABLE on PII tables outside maintenance window</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Block query, alert DBA + Security</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>After-Hours Access</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Database access between 10 PM–6 AM (outside business hours)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Trigger MFA re-verify, log full query</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Privilege Escalation</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">User switches role from analyst to admin</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Block switch, require DPO approval</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Anomalous Query</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Query executes &gt;100x slower than baseline (potential DoS)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Kill query, alert DBA</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Failed Auth Attempts</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">&gt;5 failed logins in 15 min from single source</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Lock account, alert Security</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Unencrypted Data Access</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Query returns PII without encryption context</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Log query details, flag for audit</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== SIEM ======== -->
+<h2 id="siem" style="margin-top: 40px;">SIEM & Alert Rules</h2>
+
+<p>
+  Security Information and Event Management (SIEM) systems integrate logs from all sources and trigger breach detection rules.
+</p>
+
+<h3>Required SIEM Alert Rules</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Alert Rule</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Threshold / Condition</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Breach Trigger?</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Escalation Path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Large Data Export</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Export &gt;10K records in &lt;10 min</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">⚠️ High (possible exfiltration)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CISO → Incident Commander</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Privilege Escalation Attempt</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Non-admin requests admin permission &gt;3x in 1 hour</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✅ CRITICAL (possible insider threat)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CISO → Security → HR</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Ransomware Pattern (File Encryption)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">1000+ file modifications in &lt;5 min by single user</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✅ CRITICAL</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incident Commander → CERT-In (6-hr)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Unauthorized Access</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Access denied event for sensitive file &gt;10x in 1 hour</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">⚠️ High</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CISO → Incident Response</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Bulk Deletion</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DELETE &gt;100K rows from production DB</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">⚠️ High (possible data destruction)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CISO → Incident Commander</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Brute Force / Auth Attack</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Failed logins &gt;10 in &lt;1 hour from single IP</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">⚠️ High</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Lock IP, alert Security</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>API Key Exposure</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">API key found in logs / commit history</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">⚠️ High</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Rotate key immediately, audit usage</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Malware / Antivirus Alert</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Antivirus detects threat on server / workstation</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">✅ CRITICAL</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Isolate system, alert CISO, quarantine</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== ZERO TRUST ======== -->
+<h2 id="zero-trust" style="margin-top: 40px;">Zero Trust & Least Privilege Architecture</h2>
+
+<p>
+  <strong>Zero Trust principle:</strong> Never trust, always verify. All access requests (user-to-system, service-to-service) require explicit verification.
+</p>
+
+<h3>Zero Trust Implementation Checklist</h3>
+<ul>
+  <li><strong>Identity Verification:</strong> Every request includes identity proof (MFA token, mutual TLS certificate, API signature). No assumption of trust based on network location.</li>
+  <li><strong>Least Privilege Access:</strong> Users have minimum permissions to perform job function. Permissions reviewed quarterly. JIT (Just-In-Time) elevated access for admin tasks (auto-revoke after 2 hours).</li>
+  <li><strong>Micro-Segmentation:</strong> Database, APIs, file storage are segregated by function. Breach in one service cannot spread to another.</li>
+  <li><strong>Encryption Everywhere:</strong> All data in transit encrypted. Sensitive data at rest encrypted.</li>
+  <li><strong>Audit Trail:</strong> All access logged. Changes to permissions logged. Logs immutable (append-only, signed).</li>
+  <li><strong>Continuous Monitoring:</strong> Behavioral analysis detects anomalous access patterns. Alerts trigger incident response.</li>
+</ul>
+
+<h3>Quarterly Access Review Process</h3>
+<div style="background: #f0f8ff; border: 1px solid #0066cc; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>Every 90 days:</strong><br>
+  1. Security team exports all active user accounts + their current permissions<br>
+  2. Department heads review assignments and remove inactive users<br>
+  3. For each user with sensitive access, re-verify business need<br>
+  4. Remove permissions that are no longer required<br>
+  5. DPO signs off on access matrix<br>
+  6. Board Risk Committee receives summary (# users removed, # permissions revoked)<br>
+  7. Findings documented in Audit Findings Report (T-28)
+</div>
+
+<!-- ======== AUDIT CALENDAR ======== -->
+<h2 id="audit-calendar" style="margin-top: 40px;">Security Review Calendar</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Cadence</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Activity</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Owner</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Documentation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Weekly</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">SIEM alert review, DAM daily audit</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Security team</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">SIEM dashboard, incident log</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Monthly</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Vulnerability scan (automated), patch status review</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Security lead</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Vulnerability register, patch SLA report</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Quarterly</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Access review, encryption key audit, MFA adoption audit</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPO + Security</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Access matrix, key rotation log, MFA report</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Semi-Annually</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Interim penetration test (internal), security architecture review</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Security lead</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Pentest report, architecture risk assessment</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Annually</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">External penetration test (OWASP Top 10), audit findings review, Board Risk Committee report</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPO + CISO</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">External pentest report, Audit Findings Report (T-28), Board Risk Committee Report (T-37)</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== IMPLEMENTATION CHECKLIST ======== -->
+<h2 id="checklist" style="margin-top: 40px;">Implementation Checklist</h2>
+
+<div style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong>✓ Mark each item as you complete it. All items required for DPDP Section 8 compliance.</strong>
+</div>
+
+<ul >
+  <li>☐ <strong>Encryption:</strong> Verify all PII data encrypted at rest (AES-256-GCM)</li>
+  <li>☐ <strong>Aadhaar VID:</strong> Audit database for 12-digit Aadhaar storage (must be zero)</li>
+  <li>☐ <strong>PAN Masking:</strong> Deploy PAN masking in all API responses, logs, exports</li>
+  <li>☐ <strong>TLS Certificates:</strong> Install TLS 1.3 certificates on all public APIs</li>
+  <li>☐ <strong>Database TLS:</strong> Enable TLS on all database connections (PostgreSQL sslmode=require)</li>
+  <li>☐ <strong>MFA Enrollment:</strong> 100% of admins + approvers enrolled in TOTP + SMS backup</li>
+  <li>☐ <strong>Access Review:</strong> Complete first quarterly access review and document removals</li>
+  <li>☐ <strong>Key Management:</strong> Set up AWS KMS or Azure Key Vault for key storage</li>
+  <li>☐ <strong>Key Rotation:</strong> Schedule quarterly DB encryption key rotation</li>
+  <li>☐ <strong>DAM Tool:</strong> Deploy database activity monitoring (e.g., Imperva, Fortanix, AWS DMS)</li>
+  <li>☐ <strong>SIEM Integration:</strong> Configure SIEM (Splunk, ELK, CloudWatch) with alert rules</li>
+  <li>☐ <strong>Pentest Planning:</strong> Select accredited pentesting firm and schedule annual assessment</li>
+  <li>☐ <strong>Vulnerability Scan:</strong> Deploy automated vulnerability scanner (Qualys, Tenable, Rapid7)</li>
+  <li>☐ <strong>Patch Policy:</strong> Document patch SLA per software type and establish change control</li>
+  <li>☐ <strong>Breach Simulation:</strong> Schedule annual tabletop exercise with incident response team</li>
+  <li>☐ <strong>Security Training:</strong> Annual mandatory security training for all employees</li>
+  <li>☐ <strong>Compliance Audit:</strong> Conduct internal audit against this checklist (T-25)</li>
+  <li>☐ <strong>Board Review:</strong> Present findings to Board Risk Committee quarterly (T-37)</li>
+  <li>☐ <strong>Documentation:</strong> Update Security Hardening Plan annually with new vulnerabilities and patches</li>
+  <li>☐ <strong>CERT-In Readiness:</strong> Confirm Incident Response Plan (T-20) + CERT-In template (T-21A) are operational</li>
+  <li>☐ <strong>DPBI Escalation:</strong> Verify escalation path to DPBI for unresolved grievances (T-13)</li>
+  <li>☐ <strong>Legal Holds:</strong> Implement Statutory Hold Register (T-43) to protect data from deletion during litigation</li>
+  <li>☐ <strong>Backup Strategy:</strong> Test backup recovery quarterly; ensure 7-year retention for archives</li>
+  <li>☐ <strong>Incident Response:</strong> Test incident response playbook semi-annually with tabletop exercise</li>
+  <li>☐ <strong>Board Sign-Off:</strong> Board Resolution on Security Hardening Plan (T-40)</li>
+</ul>
+
+<!-- ======== CROSS REFERENCES ======== -->
+<h2 style="margin-top: 40px;">Related Templates</h2>
+
+<ul >
+  <li><strong>[← T-20]</strong> <a href="20_Incident_Response_Plan.html">Incident Response Plan</a> — Breach detection, CERT-In 6-hour, DPBI 72-hour reporting</li>
+  <li><strong>[→ T-21A]</strong> <a href="21A_Cert-In_Breach_Notification.html">CERT-In Breach Notification (NEW)</a> — 6-hour SLA for ALL cybersecurity incidents</li>
+  <li><strong>[→ T-25]</strong> <a href="25_Compliance_Audit_Plan.html">Compliance Audit Plan</a> — Internal audit roadmap for this plan</li>
+  <li><strong>[→ T-33]</strong> <a href="33_Encryption_Implementation_Checklist.html">Encryption Verification Checklist</a> — AES-256 algorithm verification, Aadhaar VID rules</li>
+  <li><strong>[→ T-34]</strong> <a href="34_Access_Control_Policy.html">Access Control Policy</a> — RBAC rules, role definitions</li>
+  <li><strong>[→ T-35]</strong> <a href="35_Audit_Logging_Configuration.html">Audit Logging Configuration</a> — Hash-chained logs, PII redaction, 7-year retention</li>
+  <li><strong>[→ T-37]</strong> <a href="37_Board_Risk_Committee_Report.html">Board Risk Committee Report</a> — Executive briefing on security posture</li>
+  <li><strong>[→ T-40]</strong> <a href="40_Board_Resolution_Compliance.html">Board Resolution</a> — Board acknowledgement of security plan</li>
+</ul>
+
+<div class="signature-block" style="margin-top: 40px;">
+  <p>
+    <strong>Security Hardening Plan Approval</strong><br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>CISO / Security Lead:</strong> _________________________ <strong>Date:</strong> _________<br>
+    <strong>DPO (Data Protection Officer):</strong> _________________________ <strong>Date:</strong> _________<br>
+    <strong>Board Risk Committee Chair:</strong> _________________________ <strong>Date:</strong> _________<br>
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

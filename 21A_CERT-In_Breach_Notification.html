@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CERT-In Breach Notification Form CC-5</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+<div class="header">
+  <div class="title">CERT-In Breach Notification Form (CC-5)</div>
+  <div class="subtitle">6-Hour Incident Reporting to Indian Computer Emergency Response Team (CERT-In 2022)</div>
+</div>
+
+<div class="info-box">
+  <strong>Version:</strong> 1.0 (NEW) | <strong>Effective Date:</strong> 13 May 2027 | <strong>Status:</strong> Active
+</div>
+
+<h2>Overview</h2>
+<p>
+  Under the <strong>CERT-In Direction 2022</strong>, all organizations in India must report cybersecurity incidents to CERT-In
+  within <strong>6 hours of detection</strong>. This is <strong>separate and independent from DPDP breach notification</strong>.
+  CERT-In is the primary cybersecurity regulator and covers ALL incidents (data breach, ransomware, intrusion, DDoS, malware, etc.),
+  even if no personal data is involved.
+</p>
+
+<p style="background: #f8d7da; border-left: 4px solid #dc3545; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <strong style="color: #721c24;">⚠️ CRITICAL: Many organizations report only to DPBI (72-hour personal data breach SLA) and ignore CERT-In.
+  This is a separate, mandatory requirement with a tighter 6-hour deadline.</strong>
+</p>
+
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#cert-in-overview">CERT-In Authority & Scope</a></li>
+  <li><a href="#6-hour-timeline">6-Hour Reporting Timeline</a></li>
+  <li><a href="#incident-types">Reportable Incident Types</a></li>
+  <li><a href="#form-cc5">Form CC-5 — Complete Template</a></li>
+  <li><a href="#submission">How to Submit</a></li>
+  <li><a href="#escalation">CERT-In Follow-up & Escalation</a></li>
+  <li><a href="#checklist">Implementation Checklist</a></li>
+</ul>
+
+<!-- ======== CERT-IN AUTHORITY ======== -->
+<h2 id="cert-in-overview" style="margin-top: 40px;">CERT-In Authority & Scope</h2>
+
+<h3>What is CERT-In?</h3>
+<p>
+  <strong>CERT-In</strong> (Indian Computer Emergency Response Team) is the statutory cybersecurity incident coordination body
+  under the Ministry of Electronics and Information Technology (MeitY). CERT-In:
+</p>
+<ul>
+  <li>Monitors cybersecurity threats to India's critical information infrastructure</li>
+  <li>Coordinates incident response and threat intelligence</li>
+  <li>Issues advisories and security alerts</li>
+  <li>Enforces the CERT-In Direction 2022 (mandatory incident reporting)</li>
+</ul>
+
+<h3>CERT-In Direction 2022 — Key Requirements</h3>
+<div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin: 12px 0; border-radius: 3px;">
+  <strong style="color: #856404;">📋 MANDATORY REPORTING:</strong><br>
+  • <strong>Incident Types:</strong> Data breaches, ransomware, intrusions, DDoS, malware, website defacement, phishing, etc.<br>
+  • <strong>SLA:</strong> Within 6 hours of detection<br>
+  • <strong>Form:</strong> CC-5 (Incident Report Form)<br>
+  • <strong>Submission:</strong> incidents@cert-in.org.in<br>
+  • <strong>Penalties for Non-Compliance:</strong> Up to ₹5 Lakhs or 2 years imprisonment (ITA 2000 Section 70)
+</div>
+
+<h3>Difference: CERT-In (6h) vs DPBI (72h)</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Aspect</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">CERT-In</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">DPBI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Authority</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Ministry of Electronics & IT (MeitY)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data Protection Board of India</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Scope</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">ALL cybersecurity incidents (breach, DDoS, ransomware, malware, etc.)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Only incidents involving personal data breach</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>SLA</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>6 hours</strong> of detection</td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>72 hours</strong> of detection</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Purpose</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Cybersecurity threat intelligence & coordination</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Data protection compliance enforcement</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Form</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">CC-5</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPBI Breach Notification Form (T-21)</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>Enforcement</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">ITA 2000 Section 70; up to ₹5 Lakhs + 2yr prison</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">DPDP Act 2023 Section 25; up to ₹50 Cr or 2% revenue</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Example Scenarios</h3>
+<ul >
+  <li>🔴 <strong>DDoS attack (no data breach):</strong> Report to CERT-In (6hr) — NOT to DPBI (no personal data)</li>
+  <li>🔴 <strong>Ransomware (no data accessed, just encryption):</strong> Report to CERT-In (6hr) — possibly DPBI if systems contain personal data</li>
+  <li>🔴 <strong>Data exfiltration of customer PII:</strong> Report to BOTH CERT-In (6hr) AND DPBI (72hr)</li>
+  <li>🔴 <strong>Phishing campaign (failed, no compromise):</strong> Report to CERT-In (6hr) — NOT to DPBI (no data loss)</li>
+</ul>
+
+<!-- ======== 6-HOUR TIMELINE ======== -->
+<h2 id="6-hour-timeline" style="margin-top: 40px;">6-Hour Reporting Timeline</h2>
+
+<p>
+  The 6-hour clock starts from <strong>detection</strong> of the incident, not when the organization realizes the severity.
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #fff3cd;">
+      <th style="border: 1px solid #ffc107; padding: 10px; text-align: left; font-weight: bold;">Time</th>
+      <th style="border: 1px solid #ffc107; padding: 10px; text-align: left; font-weight: bold;">Action</th>
+      <th style="border: 1px solid #ffc107; padding: 10px; text-align: left; font-weight: bold;">Deadline</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+0 (Hour 0)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incident detected (alert, log, report, etc.)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incident declared</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+1 (Hour 1)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Incident Commander activated; initial classification</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Classification locked (type + severity)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+2-5 (Hours 2-5)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Prepare CC-5 form; gather systems affected, attack vector, initial containment steps</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Form prepared & ready to submit</td>
+    </tr>
+    <tr style="background-color: #fff3cd;">
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>T+6 (Hour 6) 🔴</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>CC-5 Form SUBMITTED to incidents@cert-in.org.in</strong></td>
+      <td style="border: 1px solid #ddd; padding: 10px;"><strong>MANDATORY DEADLINE</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #155724;">✅ BEST PRACTICE:</strong><br>
+  Set an automatic alarm/reminder at T+5 hours to ensure submission before 6-hour deadline.
+  Create a shared incident tracker that flags CERT-In deadline prominently.
+</div>
+
+<!-- ======== INCIDENT TYPES ======== -->
+<h2 id="incident-types" style="margin-top: 40px;">Reportable Incident Types</h2>
+
+<p>
+  <strong>ALL of the following must be reported to CERT-In within 6 hours:</strong>
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 16px 0; ">
+  <thead>
+    <tr style="background-color: #f5f5f5;">
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Incident Type</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Description</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Data Breach</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Unauthorized access and disclosure of sensitive data</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Attacker exfiltrates customer PII from database</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Ransomware Attack</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Malware that encrypts files and demands ransom</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">LockBit ransomware encrypts all servers; ransom note appears</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Unauthorized Access</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Attacker gains access to systems without permission</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Compromised SSH key allows remote login to production server</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>DDoS (Distributed Denial of Service)</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Massive traffic flood to overwhelm service</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Website receives 1M requests/second; goes offline</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Malware Infection</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Virus, worm, trojan, or other malicious code</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Emotet banking trojan steals credentials from endpoint</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Website Defacement</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Attacker alters website content</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Company homepage replaced with hacker message</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Phishing / Social Engineering</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Deceptive communication to compromise systems</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Spear phishing email tricks employee into installing backdoor</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Insider Threat</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Employee or contractor intentionally causes harm</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">System admin copies database to USB and leaves organization</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Configuration Error / Misconfiguration</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Unintended exposure of sensitive systems/data</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">AWS S3 bucket configured public; millions of records exposed</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td style="border: 1px solid #ddd; padding: 8px;"><strong>Zero-Day Exploitation</strong></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Attack using previously unknown vulnerability</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Attacker exploits unpatched Apache vulnerability to gain RCE</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======== FORM CC-5 ======== -->
+<h2 id="form-cc5" style="margin-top: 40px;">Form CC-5 — Complete Template</h2>
+
+<p>
+  Below is the complete CC-5 form with all required fields. Fill in all applicable fields and submit to incidents@cert-in.org.in
+  within 6 hours of incident detection.
+</p>
+
+<div style="background: #f5f5f5; border-left: 4px solid #17a2b8; padding: 14px; margin: 12px 0; font-family: monospace; ">
+
+<strong>FORM CC-5 — INCIDENT REPORT FORM (CERT-In)</strong><br>
+<strong>To:</strong> incidents@cert-in.org.in<br>
+<strong>Email Subject:</strong> Incident Report — [INCIDENT_ID] — [Type] — [Severity]<br>
+<strong>Submission Deadline:</strong> Within 6 hours of detection<br><br>
+
+═══════════════════════════════════════════════════════════════<br>
+<strong>SECTION 1: ORGANIZATION DETAILS</strong><br>
+═══════════════════════════════════════════════════════════════<br><br>
+
+1.1 <strong>Organization Name (Legal)</strong><br>
+[ORG_LEGAL_NAME]<br>
+Example: Quicklend Financial Services Pvt Ltd<br><br>
+
+1.2 <strong>Organization Registration Details</strong><br>
+[ ] Private Company (RoC CIN: [CIN_NUMBER])<br>
+[ ] Public Company (RoC CIN: [CIN_NUMBER])<br>
+[ ] Partnership Firm (UDYAM: [UDYAM_ID])<br>
+[ ] Trust/Non-Profit (Registration: [REG_NUMBER])<br>
+[ ] Government Organization (Dept: [DEPT_NAME])<br>
+[ ] Other: [DESCRIBE]<br><br>
+
+1.3 <strong>Sector / Industry</strong><br>
+[ ] Banking & Finance<br>
+[ ] FinTech<br>
+[ ] Insurance<br>
+[ ] Healthcare<br>
+[ ] IT & Software<br>
+[ ] Telecom<br>
+[ ] Critical Infrastructure<br>
+[ ] E-Commerce<br>
+[ ] Education<br>
+[ ] Other: [DESCRIBE]<br><br>
+
+1.4 <strong>Reporting Organization Contact</strong><br>
+Full Name: [CONTACT_NAME]<br>
+Title/Designation: [TITLE]<br>
+Email: [EMAIL]<br>
+Phone: [PHONE]<br>
+Mobile: [MOBILE]<br><br>
+
+1.5 <strong>CISO / Security Lead (if different)</strong><br>
+Full Name: [CISO_NAME]<br>
+Email: [CISO_EMAIL]<br>
+Phone: [CISO_PHONE]<br><br>
+
+═══════════════════════════════════════════════════════════════<br>
+<strong>SECTION 2: INCIDENT DETAILS</strong><br>
+═══════════════════════════════════════════════════════════════<br><br>
+
+2.1 <strong>Date & Time of Detection</strong><br>
+Date: [DD-MM-YYYY]<br>
+Time: [HH:MM:SS] (24-hour format)<br>
+Timezone: IST (UTC+5:30)<br><br>
+
+2.2 <strong>Incident Unique ID (Internal Reference)</strong><br>
+[INTERNAL_INCIDENT_ID]<br>
+Example: INC-2026-04-15-001<br><br>
+
+2.3 <strong>Incident Classification</strong><br>
+Type (select one):<br>
+[ ] Data Breach<br>
+[ ] Ransomware<br>
+[ ] Unauthorized Access<br>
+[ ] DDoS Attack<br>
+[ ] Malware Infection<br>
+[ ] Website Defacement<br>
+[ ] Phishing / Social Engineering<br>
+[ ] Insider Threat<br>
+[ ] Configuration Error / Misconfiguration<br>
+[ ] Zero-Day Exploitation<br>
+[ ] Other: [DESCRIBE]<br><br>
+
+Severity (select one):<br>
+[ ] <strong>Critical</strong> — Data exposed, widespread systems affected, extortion demand<br>
+[ ] <strong>High</strong> — Multiple systems compromised, data access confirmed, service disruption<br>
+[ ] <strong>Medium</strong> — Single system compromised, potential data exposure, limited impact<br>
+[ ] <strong>Low</strong> — Isolated incident, no confirmed data access, minimal business impact<br><br>
+
+2.4 <strong>Brief Incident Description</strong><br>
+[2-3 sentence summary of what happened, how detected, initial impact]<br>
+Example: "On 2026-04-15 at 09:30 IST, SIEM alert triggered for unusual database activity.
+Investigation revealed ransomware encryption of 5 database servers. Attack vector: compromised RDP credentials.
+Approximately 2.5 TB of data encrypted. Ransom note requesting $50,000 cryptocurrency payment."<br><br>
+
+2.5 <strong>Current Status of Incident</strong><br>
+[ ] <strong>Ongoing</strong> — Attack still active, systems still being accessed/encrypted<br>
+[ ] <strong>Contained</strong> — Attack stopped, affected systems isolated, no new activity<br>
+[ ] <strong>Resolved</strong> — Systems restored, vulnerabilities patched, normal operations resumed<br>
+[ ] <strong>Unknown</strong> — Still investigating scope and impact<br><br>
+
+═══════════════════════════════════════════════════════════════<br>
+<strong>SECTION 3: AFFECTED SYSTEMS & INFRASTRUCTURE</strong><br>
+═══════════════════════════════════════════════════════════════<br><br>
+
+3.1 <strong>Systems Affected (list each)</strong><br><br>
+
+System 1:<br>
+Name/Purpose: [E.g., "Customer Database Server"]<br>
+IP Address(es): [X.X.X.X / X.X.X.X/24 subnet]<br>
+Hostname: [HOSTNAME]<br>
+Operating System: [Linux 20.04 / Windows Server 2019 / etc.]<br>
+Services Running: [Apache 2.4 / PostgreSQL 13 / OpenSSH / etc.]<br>
+Criticality: [Critical / High / Medium / Low]<br><br>
+
+System 2:<br>
+[Repeat above for each affected system]<br><br>
+
+3.2 <strong>Geographic Location of Systems</strong><br>
+[ ] India (Datacenter: [LOCATION])<br>
+[ ] AWS/Cloud (Region: [REGION])<br>
+[ ] Multi-region (describe)<br>
+[ ] International (describe)<br><br>
+
+3.3 <strong>Data Involved</strong><br>
+Data Present on Affected Systems: [Describe — PII, financial, health, etc.]<br>
+[ ] <strong>Personal Data:</strong> Names, emails, phone numbers, addresses, ID numbers (Aadhaar VID, PAN, etc.)<br>
+[ ] <strong>Financial Data:</strong> Bank account numbers, credit card numbers, transaction history<br>
+[ ] <strong>Health Data:</strong> Medical records, prescriptions, diagnoses<br>
+[ ] <strong>Business Data:</strong> Proprietary algorithms, source code, trade secrets<br>
+[ ] <strong>Other:</strong> [Describe]<br><br>
+
+Estimated Number of Records Affected: [Count] (if applicable)<br>
+Approximate Data Volume: [E.g., "2.5 TB", "50,000 records"]<br><br>
+
+═══════════════════════════════════════════════════════════════<br>
+<strong>SECTION 4: ATTACK DETAILS & ROOT CAUSE</strong><br>
+═══════════════════════════════════════════════════════════════<br><br>
+
+4.1 <strong>Initial Attack Vector (how attacker got in)</strong><br>
+[ ] <strong>Phishing Email:</strong> Malware attachment or malicious link clicked<br>
+[ ] <strong>Compromised Credentials:</strong> Brute force, password spray, credential stuffing, leaked credentials<br>
+[ ] <strong>Unpatched Vulnerability:</strong> Unpatched software exploited (CVE: [CVE_NUMBER])<br>
+[ ] <strong>Exposed RDP/SSH:</strong> Internet-exposed remote access service<br>
+[ ] <strong>Configuration Error:</strong> Misconfigured cloud bucket, exposed admin panel<br>
+[ ] <strong>Supply Chain / Vendor:</strong> Compromise of third-party vendor or supply chain<br>
+[ ] <strong>Physical Access:</strong> USB drive inserted, network cable tampered<br>
+[ ] <strong>Insider Threat:</strong> Employee or contractor malicious activity<br>
+[ ] <strong>Other / Unknown:</strong> [Describe]<br><br>
+
+4.2 <strong>Attack Method / Technique</strong><br>
+[Describe the technical method: SQL injection, malware, privilege escalation, lateral movement, data exfiltration, etc.]<br><br>
+
+4.3 <strong>Root Cause (if known)</strong><br>
+[ ] Weak authentication (weak passwords, no MFA)<br>
+[ ] Unpatched systems (known vulnerability)<br>
+[ ] Misconfiguration (cloud bucket, firewall, access controls)<br>
+[ ] Missing security controls (no WAF, no EDR, no SIEM)<br>
+[ ] Insufficient access controls (overprivileged accounts)<br>
+[ ] Lack of monitoring (no logging, no IDS/IPS)<br>
+[ ] Insider threat / policy violation<br>
+[ ] Other: [Describe]<br><br>
+
+═══════════════════════════════════════════════════════════════<br>
+<strong>SECTION 5: IMPACT ASSESSMENT</strong><br>
+═══════════════════════════════════════════════════════════════<br><br>
+
+5.1 <strong>Confidentiality Impact</strong> (unauthorized disclosure)<br>
+[ ] High — Sensitive data exposed and likely accessed<br>
+[ ] Medium — Data exposed but unclear if accessed<br>
+[ ] Low — Limited or no sensitive data exposed<br>
+[ ] None<br><br>
+
+5.2 <strong>Integrity Impact</strong> (unauthorized modification)<br>
+[ ] High — Critical data modified or deleted<br>
+[ ] Medium — Some data modified, impact unclear<br>
+[ ] Low — Minimal data modified<br>
+[ ] None<br><br>
+
+5.3 <strong>Availability Impact</strong> (service disruption)<br>
+[ ] High — Critical systems offline, business operations disrupted<br>
+[ ] Medium — Partial service disruption, workarounds available<br>
+[ ] Low — Minimal impact to availability<br>
+[ ] None<br><br>
+
+5.4 <strong>Business Impact</strong><br>
+Estimated Financial Loss: [₹ AMOUNT] (if known)<br>
+Operational Impact: [E.g., "Trading systems offline for 4 hours", "Customer portal unavailable"]<br>
+Reputational Risk: [ ] High [ ] Medium [ ] Low<br><br>
+
+═══════════════════════════════════════════════════════════════<br>
+<strong>SECTION 6: IMMEDIATE RESPONSE ACTIONS</strong><br>
+═══════════════════════════════════════════════════════════════<br><br>
+
+6.1 <strong>Immediate Containment Actions Taken</strong><br>
+[ ] Isolated affected system(s) from network<br>
+[ ] Disabled compromised user account(s)<br>
+[ ] Revoked compromised API key(s)<br>
+[ ] Blocked attacker IP address(es)<br>
+[ ] Applied security patch to vulnerable software<br>
+[ ] Enabled additional monitoring / logging<br>
+[ ] Restored from backup<br>
+[ ] Other: [Describe]<br><br>
+
+6.2 <strong>Current Containment Status</strong><br>
+[ ] Fully Contained — No further attacker activity expected<br>
+[ ] Partially Contained — Ongoing investigation, more actions planned<br>
+[ ] Not Contained — Incident still active<br><br>
+
+6.3 <strong>Forensic Investigation Status</strong><br>
+[ ] Not Started<br>
+[ ] In Progress (external forensics firm engaged)<br>
+[ ] Completed (findings available on request)<br><br>
+
+6.4 <strong>Evidence Preservation</strong><br>
+[ ] System logs captured and preserved<br>
+[ ] Database audit logs captured<br>
+[ ] Memory dump taken (if applicable)<br>
+[ ] Network traffic captured (PCAP files)<br>
+[ ] Disk images created (forensic copy)<br>
+[ ] Chain of custody maintained for all evidence<br><br>
+
+═══════════════════════════════════════════════════════════════<br>
+<strong>SECTION 7: EXTERNAL COMMUNICATION & ESCALATION</strong><br>
+═══════════════════════════════════════════════════════════════<br><br>
+
+7.1 <strong>Have Data Principals been notified?</strong><br>
+[ ] Yes — Notification sent on [DATE] via [email/portal/letter]<br>
+[ ] No — Notification planned for [DATE]<br>
+[ ] Not applicable — No personal data involved<br><br>
+
+7.2 <strong>Has DPBI been notified?</strong><br>
+[ ] Yes — DPBI notification filed on [DATE] (if personal data breach)<br>
+[ ] No — Planning to file by [DATE]<br>
+[ ] Not applicable — No personal data involved<br><br>
+
+7.3 <strong>Law Enforcement Involvement</strong><br>
+[ ] Police complaint filed (FIR number: [FIR_NUMBER])<br>
+[ ] Cyber crime unit engaged (Officer: [NAME], Contact: [CONTACT])<br>
+[ ] FBI / Interpol notified (international incident)<br>
+[ ] None — Not a criminal matter<br><br>
+
+7.4 <strong>Cyber Insurance Claim</strong><br>
+[ ] Claim filed (Policy number: [POLICY_NUM], Insurer: [INSURER_NAME])<br>
+[ ] Not filed<br>
+[ ] Not applicable<br><br>
+
+═══════════════════════════════════════════════════════════════<br>
+<strong>SECTION 8: VULNERABILITY & MITIGATION DETAILS</strong><br>
+═══════════════════════════════════════════════════════════════<br><br>
+
+8.1 <strong>Vulnerable Software / CVE (if applicable)</strong><br>
+Software: [Apache / OpenSSL / etc.]<br>
+Version: [X.Y.Z]<br>
+CVE: [CVE-YYYY-XXXXX]<br>
+Patch Available: [ ] Yes [ ] No [ ] Unknown<br>
+Patch Applied: [ ] Yes [ ] No [ ] Pending (ETA: [DATE])<br><br>
+
+8.2 <strong>Planned Remediation / Mitigation</strong><br>
+[ ] Apply security patch (ETA: [DATE])<br>
+[ ] Update firewall rules to restrict access<br>
+[ ] Implement multi-factor authentication<br>
+[ ] Deploy WAF (Web Application Firewall)<br>
+[ ] Enable logging and monitoring<br>
+[ ] Increase frequency of security assessments<br>
+[ ] Other: [Describe with timeline]<br><br>
+
+═══════════════════════════════════════════════════════════════<br>
+<strong>SECTION 9: ADDITIONAL DETAILS & ATTACHMENTS</strong><br>
+═══════════════════════════════════════════════════════════════<br><br>
+
+9.1 <strong>Additional Information / Comments</strong><br>
+[Any additional context, threat actor attribution, ransom demand details, etc.]<br><br>
+
+9.2 <strong>Attachments</strong><br>
+[ ] System logs (compressed, encrypted ZIP)<br>
+[ ] Database audit logs<br>
+[ ] SIEM alerts / screenshots<br>
+[ ] Network packet capture (PCAP)<br>
+[ ] Malware sample (only if requested by CERT-In; submit to [virus-submission-email])<br>
+[ ] Forensics report (executive summary)<br>
+[ ] Screenshots/evidence (if appropriate)<br>
+[ ] Other: [List]<br><br>
+
+9.3 <strong>Point of Contact for CERT-In Follow-up</strong><br>
+Name: [NAME]<br>
+Title: [TITLE]<br>
+Email: [EMAIL]<br>
+Phone: [PHONE]<br>
+Best Time to Reach: [TIME_WINDOW]<br>
+Alternate Contact: [NAME], [PHONE], [EMAIL]<br><br>
+
+═══════════════════════════════════════════════════════════════<br>
+<strong>FINAL CERTIFICATION</strong><br>
+═══════════════════════════════════════════════════════════════<br><br>
+
+I hereby certify that the information provided in this incident report is accurate and complete to the best of my knowledge.
+I understand that false or incomplete reporting may result in penalties under the Information Technology Act 2000.<br><br>
+
+<strong>Name:</strong> _________________________<br>
+<strong>Title:</strong> _________________________<br>
+<strong>Organization:</strong> _________________________<br>
+<strong>Date & Time of Submission:</strong> [DD-MM-YYYY HH:MM:SS]<br>
+<strong>Signature/Email Confirmation:</strong> [Typed name as signature]<br><br>
+
+</div>
+
+<!-- ======== SUBMISSION ======== -->
+<h2 id="submission" style="margin-top: 40px;">How to Submit</h2>
+
+<h3>Submission Instructions</h3>
+<ol style=" line-height: 1.8;">
+  <li><strong>Email Address:</strong> <code style="background: #f5f5f5; padding: 2px 4px;">incidents@cert-in.org.in</code></li>
+  <li><strong>Email Subject Line:</strong> Use format: <code style="background: #f5f5f5; padding: 2px 4px;">Incident Report — [INCIDENT_ID] — [Type] — [Severity]</code>
+    <br>Example: "Incident Report — INC-2026-04-15-001 — Ransomware — Critical"</li>
+  <li><strong>Email Body:</strong> Paste the completed CC-5 form in the email body (not as attachment)</li>
+  <li><strong>Attachments:</strong> Attach logs, evidence, forensics in a password-protected ZIP or encrypted email</li>
+  <li><strong>Confidentiality Note:</strong> Mark email as "CONFIDENTIAL" to request CERT-In not disclose details to third parties</li>
+  <li><strong>Proof of Submission:</strong> CERT-In will send acknowledgement email within 24 hours. Retain for audit trail.</li>
+</ol>
+
+<h3>Submission Timeline Checklist</h3>
+<ul >
+  <li>☐ <strong>T+2hr:</strong> Form CC-5 draft completed with available information</li>
+  <li>☐ <strong>T+4hr:</strong> Evidence collected (logs, screenshots, network details)</li>
+  <li>☐ <strong>T+5.5hr:</strong> Form reviewed by CISO; final check for completeness</li>
+  <li>☐ <strong>T+5.55hr:</strong> Email composed and tested (test send to internal address first)</li>
+  <li>☐ <strong>T+5.58hr:</strong> Final submission sent to incidents@cert-in.org.in</li>
+  <li>☐ <strong>T+6hr:</strong> Deadline met; save email confirmation for audit trail</li>
+</ul>
+
+<!-- ======== ESCALATION ======== -->
+<h2 id="escalation" style="margin-top: 40px;">CERT-In Follow-up & Escalation</h2>
+
+<h3>What to Expect After Submission</h3>
+<ul >
+  <li><strong>Acknowledgement (within 24 hours):</strong> CERT-In sends email confirming receipt of incident report</li>
+  <li><strong>Additional Information Request (within 2-3 days):</strong> CERT-In may request more details, logs, or clarifications</li>
+  <li><strong>Threat Intelligence Sharing (ongoing):</strong> CERT-In may provide IOCs (IP addresses, domains, malware hashes) to help with defense</li>
+  <li><strong>Incident Tracker:</strong> CERT-In may create internal incident tracker and request periodic updates</li>
+  <li><strong>Advisory Issuance (3-30 days post-incident):</strong> CERT-In may issue public security advisory if threat is widespread</li>
+</ul>
+
+<h3>Non-Compliance Penalties</h3>
+<div style="background: #f8d7da; border: 1px solid #f5c6cb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #721c24;">⚠️ PENALTIES FOR MISSING CERT-In 6-HOUR SLA:</strong><br>
+  • <strong>Legal Basis:</strong> Information Technology Act 2000, Section 70<br>
+  • <strong>Penalty:</strong> Up to ₹5 Lakhs (₹500,000) or 2 years imprisonment<br>
+  • <strong>Enforcement:</strong> Can be enforced even if DPDP penalties also apply
+</div>
+
+<!-- ======== CHECKLIST ======== -->
+<h2 id="checklist" style="margin-top: 40px;">Implementation Checklist</h2>
+
+<ul style=" line-height: 1.8;">
+  <li>☐ <strong>Policy:</strong> CERT-In 6-hour reporting requirement documented in Incident Response Policy</li>
+  <li>☐ <strong>Team Training:</strong> All incident responders trained on CERT-In requirements, 6-hour SLA, Form CC-5</li>
+  <li>☐ <strong>Email Account:</strong> Dedicated email account for CERT-In submissions (monitored by multiple people)</li>
+  <li>☐ <strong>Incident Classification:</strong> Procedure to classify incidents as CERT-In-reportable within 1 hour of detection</li>
+  <li>☐ <strong>T+5hr Alarm:</strong> Automated reminder / calendar alert at T+5 hours to submit before deadline</li>
+  <li>☐ <strong>CC-5 Template:</strong> Blank CC-5 form template stored in shared incident response wiki/runbook</li>
+  <li>☐ <strong>Evidence Collection SOP:</strong> Procedure to collect logs, screenshots, evidence within 2-4 hours of detection</li>
+  <li>☐ <strong>CISO Sign-off:</strong> CISO (or designated authority) reviews CC-5 form before submission</li>
+  <li>☐ <strong>Submission Tracker:</strong> Log of all CERT-In submissions (date, time, incident ID, form file, confirmation receipt)</li>
+  <li>☐ <strong>Follow-up Response:</strong> Procedure to respond to CERT-In additional information requests within 2 business days</li>
+  <li>☐ <strong>Annual Tabletop:</strong> Incident response drill includes CERT-In 6-hour reporting scenario (test email submission)</li>
+  <li>☐ <strong>Cross-Reference:</strong> Link T-20 (Incident Response Plan) to T-21A (this template) in both docs</li>
+</ul>
+
+<div style="background: #d1ecf1; border: 1px solid #bee5eb; padding: 12px; margin: 12px 0; border-radius: 6px;">
+  <strong style="color: #0c5460;">ℹ️ REFERENCE TEMPLATES:</strong><br>
+  • <strong>T-20:</strong> <a href="20_Incident_Response_Plan.html">Incident Response Plan (Dual-Timer)</a><br>
+  • <strong>T-21:</strong> <a href="21_DPBI_Breach_Notification.html">DPBI Breach Notification (72-Hour)</a>
+</div>
+
+<div class="signature-block">
+  <p style="margin-top: 40px;">
+    <strong>Template Version:</strong> 1.0 (NEW)<br>
+    <strong>Created:</strong> April 2026<br>
+    <strong>Organization:</strong> [Organization Name]<br>
+    <strong>Prepared By:</strong> _________________________<br>
+    <strong>Reviewed By (CISO):</strong> _________________________<br>
+    <strong>Approved By (DPO):</strong> _________________________<br>
+    <strong>Date:</strong> _________________________
+  </p>
+</div>
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

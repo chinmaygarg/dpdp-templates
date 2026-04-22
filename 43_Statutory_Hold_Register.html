@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statutory Hold Register — Data Retention & Deletion Conflict Resolution</title>
+<link rel="stylesheet" href="UNIFIED_THEME.css">
+<style>
+  /* Template-specific overrides */
+    .header { border-bottom: 2px solid var(--text-primary); padding-bottom: 15px; margin-bottom: 20px; }
+  .title { font-weight: bold; margin-bottom: 10px; }
+  .subtitle { color: var(--text-secondary); margin-bottom: 15px; }
+  table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; }
+  th { background: #2c3e50; color: white; padding: 6px; text-align: left; font-weight: bold; }
+  td { border: 1px solid var(--border-color); padding: 5px; }
+  tr:nth-child(even) { background: var(--bg-light); }
+  input[type="text"], textarea { border: none; border-bottom: 1px solid var(--text-primary); padding: 2px; width: 95%; }
+  .section { margin-top: 20px; }
+  .section-title { font-weight: bold; background: #ecf0f1; padding: 5px; margin-bottom: 10px; }
+  .note { background: var(--status-warn); padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #ffc107; }
+  .critical { background: var(--status-fail); padding: 8px; margin: var(--spacing-sm) 0; border-left: 3px solid #dc3545; }
+  @media print { body { margin: 0; padding: 0; } }
+</style>
+</head>
+<body>
+<div class="back-link" style="margin-bottom: 20px;">
+  <a href="INDEX_DPDP_Compliance_Navigator.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">← Back to Navigator</a>
+</div>
+
+
+
+<div class="header">
+  <div class="title">STATUTORY HOLD REGISTER — Data Retention & Deletion Conflict Management</div>
+  <div class="subtitle">
+    Organization: <input type="text" placeholder="[Organization Name]" style="width:300px;"><br>
+    Register Effective Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+    &nbsp;&nbsp; Last Updated: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+  </div>
+</div>
+
+<div class="critical">
+  <strong>CRITICAL NOTE:</strong> When a data subject requests erasure (Section 8(7)) but a statutory hold applies, the organization must DENY or DEFER the request and inform the principal of the legal basis and hold expiry date. This register tracks all data types subject to statutory holds and the applicable retention periods.
+</div>
+
+<table>
+  <tr>
+    <th style="width:12%;">Data Type</th>
+    <th style="width:12%;">Applicable Law/Regulator</th>
+    <th style="width:10%;">Hold Period</th>
+    <th style="width:15%;">Legal Basis / Section</th>
+    <th style="width:12%;">Affected Data Categories</th>
+    <th style="width:12%;">Applicable Orgs</th>
+    <th style="width:15%;">Action on Erasure Request</th>
+    <th style="width:12%;">Owner / DPO Approval</th>
+  </tr>
+
+  <tr>
+    <td><strong>KYC Records</strong></td>
+    <td>PMLA (Prevention of Money Laundering Act)</td>
+    <td>5 years after relationship ends</td>
+    <td>PMLA Rule 9(1)</td>
+    <td>Name, Address, Govt ID, PAN, Aadhaar, DOB, phone, email</td>
+    <td>Banks, Fintech, NBFCs, Payment, Insurance</td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>DENY + explain hold</option><option>DEFER until hold expires</option></select></td>
+    <td><input type="text" placeholder="Sign-off" style="width:100px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>Loan Records</strong></td>
+    <td>RBI (Reserve Bank of India)</td>
+    <td>8 years from transaction date</td>
+    <td>RBI Master Circular on KYC / AML (Master Direction on Know Your Customer)</td>
+    <td>Loan amount, tenure, EMI, default history, repayment status, guarantor info</td>
+    <td>Banks, Lenders, Credit Products, Fintechs, NBFCs</td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>DENY + explain hold</option><option>DEFER until hold expires</option></select></td>
+    <td><input type="text" placeholder="Sign-off" style="width:100px;"></td>
+  </tr>
+
+  <tr>
+    <td><strong>Insurance Policy Data</strong></td>
+    <td>IRDAI (Insurance Regulatory & Development Authority)</td>
+    <td>Varies per policy type and term</td>
+    <td>Insurance Act 1938 + IRDAI Regulations</td>
+    <td>Policy holder name, coverage details, claims history, medical history, premium payments</td>
+    <td>Insurers, InsureTech, Insurance Brokers, Third-party administrators</td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>DENY + explain hold</option><option>DEFER until hold expires</option></select></td>
+    <td><input type="text" placeholder="Sign-off" style="width:100px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>Trade / Transaction Records</strong></td>
+    <td>SEBI (Securities and Exchange Board of India)</td>
+    <td>5 years from transaction date</td>
+    <td>SEBI (Stock Brokers) Regulations 1992 + SEBI Master Circular</td>
+    <td>Investor name, portfolio, trade orders, settlements, account statements</td>
+    <td>Brokers, Stock Exchanges, Financial Advisors, Investment Apps</td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>DENY + explain hold</option><option>DEFER until hold expires</option></select></td>
+    <td><input type="text" placeholder="Sign-off" style="width:100px;"></td>
+  </tr>
+
+  <tr>
+    <td><strong>Cyber Security Incident Logs</strong></td>
+    <td>CERT-In (Indian Computer Emergency Response Team)</td>
+    <td>1 year from incident date (for activity logs)</td>
+    <td>CERT-In Rule 4(2) — Handling of Personal Data in Breach</td>
+    <td>System access logs, failed login attempts, IP addresses, user activities during incident investigation</td>
+    <td>All organizations (critical infrastructure, essential services)</td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>DENY + explain hold</option><option>DEFER until hold expires</option></select></td>
+    <td><input type="text" placeholder="Sign-off" style="width:100px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>Audit Records</strong></td>
+    <td>Companies Act 1956 / Audit Standard</td>
+    <td>3-5 years (per statutory audit requirements)</td>
+    <td>Companies Act Section 383 + Indian Accounting Standards</td>
+    <td>Employee data in audit scope, transaction details, authorization traces</td>
+    <td>Limited companies, LLPs</td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>DENY + explain hold</option><option>DEFER until hold expires</option></select></td>
+    <td><input type="text" placeholder="Sign-off" style="width:100px;"></td>
+  </tr>
+
+  <tr>
+    <td><strong>Employee / HR Records</strong></td>
+    <td>Labour Laws, Income Tax Act</td>
+    <td>3 years after employment ends (varies by law)</td>
+    <td>Industrial Disputes Act 1947, Payment of Gratuity Act 1972, Income Tax Act 1961</td>
+    <td>Employee name, salary, tax info, grievance records, disciplinary action</td>
+    <td>All employers with employees</td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>DENY + explain hold</option><option>DEFER until hold expires</option></select></td>
+    <td><input type="text" placeholder="Sign-off" style="width:100px;"></td>
+  </tr>
+
+  <tr style="background:var(--bg-light);">
+    <td><strong>Customer Service Records</strong></td>
+    <td>Telecom Regulation / Consumer Protection Act</td>
+    <td>2 years (or as per contract)</td>
+    <td>Telecom Regulatory Authority of India (TRAI) Regulations</td>
+    <td>Call logs, complaint records, chat transcripts, customer interactions</td>
+    <td>Telecom, E-commerce, SaaS platforms with customer service</td>
+    <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>DENY + explain hold</option><option>DEFER until hold expires</option></select></td>
+    <td><input type="text" placeholder="Sign-off" style="width:100px;"></td>
+  </tr>
+
+</table>
+
+<div class="section">
+  <div class="section-title">HOLD EXPIRY REVIEW SCHEDULE</div>
+  <table>
+    <tr>
+      <th>Data Type</th>
+      <th>Hold Expiry Date</th>
+      <th>Review Owner</th>
+      <th>Deletion Date Planned</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="e.g., KYC Records" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:100px;"></td>
+      <td><input type="text" placeholder="Name / Role" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:100px;"></td>
+      <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Active Hold</option><option>Expiry Pending</option><option>Expired - Deleted</option></select></td>
+    </tr>
+    <tr style="background:var(--bg-light);">
+      <td><input type="text" placeholder="e.g., Loan Records" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:100px;"></td>
+      <td><input type="text" placeholder="Name / Role" style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:100px;"></td>
+      <td><select style="border:1px solid var(--text-primary); padding:2px;"><option>Active Hold</option><option>Expiry Pending</option><option>Expired - Deleted</option></select></td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">ERASURE REQUEST HANDLING PROTOCOL</div>
+  <div class="note">
+    <strong>When a data principal files an erasure request:</strong><br>
+    1. Check this register for any applicable statutory hold<br>
+    2. If hold applies: DENY + send principal written explanation with hold end date<br>
+    3. Log rejection in DSAR system with hold reason + expiry date<br>
+    4. If no hold: Process erasure per DPDP Section 8(7) SOP<br>
+    5. If hold expires during pendency: Re-evaluate request and proceed with deletion
+  </div>
+
+  <strong>Template Response Letter (hold applies):</strong><br>
+  <textarea placeholder="Dear [Principal Name], We received your data deletion request on [date]. However, we cannot delete the requested data due to [Applicable Law: PMLA/RBI/IRDAI/SEBI] requirement. The mandatory retention period is [hold period] and expires on [date]. After [date], we will delete the data without further notice. You may contact [DPO contact] with questions." style="width:100%; height:80px; border:1px solid var(--border-color);"></textarea>
+</div>
+
+<div class="section">
+  <div class="section-title">HOLD CONFLICT LOG (Erasure Requests Denied Due to Hold)</div>
+  <table>
+    <tr>
+      <th>Request ID</th>
+      <th>Data Principal ID</th>
+      <th>Request Date</th>
+      <th>Data Type</th>
+      <th>Applicable Hold</th>
+      <th>Hold Expiry</th>
+      <th>Response Sent</th>
+      <th>Follow-up Deletion Date</th>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="DSAR-XXX" style="width:80px;"></td>
+      <td><input type="text" placeholder="DP-ID" style="width:80px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+      <td><input type="text" placeholder="Data type" style="width:100px;"></td>
+      <td><input type="text" placeholder="PMLA / RBI / etc." style="width:100px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+      <td><input type="text" placeholder="DD/MM/YYYY" style="width:90px;"></td>
+    </tr>
+  </table>
+</div>
+
+<div style="margin-top:20px; padding: var(--spacing-md); background:#f0f5ff; border-left:3px solid var(--primary-color);">
+  <strong>REGISTER CERTIFICATION</strong><br><br>
+  This Statutory Hold Register is maintained and reviewed by: <input type="text" placeholder="Name / Title" style="width:250px;"><br>
+  Last Review Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;"><br>
+  DPO Approval: <input type="text" placeholder="Signature" style="width:250px;"> Date: <input type="text" placeholder="DD/MM/YYYY" style="width:150px;">
+</div>
+
+
+<!-- Lucide Icons -->
+<script src="lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>
